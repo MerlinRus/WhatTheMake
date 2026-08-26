@@ -36,6 +36,17 @@ interface RecoveryJobRow {
   attempts: number;
 }
 
+function isConstraintViolation(error: unknown, constraint: string): boolean {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'code' in error &&
+    error.code === '23505' &&
+    'constraint' in error &&
+    error.constraint === constraint
+  );
+}
+
 const ownershipJoin = `
   LEFT JOIN wtm_guests AS owner_guest
     ON owner_guest.id = collection.guest_id
@@ -224,9 +235,10 @@ export function createPostgresMediaRepository(pool: Pool): MediaRepository {
     },
 
     async commitAssetUpload(input): Promise<CommitMediaAssetUploadResult> {
-      return withTransaction(pool, async (client) => {
-        const recovery = await client.query(
-          `
+      try {
+        return await withTransaction(pool, async (client) => {
+          const recovery = await client.query(
+            `
             SELECT id
             FROM wtm_media_recovery_jobs
             WHERE operation_kind = 'ABANDONED_UPLOAD'
@@ -235,14 +247,14 @@ export function createPostgresMediaRepository(pool: Pool): MediaRepository {
               AND status = 'PENDING'
             FOR UPDATE
           `,
-          [input.assetId, input.collectionId],
-        );
-        if (recovery.rowCount !== 1) {
-          return { kind: 'RECOVERY_NOT_PENDING' };
-        }
+            [input.assetId, input.collectionId],
+          );
+          if (recovery.rowCount !== 1) {
+            return { kind: 'RECOVERY_NOT_PENDING' };
+          }
 
-        const asset = await client.query<AssetRow>(
-          `
+          const asset = await client.query<AssetRow>(
+            `
             INSERT INTO wtm_media_assets (
               id,
               collection_id,
@@ -254,20 +266,20 @@ export function createPostgresMediaRepository(pool: Pool): MediaRepository {
             VALUES ($1, $2, $3, $4, $5, $6)
             RETURNING ${assetReturningColumns}
           `,
-          [
-            input.assetId,
-            input.collectionId,
-            input.role,
-            input.mediaType,
-            input.byteSize,
-            input.sha256,
-          ],
-        );
-        const row = asset.rows[0];
-        if (!row) throw new Error('Media asset insert returned no row');
+            [
+              input.assetId,
+              input.collectionId,
+              input.role,
+              input.mediaType,
+              input.byteSize,
+              input.sha256,
+            ],
+          );
+          const row = asset.rows[0];
+          if (!row) throw new Error('Media asset insert returned no row');
 
-        await client.query(
-          `
+          await client.query(
+            `
             UPDATE wtm_media_recovery_jobs
             SET status = 'COMPLETED',
                 locked_at = NULL,
@@ -277,10 +289,38 @@ export function createPostgresMediaRepository(pool: Pool): MediaRepository {
             WHERE operation_kind = 'ABANDONED_UPLOAD'
               AND resource_id = $1
           `,
-          [input.assetId],
-        );
-        return { kind: 'CREATED', asset: mediaAsset(row) };
-      });
+            [input.assetId],
+          );
+          return { kind: 'CREATED', asset: mediaAsset(row) };
+        });
+      } catch (error) {
+        if (
+          isConstraintViolation(
+            error,
+            'wtm_media_assets_collection_role_active_unique',
+          )
+        ) {
+          return { kind: 'ROLE_OCCUPIED' };
+        }
+        throw error;
+      }
+    },
+
+    async completePreparedAssetUpload(assetId): Promise<void> {
+      await pool.query(
+        `
+          UPDATE wtm_media_recovery_jobs
+          SET status = 'COMPLETED',
+              locked_at = NULL,
+              completed_at = now(),
+              updated_at = now(),
+              last_error_code = NULL
+          WHERE operation_kind = 'ABANDONED_UPLOAD'
+            AND resource_id = $1
+            AND status = 'PENDING'
+        `,
+        [assetId],
+      );
     },
 
     async findOwnedAsset(assetId, owner): Promise<MediaAsset | null> {

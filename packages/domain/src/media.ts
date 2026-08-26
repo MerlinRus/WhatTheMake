@@ -43,7 +43,8 @@ export type PrepareMediaAssetUploadResult =
   | { kind: 'CAPACITY_REACHED' };
 
 export type CommitMediaAssetUploadResult =
-  { kind: 'CREATED'; asset: MediaAsset } | { kind: 'RECOVERY_NOT_PENDING' };
+  | { kind: 'CREATED'; asset: MediaAsset }
+  | { kind: 'RECOVERY_NOT_PENDING' | 'ROLE_OCCUPIED' };
 
 export type MediaRecoveryKind = 'ABANDONED_UPLOAD' | 'DELETE_ASSET';
 
@@ -77,6 +78,7 @@ export interface MediaRepository extends MediaRecoveryRepository {
   commitAssetUpload(
     input: CreateMediaAssetInput,
   ): Promise<CommitMediaAssetUploadResult>;
+  completePreparedAssetUpload(assetId: string): Promise<void>;
   findOwnedAsset(
     assetId: string,
     owner: AuthenticatedIdentity,

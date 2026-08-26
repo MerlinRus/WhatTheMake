@@ -14,6 +14,7 @@ import {
   MascaraBriefResponseSchema,
   MediaAssetParamsSchema,
   MediaCollectionResponseSchema,
+  ProductObservationResponseSchema,
   ReadyResponseSchema,
   SessionResponseSchema,
 } from '../src/index.js';
@@ -273,6 +274,34 @@ test('private media contract limits metadata and rejects path-like IDs', () => {
   );
   assert.equal(
     Value.Check(MediaAssetParamsSchema, { assetId: '../../etc/passwd' }),
+    false,
+  );
+});
+
+test('private product observation exposes barcode and role-scoped media only', () => {
+  const response = {
+    observation: {
+      schemaVersion: 1,
+      observationId: 'f85bf269-76ce-47f5-8b2a-312cb93c653b',
+      barcode: {
+        value: '5901234123457',
+        format: 'EAN_13',
+        gtin14: '05901234123457',
+      },
+      mediaCollection: {
+        collectionId: '36463885-1770-4823-9298-85bca3d8eeb9',
+        assets: [],
+        createdAt: '2026-08-26T10:00:00.000Z',
+      },
+      createdAt: '2026-08-26T10:00:00.000Z',
+      updatedAt: '2026-08-26T10:00:00.000Z',
+    },
+  };
+  assert.equal(Value.Check(ProductObservationResponseSchema, response), true);
+  assert.equal(
+    Value.Check(ProductObservationResponseSchema, {
+      observation: { ...response.observation, ownerKind: 'GUEST' },
+    }),
     false,
   );
 });

@@ -168,6 +168,19 @@ test(
       const assetId = upload.json().asset.assetId;
       assert.equal('sha256' in upload.json().asset, false);
 
+      const duplicateRole = await app.inject({
+        method: 'POST',
+        url: `/api/v1/media-collections/${collectionId}/assets?role=INGREDIENTS`,
+        headers: {
+          origin,
+          cookie: guestACookie,
+          'content-type': 'image/jpeg',
+        },
+        payload: jpeg(8),
+      });
+      assert.equal(duplicateRole.statusCode, 409);
+      assert.equal(duplicateRole.json().error.code, 'CONFLICT');
+
       const ownerRead = await app.inject({
         method: 'GET',
         url: `/api/v1/media-assets/${assetId}`,
@@ -255,16 +268,22 @@ test(
       });
       assert.equal(transferredRead.statusCode, 200);
 
-      for (let index = 1; index <= 4; index += 1) {
+      const remainingRoles = [
+        'FRONT',
+        'CLAIMS',
+        'BARCODE',
+        'PRICE_TAG',
+      ] as const;
+      for (const [index, role] of remainingRoles.entries()) {
         const additional = await app.inject({
           method: 'POST',
-          url: `/api/v1/media-collections/${collectionId}/assets?role=FRONT`,
+          url: `/api/v1/media-collections/${collectionId}/assets?role=${role}`,
           headers: {
             origin,
             cookie: accountCookie,
             'content-type': 'image/jpeg',
           },
-          payload: jpeg(index),
+          payload: jpeg(index + 1),
         });
         assert.equal(additional.statusCode, 201);
       }

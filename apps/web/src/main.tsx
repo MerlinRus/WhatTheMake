@@ -16,6 +16,7 @@ import {
 } from '@wtm/contracts';
 
 import './styles.css';
+import { ProductObservationCapture } from './product-observation.js';
 
 interface ScannerShellProps {
   onClose(): void;
@@ -49,7 +50,8 @@ type LookupState =
   | { kind: 'IDLE' }
   | { kind: 'LOADING' }
   | { kind: 'FOUND'; variant: Variant }
-  | { kind: 'NOT_FOUND' }
+  | { kind: 'NOT_FOUND'; gtin: string }
+  | { kind: 'OBSERVING'; gtin: string }
   | { kind: 'INVALID' }
   | { kind: 'UNAVAILABLE' };
 
@@ -207,7 +209,13 @@ function ProductCard({ variant }: { variant: Variant }) {
   );
 }
 
-function StatusPanel({ state }: { state: LookupState }) {
+function StatusPanel({
+  state,
+  onObserve,
+}: {
+  state: LookupState;
+  onObserve(gtin: string): void;
+}) {
   if (state.kind === 'IDLE') return null;
   if (state.kind === 'LOADING') {
     return (
@@ -217,11 +225,14 @@ function StatusPanel({ state }: { state: LookupState }) {
     );
   }
   if (state.kind === 'FOUND') return <ProductCard variant={state.variant} />;
+  if (state.kind === 'OBSERVING') {
+    return <ProductObservationCapture gtin={state.gtin} />;
+  }
 
   const content = {
     NOT_FOUND: {
       title: 'Товара пока нет в каталоге',
-      text: 'Проверьте цифры. Добавление неизвестного товара по фото появится следующим этапом.',
+      text: 'Создайте личную карточку: фото названия, состава, claims, штрихкода и ценника.',
     },
     INVALID: {
       title: 'Штрихкод не прошёл проверку',
@@ -241,6 +252,15 @@ function StatusPanel({ state }: { state: LookupState }) {
       <div>
         <h2>{content.title}</h2>
         <p>{content.text}</p>
+        {state.kind === 'NOT_FOUND' && (
+          <button
+            className="start-observation"
+            type="button"
+            onClick={() => onObserve(state.gtin)}
+          >
+            Добавить по фото
+          </button>
+        )}
       </div>
     </div>
   );
@@ -264,7 +284,7 @@ function App() {
         headers: { Accept: 'application/json' },
       });
       if (response.status === 404) {
-        setState({ kind: 'NOT_FOUND' });
+        setState({ kind: 'NOT_FOUND', gtin: value });
         return;
       }
       if (response.status === 400) {
@@ -357,7 +377,10 @@ function App() {
         </section>
 
         <div className="result" aria-live="polite">
-          <StatusPanel state={state} />
+          <StatusPanel
+            state={state}
+            onObserve={(value) => setState({ kind: 'OBSERVING', gtin: value })}
+          />
         </div>
       </main>
 

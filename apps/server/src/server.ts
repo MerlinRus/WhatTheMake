@@ -11,6 +11,7 @@ import { loadServerConfig } from './config.js';
 import { createIdentityService } from './identity/service.js';
 import { createMediaService } from './media/service.js';
 import { createMascaraPreferencesService } from './preferences/service.js';
+import { createProductObservationService } from './product-observations/service.js';
 
 async function start(): Promise<void> {
   const config = loadServerConfig(process.env);
@@ -76,6 +77,14 @@ async function start(): Promise<void> {
         publicOrigin: config.publicOrigin,
         cookieName,
         maxBytes: config.mediaMaxBytes,
+      },
+      productObservations: {
+        service: createProductObservationService({
+          identity: identityService,
+          repository: database.productObservations,
+        }),
+        publicOrigin: config.publicOrigin,
+        cookieName,
       },
       onClose: async () => {
         await mediaRecoveryWorker?.stop();

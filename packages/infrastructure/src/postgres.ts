@@ -10,12 +10,14 @@ import type {
   IdentityRepository,
   MediaRepository,
   PreferencesRepository,
+  ProductObservationRepository,
 } from '@wtm/domain';
 
 import { createPostgresCatalogRepository } from './catalog-repository.js';
 import { createPostgresIdentityRepository } from './identity-repository.js';
 import { createPostgresMediaRepository } from './media-repository.js';
 import { createPostgresPreferencesRepository } from './preferences-repository.js';
+import { createPostgresProductObservationRepository } from './product-observation-repository.js';
 
 const MIGRATION_FILE_PATTERN = /^\d{4}_[a-z0-9_]+\.sql$/;
 const MIGRATION_LOCK_KEY = 928_042_025;
@@ -43,6 +45,7 @@ export interface Database extends DatabaseHealthProbe {
   identity: IdentityRepository;
   media: MediaRepository;
   preferences: PreferencesRepository;
+  productObservations: ProductObservationRepository;
   migrate(migrationsDirectory: string): Promise<MigrationSummary>;
   close(): Promise<void>;
 }
@@ -97,6 +100,7 @@ export function createPostgresDatabase(
     identity: createPostgresIdentityRepository(pool),
     media: createPostgresMediaRepository(pool),
     preferences: createPostgresPreferencesRepository(pool),
+    productObservations: createPostgresProductObservationRepository(pool),
     async health(): Promise<DatabaseHealth> {
       const startedAt = performance.now();
       try {

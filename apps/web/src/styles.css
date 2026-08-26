@@ -280,6 +280,190 @@ summary:focus-visible {
   line-height: 1.5;
 }
 
+.start-observation,
+.capture-error button {
+  min-height: 46px;
+  margin-top: 17px;
+  padding: 0 17px;
+  border: 1.5px solid #191713;
+  border-radius: 13px;
+  background: #191713;
+  color: #fffdf8;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.observation-card {
+  overflow: hidden;
+  border: 1px solid rgb(25 23 19 / 12%);
+  border-radius: 28px;
+  background: #fffdf8;
+  box-shadow: 0 22px 70px rgb(43 31 22 / 13%);
+}
+
+.observation-card > header {
+  padding: 25px 22px 20px;
+}
+
+.observation-card h2,
+.capture-error h2 {
+  margin-bottom: 10px;
+  font-family: Georgia, serif;
+  font-size: clamp(1.8rem, 8vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.observation-card > header p,
+.capture-error p {
+  margin-bottom: 0;
+  color: #6d675f;
+  line-height: 1.5;
+}
+
+.capture-progress {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 15px 22px;
+  background: #eee6dc;
+}
+
+.capture-progress strong {
+  font-size: 1.05rem;
+}
+
+.capture-progress span {
+  color: #6d675f;
+  font-size: 0.72rem;
+}
+
+.capture-grid {
+  display: grid;
+}
+
+.capture-role {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 15px;
+  align-items: center;
+  min-height: 102px;
+  padding: 15px 22px;
+  border-top: 1px solid #e7dfd5;
+}
+
+.capture-role > div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.capture-role strong {
+  font-size: 0.92rem;
+}
+
+.capture-role > div:first-child > span {
+  width: fit-content;
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: #eee6dc;
+  color: #6d675f;
+  font-size: 0.62rem;
+  font-weight: 750;
+}
+
+.capture-role small {
+  color: #777168;
+  line-height: 1.35;
+}
+
+.capture-role label,
+.capture-preview button {
+  display: grid;
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid #b9ada1;
+  border-radius: 12px;
+  background: transparent;
+  color: #312c26;
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+  place-items: center;
+}
+
+.capture-role label.is-busy,
+.capture-role label:has(input:disabled),
+.capture-preview button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.capture-role input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.capture-role label:focus-within,
+.capture-preview button:focus-visible,
+.start-observation:focus-visible,
+.capture-error button:focus-visible {
+  outline: 3px solid #d17a66;
+  outline-offset: 3px;
+}
+
+.capture-preview {
+  display: grid;
+  grid-template-columns: 58px;
+  gap: 6px;
+}
+
+.capture-preview img {
+  width: 58px;
+  height: 58px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.capture-preview button {
+  min-height: 30px;
+  padding: 0 5px;
+  color: #815242;
+  font-size: 0.65rem;
+}
+
+.capture-action-error {
+  margin: 0;
+  padding: 14px 22px;
+  border-top: 1px solid #d17a66;
+  background: #f8e7e1;
+  color: #713b2e;
+  font-size: 0.8rem;
+}
+
+.observation-card > footer {
+  display: grid;
+  gap: 4px;
+  padding: 18px 22px;
+  border-top: 1px solid #e7dfd5;
+  background: #e3eddf;
+  color: #264323;
+}
+
+.observation-card > footer span {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.capture-error {
+  padding: 25px;
+}
+
 .product-card {
   overflow: hidden;
   border: 1px solid rgb(25 23 19 / 12%);

@@ -10,6 +10,7 @@ COPY packages/infrastructure/package.json packages/infrastructure/package.json
 RUN npm ci
 
 COPY tsconfig.json tsconfig.base.json eslint.config.js ./
+COPY .editorconfig .prettierignore .prettierrc.json ./
 COPY apps/server apps/server
 COPY apps/web apps/web
 COPY packages/contracts packages/contracts
@@ -20,6 +21,7 @@ RUN npm run build
 FROM build AS verification
 RUN npm run typecheck
 RUN npm run lint
+RUN npm run format:check
 RUN npm test
 
 FROM build AS production-dependencies

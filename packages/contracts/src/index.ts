@@ -5,3 +5,4 @@ export * from './health.js';
 export * from './identity.js';
 export * from './mascara-preferences.js';
 export * from './media.js';
+export * from './product-observation.js';

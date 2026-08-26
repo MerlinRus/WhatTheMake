@@ -18,6 +18,7 @@ import type { CatalogLookupService } from './catalog/service.js';
 import type { IdentityService } from './identity/service.js';
 import type { MascaraPreferencesService } from './preferences/service.js';
 import type { MediaService } from './media/service.js';
+import type { ProductObservationService } from './product-observations/service.js';
 import { registerHealthRoutes } from './routes/health.js';
 import { registerCatalogRoutes } from './routes/catalog.js';
 import {
@@ -32,6 +33,10 @@ import {
   registerMediaRoutes,
   type MediaRoutesOptions,
 } from './routes/media.js';
+import {
+  registerProductObservationRoutes,
+  type ProductObservationRoutesOptions,
+} from './routes/product-observations.js';
 
 export interface BuildAppOptions {
   database?: DatabaseHealthProbe | null;
@@ -47,6 +52,9 @@ export interface BuildAppOptions {
     service: MascaraPreferencesService;
   };
   media?: Omit<MediaRoutesOptions, 'service'> & { service: MediaService };
+  productObservations?: Omit<ProductObservationRoutesOptions, 'service'> & {
+    service: ProductObservationService;
+  };
   onClose?: () => Promise<void>;
 }
 
@@ -189,6 +197,10 @@ export async function buildApp(
 
   if (options.media) {
     await registerMediaRoutes(app, options.media);
+  }
+
+  if (options.productObservations) {
+    await registerProductObservationRoutes(app, options.productObservations);
   }
 
   if (options.webRoot) {

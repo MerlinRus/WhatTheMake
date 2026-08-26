@@ -193,6 +193,19 @@ export function createMediaService(options: {
       });
       if (result.kind === 'CREATED') return mediaAsset(result.asset);
 
+      if (result.kind === 'ROLE_OCCUPIED') {
+        try {
+          await options.storage.delete(assetId);
+          await options.repository.completePreparedAssetUpload(assetId);
+        } catch {
+          // Pending recovery keeps cleanup durable when immediate deletion fails.
+        }
+        throw new AppError({
+          statusCode: 409,
+          code: 'CONFLICT',
+          message: 'Media role already has an image',
+        });
+      }
       await options.storage.delete(assetId).catch(() => {});
       throw new AppError({
         statusCode: 503,
