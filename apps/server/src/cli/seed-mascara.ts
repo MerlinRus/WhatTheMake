@@ -1,5 +1,6 @@
 import { readFile, stat } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { createPostgresDatabase } from '@wtm/infrastructure';
 
@@ -9,7 +10,9 @@ import {
 } from '../catalog-import/service.js';
 import { loadServerConfig } from '../config.js';
 
-const DEFAULT_SEED_PATH = 'apps/server/seeds/mascara/seed.json';
+const DEFAULT_SEED_PATH = fileURLToPath(
+  new URL('../../seeds/mascara/seed.json', import.meta.url),
+);
 const MAX_SEED_BYTES = 5 * 1024 * 1024;
 
 type Command =
