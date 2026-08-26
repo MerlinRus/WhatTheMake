@@ -1,5 +1,7 @@
 export * from './catalog-repository.js';
 export * from './catalog-import-repository.js';
+export * from './fake-ocr-provider.js';
+export * from './google-vision-ocr-provider.js';
 export * from './identity-repository.js';
 export * from './local-media-storage.js';
 export * from './media-recovery-worker.js';

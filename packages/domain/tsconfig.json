@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "composite": true,
+    "lib": ["ES2024", "DOM"],
     "rootDir": "src",
     "outDir": "dist",
     "tsBuildInfoFile": "dist/domain.tsbuildinfo"
