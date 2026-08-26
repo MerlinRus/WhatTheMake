@@ -9,3 +9,4 @@ export * from './media-repository.js';
 export * from './postgres.js';
 export * from './preferences-repository.js';
 export * from './product-observation-repository.js';
+export * from './queued-ocr-provider.js';
