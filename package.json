@@ -1,0 +1,39 @@
+{
+  "name": "what-the-make",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=11.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @wtm/contracts && npm run build -w @wtm/domain && npm run build -w @wtm/infrastructure && npm run build -w @wtm/server && npm run build -w @wtm/web",
+    "dev": "npm run dev -w @wtm/server",
+    "start": "npm run start -w @wtm/server",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "node --import tsx --test packages/contracts/test/contracts.test.ts packages/domain/test/gtin.test.ts packages/infrastructure/test/media-storage.test.ts packages/infrastructure/test/postgres.integration.test.ts packages/infrastructure/test/catalog.integration.test.ts packages/infrastructure/test/media-recovery.integration.test.ts apps/server/test/app.test.ts apps/server/test/config.test.ts apps/server/test/passwords.test.ts apps/server/test/identity.integration.test.ts apps/server/test/preferences.integration.test.ts apps/server/test/media.integration.test.ts apps/server/test/catalog.integration.test.ts apps/web/test/scanner-session.test.ts",
+    "test:integration": "node --import tsx --test --test-concurrency=1 packages/infrastructure/test/postgres.integration.test.ts packages/infrastructure/test/catalog.integration.test.ts packages/infrastructure/test/media-recovery.integration.test.ts apps/server/test/identity.integration.test.ts apps/server/test/preferences.integration.test.ts apps/server/test/media.integration.test.ts apps/server/test/catalog.integration.test.ts",
+    "test:e2e": "playwright test",
+    "db:migrate": "npm run db:migrate -w @wtm/server",
+    "docker:dev": "docker compose up --build"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.62.1",
+    "@types/node": "24.13.3",
+    "@types/pg": "8.23.1",
+    "eslint": "10.9.1",
+    "prettier": "3.9.6",
+    "tsx": "4.23.12",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.68.0"
+  }
+}

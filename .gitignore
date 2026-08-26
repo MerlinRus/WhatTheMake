@@ -1,0 +1,17 @@
+node_modules/
+.codegraph/
+dist/
+dist-types/
+coverage/
+playwright-report/
+test-results/
+.env
+.env.*
+!.env.example
+data/
+uploads/
+*.log
+*.tar.gz
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
