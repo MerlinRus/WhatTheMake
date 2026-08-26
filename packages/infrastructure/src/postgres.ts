@@ -16,8 +16,10 @@ import type {
 
 import { createPostgresCatalogRepository } from './catalog-repository.js';
 import { createPostgresCatalogImportRepository } from './catalog-import-repository.js';
+import type { OcrCacheStore } from './cached-ocr-provider.js';
 import { createPostgresIdentityRepository } from './identity-repository.js';
 import { createPostgresMediaRepository } from './media-repository.js';
+import { createPostgresOcrCacheStore } from './ocr-cache-repository.js';
 import { createPostgresPreferencesRepository } from './preferences-repository.js';
 import { createPostgresProductObservationRepository } from './product-observation-repository.js';
 
@@ -47,6 +49,7 @@ export interface Database extends DatabaseHealthProbe {
   catalogImports: CatalogImportRepository;
   identity: IdentityRepository;
   media: MediaRepository;
+  ocrCache: OcrCacheStore;
   preferences: PreferencesRepository;
   productObservations: ProductObservationRepository;
   migrate(migrationsDirectory: string): Promise<MigrationSummary>;
@@ -103,6 +106,7 @@ export function createPostgresDatabase(
     catalogImports: createPostgresCatalogImportRepository(pool),
     identity: createPostgresIdentityRepository(pool),
     media: createPostgresMediaRepository(pool),
+    ocrCache: createPostgresOcrCacheStore(pool),
     preferences: createPostgresPreferencesRepository(pool),
     productObservations: createPostgresProductObservationRepository(pool),
     async health(): Promise<DatabaseHealth> {
