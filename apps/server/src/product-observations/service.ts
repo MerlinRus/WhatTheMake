@@ -1,11 +1,18 @@
+import { createHash } from 'node:crypto';
+
 import type {
+  CatalogPromotion as ContractCatalogPromotion,
+  CatalogPromotionIdentity as ContractCatalogPromotionIdentity,
   MediaAsset as ContractMediaAsset,
   MediaCollection as ContractMediaCollection,
   ProductObservation as ContractProductObservation,
 } from '@wtm/contracts';
 import {
+  catalogPromotionFingerprintMaterial,
   normalizeGtin,
+  normalizeCatalogPromotionIdentity,
   type AuthenticatedIdentity,
+  type CatalogIdentityFingerprint,
   type MediaAsset,
   type MediaCollection,
   type ProductObservation,
@@ -28,6 +35,14 @@ export interface ProductObservationService {
     token: string | null,
     observationId: string,
   ): Promise<ContractProductObservation>;
+  confirm(
+    token: string | null,
+    observationId: string,
+    input: ContractCatalogPromotionIdentity,
+  ): Promise<{
+    kind: 'CREATED' | 'REUSED';
+    promotion: ContractCatalogPromotion;
+  }>;
 }
 
 function unauthenticated(): AppError {
@@ -43,6 +58,14 @@ function notFound(): AppError {
     statusCode: 404,
     code: 'NOT_FOUND',
     message: 'Product observation not found',
+  });
+}
+
+function forbidden(): AppError {
+  return new AppError({
+    statusCode: 403,
+    code: 'FORBIDDEN',
+    message: 'Account session required',
   });
 }
 
@@ -119,6 +142,57 @@ export function createProductObservationService(options: {
       );
       if (!found) throw notFound();
       return contractObservation(found);
+    },
+
+    async confirm(token, observationId, input) {
+      const owner = await identity(token);
+      if (owner.kind !== 'ACCOUNT') throw forbidden();
+      const normalizedIdentity = normalizeCatalogPromotionIdentity(input);
+      if (!normalizedIdentity) {
+        throw new AppError({
+          statusCode: 400,
+          code: 'VALIDATION_ERROR',
+          message: 'Invalid catalog identity',
+        });
+      }
+      const observation = await options.repository.findOwned(
+        observationId as ProductObservationId,
+        owner,
+      );
+      if (!observation) throw notFound();
+      const fingerprint = createHash('sha256')
+        .update(
+          catalogPromotionFingerprintMaterial(
+            observation.barcode.gtin14,
+            normalizedIdentity,
+          ),
+          'utf8',
+        )
+        .digest('hex') as CatalogIdentityFingerprint;
+      const result = await options.repository.submitCatalogConfirmation({
+        observationId: observation.observationId,
+        accountId: owner.accountId,
+        fingerprint,
+        identity: normalizedIdentity,
+      });
+      if (result.kind === 'NOT_FOUND') throw notFound();
+      if (result.kind === 'ALREADY_CONFIRMED') {
+        throw new AppError({
+          statusCode: 409,
+          code: 'CONFLICT',
+          message: 'Account already confirmed another identity',
+          details: { reason: 'IDENTITY_ALREADY_CONFIRMED' },
+        });
+      }
+      if (result.kind === 'PROMOTION_CLOSED') {
+        throw new AppError({
+          statusCode: 409,
+          code: 'CONFLICT',
+          message: 'Catalog promotion is already closed',
+          details: { reason: 'PROMOTION_CLOSED' },
+        });
+      }
+      return { kind: result.kind, promotion: result.promotion };
     },
   };
 }

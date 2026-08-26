@@ -2,12 +2,16 @@ import type { FastifyInstance, FastifyRequest } from 'fastify';
 
 import {
   ApiErrorEnvelopeSchema,
+  CreateProductObservationConfirmationInputSchema,
   CreateProductObservationInputSchema,
   ProductObservationParamsSchema,
   ProductObservationResponseSchema,
+  ProductObservationConfirmationResponseSchema,
+  type CreateProductObservationConfirmationInput,
   type CreateProductObservationInput,
   type ProductObservationParams,
   type ProductObservationResponse,
+  type ProductObservationConfirmationResponse,
 } from '@wtm/contracts';
 
 import { isSessionToken } from '../identity/service.js';
@@ -93,6 +97,52 @@ export async function registerProductObservationRoutes(
       return reply
         .header('Cache-Control', 'private, no-store')
         .send({ observation });
+    },
+  );
+
+  app.post<{
+    Params: ProductObservationParams;
+    Body: CreateProductObservationConfirmationInput;
+    Reply: ProductObservationConfirmationResponse;
+  }>(
+    '/api/v1/product-observations/:observationId/confirmations',
+    {
+      onRequest: requireJson,
+      preHandler: sameOrigin,
+      config: { rateLimit: { max: 10, timeWindow: '1 hour' } },
+      schema: {
+        params: ProductObservationParamsSchema,
+        body: CreateProductObservationConfirmationInputSchema,
+        response: {
+          200: ProductObservationConfirmationResponseSchema,
+          201: ProductObservationConfirmationResponseSchema,
+          202: ProductObservationConfirmationResponseSchema,
+          400: ApiErrorEnvelopeSchema,
+          401: ApiErrorEnvelopeSchema,
+          403: ApiErrorEnvelopeSchema,
+          404: ApiErrorEnvelopeSchema,
+          409: ApiErrorEnvelopeSchema,
+          415: ApiErrorEnvelopeSchema,
+          429: ApiErrorEnvelopeSchema,
+        },
+      },
+    },
+    async (request, reply) => {
+      const result = await options.service.confirm(
+        token(request, options.cookieName),
+        request.params.observationId,
+        request.body.identity,
+      );
+      const statusCode =
+        result.kind === 'REUSED'
+          ? 200
+          : result.promotion.state === 'NEEDS_MODERATION'
+            ? 202
+            : 201;
+      return reply
+        .header('Cache-Control', 'private, no-store')
+        .code(statusCode)
+        .send({ promotion: result.promotion });
     },
   );
 }

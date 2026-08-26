@@ -55,3 +55,80 @@ export const ProductObservationResponseSchema = Type.Object(
 export type ProductObservationResponse = Static<
   typeof ProductObservationResponseSchema
 >;
+
+export const CatalogPromotionIdentitySchema = Type.Object(
+  {
+    brandName: Type.String({ minLength: 1, maxLength: 200 }),
+    familyName: Type.String({ minLength: 1, maxLength: 300 }),
+    variantName: Type.String({ minLength: 1, maxLength: 300 }),
+    shadeName: Type.Union([
+      Type.String({ minLength: 1, maxLength: 200 }),
+      Type.Null(),
+    ]),
+    netQuantity: Type.Union([
+      Type.Object(
+        {
+          value: Type.String({
+            pattern: '^[0-9]{1,8}(?:\\.[0-9]{1,4})?$',
+          }),
+          unit: Type.Union([Type.Literal('MILLILITER'), Type.Literal('GRAM')]),
+        },
+        { additionalProperties: false },
+      ),
+      Type.Null(),
+    ]),
+    isWaterproof: Type.Union([Type.Boolean(), Type.Null()]),
+  },
+  { additionalProperties: false },
+);
+
+export type CatalogPromotionIdentity = Static<
+  typeof CatalogPromotionIdentitySchema
+>;
+
+export const CreateProductObservationConfirmationInputSchema = Type.Object(
+  { identity: CatalogPromotionIdentitySchema },
+  { additionalProperties: false },
+);
+
+export type CreateProductObservationConfirmationInput = Static<
+  typeof CreateProductObservationConfirmationInputSchema
+>;
+
+export const CatalogPromotionSchema = Type.Union([
+  Type.Object(
+    {
+      state: Type.Literal('WAITING_FOR_MATCH'),
+      matchingAccountCount: Type.Integer({ minimum: 1 }),
+      productVariantId: Type.Null(),
+    },
+    { additionalProperties: false },
+  ),
+  Type.Object(
+    {
+      state: Type.Literal('NEEDS_MODERATION'),
+      matchingAccountCount: Type.Integer({ minimum: 1 }),
+      productVariantId: Type.Null(),
+    },
+    { additionalProperties: false },
+  ),
+  Type.Object(
+    {
+      state: Type.Literal('PUBLISHED'),
+      matchingAccountCount: Type.Integer({ minimum: 1 }),
+      productVariantId: UuidSchema,
+    },
+    { additionalProperties: false },
+  ),
+]);
+
+export type CatalogPromotion = Static<typeof CatalogPromotionSchema>;
+
+export const ProductObservationConfirmationResponseSchema = Type.Object(
+  { promotion: CatalogPromotionSchema },
+  { additionalProperties: false },
+);
+
+export type ProductObservationConfirmationResponse = Static<
+  typeof ProductObservationConfirmationResponseSchema
+>;

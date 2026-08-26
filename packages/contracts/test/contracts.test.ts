@@ -6,6 +6,7 @@ import { Value } from 'typebox/value';
 import {
   ApiErrorEnvelopeSchema,
   CatalogBarcodeParamsSchema,
+  CreateProductObservationConfirmationInputSchema,
   CatalogVariantResponseSchema,
   CursorPageInfoSchema,
   CursorQuerySchema,
@@ -15,6 +16,7 @@ import {
   MediaAssetParamsSchema,
   MediaCollectionResponseSchema,
   ProductObservationResponseSchema,
+  ProductObservationConfirmationResponseSchema,
   ReadyResponseSchema,
   SessionResponseSchema,
 } from '../src/index.js';
@@ -301,6 +303,50 @@ test('private product observation exposes barcode and role-scoped media only', (
   assert.equal(
     Value.Check(ProductObservationResponseSchema, {
       observation: { ...response.observation, ownerKind: 'GUEST' },
+    }),
+    false,
+  );
+});
+
+test('catalog promotion contract is strict and state-discriminated', () => {
+  const input = {
+    identity: {
+      brandName: 'Lash Lab',
+      familyName: 'Focus',
+      variantName: 'Black / 10 ml',
+      shadeName: 'Black',
+      netQuantity: { value: '10.0', unit: 'MILLILITER' },
+      isWaterproof: false,
+    },
+  };
+  assert.equal(
+    Value.Check(CreateProductObservationConfirmationInputSchema, input),
+    true,
+  );
+  assert.equal(
+    Value.Check(CreateProductObservationConfirmationInputSchema, {
+      ...input,
+      accountId: '16c3f941-7c16-4ce1-9109-016807fd5ab5',
+    }),
+    false,
+  );
+  assert.equal(
+    Value.Check(ProductObservationConfirmationResponseSchema, {
+      promotion: {
+        state: 'WAITING_FOR_MATCH',
+        matchingAccountCount: 1,
+        productVariantId: null,
+      },
+    }),
+    true,
+  );
+  assert.equal(
+    Value.Check(ProductObservationConfirmationResponseSchema, {
+      promotion: {
+        state: 'PUBLISHED',
+        matchingAccountCount: 2,
+        productVariantId: null,
+      },
     }),
     false,
   );
