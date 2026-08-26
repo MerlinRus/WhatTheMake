@@ -1,0 +1,2353 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "open-beauty-facts-mascara",
+  "datasetVersion": "2026-08-26",
+  "source": {
+    "label": "Open Beauty Facts (ODbL 1.0)",
+    "uri": "https://world.openbeautyfacts.org/",
+    "licenseName": "Open Database License (ODbL) 1.0",
+    "licenseUri": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "attribution": "Contains information from Open Beauty Facts, made available under the Open Database License (ODbL) 1.0.",
+    "rightsStatus": "ALLOWED",
+    "retrievedAt": "2026-08-26T15:00:00.000Z"
+  },
+  "products": [
+    {
+      "sourceRecordId": "0020714932077",
+      "gtin": "0020714932077",
+      "brandName": "Cliniques",
+      "familyName": "Mascara impact optimal",
+      "variantName": "Mascara impact optimal",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0041554007503",
+      "gtin": "0041554007503",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Define A Lash Mascara Very Black 6.5mL",
+      "variantName": "Maybelline Define A Lash Mascara Very Black 6.5mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "6.5",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0041554071863",
+      "gtin": "0041554071863",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Lash Sensational Sky High Mascara Cosmic Black each",
+      "variantName": "Maybelline Lash Sensational Sky High Mascara Cosmic Black each",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0041554217964",
+      "gtin": "0041554217964",
+      "brandName": "Maybelline",
+      "familyName": "Volum' Express The Falsies Mascara",
+      "variantName": "Volum' Express The Falsies Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0041554420616",
+      "gtin": "0041554420616",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Lash Sensational Washable Mascara - Blackest Black 9.5mL",
+      "variantName": "Maybelline Lash Sensational Washable Mascara - Blackest Black 9.5mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.5",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0041554420647",
+      "gtin": "0041554420647",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Lash Sensational Waterproof Mascara Very Black 9mL",
+      "variantName": "Maybelline Lash Sensational Waterproof Mascara Very Black 9mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0041554493719",
+      "gtin": "0041554493719",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Colossal Big Shot Volumizing Mascara - Baddest Black 9.5mL",
+      "variantName": "Maybelline Colossal Big Shot Volumizing Mascara - Baddest Black 9.5mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.5",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0041554590517",
+      "gtin": "0041554590517",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Lash Sensational Sky High Mascara Black Washable each",
+      "variantName": "Maybelline Lash Sensational Sky High Mascara Black Washable each",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0041554590913",
+      "gtin": "0041554590913",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Lash Sensational Sky High Mascara Very Black Waterproof 6mL",
+      "variantName": "Maybelline Lash Sensational Sky High Mascara Very Black Waterproof 6mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "6",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0056599677550",
+      "gtin": "0056599677550",
+      "brandName": "Marcelle",
+      "familyName": "Ultimate Volume Mascara",
+      "variantName": "Ultimate Volume Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0192333164587",
+      "gtin": "0192333164587",
+      "brandName": "Clinique",
+      "familyName": "Clinique High Impact High-Fi Full Volume Mascara 10ml",
+      "variantName": "Clinique High Impact High-Fi Full Volume Mascara 10ml",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0651986800216",
+      "gtin": "0651986800216",
+      "brandName": "Too Faced Cosmetics",
+      "familyName": "Better Than Sex Mascara",
+      "variantName": "Better Than Sex Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "8",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0681619821813",
+      "gtin": "0681619821813",
+      "brandName": "theBalm",
+      "familyName": "theBalm Big Fan Maskara Maximizing",
+      "variantName": "theBalm Big Fan Maskara Maximizing",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0773602403936",
+      "gtin": "0773602403936",
+      "brandName": "Mac",
+      "familyName": "Mascara recourbant",
+      "variantName": "Mascara recourbant",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "0887167582873",
+      "gtin": "0887167582873",
+      "brandName": "Estée Lauder",
+      "familyName": "E.Lauder Turbo Lash High-Powered Volume & Lenght Mascara 8 ml",
+      "variantName": "E.Lauder Turbo Lash High-Powered Volume & Lenght Mascara 8 ml",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "09597761",
+      "gtin": "09597761",
+      "brandName": "kiko",
+      "familyName": "longeyes+ Active Mascara",
+      "variantName": "longeyes+ Active Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "2050002959439",
+      "gtin": "2050002959439",
+      "brandName": "Beaulis Fun",
+      "familyName": "Beaulis Fun Lash Crush Maskara Siyah",
+      "variantName": "Beaulis Fun Lash Crush Maskara Siyah",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "20668709",
+      "gtin": "20668709",
+      "brandName": "Cien",
+      "familyName": "Mascara",
+      "variantName": "Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "26020358",
+      "gtin": "26020358",
+      "brandName": "Biocura",
+      "familyName": "Mascara Définition et Soins Noir",
+      "variantName": "Mascara Définition et Soins Noir",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30074576",
+      "gtin": "30074576",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York The Colossal 100% Black Mascara",
+      "variantName": "Maybelline New York The Colossal 100% Black Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30079236",
+      "gtin": "30079236",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York The Colossal 100% Black Waterproof Mascara",
+      "variantName": "Maybelline New York The Colossal 100% Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30098756",
+      "gtin": "30098756",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Volum'Express The Colossal Smoky Eyes Volume Mascara",
+      "variantName": "Maybelline New York Volum'Express The Colossal Smoky Eyes Volume Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30101661",
+      "gtin": "30101661",
+      "brandName": "Maybelline, Gemey Maybelline",
+      "familyName": "The rocket volum' express",
+      "variantName": "The rocket volum' express",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30101692",
+      "gtin": "30101692",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Volum' Express The Rocket Very Black Mascara",
+      "variantName": "Maybelline Volum' Express The Rocket Very Black Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30108486",
+      "gtin": "30108486",
+      "brandName": "maybelline New York",
+      "familyName": "Mascara waterproof the colossal Go Extreme",
+      "variantName": "Mascara waterproof the colossal Go Extreme",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.5",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30143265",
+      "gtin": "30143265",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Volume Express Mascara Big Shot Black",
+      "variantName": "Maybelline Volume Express Mascara Big Shot Black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30143272",
+      "gtin": "30143272",
+      "brandName": "L'OREAL NORGE AS",
+      "familyName": "Volume Express Mascara Big Shot Black Waterproof",
+      "variantName": "Volume Express Mascara Big Shot Black Waterproof",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30144187",
+      "gtin": "30144187",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Lash Sensational Firework Black Waterproof Mascara",
+      "variantName": "Maybelline New York Lash Sensational Firework Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "6",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30144224",
+      "gtin": "30144224",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Lash Sensational Firework Black Mascara",
+      "variantName": "Maybelline New York Lash Sensational Firework Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "6",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30144552",
+      "gtin": "30144552",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Lash Sensational Sky High Burgundy Haze Mascara",
+      "variantName": "Maybelline New York Lash Sensational Sky High Burgundy Haze Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "7.2",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30145436",
+      "gtin": "30145436",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Colossal Curl Bounce Black Mascara",
+      "variantName": "Maybelline New York Colossal Curl Bounce Black Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30147119",
+      "gtin": "30147119",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Lash Sensational Sky High Pink Air Mascara",
+      "variantName": "Maybelline New York Lash Sensational Sky High Pink Air Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "7.2",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30147317",
+      "gtin": "30147317",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Lash Sensational Sky High Brown Mascara",
+      "variantName": "Maybelline New York Lash Sensational Sky High Brown Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "7.2",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30147485",
+      "gtin": "30147485",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Telescopic Lift Extra Black Mascara",
+      "variantName": "L'Oréal Paris Telescopic Lift Extra Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30149298",
+      "gtin": "30149298",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris False Lash Oversized Eye Mascara",
+      "variantName": "L'Oréal Paris False Lash Oversized Eye Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "8.9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30149311",
+      "gtin": "30149311",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris False Lash 01 Black Mascara",
+      "variantName": "L'Oréal Paris False Lash 01 Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "8.9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30149649",
+      "gtin": "30149649",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Panorama mascara black",
+      "variantName": "L'Oréal Paris Panorama mascara black",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "10",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30152540",
+      "gtin": "30152540",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Telescopic Lift Black Mascara",
+      "variantName": "L'Oréal Paris Telescopic Lift Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30152830",
+      "gtin": "30152830",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Lash Sensational Sky High Cosmic Black Mascara",
+      "variantName": "Maybelline New York Lash Sensational Sky High Cosmic Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "7.2",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30161443",
+      "gtin": "30161443",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Lash Paradise Noir Extra Zwarte Mascara",
+      "variantName": "L'Oréal Paris Lash Paradise Noir Extra Zwarte Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "6.4",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30161467",
+      "gtin": "30161467",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York The Falsies Surreal Very Black Mascara",
+      "variantName": "Maybelline New York The Falsies Surreal Very Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "10",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30161955",
+      "gtin": "30161955",
+      "brandName": "L'Oréal, L'OREAL NORGE AS",
+      "familyName": "L'Oreal Mascara Volume Million Lashes Balm Noir",
+      "variantName": "L'Oreal Mascara Volume Million Lashes Balm Noir",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30163799",
+      "gtin": "30163799",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York The Falsies Surreal Blackest Black Waterproof Mascara",
+      "variantName": "Maybelline New York The Falsies Surreal Blackest Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "10",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30164635",
+      "gtin": "30164635",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Telescopic Lift Black Waterproof Mascara",
+      "variantName": "L'Oréal Paris Telescopic Lift Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30166967",
+      "gtin": "30166967",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Lash Sensational Sky High Very Black Mascara",
+      "variantName": "Maybelline New York Lash Sensational Sky High Very Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "7.2",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30166974",
+      "gtin": "30166974",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York The Colossal 36H Longwear Waterproof Mascara",
+      "variantName": "Maybelline New York The Colossal 36H Longwear Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30167223",
+      "gtin": "30167223",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Lash Sensational Sky High Black Waterproof Mascara",
+      "variantName": "Maybelline New York Lash Sensational Sky High Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "6",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30167681",
+      "gtin": "30167681",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Mascara Total Temptation Black Waterpr.",
+      "variantName": "Maybelline Mascara Total Temptation Black Waterpr.",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30168121",
+      "gtin": "30168121",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Mascara Snapscara Black",
+      "variantName": "Maybelline Mascara Snapscara Black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30176911",
+      "gtin": "30176911",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Mascara Snapscara Black Waterproof",
+      "variantName": "Maybelline Mascara Snapscara Black Waterproof",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30178564",
+      "gtin": "30178564",
+      "brandName": "L'OREAL NORGE AS",
+      "familyName": "L'Oreal Mascara Falsh Lash Bambi Eye Extra Black",
+      "variantName": "L'Oreal Mascara Falsh Lash Bambi Eye Extra Black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30179493",
+      "gtin": "30179493",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Air Volume Black Mascara",
+      "variantName": "L'Oréal Paris Air Volume Black Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30188358",
+      "gtin": "30188358",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Paradise Big Deal Black Waterproof Mascara",
+      "variantName": "L'Oréal Paris Paradise Big Deal Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30189010",
+      "gtin": "30189010",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Panorama All Night Black Mascara",
+      "variantName": "L'Oréal Paris Panorama All Night Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "10",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30189096",
+      "gtin": "30189096",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Paradise Big Deal Black Mascara",
+      "variantName": "L'Oréal Paris Paradise Big Deal Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30189225",
+      "gtin": "30189225",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Volume Million Lashes Panoramic Chromatic Bordeaux Cashmere Mascara",
+      "variantName": "L'Oréal Paris Volume Million Lashes Panoramic Chromatic Bordeaux Cashmere Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30189355",
+      "gtin": "30189355",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Lash Sensational Sky High Plum Twilight Mascara",
+      "variantName": "Maybelline New York Lash Sensational Sky High Plum Twilight Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30189362",
+      "gtin": "30189362",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Volume Million Lashes Panoramic Chromatic Blue Suede Mascara",
+      "variantName": "L'Oréal Paris Volume Million Lashes Panoramic Chromatic Blue Suede Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30190160",
+      "gtin": "30190160",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Volume Million Lashes Panoramic Chromatic Brun Leather Mascara",
+      "variantName": "L'Oréal Paris Volume Million Lashes Panoramic Chromatic Brun Leather Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "30197299",
+      "gtin": "30197299",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Lash Sensational Sky High Rosegold Glitz Mascara",
+      "variantName": "Maybelline Lash Sensational Sky High Rosegold Glitz Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "7.2",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3052503702124",
+      "gtin": "3052503702124",
+      "brandName": "Bourjois",
+      "familyName": "mascara Twist up the Volume",
+      "variantName": "mascara Twist up the Volume",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3052503706283",
+      "gtin": "3052503706283",
+      "brandName": "Bourjois, Bourjois Paris",
+      "familyName": "Mascara maxi volume instantané ultra black",
+      "variantName": "Mascara maxi volume instantané ultra black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3052505250142",
+      "gtin": "3052505250142",
+      "brandName": "UNE",
+      "familyName": "Mascara volume green pride ultra black",
+      "variantName": "Mascara volume green pride ultra black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3145891912104",
+      "gtin": "3145891912104",
+      "brandName": "Chanel",
+      "familyName": "Le volume mascara",
+      "variantName": "Le volume mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3245678567159",
+      "gtin": "3245678567159",
+      "brandName": "Cosmia",
+      "familyName": "Mascara hypoallergénique Noir 01",
+      "variantName": "Mascara hypoallergénique Noir 01",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3323030000619",
+      "gtin": "3323030000619",
+      "brandName": "ecrinal",
+      "familyName": "triple action black mascara",
+      "variantName": "triple action black mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3337875632683",
+      "gtin": "3337875632683",
+      "brandName": "LA ROCHE-POSAY",
+      "familyName": "TOLERIANE MASCARA MULTI-DIMENSIONS ALLERGY-TESTED",
+      "variantName": "TOLERIANE MASCARA MULTI-DIMENSIONS ALLERGY-TESTED",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3350900001360",
+      "gtin": "3350900001360",
+      "brandName": "embryolisse",
+      "familyName": "mascara sourcil volumateur",
+      "variantName": "mascara sourcil volumateur",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3380810060447",
+      "gtin": "3380810060447",
+      "brandName": "Clarins",
+      "familyName": "Mascara supra volume",
+      "variantName": "Mascara supra volume",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3393090260254",
+      "gtin": "3393090260254",
+      "brandName": "Modelite",
+      "familyName": "Máscara high effect",
+      "variantName": "Máscara high effect",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3560070924165",
+      "gtin": "3560070924165",
+      "brandName": "Les Cosmétiques Design Paris",
+      "familyName": "Pro's Great Open Eyes",
+      "variantName": "Pro's Great Open Eyes",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600520815725",
+      "gtin": "3600520815725",
+      "brandName": "L'Oréal",
+      "familyName": "Mascara Double Extension Carbon Extra Black",
+      "variantName": "Mascara Double Extension Carbon Extra Black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600520881799",
+      "gtin": "3600520881799",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris False lash telescopic lengte mascara",
+      "variantName": "L'Oréal Paris False lash telescopic lengte mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600521345863",
+      "gtin": "3600521345863",
+      "brandName": "L'OREAL NORGE AS",
+      "familyName": "Mascara Performance Double Extension Beauty Thear",
+      "variantName": "Mascara Performance Double Extension Beauty Thear",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600521377024",
+      "gtin": "3600521377024",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris False Lash Telescopic Carbon Black Mascara",
+      "variantName": "L'Oréal Paris False Lash Telescopic Carbon Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "8",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600521821152",
+      "gtin": "3600521821152",
+      "brandName": "L'Oréal",
+      "familyName": "Volume million lashes mascara",
+      "variantName": "Volume million lashes mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600521846292",
+      "gtin": "3600521846292",
+      "brandName": "L'OREAL NORGE AS",
+      "familyName": "L'Oreal Million Lashes Mascara Extra Volume Brown",
+      "variantName": "L'Oreal Million Lashes Mascara Extra Volume Brown",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600521893500",
+      "gtin": "3600521893500",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Volume Million Lashes 01 Extra Black Mascara",
+      "variantName": "L'Oréal Paris Volume Million Lashes 01 Extra Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "10.7",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600521961216",
+      "gtin": "3600521961216",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Volume Million Lashes Waterproof Black Mascara",
+      "variantName": "L'Oréal Paris Volume Million Lashes Waterproof Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "10.7",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600522066798",
+      "gtin": "3600522066798",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Mega Volume Collageen 24H 01 Extra Black Mascara",
+      "variantName": "L'Oréal Paris Mega Volume Collageen 24H 01 Extra Black Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600522097303",
+      "gtin": "3600522097303",
+      "brandName": "L'OREAL NORGE AS",
+      "familyName": "L'Oreal Mascara Telescopic Magnetic Black",
+      "variantName": "L'Oreal Mascara Telescopic Magnetic Black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600522218791",
+      "gtin": "3600522218791",
+      "brandName": "L'OREAL NORGE AS",
+      "familyName": "L'Oreal Mascara Volum Million Lashes Excess",
+      "variantName": "L'Oreal Mascara Volum Million Lashes Excess",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600522616252",
+      "gtin": "3600522616252",
+      "brandName": "L'OREAL NORGE AS",
+      "familyName": "L'Oreal Mascara Million Lashes So Couture",
+      "variantName": "L'Oreal Mascara Million Lashes So Couture",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600522734574",
+      "gtin": "3600522734574",
+      "brandName": "L'Oréal",
+      "familyName": "Mascara perfecteur Sourcils étoffés chatain foncé",
+      "variantName": "Mascara perfecteur Sourcils étoffés chatain foncé",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600523033942",
+      "gtin": "3600523033942",
+      "brandName": "L'OREAL NORGE AS",
+      "familyName": "Mascara Volume Million Lashes Feline",
+      "variantName": "Mascara Volume Million Lashes Feline",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600523310524",
+      "gtin": "3600523310524",
+      "brandName": "L'OREAL NORGE AS",
+      "familyName": "Mascara Volume Million Lashes Fatale",
+      "variantName": "Mascara Volume Million Lashes Fatale",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600523438112",
+      "gtin": "3600523438112",
+      "brandName": "L'OREAL NORGE AS",
+      "familyName": "L'Oreal Miss Manga Mascara Baby Roll",
+      "variantName": "L'Oreal Miss Manga Mascara Baby Roll",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600523463664",
+      "gtin": "3600523463664",
+      "brandName": "L'OREAL NORGE AS",
+      "familyName": "L'Oreal Mascara Unlimited Black",
+      "variantName": "L'Oreal Mascara Unlimited Black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600523503285",
+      "gtin": "3600523503285",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Lash Paradise 01 Black Volume Mascara",
+      "variantName": "L'Oréal Paris Lash Paradise 01 Black Volume Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600523503292",
+      "gtin": "3600523503292",
+      "brandName": "L'Oréal Paris",
+      "familyName": "Paradise Noir",
+      "variantName": "Paradise Noir",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600523503384",
+      "gtin": "3600523503384",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Lash Paradise Mascara Primer",
+      "variantName": "L'Oréal Paris Lash Paradise Mascara Primer",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600523591831",
+      "gtin": "3600523591831",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Lash Paradise Waterproof Zwarte Volume Mascara",
+      "variantName": "L'Oréal Paris Lash Paradise Waterproof Zwarte Volume Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600523670079",
+      "gtin": "3600523670079",
+      "brandName": "L'Oréal",
+      "familyName": "UNLIMITED mascara Waterploof",
+      "variantName": "UNLIMITED mascara Waterploof",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600523897308",
+      "gtin": "3600523897308",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Lash Paradise 02 Extra Black Mascara",
+      "variantName": "L'Oréal Paris Lash Paradise 02 Extra Black Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600523968480",
+      "gtin": "3600523968480",
+      "brandName": "L'OREAL NORGE AS",
+      "familyName": "L'Oreal Mascara Lash Paradis Moonlight Noir Brown",
+      "variantName": "L'Oreal Mascara Lash Paradis Moonlight Noir Brown",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600524196615",
+      "gtin": "3600524196615",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Telescopic Black Waterproof Mascara",
+      "variantName": "L'Oréal Paris Telescopic Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "8",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600524229085",
+      "gtin": "3600524229085",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Telescopic Extensionist Waterproof Mascara",
+      "variantName": "L'Oréal Paris Telescopic Extensionist Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600524229092",
+      "gtin": "3600524229092",
+      "brandName": "L'Oréal Paris",
+      "familyName": "L'Oréal Paris Telescopic Extensionist Mascara",
+      "variantName": "L'Oréal Paris Telescopic Extensionist Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600531143459",
+      "gtin": "3600531143459",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Lash Sensational Very Black Volume Mascara",
+      "variantName": "Maybelline New York Lash Sensational Very Black Volume Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.5",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600531230906",
+      "gtin": "3600531230906",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Lash Sensational Intense Black Extra Volume Mascara",
+      "variantName": "Maybelline New York Lash Sensational Intense Black Extra Volume Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.5",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600531320065",
+      "gtin": "3600531320065",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Mascara Lash Sensational Luscious Black",
+      "variantName": "Maybelline Mascara Lash Sensational Luscious Black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600531584696",
+      "gtin": "3600531584696",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York The Falsies Lash Lift Black Mascara",
+      "variantName": "Maybelline New York The Falsies Lash Lift Black Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600531629106",
+      "gtin": "3600531629106",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Mascara Falsies Lash Lift Extra Black",
+      "variantName": "Maybelline Mascara Falsies Lash Lift Extra Black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600531701802",
+      "gtin": "3600531701802",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Colossal Bubble Washable Mascara",
+      "variantName": "Maybelline New York Colossal Bubble Washable Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600531702304",
+      "gtin": "3600531702304",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Colossal Bubble Waterproof Mascara",
+      "variantName": "Maybelline New York Colossal Bubble Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600531716974",
+      "gtin": "3600531716974",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Lash Sensational Body Mascara",
+      "variantName": "Maybelline New York Lash Sensational Body Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3600531716981",
+      "gtin": "3600531716981",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Lash Sensational Body Waterproof Mascara",
+      "variantName": "Maybelline New York Lash Sensational Body Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3607342369719",
+      "gtin": "3607342369719",
+      "brandName": "Scandaleyes",
+      "familyName": "Scandaleyes extreme black",
+      "variantName": "Scandaleyes extreme black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3607343729086",
+      "gtin": "3607343729086",
+      "brandName": "Rimmel",
+      "familyName": "Wake me up",
+      "variantName": "Wake me up",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3614223714490",
+      "gtin": "3614223714490",
+      "brandName": "Bourjois",
+      "familyName": "Mascara Volume Reveal",
+      "variantName": "Mascara Volume Reveal",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3614226675897",
+      "gtin": "3614226675897",
+      "brandName": "Max Factor",
+      "familyName": "Masterpiece Max 001 Black Mascara",
+      "variantName": "Masterpiece Max 001 Black Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3614227600058",
+      "gtin": "3614227600058",
+      "brandName": "Max Factor",
+      "familyName": "2000 Calorie Dramatic Volume 001 Black Mascara",
+      "variantName": "2000 Calorie Dramatic Volume 001 Black Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3614227600072",
+      "gtin": "3614227600072",
+      "brandName": "Max Factor",
+      "familyName": "2000 Calorie Dramatic Volume 001 Black Waterproof Mascara",
+      "variantName": "2000 Calorie Dramatic Volume 001 Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3614227630024",
+      "gtin": "3614227630024",
+      "brandName": "Max Factor",
+      "familyName": "Masterpiece 001 Rich Black Mascara",
+      "variantName": "Masterpiece 001 Rich Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "4.5",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3614227631199",
+      "gtin": "3614227631199",
+      "brandName": "Max Factor",
+      "familyName": "Masterpiece 001 Black Waterproof Mascara",
+      "variantName": "Masterpiece 001 Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3614271567765",
+      "gtin": "3614271567765",
+      "brandName": "Yves saint Laurent",
+      "familyName": "Mascara volume effet faux cils",
+      "variantName": "Mascara volume effet faux cils",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3616307087490",
+      "gtin": "3616307087490",
+      "brandName": "Rimmel London",
+      "familyName": "Rimmel London Wonder Extension Mascara Black 11mL",
+      "variantName": "Rimmel London Wonder Extension Mascara Black 11mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "11",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3616307183338",
+      "gtin": "3616307183338",
+      "brandName": "Rimmel London",
+      "familyName": "Rimmel London Wonder'Bond Lash Filler Mascara Black each",
+      "variantName": "Rimmel London Wonder'Bond Lash Filler Mascara Black each",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3616307183345",
+      "gtin": "3616307183345",
+      "brandName": "Rimmel London",
+      "familyName": "Rimmel London Thrill Seeker Mascara Mega Lift Black each",
+      "variantName": "Rimmel London Thrill Seeker Mascara Mega Lift Black each",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3616307506267",
+      "gtin": "3616307506267",
+      "brandName": "Rimmel London",
+      "familyName": "Rimmel London Wonder'Bond Lash Filler + Hyaluronic Mascara Black 11mL",
+      "variantName": "Rimmel London Wonder'Bond Lash Filler + Hyaluronic Mascara Black 11mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "11",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3616307650168",
+      "gtin": "3616307650168",
+      "brandName": "Rimmel",
+      "familyName": "Rimmel Volume Thrill Seeker Mascara Black 8mL",
+      "variantName": "Rimmel Volume Thrill Seeker Mascara Black 8mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "8",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3616307668835",
+      "gtin": "3616307668835",
+      "brandName": "Rimmel London",
+      "familyName": "Rimmel London Kind & Free Lash Loader Mascara Black 001 7mL",
+      "variantName": "Rimmel London Kind & Free Lash Loader Mascara Black 001 7mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "7",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3616307668866",
+      "gtin": "3616307668866",
+      "brandName": "Rimmel London",
+      "familyName": "Rimmel London Kind & Free Lash Loader Mascara Black Brown 002 7mL",
+      "variantName": "Rimmel London Kind & Free Lash Loader Mascara Black Brown 002 7mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "7",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3662217003877",
+      "gtin": "3662217003877",
+      "brandName": "Avril",
+      "familyName": "Mascara Longue Tenue Noir",
+      "variantName": "Mascara Longue Tenue Noir",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3662217006908",
+      "gtin": "3662217006908",
+      "brandName": "Avril",
+      "familyName": "Mascara Waterproof",
+      "variantName": "Mascara Waterproof",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3662361001828",
+      "gtin": "3662361001828",
+      "brandName": "SVR",
+      "familyName": "Mascara protect PALPÉBRAL",
+      "variantName": "Mascara protect PALPÉBRAL",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "3770006053306",
+      "gtin": "3770006053306",
+      "brandName": "Charlotte makeup",
+      "familyName": "Mascara",
+      "variantName": "Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4015600628680",
+      "gtin": "4015600628680",
+      "brandName": "Procter & Gamble",
+      "familyName": "Wild mega volume",
+      "variantName": "Wild mega volume",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4021457611218",
+      "gtin": "4021457611218",
+      "brandName": "Lavera",
+      "familyName": "Endless definition",
+      "variantName": "Endless definition",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4021457618170",
+      "gtin": "4021457618170",
+      "brandName": "Lavera",
+      "familyName": "Volume Mascara - noir",
+      "variantName": "Volume Mascara - noir",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4025089071112",
+      "gtin": "4025089071112",
+      "brandName": "Sante Naturkosmetik",
+      "familyName": "Mascara volume sensation",
+      "variantName": "Mascara volume sensation",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4041700398406",
+      "gtin": "4041700398406",
+      "brandName": "Hicogo",
+      "familyName": "mascara",
+      "variantName": "mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4054495000614",
+      "gtin": "4054495000614",
+      "brandName": "Beauty service international GmbH, Cosmetica fanatica",
+      "familyName": "natu ral look mascara black",
+      "variantName": "natu ral look mascara black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4059729207241",
+      "gtin": "4059729207241",
+      "brandName": "Essence",
+      "familyName": "Essence Lash Princess False Lash Effect Black Waterproof Mascara",
+      "variantName": "Essence Lash Princess False Lash Effect Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4059729327024",
+      "gtin": "4059729327024",
+      "brandName": "Essence",
+      "familyName": "Essence Lash Princess Curl & Volume Black Mascara",
+      "variantName": "Essence Lash Princess Curl & Volume Black Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "12",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4059729375612",
+      "gtin": "4059729375612",
+      "brandName": "Catrice",
+      "familyName": "Lift up Mascara",
+      "variantName": "Lift up Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4059729441973",
+      "gtin": "4059729441973",
+      "brandName": "Essence",
+      "familyName": "Essence Call Me Queen False Lash Mascara",
+      "variantName": "Essence Call Me Queen False Lash Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "11.5",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4059729521088",
+      "gtin": "4059729521088",
+      "brandName": "Essence",
+      "familyName": "Essence Lash Without Limits 04 Black Tubing Mascara",
+      "variantName": "Essence Lash Without Limits 04 Black Tubing Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "13",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4084200857103",
+      "gtin": "4084200857103",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Mascara Great Lash Very Black",
+      "variantName": "Maybelline Mascara Great Lash Very Black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4084500396159",
+      "gtin": "4084500396159",
+      "brandName": "Max Factor",
+      "familyName": "False Lash Effect 001 Black Volume & Definition Mascara",
+      "variantName": "False Lash Effect 001 Black Volume & Definition Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "13.1",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250035228290",
+      "gtin": "4250035228290",
+      "brandName": "Catrice",
+      "familyName": "Allround 010 Blackest Black Waterproof Mascara",
+      "variantName": "Allround 010 Blackest Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250035271180",
+      "gtin": "4250035271180",
+      "brandName": "Essence",
+      "familyName": "Essence Lash Brow Gel Mascara",
+      "variantName": "Essence Lash Brow Gel Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250338427970",
+      "gtin": "4250338427970",
+      "brandName": "Essence",
+      "familyName": "Essence All Eyes On Me 01 Soft Black Multi-Effect Mascara",
+      "variantName": "Essence All Eyes On Me 01 Soft Black Multi-Effect Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250338487516",
+      "gtin": "4250338487516",
+      "brandName": "Essence",
+      "familyName": "Essence I Love Extreme 01 Black Volume Mascara",
+      "variantName": "Essence I Love Extreme 01 Black Volume Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250338494392",
+      "gtin": "4250338494392",
+      "brandName": "Essence",
+      "familyName": "Essence Get Big! Lashes 01 Black Volume Boost Mascara",
+      "variantName": "Essence Get Big! Lashes 01 Black Volume Boost Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250338494415",
+      "gtin": "4250338494415",
+      "brandName": "Essence",
+      "familyName": "Essence Get Big! Lashes 01 Black Volume Waterproof Mascara",
+      "variantName": "Essence Get Big! Lashes 01 Black Volume Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "12",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250587723588",
+      "gtin": "4250587723588",
+      "brandName": "Catrice",
+      "familyName": "Catrice 010 Black Glam & Doll Volume Mascara",
+      "variantName": "Catrice 010 Black Glam & Doll Volume Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250587739084",
+      "gtin": "4250587739084",
+      "brandName": "Essence",
+      "familyName": "Essence I Love Crazy Volume Black Mascara",
+      "variantName": "Essence I Love Crazy Volume Black Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250587742053",
+      "gtin": "4250587742053",
+      "brandName": "Essence",
+      "familyName": "All Eyes On Me Black Waterproof Mascara",
+      "variantName": "All Eyes On Me Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250587778830",
+      "gtin": "4250587778830",
+      "brandName": "essence",
+      "familyName": "Plump no clump! Deep black volume mascara",
+      "variantName": "Plump no clump! Deep black volume mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250947501245",
+      "gtin": "4250947501245",
+      "brandName": "Essence",
+      "familyName": "Essence Lash Princess Black Volume Mascara",
+      "variantName": "Essence Lash Princess Black Volume Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "12",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250947516027",
+      "gtin": "4250947516027",
+      "brandName": "Essence",
+      "familyName": "Essence Lash Princess False Lash Effect Black Mascara",
+      "variantName": "Essence Lash Princess False Lash Effect Black Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250947527153",
+      "gtin": "4250947527153",
+      "brandName": "Catrice cosmetics",
+      "familyName": "Better than water proof",
+      "variantName": "Better than water proof",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250947543214",
+      "gtin": "4250947543214",
+      "brandName": "Essence",
+      "familyName": "Essence I Love Extreme Volume 01 Black Waterproof Mascara",
+      "variantName": "Essence I Love Extreme Volume 01 Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4250947562277",
+      "gtin": "4250947562277",
+      "brandName": "Catrice",
+      "familyName": "Glam & Doll False Lashes 010 Black Mascara",
+      "variantName": "Glam & Doll False Lashes 010 Black Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4251232221619",
+      "gtin": "4251232221619",
+      "brandName": "Essence",
+      "familyName": "Essence Lash Princess Sculpted Volume Mascara",
+      "variantName": "Essence Lash Princess Sculpted Volume Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4251232256116",
+      "gtin": "4251232256116",
+      "brandName": "Catrice",
+      "familyName": "Catrice Glam & Doll False Lashes 10 Black Waterproof Mascara",
+      "variantName": "Catrice Glam & Doll False Lashes 10 Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4602006311058",
+      "gtin": "4602006311058",
+      "brandName": "Influence Beauty",
+      "familyName": "Influence Beauty Mascara Futuristic 01 Ultra Black - Volumizing Mascara with 5G Effect",
+      "variantName": "Influence Beauty Mascara Futuristic 01 Ultra Black - Volumizing Mascara with 5G Effect",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "5",
+        "unit": "GRAM"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "4602006378266",
+      "gtin": "4602006378266",
+      "brandName": "Influence Beauty",
+      "familyName": "Influence Beauty Mascara Manipula 01 Intense Black - Volumizing Mascara with Precision Brush",
+      "variantName": "Influence Beauty Mascara Manipula 01 Intense Black - Volumizing Mascara with Precision Brush",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "5021044013332",
+      "gtin": "5021044013332",
+      "brandName": "maybelline New York",
+      "familyName": "Maybelline New York Volum'Express Black Mascara",
+      "variantName": "Maybelline New York Volum'Express Black Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "5021044013455",
+      "gtin": "5021044013455",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Volum'Express Black Waterproof Mascara",
+      "variantName": "Maybelline Volum'Express Black Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "5056369152770",
+      "gtin": "5056369152770",
+      "brandName": "normal",
+      "familyName": "full volume mascara jump up",
+      "variantName": "full volume mascara jump up",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "7.2",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "5414971003611",
+      "gtin": "5414971003611",
+      "brandName": "Mylène",
+      "familyName": "Mascara",
+      "variantName": "Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "7509552838862",
+      "gtin": "7509552838862",
+      "brandName": "Vogue",
+      "familyName": "Vogue - Máscara Super Volumen",
+      "variantName": "Vogue - Máscara Super Volumen",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "7640473382857",
+      "gtin": "7640473382857",
+      "brandName": "Stellary",
+      "familyName": "Stellary Panther Black Volume Mascara 01 Black - Hypnotic Volume & Defined Lashes",
+      "variantName": "Stellary Panther Black Volume Mascara 01 Black - Hypnotic Volume & Defined Lashes",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "7891033926329",
+      "gtin": "7891033926329",
+      "brandName": "EUDORA",
+      "familyName": "MASCARA ACELERA O CRESCIMENTO",
+      "variantName": "MASCARA ACELERA O CRESCIMENTO",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "7898430170423",
+      "gtin": "7898430170423",
+      "brandName": "Trivitti",
+      "familyName": "mascara",
+      "variantName": "mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8005610669908",
+      "gtin": "8005610669908",
+      "brandName": "Max Factor",
+      "familyName": "False Lash Effect 001 Black Volume & Definition Waterproof Mascara",
+      "variantName": "False Lash Effect 001 Black Volume & Definition Waterproof Mascara",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "13.1",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8009518248913",
+      "gtin": "8009518248913",
+      "brandName": "Deborah Milano",
+      "familyName": "mascara",
+      "variantName": "mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8025272610780",
+      "gtin": "8025272610780",
+      "brandName": "Kiko Milano",
+      "familyName": "Luxurious lashes Waterproof mascara",
+      "variantName": "Luxurious lashes Waterproof mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8025272627276",
+      "gtin": "8025272627276",
+      "brandName": "Kiko milano",
+      "familyName": "mascara violet",
+      "variantName": "mascara violet",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8025272646741",
+      "gtin": "8025272646741",
+      "brandName": "Kiko",
+      "familyName": "Green me volume mascara",
+      "variantName": "Green me volume mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8025272980937",
+      "gtin": "8025272980937",
+      "brandName": "Kiko",
+      "familyName": "Precious rituals mascara",
+      "variantName": "Precious rituals mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8055510082093",
+      "gtin": "8055510082093",
+      "brandName": "Astra",
+      "familyName": "Astra InstaLength Uzunluk Veren Maskara",
+      "variantName": "Astra InstaLength Uzunluk Veren Maskara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8055510082109",
+      "gtin": "8055510082109",
+      "brandName": "Astra",
+      "familyName": "Astra InstaVolume Hacim Veren Maskara",
+      "variantName": "Astra InstaVolume Hacim Veren Maskara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8055510082116",
+      "gtin": "8055510082116",
+      "brandName": "Astra",
+      "familyName": "Astra InstaCurls Kıvrım Etkili Maskara",
+      "variantName": "Astra InstaCurls Kıvrım Etkili Maskara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8402001015748",
+      "gtin": "8402001015748",
+      "brandName": "Deliplus",
+      "familyName": "Máscara de pestañas Maxi Curve negro",
+      "variantName": "Máscara de pestañas Maxi Curve negro",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8402001021060",
+      "gtin": "8402001021060",
+      "brandName": "Deliplus",
+      "familyName": "Máscara de pestañas Laminated Universed negro",
+      "variantName": "Máscara de pestañas Laminated Universed negro",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8479350755618",
+      "gtin": "8479350755618",
+      "brandName": "Parisa cosmetics",
+      "familyName": "Bon voyage",
+      "variantName": "Bon voyage",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8480000675774",
+      "gtin": "8480000675774",
+      "brandName": "Deliplus",
+      "familyName": "Máscara de pestañas water resistant negro",
+      "variantName": "Máscara de pestañas water resistant negro",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8480000733481",
+      "gtin": "8480000733481",
+      "brandName": "Deliplus",
+      "familyName": "Máscara de pestañas Long Xtrem negro",
+      "variantName": "Máscara de pestañas Long Xtrem negro",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8480000733498",
+      "gtin": "8480000733498",
+      "brandName": "Deliplus",
+      "familyName": "Máscara de pestañas y cejas transparente",
+      "variantName": "Máscara de pestañas y cejas transparente",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8480000733504",
+      "gtin": "8480000733504",
+      "brandName": "Deliplus",
+      "familyName": "Máscara de pestañas Volume & Curve XL negro",
+      "variantName": "Máscara de pestañas Volume & Curve XL negro",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8480000733528",
+      "gtin": "8480000733528",
+      "brandName": "Deliplus",
+      "familyName": "Máscara de pestañas Maxi Volume negro",
+      "variantName": "Máscara de pestañas Maxi Volume negro",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8480000733566",
+      "gtin": "8480000733566",
+      "brandName": "Deliplus",
+      "familyName": "Máscara de pestañas Maxi Color 02 marrón",
+      "variantName": "Máscara de pestañas Maxi Color 02 marrón",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8682536022804",
+      "gtin": "8682536022804",
+      "brandName": "Flormar",
+      "familyName": "Flormar Hero Volume & Curl Mascara",
+      "variantName": "Flormar Hero Volume & Curl Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8682536040402",
+      "gtin": "8682536040402",
+      "brandName": "Flormar",
+      "familyName": "Flormar Big'N Bold Volume Mascara 001 Volume",
+      "variantName": "Flormar Big'N Bold Volume Mascara 001 Volume",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8684252206520",
+      "gtin": "8684252206520",
+      "brandName": "LYKD",
+      "familyName": "LYKD Extra Volume Blackest Black Maskara - Ekstra Hacim Veren Yoğun Siyah Maskara",
+      "variantName": "LYKD Extra Volume Blackest Black Maskara - Ekstra Hacim Veren Yoğun Siyah Maskara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8684252215522",
+      "gtin": "8684252215522",
+      "brandName": "Beaulis Fun",
+      "familyName": "Beaulis Fun Catch The Color Maskara 315 Burgundy",
+      "variantName": "Beaulis Fun Catch The Color Maskara 315 Burgundy",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8684990400242",
+      "gtin": "8684990400242",
+      "brandName": "Embeauty",
+      "familyName": "Embeauty Ultra Siyah Dolgunlaştırıcı Maskara – Hacim ve Uzunluk Etkili",
+      "variantName": "Embeauty Ultra Siyah Dolgunlaştırıcı Maskara – Hacim ve Uzunluk Etkili",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "200",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8690644387005",
+      "gtin": "8690644387005",
+      "brandName": "Show by Pastel",
+      "familyName": "Show by Pastel Show Your Peace Transparent Eyebrow & Eyelash Mascara",
+      "variantName": "Show by Pastel Show Your Peace Transparent Eyebrow & Eyelash Mascara",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8696814061843",
+      "gtin": "8696814061843",
+      "brandName": "Gabrini",
+      "familyName": "Maskara Designer Waterproof",
+      "variantName": "Maskara Designer Waterproof",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "10",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8699067179549",
+      "gtin": "8699067179549",
+      "brandName": "Promani",
+      "familyName": "Promani Kirpik Dolgun Maskara Aplikatör",
+      "variantName": "Promani Kirpik Dolgun Maskara Aplikatör",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "8809625243135",
+      "gtin": "8809625243135",
+      "brandName": "rom&nd",
+      "familyName": "rom&nd Han All Fix Maskara L01 Long Black",
+      "variantName": "rom&nd Han All Fix Maskara L01 Long Black",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329243771",
+      "gtin": "9344329243771",
+      "brandName": "L'Oréal",
+      "familyName": "L'Oreal Paris Telescopic Lift Mascara 9.9mL",
+      "variantName": "L'Oreal Paris Telescopic Lift Mascara 9.9mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329247342",
+      "gtin": "9344329247342",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Lash Sensational Sky High Brown Mascara 7mL",
+      "variantName": "Maybelline Lash Sensational Sky High Brown Mascara 7mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "7",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329253329",
+      "gtin": "9344329253329",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline The Falsies Surreal Mascara 10mL",
+      "variantName": "Maybelline The Falsies Surreal Mascara 10mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "10",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329253435",
+      "gtin": "9344329253435",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline The Falsies Surreal Waterproof Mascara 10mL",
+      "variantName": "Maybelline The Falsies Surreal Waterproof Mascara 10mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "10",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329253541",
+      "gtin": "9344329253541",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline The Falsies Mascara Blackest Black 10mL",
+      "variantName": "Maybelline The Falsies Mascara Blackest Black 10mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "10",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329253558",
+      "gtin": "9344329253558",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline The Colossal Mascara Waterproof Glam Black 10mL",
+      "variantName": "Maybelline The Colossal Mascara Waterproof Glam Black 10mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "10",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329253565",
+      "gtin": "9344329253565",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline The Colossal Mascara Classic Black 9.2mL",
+      "variantName": "Maybelline The Colossal Mascara Classic Black 9.2mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.2",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329253572",
+      "gtin": "9344329253572",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline The Colossal Mascara Glam Black 9.2mL",
+      "variantName": "Maybelline The Colossal Mascara Glam Black 9.2mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.2",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329256092",
+      "gtin": "9344329256092",
+      "brandName": "L'Oréal",
+      "familyName": "L'Oreal Paris Telescopic Lift Mascara Waterproof Black 9.9mL",
+      "variantName": "L'Oreal Paris Telescopic Lift Mascara Waterproof Black 9.9mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329256146",
+      "gtin": "9344329256146",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline The Falsies Surreal Mascara Meta Black 10mL",
+      "variantName": "Maybelline The Falsies Surreal Mascara Meta Black 10mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "10",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329261478",
+      "gtin": "9344329261478",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Lash Sensational Firework Wp Mascara 28g",
+      "variantName": "Maybelline Lash Sensational Firework Wp Mascara 28g",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "28",
+        "unit": "GRAM"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329267678",
+      "gtin": "9344329267678",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Lash Sensation Firework Mascara Electro Black 10mL",
+      "variantName": "Maybelline Lash Sensation Firework Mascara Electro Black 10mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "10",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329271460",
+      "gtin": "9344329271460",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Colossal Bubble Mascara each",
+      "variantName": "Maybelline Colossal Bubble Mascara each",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329271477",
+      "gtin": "9344329271477",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Colossal Bubble Mascara each",
+      "variantName": "Maybelline Colossal Bubble Mascara each",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329271873",
+      "gtin": "9344329271873",
+      "brandName": "L'Oréal",
+      "familyName": "L'oreal Paris Paradise Big Deal Mascara 9.9mL",
+      "variantName": "L'oreal Paris Paradise Big Deal Mascara 9.9mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329272115",
+      "gtin": "9344329272115",
+      "brandName": "L'Oréal",
+      "familyName": "L'Oreal Paris Panorama All Night Black Mascara 9.9mL",
+      "variantName": "L'Oreal Paris Panorama All Night Black Mascara 9.9mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329280462",
+      "gtin": "9344329280462",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Lash Sensational Body Mascara each",
+      "variantName": "Maybelline Lash Sensational Body Mascara each",
+      "shadeName": null,
+      "netQuantity": null,
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329282435",
+      "gtin": "9344329282435",
+      "brandName": "Maybelline",
+      "familyName": "Maybelline Sky High Burgundy Mascara 7.2mL",
+      "variantName": "Maybelline Sky High Burgundy Mascara 7.2mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "7.2",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    },
+    {
+      "sourceRecordId": "9344329282787",
+      "gtin": "9344329282787",
+      "brandName": "L'Oréal",
+      "familyName": "L'Oreal Paris Extensionist Mascara Washable 9.9mL",
+      "variantName": "L'Oreal Paris Extensionist Mascara Washable 9.9mL",
+      "shadeName": null,
+      "netQuantity": {
+        "value": "9.9",
+        "unit": "MILLILITER"
+      },
+      "isWaterproof": null
+    }
+  ]
+}

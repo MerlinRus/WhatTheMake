@@ -1,4 +1,5 @@
 export * from './catalog.js';
+export * from './catalog-import.js';
 export * from './common.js';
 export * from './errors.js';
 export * from './health.js';

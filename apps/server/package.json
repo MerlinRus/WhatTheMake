@@ -8,7 +8,8 @@
     "dev": "node --env-file-if-exists=../../.env --import tsx --watch src/server.ts",
     "start": "node dist/server.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "db:migrate": "node --env-file-if-exists=../../.env --import tsx src/cli/migrate.ts"
+    "db:migrate": "node --env-file-if-exists=../../.env --import tsx src/cli/migrate.ts",
+    "db:seed:mascara": "node dist/cli/seed-mascara.js"
   },
   "dependencies": {
     "@fastify/cookie": "11.1.2",

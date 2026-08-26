@@ -16,6 +16,7 @@ COPY apps/web apps/web
 COPY packages/contracts packages/contracts
 COPY packages/domain packages/domain
 COPY packages/infrastructure packages/infrastructure
+COPY tools tools
 RUN npm run build
 
 FROM build AS verification
@@ -37,6 +38,7 @@ COPY --from=production-dependencies /app/node_modules ./node_modules
 COPY --from=production-dependencies /app/apps/server/package.json ./apps/server/package.json
 COPY --from=production-dependencies /app/apps/server/dist ./apps/server/dist
 COPY --from=production-dependencies /app/apps/server/migrations ./apps/server/migrations
+COPY --from=production-dependencies /app/apps/server/seeds ./apps/server/seeds
 COPY --from=production-dependencies /app/apps/web/package.json ./apps/web/package.json
 COPY --from=production-dependencies /app/apps/web/dist ./apps/web/dist
 COPY --from=production-dependencies /app/packages/contracts/package.json ./packages/contracts/package.json

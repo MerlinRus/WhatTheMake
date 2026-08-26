@@ -1,4 +1,5 @@
 export * from './catalog-repository.js';
+export * from './catalog-import-repository.js';
 export * from './identity-repository.js';
 export * from './local-media-storage.js';
 export * from './media-recovery-worker.js';

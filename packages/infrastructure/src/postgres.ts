@@ -7,6 +7,7 @@ import { Pool, type PoolConfig } from 'pg';
 
 import type {
   CatalogRepository,
+  CatalogImportRepository,
   IdentityRepository,
   MediaRepository,
   PreferencesRepository,
@@ -14,6 +15,7 @@ import type {
 } from '@wtm/domain';
 
 import { createPostgresCatalogRepository } from './catalog-repository.js';
+import { createPostgresCatalogImportRepository } from './catalog-import-repository.js';
 import { createPostgresIdentityRepository } from './identity-repository.js';
 import { createPostgresMediaRepository } from './media-repository.js';
 import { createPostgresPreferencesRepository } from './preferences-repository.js';
@@ -42,6 +44,7 @@ export interface DatabaseHealthProbe {
 
 export interface Database extends DatabaseHealthProbe {
   catalog: CatalogRepository;
+  catalogImports: CatalogImportRepository;
   identity: IdentityRepository;
   media: MediaRepository;
   preferences: PreferencesRepository;
@@ -97,6 +100,7 @@ export function createPostgresDatabase(
 
   return {
     catalog: createPostgresCatalogRepository(pool),
+    catalogImports: createPostgresCatalogImportRepository(pool),
     identity: createPostgresIdentityRepository(pool),
     media: createPostgresMediaRepository(pool),
     preferences: createPostgresPreferencesRepository(pool),

@@ -25,6 +25,34 @@ docker compose -p whatthemake --env-file /srv/whatthemake/shared/.env \
   -f /srv/whatthemake/current/deploy/production/compose.yml logs --tail=200 web
 ```
 
+## Mascara seed import
+
+The bundled Open Beauty Facts snapshot is immutable by `datasetId` and
+`datasetVersion`. Always inspect the conflict/quarantine report before publish.
+
+```bash
+docker compose -p whatthemake --env-file /srv/whatthemake/shared/.env \
+  --env-file /srv/whatthemake/current/.release.env \
+  -f /srv/whatthemake/current/deploy/production/compose.yml \
+  exec -T web npm run db:seed:mascara -- --dry-run
+
+docker compose -p whatthemake --env-file /srv/whatthemake/shared/.env \
+  --env-file /srv/whatthemake/current/.release.env \
+  -f /srv/whatthemake/current/deploy/production/compose.yml \
+  exec -T web npm run db:seed:mascara
+```
+
+Rollback refuses to mutate catalog rows if their imported barcode/family/variant
+relationships have drifted:
+
+```bash
+docker compose -p whatthemake --env-file /srv/whatthemake/shared/.env \
+  --env-file /srv/whatthemake/current/.release.env \
+  -f /srv/whatthemake/current/deploy/production/compose.yml \
+  exec -T web npm run db:seed:mascara -- \
+  --rollback open-beauty-facts-mascara@2026-08-26
+```
+
 ## Rollback
 
 Use the previous release directory and its `.release.env`. The initial
