@@ -9,6 +9,7 @@ import type {
   CatalogRepository,
   CatalogImportRepository,
   IdentityRepository,
+  InciDictionaryRepository,
   MediaRepository,
   PreferencesRepository,
   ProductObservationRepository,
@@ -18,6 +19,7 @@ import { createPostgresCatalogRepository } from './catalog-repository.js';
 import { createPostgresCatalogImportRepository } from './catalog-import-repository.js';
 import type { OcrCacheStore } from './cached-ocr-provider.js';
 import { createPostgresIdentityRepository } from './identity-repository.js';
+import { createPostgresInciDictionaryRepository } from './inci-dictionary-repository.js';
 import { createPostgresMediaRepository } from './media-repository.js';
 import { createPostgresOcrCacheStore } from './ocr-cache-repository.js';
 import { createPostgresPreferencesRepository } from './preferences-repository.js';
@@ -48,6 +50,7 @@ export interface Database extends DatabaseHealthProbe {
   catalog: CatalogRepository;
   catalogImports: CatalogImportRepository;
   identity: IdentityRepository;
+  inciDictionary: InciDictionaryRepository;
   media: MediaRepository;
   ocrCache: OcrCacheStore;
   preferences: PreferencesRepository;
@@ -105,6 +108,7 @@ export function createPostgresDatabase(
     catalog: createPostgresCatalogRepository(pool),
     catalogImports: createPostgresCatalogImportRepository(pool),
     identity: createPostgresIdentityRepository(pool),
+    inciDictionary: createPostgresInciDictionaryRepository(pool),
     media: createPostgresMediaRepository(pool),
     ocrCache: createPostgresOcrCacheStore(pool),
     preferences: createPostgresPreferencesRepository(pool),
