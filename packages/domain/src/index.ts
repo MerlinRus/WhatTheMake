@@ -7,6 +7,7 @@ export * from './gtin.js';
 export * from './inci-canonicalization.js';
 export * from './inci-correction.js';
 export * from './inci.js';
+export * from './llm.js';
 export * from './mascara-preferences.js';
 export * from './media.js';
 export * from './ocr.js';
