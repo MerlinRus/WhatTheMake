@@ -5,6 +5,7 @@ export * from './fake-ocr-provider.js';
 export * from './google-vision-ocr-provider.js';
 export * from './identity-repository.js';
 export * from './inci-dictionary-repository.js';
+export * from './inci-correction-repository.js';
 export * from './local-media-storage.js';
 export * from './media-recovery-worker.js';
 export * from './media-repository.js';

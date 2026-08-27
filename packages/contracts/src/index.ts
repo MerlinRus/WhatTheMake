@@ -4,6 +4,7 @@ export * from './common.js';
 export * from './errors.js';
 export * from './health.js';
 export * from './identity.js';
+export * from './inci-correction.js';
 export * from './mascara-preferences.js';
 export * from './media.js';
 export * from './product-observation.js';
