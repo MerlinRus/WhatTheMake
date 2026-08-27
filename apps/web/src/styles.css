@@ -446,6 +446,157 @@ summary:focus-visible {
   font-size: 0.8rem;
 }
 
+.inci-correction-card {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border-top: 1px solid #e7dfd5;
+  background: #f8f3ec;
+}
+
+.inci-correction-card > header,
+.inci-correction-card form > div,
+.inci-reanalysis {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inci-correction-card h3 {
+  margin-top: 3px;
+  font-family: Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 500;
+}
+
+.inci-correction-card > header > span,
+.inci-correction-card small,
+.inci-source-evidence span,
+.inci-source-evidence time {
+  color: #6d675f;
+  font-size: 0.72rem;
+}
+
+.inci-source-evidence {
+  display: grid;
+  gap: 10px;
+  padding: 15px;
+  border: 1px solid #ded5ca;
+  border-radius: 14px;
+  background: #fffdf8;
+}
+
+.inci-source-evidence > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 12px;
+  align-items: baseline;
+}
+
+.inci-source-evidence pre {
+  max-height: 210px;
+  margin: 0;
+  overflow: auto;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  font:
+    0.78rem/1.55 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Consolas,
+    monospace;
+}
+
+.inci-empty-source {
+  margin: 0;
+  color: #6d675f;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.inci-correction-card form {
+  display: grid;
+  gap: 8px;
+}
+
+.inci-correction-card label {
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.inci-correction-card textarea,
+.inci-correction-card select {
+  width: 100%;
+  border: 1px solid #b9ada1;
+  border-radius: 12px;
+  background: #fffdf8;
+  color: #312c26;
+  font: inherit;
+}
+
+.inci-correction-card textarea {
+  min-height: 150px;
+  padding: 12px;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.inci-correction-card select {
+  min-height: 42px;
+  padding: 0 10px;
+}
+
+.inci-correction-card button {
+  min-height: 42px;
+  padding: 0 13px;
+  border: 1px solid #191713;
+  border-radius: 12px;
+  background: #191713;
+  color: #fffdf8;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.inci-correction-card button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.inci-reanalysis {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.inci-reanalysis label {
+  grid-column: 1 / -1;
+}
+
+.inci-analysis {
+  padding: 14px;
+  border-radius: 13px;
+  background: #e3eddf;
+  color: #264323;
+}
+
+.inci-analysis p {
+  margin: 5px 0;
+  font-size: 0.8rem;
+}
+
+.inci-analysis small {
+  color: #42613e;
+  line-height: 1.45;
+}
+
+.inci-correction-error {
+  margin: 0;
+  color: #713b2e;
+  font-size: 0.8rem;
+}
+
 .observation-card > footer {
   display: grid;
   gap: 4px;

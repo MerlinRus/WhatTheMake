@@ -9,6 +9,8 @@ import {
   type ProductObservation,
 } from '@wtm/contracts';
 
+import { InciCorrectionWorkspace } from './inci-correction.js';
+
 const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
 const imageTypes = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
@@ -263,6 +265,10 @@ export function ProductObservationCapture({ gtin }: { gtin: string }) {
           );
         })}
       </div>
+
+      <InciCorrectionWorkspace
+        observationId={state.observation.observationId}
+      />
 
       {actionError && (
         <p className="capture-action-error" role="alert">
