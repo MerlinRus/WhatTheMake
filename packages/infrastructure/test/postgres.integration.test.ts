@@ -10,6 +10,8 @@ import { Pool } from 'pg';
 import {
   INCI_LOOKUP_NORMALIZER_VERSION,
   type CanonicalIngredientId,
+  type IngredientKnowledgeSnapshotId,
+  type IngredientKnowledgeVersion,
   type InciDictionaryAliasId,
   type InciDictionaryVersion,
 } from '@wtm/domain';
@@ -51,6 +53,251 @@ test(
     } finally {
       await database.close();
       await rm(directory, { recursive: true, force: true });
+    }
+  },
+);
+
+test(
+  'ingredient knowledge requires evidence, preserves conflict, and versions changes',
+  { skip: testDatabaseUrl === undefined },
+  async () => {
+    assert.ok(testDatabaseUrl);
+    const database = createPostgresDatabase({
+      connectionString: testDatabaseUrl,
+      maxConnections: 2,
+      applicationName: 'wtm-ingredient-knowledge-integration',
+    });
+    const adminPool = new Pool({ connectionString: testDatabaseUrl, max: 1 });
+    const ingredientId = randomUUID();
+    const firstSnapshotId = randomUUID();
+    const firstFactId = randomUUID();
+    const supportId = randomUUID();
+    const conflictId = randomUUID();
+    const firstVersion = `knowledge-${randomUUID().replaceAll('-', '')}`;
+
+    try {
+      await database.migrate(resolve('apps/server/migrations'));
+      await adminPool.query(`
+        TRUNCATE
+          wtm_ingredient_fact_evidence_links,
+          wtm_ingredient_fact_evidence,
+          wtm_ingredient_function_facts,
+          wtm_ingredient_knowledge_snapshots,
+          wtm_inci_ingredients
+        CASCADE
+      `);
+      assert.equal(
+        await database.ingredientKnowledge.findPublishedSnapshot(),
+        null,
+      );
+
+      await adminPool.query(
+        'INSERT INTO wtm_inci_ingredients (id) VALUES ($1)',
+        [ingredientId],
+      );
+      await adminPool.query(
+        `
+          INSERT INTO wtm_ingredient_knowledge_snapshots (id, version)
+          VALUES ($1, $2)
+        `,
+        [firstSnapshotId, firstVersion],
+      );
+      await adminPool.query(
+        `
+          INSERT INTO wtm_ingredient_function_facts (
+            id,
+            snapshot_id,
+            ingredient_id,
+            function_code,
+            jurisdiction,
+            confidence
+          )
+          VALUES ($1, $2, $3, 'FILM_FORMER', 'GLOBAL', 'MEDIUM')
+        `,
+        [firstFactId, firstSnapshotId, ingredientId],
+      );
+      await adminPool.query(
+        `
+          INSERT INTO wtm_ingredient_fact_evidence (
+            id,
+            snapshot_id,
+            evidence_type,
+            source_url,
+            checked_at
+          )
+          VALUES
+            ($1, $3, 'OFFICIAL_DATABASE', 'https://authority.example/fact', '2026-08-25T09:00:00.000Z'),
+            ($2, $3, 'SCIENTIFIC_PUBLICATION', 'https://research.example/conflict', '2026-08-26T09:00:00.000Z')
+        `,
+        [supportId, conflictId, firstSnapshotId],
+      );
+      await adminPool.query(
+        `
+          INSERT INTO wtm_ingredient_fact_evidence_links (
+            snapshot_id,
+            fact_id,
+            evidence_id,
+            stance
+          )
+          VALUES ($1, $2, $3, 'CONTRADICTS')
+        `,
+        [firstSnapshotId, firstFactId, conflictId],
+      );
+
+      await assert.rejects(
+        adminPool.query(
+          `
+            UPDATE wtm_ingredient_knowledge_snapshots
+            SET status = 'PUBLISHED', published_at = $2
+            WHERE id = $1
+          `,
+          [firstSnapshotId, new Date('2026-08-27T09:00:00.000Z')],
+        ),
+        /Published ingredient facts require supporting evidence/,
+      );
+      await adminPool.query(
+        `
+          INSERT INTO wtm_ingredient_fact_evidence_links (
+            snapshot_id,
+            fact_id,
+            evidence_id,
+            stance
+          )
+          VALUES ($1, $2, $3, 'SUPPORTS')
+        `,
+        [firstSnapshotId, firstFactId, supportId],
+      );
+      await adminPool.query(
+        `
+          UPDATE wtm_ingredient_knowledge_snapshots
+          SET status = 'PUBLISHED', published_at = $2
+          WHERE id = $1
+        `,
+        [firstSnapshotId, new Date('2026-08-27T09:00:00.000Z')],
+      );
+
+      const firstPublished =
+        await database.ingredientKnowledge.findPublishedSnapshot();
+      assert.ok(firstPublished);
+      assert.equal(
+        firstPublished.snapshotId,
+        firstSnapshotId as IngredientKnowledgeSnapshotId,
+      );
+      assert.equal(
+        firstPublished.version,
+        firstVersion as IngredientKnowledgeVersion,
+      );
+      assert.deepEqual(
+        firstPublished.facts[0]?.evidence.map(({ stance }) => stance),
+        ['SUPPORTS', 'CONTRADICTS'],
+      );
+      await assert.rejects(
+        adminPool.query(
+          `
+            UPDATE wtm_ingredient_function_facts
+            SET confidence = 'HIGH'
+            WHERE id = $1
+          `,
+          [firstFactId],
+        ),
+        /Published ingredient knowledge is immutable/,
+      );
+
+      const secondSnapshotId = randomUUID();
+      const secondFactId = randomUUID();
+      const secondEvidenceId = randomUUID();
+      const secondVersion = `knowledge-${randomUUID().replaceAll('-', '')}`;
+      await adminPool.query(
+        `
+          INSERT INTO wtm_ingredient_knowledge_snapshots (
+            id,
+            version,
+            based_on_snapshot_id
+          )
+          VALUES ($1, $2, $3)
+        `,
+        [secondSnapshotId, secondVersion, firstSnapshotId],
+      );
+      await adminPool.query(
+        `
+          INSERT INTO wtm_ingredient_function_facts (
+            id,
+            snapshot_id,
+            ingredient_id,
+            function_code,
+            jurisdiction,
+            confidence
+          )
+          VALUES ($1, $2, $3, 'FILM_FORMER', 'GLOBAL', 'HIGH')
+        `,
+        [secondFactId, secondSnapshotId, ingredientId],
+      );
+      await adminPool.query(
+        `
+          INSERT INTO wtm_ingredient_fact_evidence (
+            id,
+            snapshot_id,
+            evidence_type,
+            source_url,
+            checked_at
+          )
+          VALUES (
+            $1,
+            $2,
+            'REGULATORY_ASSESSMENT',
+            'https://authority.example/reassessment',
+            '2026-08-27T10:00:00.000Z'
+          )
+        `,
+        [secondEvidenceId, secondSnapshotId],
+      );
+      await adminPool.query(
+        `
+          INSERT INTO wtm_ingredient_fact_evidence_links (
+            snapshot_id,
+            fact_id,
+            evidence_id,
+            stance
+          )
+          VALUES ($1, $2, $3, 'SUPPORTS')
+        `,
+        [secondSnapshotId, secondFactId, secondEvidenceId],
+      );
+      await adminPool.query(
+        `
+          UPDATE wtm_ingredient_knowledge_snapshots
+          SET status = 'RETIRED', retired_at = '2026-08-27T11:00:00.000Z'
+          WHERE id = $1
+        `,
+        [firstSnapshotId],
+      );
+      await adminPool.query(
+        `
+          UPDATE wtm_ingredient_knowledge_snapshots
+          SET status = 'PUBLISHED', published_at = '2026-08-27T11:00:00.000Z'
+          WHERE id = $1
+        `,
+        [secondSnapshotId],
+      );
+
+      const secondPublished =
+        await database.ingredientKnowledge.findPublishedSnapshot();
+      assert.ok(secondPublished);
+      assert.equal(
+        secondPublished.snapshotId,
+        secondSnapshotId as IngredientKnowledgeSnapshotId,
+      );
+      assert.equal(
+        secondPublished.basedOnSnapshotId,
+        firstSnapshotId as IngredientKnowledgeSnapshotId,
+      );
+      const history = await adminPool.query<{ count: number }>(
+        'SELECT count(*)::integer AS count FROM wtm_ingredient_knowledge_snapshots',
+      );
+      assert.equal(history.rows[0]?.count, 2);
+    } finally {
+      await database.close();
+      await adminPool.end();
     }
   },
 );

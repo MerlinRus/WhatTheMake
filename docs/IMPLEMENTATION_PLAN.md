@@ -377,6 +377,11 @@ Workspace
 - provider/cache/queue telemetry доступна;
 - Vision/DeepSeek failure деградирует безопасно.
 
+**Проверка 2026-08-27:** gate остаётся красным: parser/canonicalizer имеют
+golden и fuzz coverage, но измеряемого benchmark на контрольной выборке с
+порогом ≥95% ещё нет. Original/corrections разделены; provider/cache/queue
+telemetry и безопасная деградация Vision/DeepSeek проверены.
+
 ## 7. Фаза E — знания и одиночный разбор
 
 ### E1. Создать evidence-backed knowledge model
@@ -389,6 +394,12 @@ Workspace
 
 **Зависимости:** A4, D5.  
 **Размер:** M, 4–5 файлов.
+
+**Решение 2026-08-27:** знания хранятся immutable snapshots с явной версией и
+ссылкой на предыдущий snapshot. Ingredient-function fact имеет jurisdiction и
+confidence; evidence — тип, source URL, checkedAt и stance
+`SUPPORTS`/`CONTRADICTS`. Publication без supporting evidence запрещена domain
+contract и PostgreSQL trigger; конфликтующие источники сохраняются.
 
 ### E2. Описать mascara taxonomy
 
