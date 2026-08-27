@@ -46,6 +46,8 @@ export type ParseInciResult =
       maxSourceLength: number;
     };
 
+export type ParsedInci = Extract<ParseInciResult, { kind: 'PARSED' }>;
+
 const HEADING =
   /^\s*(?:(?:ingredients?|ingr[eé]dients?)(?:\s*\/\s*(?:ingredients?|ingr[eé]dients?))*|состав)\s*[:：]\s*/iu;
 const PLUS_MINUS = String.raw`(?:±|\+\s*\/\s*[-−])`;

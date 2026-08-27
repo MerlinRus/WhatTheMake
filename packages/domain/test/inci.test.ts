@@ -7,6 +7,17 @@ import {
   parseInci,
   type InciToken,
 } from '../src/inci.js';
+import {
+  canonicalizeInci,
+  INCI_CANONICALIZER_VERSION,
+  INCI_LOOKUP_NORMALIZER_VERSION,
+  INCI_NORMALIZATION_SCHEMA_VERSION,
+  normalizeInciLookupText,
+  type CanonicalIngredientId,
+  type InciDictionaryAliasId,
+  type InciDictionarySnapshot,
+  type InciDictionaryVersion,
+} from '../src/inci-canonicalization.js';
 
 interface ExpectedToken {
   sourceText: string;
@@ -346,4 +357,214 @@ test('separator property preserves generated ingredient order', () => {
       );
     }
   }
+});
+
+const ingredientIds = {
+  aqua: '00000000-0000-4000-8000-000000000001',
+  beeswax: '00000000-0000-4000-8000-000000000002',
+  carnauba: '00000000-0000-4000-8000-000000000003',
+  pigment77491: '00000000-0000-4000-8000-000000000004',
+  pigment77499: '00000000-0000-4000-8000-000000000005',
+} as const;
+
+function ingredientId(
+  value: (typeof ingredientIds)[keyof typeof ingredientIds],
+): CanonicalIngredientId {
+  return value as CanonicalIngredientId;
+}
+
+function aliasId(value: string): InciDictionaryAliasId {
+  return value as InciDictionaryAliasId;
+}
+
+function fixtureDictionary(): InciDictionarySnapshot {
+  return {
+    dictionaryVersion: 'fixture-2026.08.27' as InciDictionaryVersion,
+    normalizerVersion: INCI_LOOKUP_NORMALIZER_VERSION,
+    ingredients: [
+      {
+        ingredientId: ingredientId(ingredientIds.aqua),
+        canonicalName: 'Aqua',
+        canonicalLookupKey: normalizeInciLookupText('Aqua'),
+        aliases: [
+          {
+            aliasId: aliasId('10000000-0000-4000-8000-000000000001'),
+            aliasText: 'Water',
+            lookupKey: normalizeInciLookupText('Water'),
+          },
+        ],
+      },
+      {
+        ingredientId: ingredientId(ingredientIds.beeswax),
+        canonicalName: 'Cera Alba',
+        canonicalLookupKey: normalizeInciLookupText('Cera Alba'),
+        aliases: [
+          {
+            aliasId: aliasId('10000000-0000-4000-8000-000000000002'),
+            aliasText: 'Wax',
+            lookupKey: normalizeInciLookupText('Wax'),
+          },
+        ],
+      },
+      {
+        ingredientId: ingredientId(ingredientIds.carnauba),
+        canonicalName: 'Copernicia Cerifera Cera',
+        canonicalLookupKey: normalizeInciLookupText('Copernicia Cerifera Cera'),
+        aliases: [
+          {
+            aliasId: aliasId('10000000-0000-4000-8000-000000000003'),
+            aliasText: 'Wax',
+            lookupKey: normalizeInciLookupText('Wax'),
+          },
+        ],
+      },
+      {
+        ingredientId: ingredientId(ingredientIds.pigment77491),
+        canonicalName: 'CI 77491',
+        canonicalLookupKey: normalizeInciLookupText('CI 77491'),
+        aliases: [],
+      },
+      {
+        ingredientId: ingredientId(ingredientIds.pigment77499),
+        canonicalName: 'CI 77499',
+        canonicalLookupKey: normalizeInciLookupText('CI 77499'),
+        aliases: [],
+      },
+    ],
+  };
+}
+
+test('INCI canonicalization is traceable, conservative, and versioned', () => {
+  const source = 'Aqua, ＷＡＴＥＲ, Wax, Waterr, C1 77499, CI 77491/77499';
+  const parsed = parseInci(source);
+  assert.equal(parsed.kind, 'PARSED');
+  if (parsed.kind !== 'PARSED') return;
+
+  const snapshot = canonicalizeInci(parsed, fixtureDictionary());
+  assert.equal(snapshot.schemaVersion, INCI_NORMALIZATION_SCHEMA_VERSION);
+  assert.equal(snapshot.parserVersion, INCI_PARSER_VERSION);
+  assert.equal(snapshot.canonicalizerVersion, INCI_CANONICALIZER_VERSION);
+  assert.equal(snapshot.dictionaryVersion, 'fixture-2026.08.27');
+  assert.equal(snapshot.normalizerVersion, INCI_LOOKUP_NORMALIZER_VERSION);
+  assert.equal(snapshot.tokens.length, parsed.tokens.length);
+
+  assert.deepEqual(snapshot.tokens[0]?.components[0]?.decision, {
+    kind: 'RESOLVED',
+    confidence: 'HIGH',
+    ingredient: {
+      ingredientId: ingredientIds.aqua,
+      canonicalName: 'Aqua',
+    },
+    matchedBy: { kind: 'CANONICAL_NAME', matchedText: 'Aqua' },
+  });
+  assert.deepEqual(snapshot.tokens[1]?.components[0], {
+    componentPosition: 0,
+    lookupText: 'ＷＡＴＥＲ',
+    lookupKey: 'water',
+    decision: {
+      kind: 'RESOLVED',
+      confidence: 'MEDIUM',
+      ingredient: {
+        ingredientId: ingredientIds.aqua,
+        canonicalName: 'Aqua',
+      },
+      matchedBy: {
+        kind: 'ALIAS',
+        aliasId: '10000000-0000-4000-8000-000000000001',
+        matchedText: 'Water',
+      },
+    },
+  });
+  assert.deepEqual(snapshot.tokens[2]?.components[0]?.decision, {
+    kind: 'AMBIGUOUS',
+    confidence: 'NONE',
+    candidates: [
+      {
+        ingredient: {
+          ingredientId: ingredientIds.beeswax,
+          canonicalName: 'Cera Alba',
+        },
+        matchedBy: {
+          kind: 'ALIAS',
+          aliasId: '10000000-0000-4000-8000-000000000002',
+          matchedText: 'Wax',
+        },
+      },
+      {
+        ingredient: {
+          ingredientId: ingredientIds.carnauba,
+          canonicalName: 'Copernicia Cerifera Cera',
+        },
+        matchedBy: {
+          kind: 'ALIAS',
+          aliasId: '10000000-0000-4000-8000-000000000003',
+          matchedText: 'Wax',
+        },
+      },
+    ],
+  });
+  assert.deepEqual(snapshot.tokens[3]?.components[0]?.decision, {
+    kind: 'UNRESOLVED',
+    confidence: 'NONE',
+    reason: 'NO_DICTIONARY_MATCH',
+  });
+  assert.deepEqual(snapshot.tokens[4]?.components[0]?.decision, {
+    kind: 'UNRESOLVED',
+    confidence: 'NONE',
+    reason: 'SOURCE_UNCERTAIN',
+  });
+  assert.deepEqual(
+    snapshot.tokens[5]?.components.map((component) => ({
+      lookupText: component.lookupText,
+      decision: component.decision,
+    })),
+    [
+      {
+        lookupText: 'CI 77491',
+        decision: {
+          kind: 'RESOLVED',
+          confidence: 'HIGH',
+          ingredient: {
+            ingredientId: ingredientIds.pigment77491,
+            canonicalName: 'CI 77491',
+          },
+          matchedBy: { kind: 'CANONICAL_NAME', matchedText: 'CI 77491' },
+        },
+      },
+      {
+        lookupText: 'CI 77499',
+        decision: {
+          kind: 'RESOLVED',
+          confidence: 'HIGH',
+          ingredient: {
+            ingredientId: ingredientIds.pigment77499,
+            canonicalName: 'CI 77499',
+          },
+          matchedBy: { kind: 'CANONICAL_NAME', matchedText: 'CI 77499' },
+        },
+      },
+    ],
+  );
+
+  for (const [position, token] of snapshot.tokens.entries()) {
+    assert.equal(token.sourceToken, parsed.tokens[position]);
+  }
+});
+
+test('INCI canonicalization does not depend on dictionary row order', () => {
+  const parsed = parseInci('Wax, Water');
+  assert.equal(parsed.kind, 'PARSED');
+  if (parsed.kind !== 'PARSED') return;
+  const dictionary = fixtureDictionary();
+  const reversed: InciDictionarySnapshot = {
+    ...dictionary,
+    ingredients: [...dictionary.ingredients]
+      .reverse()
+      .map((entry) => ({ ...entry, aliases: [...entry.aliases].reverse() })),
+  };
+
+  assert.deepEqual(
+    canonicalizeInci(parsed, reversed),
+    canonicalizeInci(parsed, dictionary),
+  );
 });
