@@ -508,11 +508,28 @@ summary:focus-visible {
     monospace;
 }
 
-.inci-empty-source {
+.inci-ocr-action {
+  display: grid;
+  gap: 10px;
+  padding: 15px;
+  border: 1px solid #ded5ca;
+  border-radius: 14px;
+  background: #fffdf8;
+}
+
+.inci-ocr-action p {
   margin: 0;
   color: #6d675f;
   font-size: 0.82rem;
   line-height: 1.5;
+}
+
+.inci-ocr-action button {
+  justify-self: start;
+}
+
+.inci-ocr-action small {
+  line-height: 1.45;
 }
 
 .inci-correction-card form {

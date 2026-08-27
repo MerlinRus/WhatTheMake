@@ -181,6 +181,136 @@ test('account opens a claimed guest observation', async ({ page }) => {
   await expect(page.getByText('Повторный поиск этого штрихкода')).toBeVisible();
 });
 
+test('user explicitly starts OCR for the ingredients photo', async ({
+  page,
+}) => {
+  const ingredientsAssetId = '597356e8-cc8b-4718-a783-fb4cd478e92d';
+  const revisionId = 'a8b7e74f-97d0-4dd8-81e3-80a613fe5a3c';
+  const assets: Array<Record<string, unknown>> = [];
+  let ocrCalls = 0;
+
+  await mockUnknownCatalog(page);
+  await mockEmptyInci(page);
+  await page.route('**/api/v1/guest-sessions', (route) =>
+    route.fulfill({
+      status: 201,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        principal: {
+          kind: 'GUEST',
+          guestId: '9b5caf40-d60c-4d69-907b-84d4b070f7ca',
+          createdAt: '2026-08-27T10:00:00.000Z',
+        },
+      }),
+    }),
+  );
+  await page.route('**/api/v1/product-observations', (route) =>
+    route.fulfill({
+      status: 201,
+      contentType: 'application/json',
+      body: JSON.stringify(observation(assets)),
+    }),
+  );
+  await page.route(
+    `**/api/v1/media-collections/${collectionId}/assets?role=INGREDIENTS`,
+    (route) => {
+      const asset = {
+        assetId: ingredientsAssetId,
+        role: 'INGREDIENTS',
+        mediaType: 'image/jpeg',
+        byteSize: 7,
+        createdAt: '2026-08-27T10:01:00.000Z',
+      };
+      assets.push(asset);
+      return route.fulfill({
+        status: 201,
+        contentType: 'application/json',
+        body: JSON.stringify({ asset }),
+      });
+    },
+  );
+  await page.route(
+    `**/api/v1/product-observations/${observationId}/inci-ocr`,
+    async (route) => {
+      ocrCalls += 1;
+      expect(route.request().postDataJSON()).toEqual({
+        mediaAssetId: ingredientsAssetId,
+      });
+      return route.fulfill({
+        status: 201,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          resultKind: 'CREATED',
+          revision: {
+            revisionId,
+            revisionNumber: 1,
+            source: {
+              kind: 'OCR',
+              mediaAssetId: ingredientsAssetId,
+              providerId: 'GOOGLE_VISION',
+              providerVersion: 'v1',
+            },
+            sourceText: 'Aqua, Glycerin',
+            sourceSha256: '1'.repeat(64),
+            authorKind: 'SYSTEM',
+            createdAt: '2026-08-27T10:02:00.000Z',
+          },
+        }),
+      });
+    },
+  );
+  await page.route('**/inci-revisions/*/analysis', (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        analysis: {
+          schemaVersion: 1,
+          selectedRevisionId: revisionId,
+          sourceSha256: '1'.repeat(64),
+          parserVersion: 'inci-parser-v1',
+          parse: { kind: 'PARSED', tokenCount: 2, uncertainTokenCount: 0 },
+          normalization: {
+            kind: 'NOT_RUN',
+            reason: 'NO_PUBLISHED_DICTIONARY',
+          },
+        },
+      }),
+    }),
+  );
+
+  await page.goto('/');
+  await page.getByLabel('GTIN / EAN').fill(gtin);
+  await page.getByRole('button', { name: 'Найти' }).click();
+  await page.getByRole('button', { name: 'Добавить по фото' }).click();
+
+  const recognize = page.getByRole('button', {
+    name: 'Распознать состав с фото',
+  });
+  await expect(recognize).toHaveCount(0);
+  const ingredients = page
+    .locator('.capture-role')
+    .filter({ hasText: 'Состав INCI' });
+  await ingredients.locator('input[type=file]').setInputFiles({
+    name: 'ingredients.jpg',
+    mimeType: 'image/jpeg',
+    buffer: Buffer.from([0xff, 0xd8, 0xff, 0xe0, 0x01, 0xff, 0xd9]),
+  });
+  await expect(recognize).toBeEnabled();
+  expect(ocrCalls).toBe(0);
+
+  await recognize.click();
+  await expect(
+    page.locator('.inci-source-evidence pre').getByText('Aqua, Glycerin', {
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByText('Токенов: 2. Требуют проверки: 0.'),
+  ).toBeVisible();
+  expect(ocrCalls).toBe(1);
+});
+
 test('user corrects INCI and re-runs an explicitly selected revision', async ({
   page,
 }) => {

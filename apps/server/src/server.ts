@@ -13,6 +13,11 @@ import { createInciCorrectionService } from './inci-corrections/service.js';
 import { createMediaService } from './media/service.js';
 import { createMascaraPreferencesService } from './preferences/service.js';
 import { createProductObservationService } from './product-observations/service.js';
+import {
+  createProviderRuntime,
+  type ProviderRuntime,
+  type ProviderRuntimeEvent,
+} from './provider-runtime.js';
 
 async function start(): Promise<void> {
   const config = loadServerConfig(process.env);
@@ -22,9 +27,16 @@ async function start(): Promise<void> {
     applicationName: 'what-the-make',
     onPoolError: (error) => console.error('PostgreSQL pool error', error),
   });
+  let providerRuntime: ProviderRuntime | null = null;
+  let reportProviderEvent: ((event: ProviderRuntimeEvent) => void) | undefined;
 
   try {
     await database.migrate(config.migrationsDirectory);
+    providerRuntime = createProviderRuntime({
+      config,
+      ocrCache: database.ocrCache,
+      onEvent: (event) => reportProviderEvent?.(event),
+    });
     const identityService = createIdentityService({
       repository: database.identity,
     });
@@ -41,6 +53,10 @@ async function start(): Promise<void> {
       storage: mediaStorage,
       maxBytes: config.mediaMaxBytes,
       recoveryDelayMs: config.mediaUploadRecoveryDelayMs,
+    });
+    const productObservationService = createProductObservationService({
+      identity: identityService,
+      repository: database.productObservations,
     });
     let mediaRecoveryWorker: MediaRecoveryWorker | null = null;
     const app = await buildApp({
@@ -70,6 +86,9 @@ async function start(): Promise<void> {
           identity: identityService,
           repository: database.productObservationInci,
           dictionary: database.inciDictionary,
+          media: mediaService,
+          observations: productObservationService,
+          ...(providerRuntime.ocr ? { ocr: providerRuntime.ocr } : {}),
         }),
         publicOrigin: config.publicOrigin,
         cookieName,
@@ -89,18 +108,23 @@ async function start(): Promise<void> {
         maxBytes: config.mediaMaxBytes,
       },
       productObservations: {
-        service: createProductObservationService({
-          identity: identityService,
-          repository: database.productObservations,
-        }),
+        service: productObservationService,
         publicOrigin: config.publicOrigin,
         cookieName,
       },
       onClose: async () => {
         await mediaRecoveryWorker?.stop();
+        await providerRuntime?.shutdown();
         await database.close();
       },
     });
+    reportProviderEvent = (event) => {
+      app.log.info(event, 'Provider runtime event');
+    };
+    app.log.info(
+      { providers: providerRuntime.metadata },
+      'External providers configured',
+    );
     mediaRecoveryWorker = createMediaRecoveryWorker({
       repository: database.media,
       storage: mediaStorage,
@@ -134,6 +158,7 @@ async function start(): Promise<void> {
     await app.listen({ host: config.host, port: config.port });
     mediaRecoveryWorker.start();
   } catch (error) {
+    await providerRuntime?.shutdown().catch(() => {});
     await database.close().catch(() => {});
     throw error;
   }

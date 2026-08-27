@@ -12,8 +12,11 @@ import {
   MAX_INCI_SOURCE_LENGTH,
   parseInci,
   type AuthenticatedIdentity,
+  type CreateProductObservationInciRevisionResult,
   type InciDictionaryRepository,
   type InciSourceSha256,
+  type OcrFailureCode,
+  type OcrProvider,
   type ProductObservationId,
   type ProductObservationInciRepository,
   type ProductObservationInciRevision,
@@ -22,6 +25,8 @@ import {
 
 import { AppError } from '../errors.js';
 import type { IdentityService } from '../identity/service.js';
+import type { MediaService } from '../media/service.js';
+import type { ProductObservationService } from '../product-observations/service.js';
 
 export interface InciCorrectionService {
   workspace(
@@ -32,6 +37,12 @@ export interface InciCorrectionService {
     token: string | null,
     observationId: string,
     input: CreateProductObservationInciRevisionInput,
+  ): Promise<CreateProductObservationInciRevisionResponse>;
+  recognize(
+    token: string | null,
+    observationId: string,
+    mediaAssetId: string,
+    signal?: AbortSignal,
   ): Promise<CreateProductObservationInciRevisionResponse>;
   analysis(
     token: string | null,
@@ -80,7 +91,11 @@ function contractRevision(
 }
 
 function validSourceText(value: string): boolean {
-  return value.trim().length > 0 && value.length <= MAX_INCI_SOURCE_LENGTH;
+  return (
+    value.trim().length > 0 &&
+    value.length <= MAX_INCI_SOURCE_LENGTH &&
+    !value.includes('\0')
+  );
 }
 
 function sourceSha256(value: string): InciSourceSha256 {
@@ -89,10 +104,54 @@ function sourceSha256(value: string): InciSourceSha256 {
     .digest('hex') as InciSourceSha256;
 }
 
+function revisionResponse(
+  result: CreateProductObservationInciRevisionResult,
+): CreateProductObservationInciRevisionResponse {
+  switch (result.kind) {
+    case 'OBSERVATION_NOT_FOUND':
+    case 'REVISION_NOT_FOUND':
+      throw notFound();
+    case 'SOURCE_ALREADY_EXISTS':
+      throw conflict(
+        'SOURCE_ALREADY_EXISTS',
+        'Original INCI source already exists',
+      );
+    case 'SAME_TEXT':
+      throw conflict('SAME_TEXT', 'Correction matches selected revision');
+    case 'LIMIT_REACHED':
+      throw conflict('LIMIT_REACHED', 'INCI revision limit reached');
+    case 'CREATED':
+    case 'REUSED':
+      return {
+        resultKind: result.kind,
+        revision: contractRevision(result.revision),
+      };
+  }
+}
+
+function ocrFailure(code: OcrFailureCode, retryable: boolean): AppError {
+  const capacityFailure = [
+    'OCR_RATE_LIMITED',
+    'OCR_OVERLOADED',
+    'OCR_QUEUE_TIMEOUT',
+  ].includes(code);
+  return new AppError({
+    statusCode: capacityFailure ? 429 : 503,
+    code: capacityFailure ? 'RATE_LIMITED' : 'SERVICE_UNAVAILABLE',
+    message: capacityFailure
+      ? 'OCR capacity is temporarily unavailable'
+      : 'OCR is temporarily unavailable',
+    details: { reason: code, retryable },
+  });
+}
+
 export function createInciCorrectionService(options: {
   identity: IdentityService;
   repository: ProductObservationInciRepository;
   dictionary: InciDictionaryRepository;
+  ocr?: OcrProvider;
+  media?: MediaService;
+  observations?: ProductObservationService;
 }): InciCorrectionService {
   const identity = async (
     token: string | null,
@@ -140,26 +199,60 @@ export function createInciCorrectionService(options: {
                 input.basedOnRevisionId as ProductObservationInciRevisionId,
             }),
       });
-      switch (result.kind) {
-        case 'OBSERVATION_NOT_FOUND':
-        case 'REVISION_NOT_FOUND':
-          throw notFound();
-        case 'SOURCE_ALREADY_EXISTS':
-          throw conflict(
-            'SOURCE_ALREADY_EXISTS',
-            'Original INCI source already exists',
-          );
-        case 'SAME_TEXT':
-          throw conflict('SAME_TEXT', 'Correction matches selected revision');
-        case 'LIMIT_REACHED':
-          throw conflict('LIMIT_REACHED', 'INCI revision limit reached');
-        case 'CREATED':
-        case 'REUSED':
-          return {
-            resultKind: result.kind,
-            revision: contractRevision(result.revision),
-          };
+      return revisionResponse(result);
+    },
+
+    async recognize(token, observationId, mediaAssetId, signal) {
+      if (!options.ocr || !options.media || !options.observations) {
+        throw new AppError({
+          statusCode: 503,
+          code: 'SERVICE_UNAVAILABLE',
+          message: 'OCR is not configured',
+          details: { reason: 'OCR_DISABLED', retryable: false },
+        });
       }
+      const owner = await identity(token);
+      const observation = await options.observations.get(token, observationId);
+      const observedAsset = observation.mediaCollection.assets.find(
+        (asset) => asset.assetId === mediaAssetId,
+      );
+      if (!observedAsset || observedAsset.role !== 'INGREDIENTS') {
+        throw notFound();
+      }
+      const file = await options.media.file(token, mediaAssetId);
+      if (file.asset.role !== 'INGREDIENTS') throw notFound();
+
+      const result = await options.ocr.recognize({
+        operation: 'DOCUMENT_TEXT_DETECTION',
+        imageBytes: file.bytes,
+        mediaType: file.asset.mediaType,
+        languageHints: ['ru', 'en'],
+        ...(signal ? { signal } : {}),
+      });
+      if (result.kind === 'FAILED') {
+        throw ocrFailure(result.code, result.retryable);
+      }
+      if (!validSourceText(result.text)) {
+        throw new AppError({
+          statusCode: 422,
+          code: 'VALIDATION_ERROR',
+          message: 'No usable INCI text was recognized',
+          details: { reason: 'OCR_TEXT_NOT_FOUND' },
+        });
+      }
+
+      return revisionResponse(
+        await options.repository.createRevision({
+          observationId: observationId as ProductObservationId,
+          owner,
+          kind: 'OCR',
+          mediaAssetId,
+          providerId: options.ocr.providerId,
+          providerVersion: options.ocr.version,
+          sourceText: result.text,
+          sourceSha256: sourceSha256(result.text),
+        }),
+      );
     },
 
     async analysis(token, observationId, revisionId) {

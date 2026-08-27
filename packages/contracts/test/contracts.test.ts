@@ -6,6 +6,7 @@ import { Value } from 'typebox/value';
 import {
   ApiErrorEnvelopeSchema,
   CatalogBarcodeParamsSchema,
+  CreateProductObservationInciOcrInputSchema,
   CreateProductObservationConfirmationInputSchema,
   CatalogVariantResponseSchema,
   CursorPageInfoSchema,
@@ -303,6 +304,27 @@ test('private product observation exposes barcode and role-scoped media only', (
   assert.equal(
     Value.Check(ProductObservationResponseSchema, {
       observation: { ...response.observation, ownerKind: 'GUEST' },
+    }),
+    false,
+  );
+});
+
+test('INCI OCR contract accepts one media asset ID only', () => {
+  const mediaAssetId = '79df91cc-f632-4ad2-9b81-d50d9dff8d53';
+  assert.equal(
+    Value.Check(CreateProductObservationInciOcrInputSchema, { mediaAssetId }),
+    true,
+  );
+  assert.equal(
+    Value.Check(CreateProductObservationInciOcrInputSchema, {
+      mediaAssetId,
+      provider: 'client-controlled',
+    }),
+    false,
+  );
+  assert.equal(
+    Value.Check(CreateProductObservationInciOcrInputSchema, {
+      mediaAssetId: '../../etc/passwd',
     }),
     false,
   );

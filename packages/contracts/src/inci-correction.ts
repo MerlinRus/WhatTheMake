@@ -13,6 +13,15 @@ export type ProductObservationInciParams = Static<
   typeof ProductObservationInciParamsSchema
 >;
 
+export const CreateProductObservationInciOcrInputSchema = Type.Object(
+  { mediaAssetId: UuidSchema },
+  { additionalProperties: false },
+);
+
+export type CreateProductObservationInciOcrInput = Static<
+  typeof CreateProductObservationInciOcrInputSchema
+>;
+
 export const ProductObservationInciRevisionParamsSchema = Type.Object(
   { observationId: UuidSchema, revisionId: UuidSchema },
   { additionalProperties: false },

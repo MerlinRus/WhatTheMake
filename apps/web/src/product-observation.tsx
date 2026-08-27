@@ -206,6 +206,7 @@ export function ProductObservationCapture({ gtin }: { gtin: string }) {
   }
 
   const assets = state.observation.mediaCollection.assets;
+  const ingredientsAsset = assets.find((asset) => asset.role === 'INGREDIENTS');
   return (
     <article className="observation-card" aria-labelledby="observation-title">
       <header>
@@ -268,6 +269,7 @@ export function ProductObservationCapture({ gtin }: { gtin: string }) {
 
       <InciCorrectionWorkspace
         observationId={state.observation.observationId}
+        mediaAssetId={ingredientsAsset?.assetId ?? null}
       />
 
       {actionError && (

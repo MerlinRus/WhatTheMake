@@ -153,8 +153,14 @@ async function lockOwnedObservation(
 }
 
 function authorParameters(
-  owner: AuthenticatedIdentity,
-): [AuthenticatedIdentity['kind'], string | null, string | null] {
+  input: CreateProductObservationInciRevisionInput,
+): [
+  ProductObservationInciRevision['authorKind'],
+  string | null,
+  string | null,
+] {
+  if (input.kind === 'OCR') return ['SYSTEM', null, null];
+  const owner = input.owner;
   return owner.kind === 'GUEST'
     ? ['GUEST', owner.guestId, null]
     : ['ACCOUNT', null, owner.accountId];
@@ -165,9 +171,12 @@ async function insertRevision(
   input: CreateProductObservationInciRevisionInput,
   revisionNumber: number,
 ): Promise<ProductObservationInciRevision> {
-  const [authorKind, guestId, accountId] = authorParameters(input.owner);
+  const [authorKind, guestId, accountId] = authorParameters(input);
   const basedOnRevisionId =
     input.kind === 'USER_CORRECTION' ? input.basedOnRevisionId : null;
+  const mediaAssetId = input.kind === 'OCR' ? input.mediaAssetId : null;
+  const providerId = input.kind === 'OCR' ? input.providerId : null;
+  const providerVersion = input.kind === 'OCR' ? input.providerVersion : null;
   const inserted = await client.query<RevisionRow>(
     `
       INSERT INTO wtm_product_observation_inci_revisions (
@@ -179,9 +188,12 @@ async function insertRevision(
         based_on_revision_id,
         author_kind,
         guest_id,
-        account_id
+        account_id,
+        media_asset_id,
+        provider_id,
+        provider_version
       )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
       RETURNING
         id AS revision_id,
         revision_number,
@@ -205,6 +217,9 @@ async function insertRevision(
       authorKind,
       guestId,
       accountId,
+      mediaAssetId,
+      providerId,
+      providerVersion,
     ],
   );
   const row = inserted.rows[0];
@@ -295,11 +310,20 @@ export function createPostgresProductObservationInciRepository(
         );
         const revisions = existing.rows.map(revision);
 
-        if (input.kind === 'USER_TRANSCRIPTION') {
+        if (input.kind === 'OCR' || input.kind === 'USER_TRANSCRIPTION') {
           const original = revisions[0];
           if (original) {
-            return original.sourceText === input.sourceText &&
-              original.sourceSha256 === input.sourceSha256
+            const sameText =
+              original.sourceText === input.sourceText &&
+              original.sourceSha256 === input.sourceSha256;
+            const sameSource =
+              input.kind === 'USER_TRANSCRIPTION'
+                ? original.source.kind === 'USER_TRANSCRIPTION'
+                : original.source.kind === 'OCR' &&
+                  original.source.mediaAssetId === input.mediaAssetId &&
+                  original.source.providerId === input.providerId &&
+                  original.source.providerVersion === input.providerVersion;
+            return sameText && sameSource
               ? { kind: 'REUSED', revision: original }
               : { kind: 'SOURCE_ALREADY_EXISTS' };
           }

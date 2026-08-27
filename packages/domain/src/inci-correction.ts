@@ -47,6 +47,12 @@ export type CreateProductObservationInciRevisionInput = {
   sourceText: string;
   sourceSha256: InciSourceSha256;
 } & (
+  | {
+      kind: 'OCR';
+      mediaAssetId: string;
+      providerId: string;
+      providerVersion: string;
+    }
   | { kind: 'USER_TRANSCRIPTION' }
   | {
       kind: 'USER_CORRECTION';

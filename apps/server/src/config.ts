@@ -31,6 +31,16 @@ export interface ServerConfig {
   mediaRecoveryLeaseMs: number;
   mediaRecoveryRetryBaseMs: number;
   mediaRecoveryRetryMaxMs: number;
+  googleVisionApiKey: string | null;
+  googleVisionTimeoutMs: number;
+  ocrQueueConcurrency: number;
+  ocrQueueMaxPending: number;
+  ocrQueueWaitTimeoutMs: number;
+  ocrL1MaxEntries: number;
+  ocrL1TtlMs: number;
+  deepSeekEnabled: boolean;
+  deepSeekApiKey: string | null;
+  deepSeekTimeoutMs: number;
   version: string;
   buildSha: string;
 }
@@ -76,6 +86,29 @@ function integerInRange(
 function nonEmpty(name: string, value: string | undefined): string {
   if (value === undefined || value.trim() === '') {
     throw new ConfigurationError(`${name} is required`);
+  }
+  return value;
+}
+
+function booleanValue(
+  name: string,
+  value: string | undefined,
+  fallback: boolean,
+): boolean {
+  if (value === undefined) return fallback;
+  if (value === 'true') return true;
+  if (value === 'false') return false;
+  throw new ConfigurationError(`${name} must be true or false`);
+}
+
+function providerSecret(
+  name: string,
+  value: string | undefined,
+  pattern: RegExp,
+): string | null {
+  if (value === undefined) return null;
+  if (!pattern.test(value)) {
+    throw new ConfigurationError(`${name} has invalid format`);
   }
   return value;
 }
@@ -131,13 +164,42 @@ export function loadServerConfig(
       'MEDIA_RECOVERY_RETRY_BASE_MS must not exceed MEDIA_RECOVERY_RETRY_MAX_MS',
     );
   }
+  const nodeEnvironment = enumValue(
+    'NODE_ENV',
+    environment.NODE_ENV ?? 'development',
+    NODE_ENVIRONMENTS,
+  );
+  const googleVisionApiKey = providerSecret(
+    'GOOGLE_VISION_API_KEY',
+    environment.GOOGLE_VISION_API_KEY,
+    /^AIza[A-Za-z0-9_-]{20,}$/,
+  );
+  const deepSeekEnabled = booleanValue(
+    'DEEPSEEK_ENABLED',
+    environment.DEEPSEEK_ENABLED,
+    false,
+  );
+  const deepSeekApiKey = providerSecret(
+    'DEEPSEEK_API_KEY',
+    environment.DEEPSEEK_API_KEY,
+    /^sk-[A-Za-z0-9_-]{20,}$/,
+  );
+  if (nodeEnvironment === 'production' && googleVisionApiKey === null) {
+    throw new ConfigurationError(
+      'GOOGLE_VISION_API_KEY is required in production',
+    );
+  }
+  if (nodeEnvironment === 'production' && !deepSeekEnabled) {
+    throw new ConfigurationError('DEEPSEEK_ENABLED must be true in production');
+  }
+  if (deepSeekEnabled && deepSeekApiKey === null) {
+    throw new ConfigurationError(
+      'DEEPSEEK_API_KEY is required when DeepSeek is enabled',
+    );
+  }
 
   return {
-    nodeEnvironment: enumValue(
-      'NODE_ENV',
-      environment.NODE_ENV ?? 'development',
-      NODE_ENVIRONMENTS,
-    ),
+    nodeEnvironment,
     host: nonEmpty('HOST', environment.HOST ?? '127.0.0.1'),
     port: integerInRange('PORT', environment.PORT ?? '8787', 1, 65_535),
     logLevel: enumValue(
@@ -185,6 +247,51 @@ export function loadServerConfig(
     ),
     mediaRecoveryRetryBaseMs,
     mediaRecoveryRetryMaxMs,
+    googleVisionApiKey,
+    googleVisionTimeoutMs: integerInRange(
+      'GOOGLE_VISION_TIMEOUT_MS',
+      environment.GOOGLE_VISION_TIMEOUT_MS ?? '10000',
+      1,
+      60_000,
+    ),
+    ocrQueueConcurrency: integerInRange(
+      'OCR_QUEUE_CONCURRENCY',
+      environment.OCR_QUEUE_CONCURRENCY ?? '2',
+      1,
+      100,
+    ),
+    ocrQueueMaxPending: integerInRange(
+      'OCR_QUEUE_MAX_PENDING',
+      environment.OCR_QUEUE_MAX_PENDING ?? '20',
+      0,
+      10_000,
+    ),
+    ocrQueueWaitTimeoutMs: integerInRange(
+      'OCR_QUEUE_WAIT_TIMEOUT_MS',
+      environment.OCR_QUEUE_WAIT_TIMEOUT_MS ?? '15000',
+      1,
+      300_000,
+    ),
+    ocrL1MaxEntries: integerInRange(
+      'OCR_L1_MAX_ENTRIES',
+      environment.OCR_L1_MAX_ENTRIES ?? '128',
+      0,
+      100_000,
+    ),
+    ocrL1TtlMs: integerInRange(
+      'OCR_L1_TTL_MS',
+      environment.OCR_L1_TTL_MS ?? '300000',
+      1,
+      3_600_000,
+    ),
+    deepSeekEnabled,
+    deepSeekApiKey,
+    deepSeekTimeoutMs: integerInRange(
+      'DEEPSEEK_TIMEOUT_MS',
+      environment.DEEPSEEK_TIMEOUT_MS ?? '10000',
+      1,
+      60_000,
+    ),
     version: nonEmpty(
       'npm_package_version',
       environment.npm_package_version ?? '0.1.0',

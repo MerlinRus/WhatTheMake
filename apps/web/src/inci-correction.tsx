@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Value } from 'typebox/value';
 
 import {
@@ -87,6 +87,22 @@ function selectableRevisions(
   return revisions;
 }
 
+function withRevision(
+  workspace: Workspace,
+  payload: {
+    resultKind: 'CREATED' | 'REUSED';
+    revision: ProductObservationInciRevision;
+  },
+): Workspace {
+  return {
+    original: workspace.original ?? payload.revision,
+    latest: payload.revision,
+    revisionCount:
+      workspace.revisionCount + (payload.resultKind === 'CREATED' ? 1 : 0),
+    maxRevisions: workspace.maxRevisions,
+  };
+}
+
 function AnalysisSummary({ analysis }: { analysis: Analysis }) {
   return (
     <div className="inci-analysis" role="status">
@@ -119,15 +135,18 @@ function AnalysisSummary({ analysis }: { analysis: Analysis }) {
 
 export function InciCorrectionWorkspace({
   observationId,
+  mediaAssetId,
 }: {
   observationId: string;
+  mediaAssetId: string | null;
 }) {
   const [state, setState] = useState<WorkspaceState>({ kind: 'LOADING' });
   const [draft, setDraft] = useState('');
   const [selectedRevisionId, setSelectedRevisionId] = useState('');
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
-  const [busy, setBusy] = useState<'SAVE' | 'ANALYZE' | null>(null);
+  const [busy, setBusy] = useState<'OCR' | 'SAVE' | 'ANALYZE' | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
+  const ocrInFlight = useRef(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -145,6 +164,64 @@ export function InciCorrectionWorkspace({
       });
     return () => controller.abort();
   }, [observationId]);
+
+  async function recognize() {
+    if (
+      state.kind !== 'READY' ||
+      mediaAssetId === null ||
+      ocrInFlight.current
+    ) {
+      return;
+    }
+    ocrInFlight.current = true;
+    setBusy('OCR');
+    setActionError(null);
+    try {
+      const response = await fetch(
+        `/api/v1/product-observations/${observationId}/inci-ocr`,
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ mediaAssetId }),
+        },
+      );
+      if (!response.ok) {
+        throw new Error(
+          response.status === 422
+            ? 'На фото не найден читаемый текст состава.'
+            : response.status === 429
+              ? 'Сервис распознавания занят. Попробуйте немного позже.'
+              : 'Не удалось распознать состав. Попробуйте ещё раз.',
+        );
+      }
+      const payload: unknown = await response.json();
+      if (
+        !Value.Check(
+          CreateProductObservationInciRevisionResponseSchema,
+          payload,
+        )
+      ) {
+        throw new Error('Сервис распознавания вернул некорректный ответ.');
+      }
+      setState({
+        kind: 'READY',
+        workspace: withRevision(state.workspace, payload),
+      });
+      setDraft(payload.revision.sourceText);
+      setSelectedRevisionId(payload.revision.revisionId);
+      setAnalysis(
+        await loadAnalysis(observationId, payload.revision.revisionId),
+      );
+    } catch (error) {
+      setActionError(correctionError(error));
+    } finally {
+      ocrInFlight.current = false;
+      setBusy(null);
+    }
+  }
 
   async function save(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -188,14 +265,7 @@ export function InciCorrectionWorkspace({
       ) {
         throw new Error('Сервис исправлений вернул некорректный ответ.');
       }
-      const nextWorkspace: Workspace = {
-        original: state.workspace.original ?? payload.revision,
-        latest: payload.revision,
-        revisionCount:
-          state.workspace.revisionCount +
-          (payload.resultKind === 'CREATED' ? 1 : 0),
-        maxRevisions: state.workspace.maxRevisions,
-      };
+      const nextWorkspace = withRevision(state.workspace, payload);
       setState({ kind: 'READY', workspace: nextWorkspace });
       setDraft(payload.revision.sourceText);
       setSelectedRevisionId(payload.revision.revisionId);
@@ -248,10 +318,26 @@ export function InciCorrectionWorkspace({
               <pre>{state.workspace.original.sourceText}</pre>
             </div>
           ) : (
-            <p className="inci-empty-source">
-              OCR ещё не настроен. Перепишите состав с упаковки — этот текст
-              станет неизменяемым оригиналом.
-            </p>
+            <div className="inci-ocr-action">
+              <p>
+                {mediaAssetId
+                  ? 'Фото состава готово. Распознавание запускается только по вашему нажатию.'
+                  : 'Сначала добавьте чёткое фото состава INCI выше.'}
+              </p>
+              {mediaAssetId && (
+                <button
+                  type="button"
+                  disabled={busy !== null}
+                  onClick={() => void recognize()}
+                >
+                  {busy === 'OCR' ? 'Распознаём…' : 'Распознать состав с фото'}
+                </button>
+              )}
+              <small>
+                Результат сохранится как неизменяемый оригинал. Его можно
+                исправить отдельной редакцией.
+              </small>
+            </div>
           )}
 
           <form onSubmit={(event) => void save(event)}>

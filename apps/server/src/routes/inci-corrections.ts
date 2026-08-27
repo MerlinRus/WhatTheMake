@@ -2,6 +2,7 @@ import type { FastifyInstance, FastifyRequest } from 'fastify';
 
 import {
   ApiErrorEnvelopeSchema,
+  CreateProductObservationInciOcrInputSchema,
   CreateProductObservationInciRevisionInputSchema,
   CreateProductObservationInciRevisionResponseSchema,
   ProductObservationInciAnalysisResponseSchema,
@@ -9,6 +10,7 @@ import {
   ProductObservationInciRevisionParamsSchema,
   ProductObservationInciWorkspaceResponseSchema,
   type CreateProductObservationInciRevisionInput,
+  type CreateProductObservationInciOcrInput,
   type CreateProductObservationInciRevisionResponse,
   type ProductObservationInciAnalysisResponse,
   type ProductObservationInciParams,
@@ -66,6 +68,55 @@ export async function registerInciCorrectionRoutes(
             request.params.observationId,
           ),
         ),
+  );
+
+  app.post<{
+    Params: ProductObservationInciParams;
+    Body: CreateProductObservationInciOcrInput;
+    Reply: CreateProductObservationInciRevisionResponse;
+  }>(
+    '/api/v1/product-observations/:observationId/inci-ocr',
+    {
+      onRequest: requireJson,
+      preHandler: sameOrigin,
+      config: { rateLimit: { max: 20, timeWindow: '1 hour' } },
+      schema: {
+        params: ProductObservationInciParamsSchema,
+        body: CreateProductObservationInciOcrInputSchema,
+        response: {
+          200: CreateProductObservationInciRevisionResponseSchema,
+          201: CreateProductObservationInciRevisionResponseSchema,
+          400: ApiErrorEnvelopeSchema,
+          401: ApiErrorEnvelopeSchema,
+          404: ApiErrorEnvelopeSchema,
+          409: ApiErrorEnvelopeSchema,
+          415: ApiErrorEnvelopeSchema,
+          422: ApiErrorEnvelopeSchema,
+          429: ApiErrorEnvelopeSchema,
+          503: ApiErrorEnvelopeSchema,
+        },
+      },
+    },
+    async (request, reply) => {
+      const controller = new AbortController();
+      const abort = (): void => controller.abort();
+      request.raw.once('aborted', abort);
+      if (request.raw.aborted) controller.abort();
+      try {
+        const result = await options.service.recognize(
+          token(request, options.cookieName),
+          request.params.observationId,
+          request.body.mediaAssetId,
+          controller.signal,
+        );
+        return reply
+          .header('Cache-Control', 'private, no-store')
+          .code(result.resultKind === 'CREATED' ? 201 : 200)
+          .send(result);
+      } finally {
+        request.raw.removeListener('aborted', abort);
+      }
+    },
   );
 
   app.post<{
