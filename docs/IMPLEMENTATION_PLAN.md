@@ -365,6 +365,8 @@ Workspace
 
 **Проверка:** malicious fixtures, schema tests и disabled-provider flow.
 
+**Решение 2026-08-27:** adapter использует официальный DeepSeek Responses API с `deepseek-v4-flash` и `json_schema`; локальная runtime/semantic validation остаётся обязательной. Provider выключен до явной конфигурации секрета и consumer flow. Результат типизирован как недоверенный draft либо пустой deterministic fallback, но не evidence.
+
 **Зависимости:** A2, D3.  
 **Размер:** M, 3–5 файлов.
 
