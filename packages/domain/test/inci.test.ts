@@ -18,6 +18,17 @@ import {
   type InciDictionarySnapshot,
   type InciDictionaryVersion,
 } from '../src/inci-canonicalization.js';
+import {
+  INGREDIENT_KNOWLEDGE_SCHEMA_VERSION,
+  publishIngredientKnowledge,
+  type IngredientFunctionCode,
+  type IngredientKnowledgeDraft,
+  type IngredientKnowledgeEvidenceId,
+  type IngredientKnowledgeFactId,
+  type IngredientKnowledgeSnapshotId,
+  type IngredientKnowledgeVersion,
+  type KnowledgeJurisdiction,
+} from '../src/ingredient-knowledge.js';
 
 interface ExpectedToken {
   sourceText: string;
@@ -566,5 +577,104 @@ test('INCI canonicalization does not depend on dictionary row order', () => {
   assert.deepEqual(
     canonicalizeInci(parsed, reversed),
     canonicalizeInci(parsed, dictionary),
+  );
+});
+
+test('ingredient knowledge publication requires evidence and preserves conflicts', () => {
+  const draft: IngredientKnowledgeDraft = {
+    snapshotId:
+      '20000000-0000-4000-8000-000000000001' as IngredientKnowledgeSnapshotId,
+    version: 'knowledge-fixture-v1' as IngredientKnowledgeVersion,
+    basedOnSnapshotId: null,
+    status: 'DRAFT',
+    facts: [
+      {
+        factId:
+          '30000000-0000-4000-8000-000000000001' as IngredientKnowledgeFactId,
+        ingredientId: ingredientId(ingredientIds.carnauba),
+        functionCode: 'FILM_FORMER' as IngredientFunctionCode,
+        jurisdiction: 'GLOBAL' as KnowledgeJurisdiction,
+        confidence: 'MEDIUM',
+        evidence: [
+          {
+            evidenceId:
+              '40000000-0000-4000-8000-000000000001' as IngredientKnowledgeEvidenceId,
+            evidenceType: 'OFFICIAL_DATABASE',
+            stance: 'SUPPORTS',
+            sourceUrl: 'https://authority.example/ingredients/carnauba',
+            checkedAt: new Date('2026-08-25T09:00:00.000Z'),
+          },
+          {
+            evidenceId:
+              '40000000-0000-4000-8000-000000000002' as IngredientKnowledgeEvidenceId,
+            evidenceType: 'SCIENTIFIC_PUBLICATION',
+            stance: 'CONTRADICTS',
+            sourceUrl: 'https://research.example/study/42',
+            checkedAt: new Date('2026-08-26T09:00:00.000Z'),
+          },
+        ],
+      },
+    ],
+  };
+
+  const result = publishIngredientKnowledge(
+    draft,
+    new Date('2026-08-27T09:00:00.000Z'),
+  );
+  assert.equal(result.kind, 'PUBLISHED');
+  if (result.kind !== 'PUBLISHED') return;
+  assert.equal(
+    result.snapshot.schemaVersion,
+    INGREDIENT_KNOWLEDGE_SCHEMA_VERSION,
+  );
+  assert.deepEqual(
+    result.snapshot.facts[0]?.evidence.map(({ stance }) => stance),
+    ['SUPPORTS', 'CONTRADICTS'],
+  );
+  assert.equal(result.snapshot.status, 'PUBLISHED');
+});
+
+test('ingredient knowledge publication rejects unsupported or unsafe facts', () => {
+  const result = publishIngredientKnowledge(
+    {
+      snapshotId:
+        '20000000-0000-4000-8000-000000000002' as IngredientKnowledgeSnapshotId,
+      version: 'knowledge-fixture-v2' as IngredientKnowledgeVersion,
+      basedOnSnapshotId:
+        '20000000-0000-4000-8000-000000000001' as IngredientKnowledgeSnapshotId,
+      status: 'DRAFT',
+      facts: [
+        {
+          factId:
+            '30000000-0000-4000-8000-000000000002' as IngredientKnowledgeFactId,
+          ingredientId: ingredientId(ingredientIds.aqua),
+          functionCode: 'SOLVENT' as IngredientFunctionCode,
+          jurisdiction: 'GLOBAL' as KnowledgeJurisdiction,
+          confidence: 'LOW',
+          evidence: [
+            {
+              evidenceId:
+                '40000000-0000-4000-8000-000000000003' as IngredientKnowledgeEvidenceId,
+              evidenceType: 'SCIENTIFIC_PUBLICATION',
+              stance: 'CONTRADICTS',
+              sourceUrl: 'https://user:secret@research.example/unsafe',
+              checkedAt: new Date('2026-08-28T09:00:00.000Z'),
+            },
+          ],
+        },
+      ],
+    },
+    new Date('2026-08-27T09:00:00.000Z'),
+  );
+
+  assert.equal(result.kind, 'REJECTED');
+  if (result.kind !== 'REJECTED') return;
+  assert.deepEqual(
+    result.issues.map(({ code }) => code),
+    [
+      'MISSING_SUPPORTING_EVIDENCE',
+      'INVALID_SOURCE_URL',
+      'EVIDENCE_CHECKED_AFTER_PUBLICATION',
+    ],
   );
 });

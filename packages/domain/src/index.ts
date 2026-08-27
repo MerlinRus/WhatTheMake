@@ -4,6 +4,7 @@ export * from './catalog.js';
 export * from './catalog-import.js';
 export * from './identity.js';
 export * from './gtin.js';
+export * from './ingredient-knowledge.js';
 export * from './inci-canonicalization.js';
 export * from './inci-correction.js';
 export * from './inci.js';
