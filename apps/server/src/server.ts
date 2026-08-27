@@ -9,6 +9,7 @@ import { buildApp } from './app.js';
 import { createCatalogLookupService } from './catalog/service.js';
 import { loadServerConfig } from './config.js';
 import { createIdentityService } from './identity/service.js';
+import { createInciCorrectionService } from './inci-corrections/service.js';
 import { createMediaService } from './media/service.js';
 import { createMascaraPreferencesService } from './preferences/service.js';
 import { createProductObservationService } from './product-observations/service.js';
@@ -63,6 +64,15 @@ async function start(): Promise<void> {
         publicOrigin: config.publicOrigin,
         cookieName,
         secureCookie: config.nodeEnvironment === 'production',
+      },
+      inciCorrections: {
+        service: createInciCorrectionService({
+          identity: identityService,
+          repository: database.productObservationInci,
+          dictionary: database.inciDictionary,
+        }),
+        publicOrigin: config.publicOrigin,
+        cookieName,
       },
       mascaraPreferences: {
         service: createMascaraPreferencesService({

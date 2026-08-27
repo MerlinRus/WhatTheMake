@@ -16,11 +16,16 @@ import type { DatabaseHealthProbe } from '@wtm/infrastructure';
 import { AppError, errorEnvelope } from './errors.js';
 import type { CatalogLookupService } from './catalog/service.js';
 import type { IdentityService } from './identity/service.js';
+import type { InciCorrectionService } from './inci-corrections/service.js';
 import type { MascaraPreferencesService } from './preferences/service.js';
 import type { MediaService } from './media/service.js';
 import type { ProductObservationService } from './product-observations/service.js';
 import { registerHealthRoutes } from './routes/health.js';
 import { registerCatalogRoutes } from './routes/catalog.js';
+import {
+  registerInciCorrectionRoutes,
+  type InciCorrectionRoutesOptions,
+} from './routes/inci-corrections.js';
 import {
   registerIdentityRoutes,
   type IdentityRoutesOptions,
@@ -47,6 +52,9 @@ export interface BuildAppOptions {
   catalog?: { service: CatalogLookupService };
   identity?: Omit<IdentityRoutesOptions, 'service'> & {
     service: IdentityService;
+  };
+  inciCorrections?: Omit<InciCorrectionRoutesOptions, 'service'> & {
+    service: InciCorrectionService;
   };
   mascaraPreferences?: Omit<MascaraPreferencesRoutesOptions, 'service'> & {
     service: MascaraPreferencesService;
@@ -189,6 +197,10 @@ export async function buildApp(
 
   if (options.identity) {
     await registerIdentityRoutes(app, options.identity);
+  }
+
+  if (options.inciCorrections) {
+    await registerInciCorrectionRoutes(app, options.inciCorrections);
   }
 
   if (options.mascaraPreferences) {
