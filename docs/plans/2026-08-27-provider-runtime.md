@@ -242,14 +242,14 @@ original, draft и analysis.
 
 ## Риски
 
-| Риск | Влияние | Митигация |
-|---|---|---|
-| IDOR между observation и asset | Высокое | Двойная ownership/collection/role проверка |
-| Provider cost abuse | Среднее | Явное действие, rate limit, cache, queue |
-| OCR перезапишет manual source | Высокое | Immutable original + conflict/reuse |
-| Secret попадёт в log/compose output | Высокое | Safe telemetry; не выводить env/config |
-| Provider outage сломает INCI | Среднее | Stable error + ручной deterministic flow |
-| Deploy regression | Высокое | Verification target, previous release, health rollback |
+| Риск                                | Влияние | Митигация                                              |
+| ----------------------------------- | ------- | ------------------------------------------------------ |
+| IDOR между observation и asset      | Высокое | Двойная ownership/collection/role проверка             |
+| Provider cost abuse                 | Среднее | Явное действие, rate limit, cache, queue               |
+| OCR перезапишет manual source       | Высокое | Immutable original + conflict/reuse                    |
+| Secret попадёт в log/compose output | Высокое | Safe telemetry; не выводить env/config                 |
+| Provider outage сломает INCI        | Среднее | Stable error + ручной deterministic flow               |
+| Deploy regression                   | Высокое | Verification target, previous release, health rollback |
 
 ## Последовательность и параллельность
 
