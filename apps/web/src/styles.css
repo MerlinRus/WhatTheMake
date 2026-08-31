@@ -56,11 +56,15 @@ summary {
 }
 
 .wordmark {
-  color: inherit;
-  font-size: 0.86rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
+  display: flex;
+  align-items: center;
   text-decoration: none;
+}
+
+.wordmark img {
+  display: block;
+  width: clamp(140px, 42vw, 176px);
+  height: auto;
 }
 
 .site-header > span {

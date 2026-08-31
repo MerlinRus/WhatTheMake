@@ -324,7 +324,12 @@ function App() {
     <div className="app-shell">
       <header className="site-header">
         <a className="wordmark" href="/" aria-label="What The Make — главная">
-          WHAT THE MAKE
+          <img
+            src="/what-the-make-logo.png"
+            alt=""
+            width="2172"
+            height="724"
+          />
         </a>
         <span>BETA · MASCARA</span>
       </header>
