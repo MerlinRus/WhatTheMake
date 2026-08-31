@@ -377,10 +377,15 @@ Workspace
 - provider/cache/queue telemetry доступна;
 - Vision/DeepSeek failure деградирует безопасно.
 
-**Проверка 2026-08-27:** gate остаётся красным: parser/canonicalizer имеют
-golden и fuzz coverage, но измеряемого benchmark на контрольной выборке с
-порогом ≥95% ещё нет. Original/corrections разделены; provider/cache/queue
-telemetry и безопасная деградация Vision/DeepSeek проверены.
+**Проверка 2026-08-31:** gate зелёный. Versioned mascara corpus содержит 20
+независимо проверенных samples и 455 исчерпывающих anchors. Серверный Docker
+gate дал 455/455 (100%), expected resolution 98,90%, false resolutions 0,
+unexpected components 0 и parse rejections 0. Boundary tests подтверждают:
+ровно 95% проходит, ниже 95% блокируется; duplicate GTIN, нестрогий UTF-8 и
+несовпадающий checksum блокируются. Полный контур: 89 unit tests и 23/23
+PostgreSQL integration tests, fail/skip 0 в DB-наборе. Original/corrections
+разделены; provider/cache/queue telemetry и безопасная деградация
+Vision/DeepSeek проверены.
 
 ## 7. Фаза E — знания и одиночный разбор
 

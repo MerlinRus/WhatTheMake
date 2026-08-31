@@ -1,0 +1,6134 @@
+{
+  "datasetId": "open-beauty-facts-mascara-inci-anchors",
+  "datasetVersion": "2026-08-31-v1",
+  "dictionaryVersion": "obf-mascara-inci-2026.08.31-v1",
+  "dictionaryContentSha256": "21de87989676302463e435fb3ab6f751b970ba3a777132a618ddab080fd942bf",
+  "provenance": {
+    "label": "Open Beauty Facts (ODbL 1.0)",
+    "uri": "https://world.openbeautyfacts.org/",
+    "licenseName": "Open Database License (ODbL) 1.0",
+    "licenseUri": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "attribution": "Contains information from Open Beauty Facts, made available under the Open Database License (ODbL) 1.0.",
+    "rightsStatus": "ALLOWED"
+  },
+  "review": {
+    "annotatedBy": "codex/root-draft",
+    "reviewedBy": "codex/corpus-semantics-reviewer",
+    "reviewedAt": "2026-08-31T00:25:48.695Z",
+    "adjudication": "Independent corpus and dictionary semantic reviews approved all 455 component anchors; publication invariants received a separate repository review."
+  },
+  "samples": [
+    {
+      "sampleId": "obf-0041554007503",
+      "gtin": "0041554007503",
+      "productLabel": "Maybelline Define A Lash Mascara Very Black 6.5mL",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/0041554007503",
+      "sourceLastModifiedAt": "2026-06-06T13:23:56.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "WATER/AQUA, PARAFFIN, CERA ALBA/BEESWAX, ACACIA/ACACIA SENEGAL GUM, STEARIC ACID, CARNAUBA/CARNAUBA WAX, PALMITIC ACID, TRIETHANOLAMINE, TALC, PTFE, HYDROXYETHYLCELLULOSE, PEG-40 STEARATE, AMINOMETHYL PROPANEDIOL, PANTHENOL, METHYLPARABEN, RAYON, SODIUM POLYMETHACRYLATE, PROPYLPARABEN, SYNTHETIC BEESWAX, PHENYL TRIMETHICONE, SIMETHICONE, HYDROXYPROPYL CHITOSAN, BHT, 2-OLEAMIDO-1, 3 OCTADECANEDIOL, POLYQUATERNIUM-10, ACRYLATES/VP COPOLYMER. MAY CONTAIN: +/- CI 77491, CI 77499, CI 77492/IRON OXIDES, CI 77891/ TITANIUM DIOXIDE, MICA, CI 75470/CARMINE, CI 77007/ULTRAMARINES, CI 77288/CHROMIUM OXIDE GREENS, CI 77289/CHROMIUM HYDROXIDE GREEN, CI 77742/MANGANESE VIOLET, CI 77510/FERRIC FERROCYANIDE FIL D26393/4Please be aware that ingredient lists for the products of our brand are updated regularly. Please refer to the ingredient list on your product package for the most up to date list of ingredients to ensure it is suitable to your personal use.",
+      "qualityFlags": ["DISCLAIMER_TEXT"]
+    },
+    {
+      "sampleId": "obf-0651986800216",
+      "gtin": "0651986800216",
+      "productLabel": "Better Than Sex Mascara",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/0651986800216",
+      "sourceLastModifiedAt": "2025-03-08T23:44:30.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Water/Aqua/Eau, Synthetic Beeswax, Paraffin, Glyceryl Stearate, Acacia Senegal Gum, Butylene Glycol, Oryza Sativa (Rice) Bran Wax, Stearic Acid, Palmitic Acid, Polybutene, VPIEicosene Copolymer, Copernicia Cerifera (Carnauba) Wax, Aminomethyl Propanol, Phenoxyethanol, Glycerin, Ethylhexylglycerin, Hydroxyethylcellulose, Disodium EDTA, Polyester-11, PVP, Cellulose, Trimethylpentanediol/Adipic Acid/Glycerin Crosspolymer, Propylene Glycol, Acacia Seyal Gum Extract, Potassium Sorbate, Dextran, Acetyl Hexapeptide-1, Myristic Acid, Lauric Acid, Oleic Acid. May Contain/Peut Contenir(+/-): Iron Oxides (CI 77499). Black 2 (Cl 77266), Uitramarines(CI 77007).",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-0681619821813",
+      "gtin": "0681619821813",
+      "productLabel": "theBalm Big Fan Maskara Maximizing",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/0681619821813",
+      "sourceLastModifiedAt": "2026-06-18T08:11:15.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Water (Aqua/Eau), Iron Oxide (CI 77499), Glyceryl Stearates, Synthetic Beeswax, Polyhydroxystearic Acid, Mica, VP/Eicosene Copolymer, Tribehenin, Trimethylpentanediol/Adipic Acid/Glycerin Crosspolymer, VP/Hexadecene Copolymer, Ricinus Communis (Castor) Seed Oil, C18-36 Acid Triglyceride, PVP, Stearic Acid, Lecithin, Polyglyceryl-2 Caprate, Titanium Dioxide (CI 77891), Cera Carnauba (Copernicia Cerifera (Carnauba) Wax), Propanediol, Hydroxyacetophenone, Hectorite, Aminomethyl Propanol, Acacia Senegal Gum, Caprylyl Glycol, Xanthan Gum, Sodium Phytate, 1,2-Hexanediol, Helianthus Annuus (Sunflower) Seed Oil, Tocopherol, Beta-Sitosterol, Squalene",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-30166974",
+      "gtin": "30166974",
+      "productLabel": "Maybelline New York The Colossal 36H Longwear Waterproof Mascara",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/30166974",
+      "sourceLastModifiedAt": "2026-05-03T13:52:14.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "AQUA / WATER, PARAFFIN, POTASSIUM CETYL PHOSPHATE, CERA ALBA / BEESWAX, COPERNICIA CERIFERA CERA / CARNAUBA WAX, ACACIA SENEGAL GUM, GLYCERIN, CETYL ALCOHOL, HYDROXYETHYLCELLULOSE, PHENOXYETHANOL, PEG/PPG-17/18 DIMETHICONE, STEARETH-20, PHENETHYL ALCOHOL, SODIUM POLYMETHACRYLATE, HYDROGENATED JOJOBA OIL, HYDROGENATED PALM OIL, SIMETHICONE, DISODIUM EDTA, POLYQUATERNIUM-10, PROPYLENE GLYCOL, PANTHENOL, SOLUBLE COLLAGEN, BHT, TRISODIUM EDTA, POTASSIUM SORBATE, [+/- MAY CONTAIN: CI 77491, CI 77492, CI 77499 / IRON OXIDES].",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-30179493",
+      "gtin": "30179493",
+      "productLabel": "L'Oréal Paris Air Volume Black Mascara",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/30179493",
+      "sourceLastModifiedAt": "2026-05-03T13:09:41.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "AQUA / WATER, PARAFFIN, COPERNICIA CERIFERA CERA / CARNAUBA WAX, CERA ALBA / BEESWAX, STEARETH-20, ACACIA SENEGAL GUM, BUTYLENE GLYCOL, ALCOHOL DENAT., GLYCERIN, STEARETH-2, CETYL ALCOHOL, POTASSIUM CETYL PHOSPHATE, HYDROXYETHYLCELLULOSE, CAPRYLYL GLYCOL, PHENETHYL ALCOHOL, PENTYLENE GLYCOL, SODIUM DEHYDROACETATE, SODIUM POLYMETHACRYLATE, RAYON, DISODIUM EDTA, POLYQUATERNIUM-10, METHYLSILANOL/SILICATE CROSSPOLYMER, SODIUM HYALURONATE,2-OLEAMIDO-1,3-OCTADECANEDIOL, BHT",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-3600523503384",
+      "gtin": "3600523503384",
+      "productLabel": "L'Oréal Paris Lash Paradise Mascara Primer",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/3600523503384",
+      "sourceLastModifiedAt": "2026-05-03T13:09:34.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "G2004066 - AQUA / WATER, POLYBUTENE, PARAFFIN, POTASSIUM CETYL PHOSPHATE, CERA ALBA / BEESWAX, COPERNICIA CERIFERA CERA / CARNAUBA WAX, STEARETH-2, CETYL ALCOHOL, ALCOHOL DENAT., PHENOXYETHANOL, HYDROXYETHYLCELLULOSE, ACACIA SENEGAL GUM, PANTHENOL, ETHYLENEDIAMINE/STEARYL DIMER DILINOLEATE COPOLYMER, CAPRYLYL GLYCOL, HYDROGENATED JOJOBA OIL, HYDROGENATED PALM OIL, 2-OLEAMIDO-1,3-OCTADECANEDIOL, DISODIUM EDTA, BHT, ROSA CANINA FRUIT OIL, PENTAERYTHRITYL TETRA-DI-T-BUTYL HYDROXYHYDROCINNAMATE, PROPYLENE GLYCOL, PROPYL GALLATE, CITRIC ACID (F.I.L. B210585/1).",
+      "qualityFlags": ["LEADING_PRODUCT_CODE"]
+    },
+    {
+      "sampleId": "obf-3600531701802",
+      "gtin": "3600531701802",
+      "productLabel": "Maybelline New York Colossal Bubble Washable Mascara",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/3600531701802",
+      "sourceLastModifiedAt": "2026-06-18T08:22:10.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Aqua / Water / Eau, Behenyl Behenate, Acrylates Copolymer, Cetearyl Alcohol, Stearic Acid, Palmitic Acid, Poly C10-30 Alkyl Acrylate, Butylene Glycol, PVP, VP/Eicosene Copolymer, Aminomethyl Propanediol, Kaolin, Phenoxyethanol, Caprylyl Glycol, Pentylene Glycol, Potassium Cetyl Phosphate, Myristic Acid, Silica",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-3600531716974",
+      "gtin": "3600531716974",
+      "productLabel": "Maybelline New York Lash Sensational Body Mascara",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/3600531716974",
+      "sourceLastModifiedAt": "2026-06-18T08:56:59.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Isododecane, Cera Alba / Beeswax, Copernicia Cerifera Cera / Carnauba Wax, Disteardimonium Hectorite, Oryza Sativa Cera / Rice Bran Wax, Dilinoleic Acid/Butanediol Copolymer, Aqua / Water, Allyl Stearate/VA Copolymer, Alcohol Denat., Polyvinyl Laurate, VP/Eicosene Copolymer, Propylene Carbonate, Hydrogenated Jojoba Oil, Ethylenediamine/Stearyl Dimer Dilinoleate Copolymer, PEG-30 Glyceryl Stearate, Panthenol, VP/VA Copolymer, Pentaerythrityl Tetra-Di-T-Butyl Hydroxyhydrocinnamate, Silica, Kaolin",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-3616307650168",
+      "gtin": "3616307650168",
+      "productLabel": "Rimmel Volume Thrill Seeker Mascara Black 8mL",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/3616307650168",
+      "sourceLastModifiedAt": "2026-06-07T02:48:41.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Aqua/Water/Eau, Acrylates Copolymer, Glyceryl Stearate, Disteardimonium Hectorite, Propylene Glycol, Stearic Acid, Copernicia Cerifera Cera/Copernicia Cerifera (Carnauba) Wax/Cire de Carnauba, Triethanolamine, Polyethylene, Propylene Carbonate, Lecithin, Synthetic Wax, Oleic Acid, Alcohol Denat., Benzyl Alcohol, Tocopherol, Ascorbyl Palmitate, Phenoxyethanol, Panthenol, Methylparaben, Ethylparaben, Sodium Laureth Sulfate, Simethicone, Propylparaben, Xanthan Gum, Trisodium EDTA, Potassium Sorbate, Tocopheryl Acetate, Tetrasodium EDTA, Ammonium Hydroxide, [May Contain/Peut Contenir/+/-: Iron Oxides (CI 77491, CI 77492, CI 77499)].",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-4084200857103",
+      "gtin": "4084200857103",
+      "productLabel": "Maybelline Mascara Great Lash Very Black",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/4084200857103",
+      "sourceLastModifiedAt": "2025-01-04T13:29:03.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Water/Aqua|Beeswax/Cera Alba|Ozokerite|Shellac|Glyceryl Stearate|Triethanolamine|Propylene Glycol|Stearic Acid|Sorbitan Sesquioleate|Methylparaben|Quaternium-15|Quaternium-22|Simethicone|Butylparaben|May Contain: Iron Oxides (CI 77491, CI 77492, CI 77499)|Titanium Dioxide (CI 77891)|Ultramarines (CI 77007)|Mica",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-4602006311058",
+      "gtin": "4602006311058",
+      "productLabel": "Influence Beauty Mascara Futuristic 01 Ultra Black - Volumizing Mascara with 5G Effect",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/4602006311058",
+      "sourceLastModifiedAt": "2026-06-18T08:51:01.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Aqua (Water), Synthetic Beeswax, Paraffin, Acacia Senegal Gum, Stearic Acid, Triethanolamine, Palmitic Acid, Glyceryl Stearate, VP/Eicosene Copolymer, Copernicia Cerifera Cera (Copernicia Cerifera (Carnauba) Wax), Polybutene, Butylene Glycol, Oryza Sativa Cera (Oryza Sativa (Rice) Bran Wax), Phenoxyethanol, Methylparaben, Propylparaben, Hydroxyethylcellulose, CI 77499 (Iron Oxides)",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-4602006378266",
+      "gtin": "4602006378266",
+      "productLabel": "Influence Beauty Mascara Manipula 01 Intense Black - Volumizing Mascara with Precision Brush",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/4602006378266",
+      "sourceLastModifiedAt": "2026-06-18T08:28:00.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Aqua, Acrylates Copolymer, Copernicia Cerifera (Carnauba) Wax, Stearic Acid, Beeswax, Triethanolamine, Cetearyl Alcohol, Acrylates/Octylacrylamide Copolymer, Paraffin, C14-22 Alcohols, 1,2-Hexanediol, Hydroxyacetophenone, Limnanthes Alba (Meadowfoam) Seed Oil, Dimethicone, Acacia Senegal Gum, Xanthan Gum, C12-20 Alkyl Glucoside, Ethylhexylglycerin, Tocopherol, CI 77499",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-7640473382857",
+      "gtin": "7640473382857",
+      "productLabel": "Stellary Panther Black Volume Mascara 01 Black - Hypnotic Volume & Defined Lashes",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/7640473382857",
+      "sourceLastModifiedAt": "2026-07-02T08:22:18.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Aqua, Synthetic Beeswax, Paraffin, Acacia Senegal Gum, Stearic Acid, Triethanolamine, Palmitic Acid, Glyceryl Stearate, VP/Eicosene Copolymer, Copernicia Cerifera (Carnauba) Wax, Polybutene, Butylene Glycol, Oryza Sativa (Rice) Bran Wax, Phenoxyethanol, Methylparaben, Propylparaben, Hydroxyethylcellulose, CI 77499",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-8055510082093",
+      "gtin": "8055510082093",
+      "productLabel": "Astra InstaLength Uzunluk Veren Maskara",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/8055510082093",
+      "sourceLastModifiedAt": "2026-06-18T08:13:47.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Aqua (Water), Glyceryl Stearate, Microcrystalline Wax, Ricinus Communis Seed Oil, Copernicia Cerifera Cera, Polyvinyl Alcohol, Propylene Glycol, Stearic Acid, Triethanolamine, Palmitic Acid, Phenoxyethanol, Sodium Dehydroacetate, Lecithin, Tocopherol, Ascorbyl Palmitate, Tropolone, Citric Acid, CI 77499 (Iron Oxides)",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-8055510082109",
+      "gtin": "8055510082109",
+      "productLabel": "Astra InstaVolume Hacim Veren Maskara",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/8055510082109",
+      "sourceLastModifiedAt": "2026-06-18T08:23:05.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Aqua (Water), Glyceryl Stearate, Cera Microcristallina (Microcrystalline Wax), Ricinus Communis Seed Oil, Copernicia Cerifera Cera, Polyvinyl Alcohol, Propylene Glycol, Stearic Acid, Triethanolamine, Palmitic Acid, Phenoxyethanol, Sodium Dehydroacetate, Lecithin, Tocopherol, Ascorbyl Palmitate, Tropolone, Citric Acid, CI 77499 (Iron Oxides)",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-8055510082116",
+      "gtin": "8055510082116",
+      "productLabel": "Astra InstaCurls Kıvrım Etkili Maskara",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/8055510082116",
+      "sourceLastModifiedAt": "2026-06-18T08:14:49.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Aqua (Water), CI 77499 (Iron Oxides), Glyceryl Stearate, Cera Microcristallina (Microcrystalline Wax), Ricinus Communis Seed Oil, Copernicia Cerifera Cera, Polyvinyl Alcohol, Propylene Glycol, Stearic Acid, Triethanolamine, Palmitic Acid, Phenoxyethanol, Sodium Dehydroacetate, Lecithin, Tocopherol, Ascorbyl Palmitate, Tropolone, Citric Acid, BHT",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-8682536040402",
+      "gtin": "8682536040402",
+      "productLabel": "Flormar Big'N Bold Volume Mascara 001 Volume",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/8682536040402",
+      "sourceLastModifiedAt": "2026-06-18T08:19:39.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Aqua (Water), Tridecyl Trimellitate, Pentaerythrityl Tetrabehenate, Cera Alba (Beeswax), Copernicia Cerifera Cera (Carnauba Wax), Hydrogenated Olive Oil, Acrylates Copolymer, Glycerin, Propylene Glycol, Styrene/Acrylates Copolymer, Cetearyl Olivate, Stearic Acid, Palmitic Acid, Butylene Glycol, Aminomethyl Propanol, Sorbitan Olivate, Glyceryl Behenate, Olea Europaea (Olive) Fruit Oil, 1,2-Hexanediol, Cellulose, Microcrystalline Cellulose, Olea Europaea (Olive) Oil Unsaponifiables, Xanthan Gum, Phenoxyethanol, Caprylhydroxamic Acid, Tocopheryl Acetate, Sodium Dehydroacetate, Citric Acid",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-8690644387005",
+      "gtin": "8690644387005",
+      "productLabel": "Show by Pastel Show Your Peace Transparent Eyebrow & Eyelash Mascara",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/8690644387005",
+      "sourceLastModifiedAt": "2026-06-18T08:26:06.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Aqua, Glycerin, AMP-Acrylates/Allyl Methacrylate Copolymer, Triethanolamine, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Panthenol, Butylene Glycol, Phenoxyethanol, Ethylhexylglycerin, Biotinoyl Tripeptide-1",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-8696814061843",
+      "gtin": "8696814061843",
+      "productLabel": "Maskara Designer Waterproof",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/8696814061843",
+      "sourceLastModifiedAt": "2026-06-02T08:15:57.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Aqua, Paraffin, Glyceryl Stearate, PEG-40 Stearate, Stearic Acid, Beeswax, Copernicia Cerifera Cera, Polyvinyl Alcohol, Methylparaben, Sodium Hydroxide, BHT, Phenoxyethanol, Carbon Black, CI 77499",
+      "qualityFlags": []
+    },
+    {
+      "sampleId": "obf-8809625243135",
+      "gtin": "8809625243135",
+      "productLabel": "rom&nd Han All Fix Maskara L01 Long Black",
+      "sourceUrl": "https://world.openbeautyfacts.org/product/8809625243135",
+      "sourceLastModifiedAt": "2026-06-18T08:10:13.000Z",
+      "retrievedAt": "2026-08-30T23:29:42.000Z",
+      "rawIngredientsText": "Isododecane, Trimethylsiloxysilicate, Talc, Ceresin, Microcrystalline Wax, Dextrin Palmitate, Iron Oxides, Disteardimonium Hectorite, Polypropylsilsesquioxane, Dextrin Palmitate/Ethylhexanoate, Propylene Carbonate, Polyisobutene, Silica, Polymethylsilsesquioxane, Triethoxycaprylylsilane, Glyceryl Caprylate, Nylon-66, Water, Titanium Dioxide",
+      "qualityFlags": []
+    }
+  ],
+  "anchors": [
+    {
+      "anchorId": "obf-0041554007503:0:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "WATER/AQUA",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:1:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "PARAFFIN",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PARAFFIN"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:2:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "CERA ALBA/BEESWAX",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cera Alba"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:3:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "ACACIA/ACACIA SENEGAL GUM",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acacia Senegal Gum"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:4:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "STEARIC ACID",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:5:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "CARNAUBA/CARNAUBA WAX",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:6:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "PALMITIC ACID",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PALMITIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:7:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "TRIETHANOLAMINE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TRIETHANOLAMINE"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:8:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "TALC",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TALC"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:9:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "PTFE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PTFE"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:10:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "HYDROXYETHYLCELLULOSE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "HYDROXYETHYLCELLULOSE"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:11:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "PEG-40 STEARATE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PEG-40 STEARATE"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:12:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "AMINOMETHYL PROPANEDIOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "AMINOMETHYL PROPANEDIOL"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:13:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "PANTHENOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PANTHENOL"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:14:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "METHYLPARABEN",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "METHYLPARABEN"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:15:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "RAYON",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "RAYON"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:16:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "SODIUM POLYMETHACRYLATE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SODIUM POLYMETHACRYLATE"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:17:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "PROPYLPARABEN",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYLPARABEN"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:18:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 18,
+      "componentIndex": 0,
+      "expectedLookupText": "SYNTHETIC BEESWAX",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SYNTHETIC BEESWAX"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:19:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 19,
+      "componentIndex": 0,
+      "expectedLookupText": "PHENYL TRIMETHICONE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENYL TRIMETHICONE"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:20:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 20,
+      "componentIndex": 0,
+      "expectedLookupText": "SIMETHICONE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SIMETHICONE"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:21:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 21,
+      "componentIndex": 0,
+      "expectedLookupText": "HYDROXYPROPYL CHITOSAN",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "HYDROXYPROPYL CHITOSAN"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:22:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 22,
+      "componentIndex": 0,
+      "expectedLookupText": "BHT",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "BHT"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:23:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 23,
+      "componentIndex": 0,
+      "expectedLookupText": "2-OLEAMIDO-1, 3 OCTADECANEDIOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "2-Oleamido-1,3-Octadecanediol"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:24:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 24,
+      "componentIndex": 0,
+      "expectedLookupText": "POLYQUATERNIUM-10",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POLYQUATERNIUM-10"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:25:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 25,
+      "componentIndex": 0,
+      "expectedLookupText": "ACRYLATES/VP COPOLYMER",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "ACRYLATES/VP COPOLYMER"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:26:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 26,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77491",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77491"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:27:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 27,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77499",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77499"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:28:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 28,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77492",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77492"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:29:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 29,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77891",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77891"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:30:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 30,
+      "componentIndex": 0,
+      "expectedLookupText": "MICA",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "MICA"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:31:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 31,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 75470",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 75470"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:32:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 32,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77007",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77007"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:33:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 33,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77288",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77288"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:34:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 34,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77289",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77289"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:35:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 35,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77742",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77742"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:36:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 36,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77510",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77510"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:37:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 37,
+      "componentIndex": 0,
+      "expectedLookupText": "FIL D26393/4",
+      "expectedTokenKind": "UNRESOLVED",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "UNRESOLVED"
+      }
+    },
+    {
+      "anchorId": "obf-0041554007503:38:0",
+      "sampleId": "obf-0041554007503",
+      "tokenIndex": 38,
+      "componentIndex": 0,
+      "expectedLookupText": "Please be aware that ingredient lists for the products of our brand are updated regularly. Please refer to the ingredient list on your product package for the most up to date list of ingredients to ensure it is suitable to your personal use.",
+      "expectedTokenKind": "UNRESOLVED",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "UNRESOLVED"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:0:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Water/Aqua/Eau",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:1:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Synthetic Beeswax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SYNTHETIC BEESWAX"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:2:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Paraffin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PARAFFIN"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:3:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Glyceryl Stearate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Glyceryl Stearate"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:4:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Acacia Senegal Gum",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acacia Senegal Gum"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:5:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Butylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "BUTYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:6:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Oryza Sativa (Rice) Bran Wax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Oryza Sativa Cera"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:7:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Stearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:8:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "Palmitic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PALMITIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:9:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "Polybutene",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POLYBUTENE"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:10:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "VPIEicosene Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "VP/Eicosene Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:11:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Copernicia Cerifera (Carnauba) Wax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:12:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Aminomethyl Propanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aminomethyl Propanol"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:13:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Phenoxyethanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENOXYETHANOL"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:14:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "Glycerin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "GLYCERIN"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:15:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "Ethylhexylglycerin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ethylhexylglycerin"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:16:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "Hydroxyethylcellulose",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "HYDROXYETHYLCELLULOSE"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:17:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "Disodium EDTA",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "DISODIUM EDTA"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:18:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 18,
+      "componentIndex": 0,
+      "expectedLookupText": "Polyester-11",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Polyester-11"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:19:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 19,
+      "componentIndex": 0,
+      "expectedLookupText": "PVP",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PVP"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:20:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 20,
+      "componentIndex": 0,
+      "expectedLookupText": "Cellulose",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cellulose"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:21:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 21,
+      "componentIndex": 0,
+      "expectedLookupText": "Trimethylpentanediol/Adipic Acid/Glycerin Crosspolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Trimethylpentanediol/Adipic Acid/Glycerin Crosspolymer"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:22:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 22,
+      "componentIndex": 0,
+      "expectedLookupText": "Propylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:23:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 23,
+      "componentIndex": 0,
+      "expectedLookupText": "Acacia Seyal Gum Extract",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acacia Seyal Gum Extract"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:24:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 24,
+      "componentIndex": 0,
+      "expectedLookupText": "Potassium Sorbate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POTASSIUM SORBATE"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:25:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 25,
+      "componentIndex": 0,
+      "expectedLookupText": "Dextran",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Dextran"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:26:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 26,
+      "componentIndex": 0,
+      "expectedLookupText": "Acetyl Hexapeptide-1",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acetyl Hexapeptide-1"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:27:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 27,
+      "componentIndex": 0,
+      "expectedLookupText": "Myristic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Myristic Acid"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:28:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 28,
+      "componentIndex": 0,
+      "expectedLookupText": "Lauric Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Lauric Acid"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:29:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 29,
+      "componentIndex": 0,
+      "expectedLookupText": "Oleic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Oleic Acid"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:30:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 30,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77499",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77499"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:31:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 31,
+      "componentIndex": 0,
+      "expectedLookupText": "Black 2 (Cl 77266)",
+      "expectedTokenKind": "UNRESOLVED",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "UNRESOLVED"
+      }
+    },
+    {
+      "anchorId": "obf-0651986800216:32:0",
+      "sampleId": "obf-0651986800216",
+      "tokenIndex": 32,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77007",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77007"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:0:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Water (Aqua/Eau)",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:1:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77499",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77499"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:2:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Glyceryl Stearates",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Glyceryl Stearates"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:3:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Synthetic Beeswax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SYNTHETIC BEESWAX"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:4:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Polyhydroxystearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Polyhydroxystearic Acid"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:5:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Mica",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "MICA"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:6:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "VP/Eicosene Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "VP/Eicosene Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:7:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Tribehenin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tribehenin"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:8:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "Trimethylpentanediol/Adipic Acid/Glycerin Crosspolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Trimethylpentanediol/Adipic Acid/Glycerin Crosspolymer"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:9:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "VP/Hexadecene Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "VP/Hexadecene Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:10:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "Ricinus Communis (Castor) Seed Oil",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ricinus Communis Seed Oil"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:11:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "C18-36 Acid Triglyceride",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "C18-36 Acid Triglyceride"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:12:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "PVP",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PVP"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:13:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Stearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:14:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "Lecithin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Lecithin"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:15:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "Polyglyceryl-2 Caprate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Polyglyceryl-2 Caprate"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:16:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77891",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77891"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:17:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "Cera Carnauba (Copernicia Cerifera (Carnauba) Wax)",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:18:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 18,
+      "componentIndex": 0,
+      "expectedLookupText": "Propanediol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Propanediol"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:19:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 19,
+      "componentIndex": 0,
+      "expectedLookupText": "Hydroxyacetophenone",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Hydroxyacetophenone"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:20:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 20,
+      "componentIndex": 0,
+      "expectedLookupText": "Hectorite",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Hectorite"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:21:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 21,
+      "componentIndex": 0,
+      "expectedLookupText": "Aminomethyl Propanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aminomethyl Propanol"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:22:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 22,
+      "componentIndex": 0,
+      "expectedLookupText": "Acacia Senegal Gum",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acacia Senegal Gum"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:23:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 23,
+      "componentIndex": 0,
+      "expectedLookupText": "Caprylyl Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CAPRYLYL GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:24:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 24,
+      "componentIndex": 0,
+      "expectedLookupText": "Xanthan Gum",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Xanthan Gum"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:25:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 25,
+      "componentIndex": 0,
+      "expectedLookupText": "Sodium Phytate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Sodium Phytate"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:26:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 26,
+      "componentIndex": 0,
+      "expectedLookupText": "1,2-Hexanediol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "1,2-Hexanediol"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:27:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 27,
+      "componentIndex": 0,
+      "expectedLookupText": "Helianthus Annuus (Sunflower) Seed Oil",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Helianthus Annuus (Sunflower) Seed Oil"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:28:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 28,
+      "componentIndex": 0,
+      "expectedLookupText": "Tocopherol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tocopherol"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:29:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 29,
+      "componentIndex": 0,
+      "expectedLookupText": "Beta-Sitosterol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Beta-Sitosterol"
+      }
+    },
+    {
+      "anchorId": "obf-0681619821813:30:0",
+      "sampleId": "obf-0681619821813",
+      "tokenIndex": 30,
+      "componentIndex": 0,
+      "expectedLookupText": "Squalene",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Squalene"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:0:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "AQUA / WATER",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:1:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "PARAFFIN",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PARAFFIN"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:2:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "POTASSIUM CETYL PHOSPHATE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POTASSIUM CETYL PHOSPHATE"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:3:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "CERA ALBA / BEESWAX",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cera Alba"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:4:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "COPERNICIA CERIFERA CERA / CARNAUBA WAX",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:5:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "ACACIA SENEGAL GUM",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acacia Senegal Gum"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:6:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "GLYCERIN",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "GLYCERIN"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:7:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "CETYL ALCOHOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CETYL ALCOHOL"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:8:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "HYDROXYETHYLCELLULOSE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "HYDROXYETHYLCELLULOSE"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:9:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "PHENOXYETHANOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENOXYETHANOL"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:10:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "PEG/PPG-17/18 DIMETHICONE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PEG/PPG-17/18 DIMETHICONE"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:11:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "STEARETH-20",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARETH-20"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:12:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "PHENETHYL ALCOHOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENETHYL ALCOHOL"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:13:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "SODIUM POLYMETHACRYLATE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SODIUM POLYMETHACRYLATE"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:14:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "HYDROGENATED JOJOBA OIL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "HYDROGENATED JOJOBA OIL"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:15:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "HYDROGENATED PALM OIL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "HYDROGENATED PALM OIL"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:16:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "SIMETHICONE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SIMETHICONE"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:17:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "DISODIUM EDTA",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "DISODIUM EDTA"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:18:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 18,
+      "componentIndex": 0,
+      "expectedLookupText": "POLYQUATERNIUM-10",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POLYQUATERNIUM-10"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:19:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 19,
+      "componentIndex": 0,
+      "expectedLookupText": "PROPYLENE GLYCOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:20:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 20,
+      "componentIndex": 0,
+      "expectedLookupText": "PANTHENOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PANTHENOL"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:21:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 21,
+      "componentIndex": 0,
+      "expectedLookupText": "SOLUBLE COLLAGEN",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SOLUBLE COLLAGEN"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:22:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 22,
+      "componentIndex": 0,
+      "expectedLookupText": "BHT",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "BHT"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:23:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 23,
+      "componentIndex": 0,
+      "expectedLookupText": "TRISODIUM EDTA",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TRISODIUM EDTA"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:24:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 24,
+      "componentIndex": 0,
+      "expectedLookupText": "POTASSIUM SORBATE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POTASSIUM SORBATE"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:25:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 25,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77491",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77491"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:26:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 26,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77492",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77492"
+      }
+    },
+    {
+      "anchorId": "obf-30166974:27:0",
+      "sampleId": "obf-30166974",
+      "tokenIndex": 27,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77499",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77499"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:0:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "AQUA / WATER",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:1:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "PARAFFIN",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PARAFFIN"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:2:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "COPERNICIA CERIFERA CERA / CARNAUBA WAX",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:3:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "CERA ALBA / BEESWAX",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cera Alba"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:4:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "STEARETH-20",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARETH-20"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:5:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "ACACIA SENEGAL GUM",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acacia Senegal Gum"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:6:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "BUTYLENE GLYCOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "BUTYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:7:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "ALCOHOL DENAT.",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Alcohol Denat."
+      }
+    },
+    {
+      "anchorId": "obf-30179493:8:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "GLYCERIN",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "GLYCERIN"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:9:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "STEARETH-2",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARETH-2"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:10:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "CETYL ALCOHOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CETYL ALCOHOL"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:11:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "POTASSIUM CETYL PHOSPHATE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POTASSIUM CETYL PHOSPHATE"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:12:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "HYDROXYETHYLCELLULOSE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "HYDROXYETHYLCELLULOSE"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:13:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "CAPRYLYL GLYCOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CAPRYLYL GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:14:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "PHENETHYL ALCOHOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENETHYL ALCOHOL"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:15:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "PENTYLENE GLYCOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PENTYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:16:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "SODIUM DEHYDROACETATE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SODIUM DEHYDROACETATE"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:17:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "SODIUM POLYMETHACRYLATE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SODIUM POLYMETHACRYLATE"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:18:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 18,
+      "componentIndex": 0,
+      "expectedLookupText": "RAYON",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "RAYON"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:19:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 19,
+      "componentIndex": 0,
+      "expectedLookupText": "DISODIUM EDTA",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "DISODIUM EDTA"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:20:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 20,
+      "componentIndex": 0,
+      "expectedLookupText": "POLYQUATERNIUM-10",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POLYQUATERNIUM-10"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:21:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 21,
+      "componentIndex": 0,
+      "expectedLookupText": "METHYLSILANOL/SILICATE CROSSPOLYMER",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "METHYLSILANOL/SILICATE CROSSPOLYMER"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:22:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 22,
+      "componentIndex": 0,
+      "expectedLookupText": "SODIUM HYALURONATE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SODIUM HYALURONATE"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:23:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 23,
+      "componentIndex": 0,
+      "expectedLookupText": "2-OLEAMIDO-1,3-OCTADECANEDIOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "2-Oleamido-1,3-Octadecanediol"
+      }
+    },
+    {
+      "anchorId": "obf-30179493:24:0",
+      "sampleId": "obf-30179493",
+      "tokenIndex": 24,
+      "componentIndex": 0,
+      "expectedLookupText": "BHT",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "BHT"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:0:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "AQUA / WATER",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:1:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "POLYBUTENE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POLYBUTENE"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:2:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "PARAFFIN",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PARAFFIN"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:3:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "POTASSIUM CETYL PHOSPHATE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POTASSIUM CETYL PHOSPHATE"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:4:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "CERA ALBA / BEESWAX",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cera Alba"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:5:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "COPERNICIA CERIFERA CERA / CARNAUBA WAX",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:6:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "STEARETH-2",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARETH-2"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:7:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "CETYL ALCOHOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CETYL ALCOHOL"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:8:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "ALCOHOL DENAT.",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Alcohol Denat."
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:9:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "PHENOXYETHANOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENOXYETHANOL"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:10:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "HYDROXYETHYLCELLULOSE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "HYDROXYETHYLCELLULOSE"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:11:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "ACACIA SENEGAL GUM",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acacia Senegal Gum"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:12:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "PANTHENOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PANTHENOL"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:13:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "ETHYLENEDIAMINE/STEARYL DIMER DILINOLEATE COPOLYMER",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "ETHYLENEDIAMINE/STEARYL DIMER DILINOLEATE COPOLYMER"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:14:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "CAPRYLYL GLYCOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CAPRYLYL GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:15:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "HYDROGENATED JOJOBA OIL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "HYDROGENATED JOJOBA OIL"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:16:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "HYDROGENATED PALM OIL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "HYDROGENATED PALM OIL"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:17:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "2-OLEAMIDO-1,3-OCTADECANEDIOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "2-Oleamido-1,3-Octadecanediol"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:18:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 18,
+      "componentIndex": 0,
+      "expectedLookupText": "DISODIUM EDTA",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "DISODIUM EDTA"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:19:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 19,
+      "componentIndex": 0,
+      "expectedLookupText": "BHT",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "BHT"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:20:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 20,
+      "componentIndex": 0,
+      "expectedLookupText": "ROSA CANINA FRUIT OIL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "ROSA CANINA FRUIT OIL"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:21:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 21,
+      "componentIndex": 0,
+      "expectedLookupText": "PENTAERYTHRITYL TETRA-DI-T-BUTYL HYDROXYHYDROCINNAMATE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PENTAERYTHRITYL TETRA-DI-T-BUTYL HYDROXYHYDROCINNAMATE"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:22:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 22,
+      "componentIndex": 0,
+      "expectedLookupText": "PROPYLENE GLYCOL",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:23:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 23,
+      "componentIndex": 0,
+      "expectedLookupText": "PROPYL GALLATE",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYL GALLATE"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:24:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 24,
+      "componentIndex": 0,
+      "expectedLookupText": "CITRIC ACID",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CITRIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-3600523503384:25:0",
+      "sampleId": "obf-3600523503384",
+      "tokenIndex": 25,
+      "componentIndex": 0,
+      "expectedLookupText": "(F.I.L. B210585/1).",
+      "expectedTokenKind": "UNRESOLVED",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "UNRESOLVED"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:0:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Aqua / Water / Eau",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:1:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Behenyl Behenate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Behenyl Behenate"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:2:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Acrylates Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acrylates Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:3:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Cetearyl Alcohol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cetearyl Alcohol"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:4:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Stearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:5:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Palmitic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PALMITIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:6:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Poly C10-30 Alkyl Acrylate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Poly C10-30 Alkyl Acrylate"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:7:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Butylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "BUTYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:8:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "PVP",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PVP"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:9:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "VP/Eicosene Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "VP/Eicosene Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:10:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "Aminomethyl Propanediol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "AMINOMETHYL PROPANEDIOL"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:11:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Kaolin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Kaolin"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:12:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Phenoxyethanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENOXYETHANOL"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:13:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Caprylyl Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CAPRYLYL GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:14:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "Pentylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PENTYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:15:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "Potassium Cetyl Phosphate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POTASSIUM CETYL PHOSPHATE"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:16:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "Myristic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Myristic Acid"
+      }
+    },
+    {
+      "anchorId": "obf-3600531701802:17:0",
+      "sampleId": "obf-3600531701802",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "Silica",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Silica"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:0:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Isododecane",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Isododecane"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:1:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Cera Alba / Beeswax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cera Alba"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:2:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Copernicia Cerifera Cera / Carnauba Wax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:3:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Disteardimonium Hectorite",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Disteardimonium Hectorite"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:4:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Oryza Sativa Cera / Rice Bran Wax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Oryza Sativa Cera"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:5:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Dilinoleic Acid/Butanediol Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Dilinoleic Acid/Butanediol Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:6:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Aqua / Water",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:7:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Allyl Stearate/VA Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Allyl Stearate/VA Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:8:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "Alcohol Denat.",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Alcohol Denat."
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:9:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "Polyvinyl Laurate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Polyvinyl Laurate"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:10:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "VP/Eicosene Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "VP/Eicosene Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:11:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Propylene Carbonate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Propylene Carbonate"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:12:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Hydrogenated Jojoba Oil",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "HYDROGENATED JOJOBA OIL"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:13:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Ethylenediamine/Stearyl Dimer Dilinoleate Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "ETHYLENEDIAMINE/STEARYL DIMER DILINOLEATE COPOLYMER"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:14:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "PEG-30 Glyceryl Stearate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PEG-30 Glyceryl Stearate"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:15:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "Panthenol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PANTHENOL"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:16:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "VP/VA Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "VP/VA Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:17:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "Pentaerythrityl Tetra-Di-T-Butyl Hydroxyhydrocinnamate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PENTAERYTHRITYL TETRA-DI-T-BUTYL HYDROXYHYDROCINNAMATE"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:18:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 18,
+      "componentIndex": 0,
+      "expectedLookupText": "Silica",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Silica"
+      }
+    },
+    {
+      "anchorId": "obf-3600531716974:19:0",
+      "sampleId": "obf-3600531716974",
+      "tokenIndex": 19,
+      "componentIndex": 0,
+      "expectedLookupText": "Kaolin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Kaolin"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:0:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Aqua/Water/Eau",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:1:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Acrylates Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acrylates Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:2:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Glyceryl Stearate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Glyceryl Stearate"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:3:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Disteardimonium Hectorite",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Disteardimonium Hectorite"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:4:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Propylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:5:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Stearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:6:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Copernicia Cerifera Cera/Copernicia Cerifera (Carnauba) Wax/Cire de Carnauba",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:7:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Triethanolamine",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TRIETHANOLAMINE"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:8:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "Polyethylene",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Polyethylene"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:9:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "Propylene Carbonate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Propylene Carbonate"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:10:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "Lecithin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Lecithin"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:11:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Synthetic Wax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Synthetic Wax"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:12:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Oleic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Oleic Acid"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:13:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Alcohol Denat.",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Alcohol Denat."
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:14:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "Benzyl Alcohol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Benzyl Alcohol"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:15:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "Tocopherol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tocopherol"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:16:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "Ascorbyl Palmitate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ascorbyl Palmitate"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:17:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "Phenoxyethanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENOXYETHANOL"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:18:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 18,
+      "componentIndex": 0,
+      "expectedLookupText": "Panthenol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PANTHENOL"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:19:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 19,
+      "componentIndex": 0,
+      "expectedLookupText": "Methylparaben",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "METHYLPARABEN"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:20:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 20,
+      "componentIndex": 0,
+      "expectedLookupText": "Ethylparaben",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ethylparaben"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:21:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 21,
+      "componentIndex": 0,
+      "expectedLookupText": "Sodium Laureth Sulfate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Sodium Laureth Sulfate"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:22:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 22,
+      "componentIndex": 0,
+      "expectedLookupText": "Simethicone",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SIMETHICONE"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:23:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 23,
+      "componentIndex": 0,
+      "expectedLookupText": "Propylparaben",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYLPARABEN"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:24:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 24,
+      "componentIndex": 0,
+      "expectedLookupText": "Xanthan Gum",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Xanthan Gum"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:25:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 25,
+      "componentIndex": 0,
+      "expectedLookupText": "Trisodium EDTA",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TRISODIUM EDTA"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:26:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 26,
+      "componentIndex": 0,
+      "expectedLookupText": "Potassium Sorbate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POTASSIUM SORBATE"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:27:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 27,
+      "componentIndex": 0,
+      "expectedLookupText": "Tocopheryl Acetate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tocopheryl Acetate"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:28:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 28,
+      "componentIndex": 0,
+      "expectedLookupText": "Tetrasodium EDTA",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tetrasodium EDTA"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:29:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 29,
+      "componentIndex": 0,
+      "expectedLookupText": "Ammonium Hydroxide",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ammonium Hydroxide"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:30:0",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 30,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77491",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77491"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:30:1",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 30,
+      "componentIndex": 1,
+      "expectedLookupText": "CI 77492",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77492"
+      }
+    },
+    {
+      "anchorId": "obf-3616307650168:30:2",
+      "sampleId": "obf-3616307650168",
+      "tokenIndex": 30,
+      "componentIndex": 2,
+      "expectedLookupText": "CI 77499",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77499"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:0:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Water/Aqua",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:1:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Beeswax/Cera Alba",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cera Alba"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:2:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Ozokerite",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ozokerite"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:3:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Shellac",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Shellac"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:4:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Glyceryl Stearate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Glyceryl Stearate"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:5:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Triethanolamine",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TRIETHANOLAMINE"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:6:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Propylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:7:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Stearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:8:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "Sorbitan Sesquioleate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Sorbitan Sesquioleate"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:9:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "Methylparaben",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "METHYLPARABEN"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:10:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "Quaternium-15",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Quaternium-15"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:11:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Quaternium-22",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Quaternium-22"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:12:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Simethicone",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SIMETHICONE"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:13:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Butylparaben",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Butylparaben"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:14:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77491",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77491"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:14:1",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 14,
+      "componentIndex": 1,
+      "expectedLookupText": "CI 77492",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77492"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:14:2",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 14,
+      "componentIndex": 2,
+      "expectedLookupText": "CI 77499",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77499"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:15:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77891",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77891"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:16:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77007",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77007"
+      }
+    },
+    {
+      "anchorId": "obf-4084200857103:17:0",
+      "sampleId": "obf-4084200857103",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "Mica",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "MAY_CONTAIN",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "MICA"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:0:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Aqua (Water)",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:1:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Synthetic Beeswax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SYNTHETIC BEESWAX"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:2:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Paraffin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PARAFFIN"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:3:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Acacia Senegal Gum",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acacia Senegal Gum"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:4:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Stearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:5:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Triethanolamine",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TRIETHANOLAMINE"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:6:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Palmitic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PALMITIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:7:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Glyceryl Stearate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Glyceryl Stearate"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:8:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "VP/Eicosene Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "VP/Eicosene Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:9:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "Copernicia Cerifera Cera (Copernicia Cerifera (Carnauba) Wax)",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:10:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "Polybutene",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POLYBUTENE"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:11:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Butylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "BUTYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:12:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Oryza Sativa Cera (Oryza Sativa (Rice) Bran Wax)",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Oryza Sativa Cera"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:13:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Phenoxyethanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENOXYETHANOL"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:14:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "Methylparaben",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "METHYLPARABEN"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:15:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "Propylparaben",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYLPARABEN"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:16:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "Hydroxyethylcellulose",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "HYDROXYETHYLCELLULOSE"
+      }
+    },
+    {
+      "anchorId": "obf-4602006311058:17:0",
+      "sampleId": "obf-4602006311058",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77499",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77499"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:0:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Aqua",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:1:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Acrylates Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acrylates Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:2:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Copernicia Cerifera (Carnauba) Wax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:3:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Stearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:4:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Beeswax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cera Alba"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:5:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Triethanolamine",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TRIETHANOLAMINE"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:6:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Cetearyl Alcohol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cetearyl Alcohol"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:7:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Acrylates/Octylacrylamide Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acrylates/Octylacrylamide Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:8:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "Paraffin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PARAFFIN"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:9:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "C14-22 Alcohols",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "C14-22 Alcohols"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:10:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "1,2-Hexanediol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "1,2-Hexanediol"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:11:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Hydroxyacetophenone",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Hydroxyacetophenone"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:12:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Limnanthes Alba (Meadowfoam) Seed Oil",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Limnanthes Alba (Meadowfoam) Seed Oil"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:13:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Dimethicone",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Dimethicone"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:14:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "Acacia Senegal Gum",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acacia Senegal Gum"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:15:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "Xanthan Gum",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Xanthan Gum"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:16:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "C12-20 Alkyl Glucoside",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "C12-20 Alkyl Glucoside"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:17:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "Ethylhexylglycerin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ethylhexylglycerin"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:18:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 18,
+      "componentIndex": 0,
+      "expectedLookupText": "Tocopherol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tocopherol"
+      }
+    },
+    {
+      "anchorId": "obf-4602006378266:19:0",
+      "sampleId": "obf-4602006378266",
+      "tokenIndex": 19,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77499",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77499"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:0:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Aqua",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:1:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Synthetic Beeswax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SYNTHETIC BEESWAX"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:2:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Paraffin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PARAFFIN"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:3:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Acacia Senegal Gum",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acacia Senegal Gum"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:4:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Stearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:5:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Triethanolamine",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TRIETHANOLAMINE"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:6:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Palmitic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PALMITIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:7:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Glyceryl Stearate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Glyceryl Stearate"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:8:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "VP/Eicosene Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "VP/Eicosene Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:9:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "Copernicia Cerifera (Carnauba) Wax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:10:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "Polybutene",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "POLYBUTENE"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:11:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Butylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "BUTYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:12:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Oryza Sativa (Rice) Bran Wax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Oryza Sativa Cera"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:13:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Phenoxyethanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENOXYETHANOL"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:14:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "Methylparaben",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "METHYLPARABEN"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:15:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "Propylparaben",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYLPARABEN"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:16:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "Hydroxyethylcellulose",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "HYDROXYETHYLCELLULOSE"
+      }
+    },
+    {
+      "anchorId": "obf-7640473382857:17:0",
+      "sampleId": "obf-7640473382857",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77499",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77499"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:0:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Aqua (Water)",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:1:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Glyceryl Stearate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Glyceryl Stearate"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:2:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Microcrystalline Wax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cera Microcristallina"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:3:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Ricinus Communis Seed Oil",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ricinus Communis Seed Oil"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:4:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Copernicia Cerifera Cera",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:5:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Polyvinyl Alcohol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Polyvinyl Alcohol"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:6:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Propylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:7:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Stearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:8:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "Triethanolamine",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TRIETHANOLAMINE"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:9:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "Palmitic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PALMITIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:10:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "Phenoxyethanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENOXYETHANOL"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:11:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Sodium Dehydroacetate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SODIUM DEHYDROACETATE"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:12:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Lecithin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Lecithin"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:13:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Tocopherol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tocopherol"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:14:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "Ascorbyl Palmitate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ascorbyl Palmitate"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:15:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "Tropolone",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tropolone"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:16:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "Citric Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CITRIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082093:17:0",
+      "sampleId": "obf-8055510082093",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77499",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77499"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:0:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Aqua (Water)",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:1:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Glyceryl Stearate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Glyceryl Stearate"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:2:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Cera Microcristallina (Microcrystalline Wax)",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cera Microcristallina"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:3:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Ricinus Communis Seed Oil",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ricinus Communis Seed Oil"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:4:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Copernicia Cerifera Cera",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:5:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Polyvinyl Alcohol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Polyvinyl Alcohol"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:6:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Propylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:7:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Stearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:8:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "Triethanolamine",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TRIETHANOLAMINE"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:9:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "Palmitic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PALMITIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:10:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "Phenoxyethanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENOXYETHANOL"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:11:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Sodium Dehydroacetate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SODIUM DEHYDROACETATE"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:12:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Lecithin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Lecithin"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:13:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Tocopherol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tocopherol"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:14:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "Ascorbyl Palmitate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ascorbyl Palmitate"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:15:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "Tropolone",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tropolone"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:16:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "Citric Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CITRIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082109:17:0",
+      "sampleId": "obf-8055510082109",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77499",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77499"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:0:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Aqua (Water)",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:1:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77499",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77499"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:2:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Glyceryl Stearate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Glyceryl Stearate"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:3:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Cera Microcristallina (Microcrystalline Wax)",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cera Microcristallina"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:4:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Ricinus Communis Seed Oil",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ricinus Communis Seed Oil"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:5:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Copernicia Cerifera Cera",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:6:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Polyvinyl Alcohol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Polyvinyl Alcohol"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:7:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Propylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:8:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "Stearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:9:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "Triethanolamine",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TRIETHANOLAMINE"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:10:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "Palmitic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PALMITIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:11:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Phenoxyethanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENOXYETHANOL"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:12:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Sodium Dehydroacetate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SODIUM DEHYDROACETATE"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:13:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Lecithin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Lecithin"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:14:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "Tocopherol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tocopherol"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:15:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "Ascorbyl Palmitate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ascorbyl Palmitate"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:16:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "Tropolone",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tropolone"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:17:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "Citric Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CITRIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-8055510082116:18:0",
+      "sampleId": "obf-8055510082116",
+      "tokenIndex": 18,
+      "componentIndex": 0,
+      "expectedLookupText": "BHT",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "BHT"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:0:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Aqua (Water)",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:1:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Tridecyl Trimellitate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tridecyl Trimellitate"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:2:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Pentaerythrityl Tetrabehenate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Pentaerythrityl Tetrabehenate"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:3:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Cera Alba (Beeswax)",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cera Alba"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:4:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Copernicia Cerifera Cera (Carnauba Wax)",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:5:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Hydrogenated Olive Oil",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Hydrogenated Olive Oil"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:6:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Acrylates Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acrylates Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:7:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Glycerin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "GLYCERIN"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:8:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "Propylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PROPYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:9:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "Styrene/Acrylates Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Styrene/Acrylates Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:10:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "Cetearyl Olivate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cetearyl Olivate"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:11:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Stearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:12:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Palmitic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PALMITIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:13:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Butylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "BUTYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:14:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "Aminomethyl Propanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aminomethyl Propanol"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:15:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "Sorbitan Olivate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Sorbitan Olivate"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:16:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "Glyceryl Behenate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Glyceryl Behenate"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:17:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "Olea Europaea (Olive) Fruit Oil",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Olea Europaea (Olive) Fruit Oil"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:18:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 18,
+      "componentIndex": 0,
+      "expectedLookupText": "1,2-Hexanediol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "1,2-Hexanediol"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:19:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 19,
+      "componentIndex": 0,
+      "expectedLookupText": "Cellulose",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cellulose"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:20:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 20,
+      "componentIndex": 0,
+      "expectedLookupText": "Microcrystalline Cellulose",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Microcrystalline Cellulose"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:21:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 21,
+      "componentIndex": 0,
+      "expectedLookupText": "Olea Europaea (Olive) Oil Unsaponifiables",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Olea Europaea (Olive) Oil Unsaponifiables"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:22:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 22,
+      "componentIndex": 0,
+      "expectedLookupText": "Xanthan Gum",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Xanthan Gum"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:23:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 23,
+      "componentIndex": 0,
+      "expectedLookupText": "Phenoxyethanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENOXYETHANOL"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:24:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 24,
+      "componentIndex": 0,
+      "expectedLookupText": "Caprylhydroxamic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Caprylhydroxamic Acid"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:25:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 25,
+      "componentIndex": 0,
+      "expectedLookupText": "Tocopheryl Acetate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Tocopheryl Acetate"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:26:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 26,
+      "componentIndex": 0,
+      "expectedLookupText": "Sodium Dehydroacetate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "SODIUM DEHYDROACETATE"
+      }
+    },
+    {
+      "anchorId": "obf-8682536040402:27:0",
+      "sampleId": "obf-8682536040402",
+      "tokenIndex": 27,
+      "componentIndex": 0,
+      "expectedLookupText": "Citric Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CITRIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-8690644387005:0:0",
+      "sampleId": "obf-8690644387005",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Aqua",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-8690644387005:1:0",
+      "sampleId": "obf-8690644387005",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Glycerin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "GLYCERIN"
+      }
+    },
+    {
+      "anchorId": "obf-8690644387005:2:0",
+      "sampleId": "obf-8690644387005",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "AMP-Acrylates/Allyl Methacrylate Copolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "AMP-Acrylates/Allyl Methacrylate Copolymer"
+      }
+    },
+    {
+      "anchorId": "obf-8690644387005:3:0",
+      "sampleId": "obf-8690644387005",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Triethanolamine",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TRIETHANOLAMINE"
+      }
+    },
+    {
+      "anchorId": "obf-8690644387005:4:0",
+      "sampleId": "obf-8690644387005",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Acrylates/C10-30 Alkyl Acrylate Crosspolymer",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Acrylates/C10-30 Alkyl Acrylate Crosspolymer"
+      }
+    },
+    {
+      "anchorId": "obf-8690644387005:5:0",
+      "sampleId": "obf-8690644387005",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Panthenol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PANTHENOL"
+      }
+    },
+    {
+      "anchorId": "obf-8690644387005:6:0",
+      "sampleId": "obf-8690644387005",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Butylene Glycol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "BUTYLENE GLYCOL"
+      }
+    },
+    {
+      "anchorId": "obf-8690644387005:7:0",
+      "sampleId": "obf-8690644387005",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Phenoxyethanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENOXYETHANOL"
+      }
+    },
+    {
+      "anchorId": "obf-8690644387005:8:0",
+      "sampleId": "obf-8690644387005",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "Ethylhexylglycerin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ethylhexylglycerin"
+      }
+    },
+    {
+      "anchorId": "obf-8690644387005:9:0",
+      "sampleId": "obf-8690644387005",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "Biotinoyl Tripeptide-1",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Biotinoyl Tripeptide-1"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:0:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Aqua",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:1:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Paraffin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PARAFFIN"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:2:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Glyceryl Stearate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Glyceryl Stearate"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:3:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "PEG-40 Stearate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PEG-40 STEARATE"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:4:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Stearic Acid",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "STEARIC ACID"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:5:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Beeswax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cera Alba"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:6:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Copernicia Cerifera Cera",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Copernicia Cerifera Cera"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:7:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Polyvinyl Alcohol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Polyvinyl Alcohol"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:8:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "Methylparaben",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "METHYLPARABEN"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:9:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "Sodium Hydroxide",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Sodium Hydroxide"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:10:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "BHT",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "BHT"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:11:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Phenoxyethanol",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "PHENOXYETHANOL"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:12:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Carbon Black",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77266"
+      }
+    },
+    {
+      "anchorId": "obf-8696814061843:13:0",
+      "sampleId": "obf-8696814061843",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "CI 77499",
+      "expectedTokenKind": "CI_PIGMENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77499"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:0:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 0,
+      "componentIndex": 0,
+      "expectedLookupText": "Isododecane",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Isododecane"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:1:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 1,
+      "componentIndex": 0,
+      "expectedLookupText": "Trimethylsiloxysilicate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Trimethylsiloxysilicate"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:2:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 2,
+      "componentIndex": 0,
+      "expectedLookupText": "Talc",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "TALC"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:3:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 3,
+      "componentIndex": 0,
+      "expectedLookupText": "Ceresin",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Ceresin"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:4:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 4,
+      "componentIndex": 0,
+      "expectedLookupText": "Microcrystalline Wax",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Cera Microcristallina"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:5:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 5,
+      "componentIndex": 0,
+      "expectedLookupText": "Dextrin Palmitate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Dextrin Palmitate"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:6:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 6,
+      "componentIndex": 0,
+      "expectedLookupText": "Iron Oxides",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "UNRESOLVED"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:7:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 7,
+      "componentIndex": 0,
+      "expectedLookupText": "Disteardimonium Hectorite",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Disteardimonium Hectorite"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:8:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 8,
+      "componentIndex": 0,
+      "expectedLookupText": "Polypropylsilsesquioxane",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Polypropylsilsesquioxane"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:9:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 9,
+      "componentIndex": 0,
+      "expectedLookupText": "Dextrin Palmitate/Ethylhexanoate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Dextrin Palmitate/Ethylhexanoate"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:10:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 10,
+      "componentIndex": 0,
+      "expectedLookupText": "Propylene Carbonate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Propylene Carbonate"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:11:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 11,
+      "componentIndex": 0,
+      "expectedLookupText": "Polyisobutene",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Polyisobutene"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:12:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 12,
+      "componentIndex": 0,
+      "expectedLookupText": "Silica",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Silica"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:13:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 13,
+      "componentIndex": 0,
+      "expectedLookupText": "Polymethylsilsesquioxane",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Polymethylsilsesquioxane"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:14:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 14,
+      "componentIndex": 0,
+      "expectedLookupText": "Triethoxycaprylylsilane",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Triethoxycaprylylsilane"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:15:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 15,
+      "componentIndex": 0,
+      "expectedLookupText": "Glyceryl Caprylate",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Glyceryl Caprylate"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:16:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 16,
+      "componentIndex": 0,
+      "expectedLookupText": "Nylon-66",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Nylon-66"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:17:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 17,
+      "componentIndex": 0,
+      "expectedLookupText": "Water",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "Aqua"
+      }
+    },
+    {
+      "anchorId": "obf-8809625243135:18:0",
+      "sampleId": "obf-8809625243135",
+      "tokenIndex": 18,
+      "componentIndex": 0,
+      "expectedLookupText": "Titanium Dioxide",
+      "expectedTokenKind": "INGREDIENT",
+      "expectedPresence": "DECLARED",
+      "expectedDecision": {
+        "kind": "RESOLVED",
+        "canonicalName": "CI 77891"
+      }
+    }
+  ]
+}

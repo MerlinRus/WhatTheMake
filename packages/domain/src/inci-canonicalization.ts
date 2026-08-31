@@ -32,9 +32,60 @@ export interface InciDictionarySnapshot {
   ingredients: readonly InciDictionaryIngredient[];
 }
 
+export function serializeInciDictionarySnapshot(
+  snapshot: InciDictionarySnapshot,
+): string {
+  return JSON.stringify({
+    dictionaryVersion: snapshot.dictionaryVersion,
+    normalizerVersion: snapshot.normalizerVersion,
+    ingredients: snapshot.ingredients.map((ingredient) => ({
+      ingredientId: ingredient.ingredientId,
+      canonicalName: ingredient.canonicalName,
+      canonicalLookupKey: ingredient.canonicalLookupKey,
+      aliases: ingredient.aliases.map((alias) => ({
+        aliasId: alias.aliasId,
+        aliasText: alias.aliasText,
+        lookupKey: alias.lookupKey,
+      })),
+    })),
+  });
+}
+
 export interface InciDictionaryRepository {
   findPublishedSnapshot(): Promise<InciDictionarySnapshot | null>;
+  previewPublication(
+    input: InciDictionaryPublicationInput,
+  ): Promise<InciDictionaryPublicationReport>;
+  publish(
+    input: InciDictionaryPublicationInput,
+  ): Promise<InciDictionaryPublicationReport>;
 }
+
+export interface InciDictionaryPublicationInput {
+  snapshot: InciDictionarySnapshot;
+  contentSha256: string;
+}
+
+export interface InciDictionaryPublicationCounts {
+  ingredients: number;
+  aliases: number;
+}
+
+export type InciDictionaryPublicationReport =
+  | {
+      kind: 'READY' | 'PUBLISHED' | 'ALREADY_PUBLISHED';
+      dictionaryVersion: InciDictionaryVersion;
+      contentSha256: string;
+      counts: InciDictionaryPublicationCounts;
+    }
+  | {
+      kind: 'VERSION_CONFLICT';
+      dictionaryVersion: InciDictionaryVersion;
+      contentSha256: string;
+      counts: InciDictionaryPublicationCounts;
+      existingVersion: InciDictionaryVersion;
+      existingContentSha256: string | null;
+    };
 
 export type InciNormalizationConfidence = 'HIGH' | 'MEDIUM' | 'NONE';
 

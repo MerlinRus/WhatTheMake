@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
@@ -9,10 +9,12 @@ import { Pool } from 'pg';
 
 import {
   INCI_LOOKUP_NORMALIZER_VERSION,
+  serializeInciDictionarySnapshot,
   type CanonicalIngredientId,
   type IngredientKnowledgeSnapshotId,
   type IngredientKnowledgeVersion,
   type InciDictionaryAliasId,
+  type InciDictionarySnapshot,
   type InciDictionaryVersion,
 } from '@wtm/domain';
 
@@ -317,6 +319,7 @@ test(
     const ingredientIds = [randomUUID(), randomUUID(), randomUUID()] as const;
     const aliasIds = [randomUUID(), randomUUID(), randomUUID()] as const;
     const dictionaryVersion = `fixture-${randomUUID().replaceAll('-', '')}`;
+    const contentSha256 = 'd'.repeat(64);
 
     try {
       await database.migrate(resolve('apps/server/migrations'));
@@ -335,11 +338,17 @@ test(
           INSERT INTO wtm_inci_dictionary_snapshots (
             id,
             version,
-            normalizer_version
+            normalizer_version,
+            content_sha256
           )
-          VALUES ($1, $2, $3)
+          VALUES ($1, $2, $3, $4)
         `,
-        [snapshotId, dictionaryVersion, INCI_LOOKUP_NORMALIZER_VERSION],
+        [
+          snapshotId,
+          dictionaryVersion,
+          INCI_LOOKUP_NORMALIZER_VERSION,
+          contentSha256,
+        ],
       );
       await adminPool.query(
         `
@@ -434,6 +443,179 @@ test(
         adminPool.query(
           'UPDATE wtm_inci_dictionary_aliases SET alias_text = $1 WHERE id = $2',
           ['Changed after publish', aliasIds[0]],
+        ),
+        /Published INCI dictionary snapshots are immutable/,
+      );
+      await assert.rejects(
+        adminPool.query(
+          `
+            UPDATE wtm_inci_dictionary_snapshots
+            SET status = 'RETIRED', retired_at = now(), content_sha256 = $1
+            WHERE id = $2
+          `,
+          ['e'.repeat(64), snapshotId],
+        ),
+        /Published INCI dictionary snapshots are immutable/,
+      );
+    } finally {
+      await database.close();
+      await adminPool.end();
+    }
+  },
+);
+
+test(
+  'INCI dictionary publication is atomic, idempotent, and checksum-bound',
+  { skip: testDatabaseUrl === undefined },
+  async () => {
+    assert.ok(testDatabaseUrl);
+    const database = createPostgresDatabase({
+      connectionString: testDatabaseUrl,
+      maxConnections: 2,
+      applicationName: 'wtm-inci-dictionary-publication-integration',
+    });
+    const adminPool = new Pool({ connectionString: testDatabaseUrl, max: 1 });
+    const version = `publish-${randomUUID().replaceAll('-', '')}`;
+    const ingredientId = randomUUID();
+    const aliasId = randomUUID();
+    const snapshot: InciDictionarySnapshot = {
+      dictionaryVersion: version as InciDictionaryVersion,
+      normalizerVersion: INCI_LOOKUP_NORMALIZER_VERSION,
+      ingredients: [
+        {
+          ingredientId: ingredientId as CanonicalIngredientId,
+          canonicalName: 'Aqua',
+          canonicalLookupKey: 'aqua',
+          aliases: [
+            {
+              aliasId: aliasId as InciDictionaryAliasId,
+              aliasText: 'Water',
+              lookupKey: 'water',
+            },
+          ],
+        },
+      ],
+    };
+    const contentSha256 = createHash('sha256')
+      .update(serializeInciDictionarySnapshot(snapshot), 'utf8')
+      .digest('hex');
+    const input = { snapshot, contentSha256 };
+
+    try {
+      await database.migrate(resolve('apps/server/migrations'));
+      await adminPool.query(`
+        TRUNCATE
+          wtm_inci_dictionary_aliases,
+          wtm_inci_dictionary_entries,
+          wtm_inci_dictionary_snapshots,
+          wtm_inci_ingredients
+        CASCADE
+      `);
+
+      const missingChecksumSnapshotId = randomUUID();
+      await adminPool.query(
+        `
+          INSERT INTO wtm_inci_dictionary_snapshots (
+            id,
+            version,
+            normalizer_version
+          )
+          VALUES ($1, $2, $3)
+        `,
+        [
+          missingChecksumSnapshotId,
+          `missing-checksum-${randomUUID().replaceAll('-', '')}`,
+          INCI_LOOKUP_NORMALIZER_VERSION,
+        ],
+      );
+      await assert.rejects(
+        adminPool.query(
+          `
+            UPDATE wtm_inci_dictionary_snapshots
+            SET status = 'PUBLISHED', published_at = now()
+            WHERE id = $1
+          `,
+          [missingChecksumSnapshotId],
+        ),
+        /Published INCI dictionary checksum is required/,
+      );
+      await adminPool.query(
+        'DELETE FROM wtm_inci_dictionary_snapshots WHERE id = $1',
+        [missingChecksumSnapshotId],
+      );
+
+      assert.deepEqual(
+        await database.inciDictionary.previewPublication(input),
+        {
+          kind: 'READY',
+          dictionaryVersion: version,
+          contentSha256,
+          counts: { ingredients: 1, aliases: 1 },
+        },
+      );
+      assert.deepEqual(await database.inciDictionary.publish(input), {
+        kind: 'PUBLISHED',
+        dictionaryVersion: version,
+        contentSha256,
+        counts: { ingredients: 1, aliases: 1 },
+      });
+      assert.deepEqual(
+        await database.inciDictionary.findPublishedSnapshot(),
+        snapshot,
+      );
+      assert.deepEqual(await database.inciDictionary.publish(input), {
+        kind: 'ALREADY_PUBLISHED',
+        dictionaryVersion: version,
+        contentSha256,
+        counts: { ingredients: 1, aliases: 1 },
+      });
+
+      const rows = await adminPool.query<{ count: number }>(`
+        SELECT count(*)::integer AS count
+        FROM wtm_inci_dictionary_snapshots
+      `);
+      assert.equal(rows.rows[0]?.count, 1);
+      const nextSnapshot = {
+        ...snapshot,
+        dictionaryVersion: `${version}-next` as InciDictionaryVersion,
+      };
+      const nextContentSha256 = createHash('sha256')
+        .update(serializeInciDictionarySnapshot(nextSnapshot), 'utf8')
+        .digest('hex');
+      const conflict = await database.inciDictionary.previewPublication({
+        snapshot: nextSnapshot,
+        contentSha256: nextContentSha256,
+      });
+      assert.deepEqual(conflict, {
+        kind: 'VERSION_CONFLICT',
+        dictionaryVersion: `${version}-next`,
+        contentSha256: nextContentSha256,
+        counts: { ingredients: 1, aliases: 1 },
+        existingVersion: version,
+        existingContentSha256: contentSha256,
+      });
+      await assert.rejects(
+        database.inciDictionary.publish({
+          snapshot,
+          contentSha256: 'f'.repeat(64),
+        }),
+        /content checksum does not match snapshot/,
+      );
+      await assert.rejects(
+        database.inciDictionary.previewPublication({
+          snapshot,
+          contentSha256: 'f'.repeat(64),
+        }),
+        /content checksum does not match snapshot/,
+      );
+      await assert.rejects(
+        adminPool.query(
+          `
+            UPDATE wtm_inci_dictionary_snapshots
+            SET content_sha256 = $1
+            WHERE version = $2
+          `,
+          ['c'.repeat(64), version],
         ),
         /Published INCI dictionary snapshots are immutable/,
       );

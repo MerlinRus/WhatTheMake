@@ -17,9 +17,11 @@ COPY packages/contracts packages/contracts
 COPY packages/domain packages/domain
 COPY packages/infrastructure packages/infrastructure
 COPY tools tools
+COPY benchmarks benchmarks
 RUN npm run build
 
 FROM build AS verification
+RUN npm run --silent benchmark:inci
 RUN npm run typecheck
 RUN npm run lint
 RUN npm run format:check

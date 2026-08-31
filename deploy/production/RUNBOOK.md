@@ -53,6 +53,39 @@ docker compose -p whatthemake --env-file /srv/whatthemake/shared/.env \
   --rollback open-beauty-facts-mascara@2026-08-26
 ```
 
+## INCI dictionary publication
+
+The bundled dictionary is immutable and checksum-bound. The Docker verification
+target must pass `npm run --silent benchmark:inci` before publication. Always
+run the database preview first and compare version, checksum, ingredient count,
+and alias count.
+
+```bash
+docker compose -p whatthemake --env-file /srv/whatthemake/shared/.env \
+  --env-file /srv/whatthemake/current/.release.env \
+  -f /srv/whatthemake/current/deploy/production/compose.yml \
+  exec -T web npm run db:seed:inci-dictionary -- --dry-run
+
+docker compose -p whatthemake --env-file /srv/whatthemake/shared/.env \
+  --env-file /srv/whatthemake/current/.release.env \
+  -f /srv/whatthemake/current/deploy/production/compose.yml \
+  exec -T web npm run db:seed:inci-dictionary
+```
+
+The second command is idempotent for the same version and checksum. A different
+artifact for an already published version fails closed. For the first v1
+publication, deploy and verify the new application image first, confirm the
+preview reports `READY` with no current/conflicting snapshot, then publish and
+repeat readiness plus one INCI-analysis smoke check.
+
+Application rollback does not roll back the active dictionary. The current and
+previous application images use the same cautious dictionary contract, so v1
+may remain published during an image rollback. If that compatibility check
+fails, stop analysis traffic and use a reviewed controlled retirement procedure;
+never edit names, aliases, version, or checksum in a published snapshot. Atomic
+dictionary rotation/retirement is a separate operational feature and is not
+emulated with ad-hoc SQL in this runbook.
+
 ## Rollback
 
 Use the previous release directory and its `.release.env`. The initial

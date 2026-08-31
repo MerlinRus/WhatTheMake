@@ -204,6 +204,197 @@ const goldenCorpus: Array<{
       { sourceText: 'Aqua', kind: 'INGREDIENT' },
     ],
   },
+  {
+    name: 'numeric locants remain inside ingredient names',
+    source: 'Aqua, 1,2-Hexanediol, 2-Oleamido-1,3-Octadecanediol, BHT',
+    expected: [
+      { sourceText: 'Aqua', kind: 'INGREDIENT' },
+      { sourceText: '1,2-Hexanediol', kind: 'INGREDIENT' },
+      {
+        sourceText: '2-Oleamido-1,3-Octadecanediol',
+        kind: 'INGREDIENT',
+      },
+      { sourceText: 'BHT', kind: 'INGREDIENT' },
+    ],
+  },
+  {
+    name: 'OCR-spaced numeric locant remains one visible token',
+    source: 'Aqua, 2-OLEAMIDO-1, 3 OCTADECANEDIOL, BHT',
+    expected: [
+      { sourceText: 'Aqua', kind: 'INGREDIENT' },
+      {
+        sourceText: '2-OLEAMIDO-1, 3 OCTADECANEDIOL',
+        kind: 'INGREDIENT',
+      },
+      { sourceText: 'BHT', kind: 'INGREDIENT' },
+    ],
+  },
+  {
+    name: 'bilingual conditional clause extracts labeled CI pigments',
+    source:
+      'Oleic Acid. May Contain/Peut Contenir(+/-): Iron Oxides (CI 77491, CI 77492, CI 77499), Titanium Dioxide (CI 77891)',
+    expected: [
+      { sourceText: 'Oleic Acid', kind: 'INGREDIENT' },
+      {
+        sourceText: 'Iron Oxides (CI 77491, CI 77492, CI 77499)',
+        kind: 'CI_PIGMENT',
+        presence: 'MAY_CONTAIN',
+        ciNumbers: ['77491', '77492', '77499'],
+      },
+      {
+        sourceText: 'Titanium Dioxide (CI 77891)',
+        kind: 'CI_PIGMENT',
+        presence: 'MAY_CONTAIN',
+        ciNumbers: ['77891'],
+      },
+    ],
+  },
+  {
+    name: 'confusable CI inside a pigment label remains unresolved',
+    source: 'May Contain: Black 2 (Cl 77266), CI 77499',
+    expected: [
+      {
+        sourceText: 'Black 2 (Cl 77266)',
+        kind: 'UNRESOLVED',
+        presence: 'MAY_CONTAIN',
+        uncertaintyReasons: ['OCR_NOISE'],
+      },
+      {
+        sourceText: 'CI 77499',
+        kind: 'CI_PIGMENT',
+        presence: 'MAY_CONTAIN',
+        ciNumbers: ['77499'],
+      },
+    ],
+  },
+  {
+    name: 'adjacent pigment sentences remain separate components',
+    source: 'Iron Oxides (CI 77499). Black 2 (Cl 77266)',
+    expected: [
+      {
+        sourceText: 'Iron Oxides (CI 77499)',
+        kind: 'CI_PIGMENT',
+        ciNumbers: ['77499'],
+      },
+      {
+        sourceText: 'Black 2 (Cl 77266)',
+        kind: 'UNRESOLVED',
+        uncertaintyReasons: ['OCR_NOISE'],
+      },
+    ],
+  },
+  {
+    name: 'terminal punctuation is excluded from a labeled CI pigment',
+    source: 'May Contain: Uitramarines(CI 77007).',
+    expected: [
+      {
+        sourceText: 'Uitramarines(CI 77007)',
+        kind: 'CI_PIGMENT',
+        presence: 'MAY_CONTAIN',
+        ciNumbers: ['77007'],
+      },
+    ],
+  },
+  {
+    name: 'slash bilingual marker and closing punctuation are syntax only',
+    source:
+      'Aqua, [May Contain/Peut Contenir/+/-: CI 77491, CI 77499 / Iron Oxides].',
+    expected: [
+      { sourceText: 'Aqua', kind: 'INGREDIENT' },
+      {
+        sourceText: 'CI 77491',
+        kind: 'CI_PIGMENT',
+        presence: 'MAY_CONTAIN',
+        ciNumbers: ['77491'],
+      },
+      {
+        sourceText: 'CI 77499 / Iron Oxides',
+        kind: 'CI_PIGMENT',
+        presence: 'MAY_CONTAIN',
+        ciNumbers: ['77499'],
+      },
+    ],
+  },
+  {
+    name: 'conditional wrapper closes before following disclaimer text',
+    source:
+      'Aqua, [May Contain: CI 77491, CI 77492, CI 77499]. Please be aware that lists change.',
+    expected: [
+      { sourceText: 'Aqua', kind: 'INGREDIENT' },
+      {
+        sourceText: 'CI 77491',
+        kind: 'CI_PIGMENT',
+        presence: 'MAY_CONTAIN',
+        ciNumbers: ['77491'],
+      },
+      {
+        sourceText: 'CI 77492',
+        kind: 'CI_PIGMENT',
+        presence: 'MAY_CONTAIN',
+        ciNumbers: ['77492'],
+      },
+      {
+        sourceText: 'CI 77499',
+        kind: 'CI_PIGMENT',
+        presence: 'MAY_CONTAIN',
+        ciNumbers: ['77499'],
+      },
+      {
+        sourceText: 'Please be aware that lists change.',
+        kind: 'UNRESOLVED',
+        presence: 'MAY_CONTAIN',
+        uncertaintyReasons: ['NON_INCI_TEXT'],
+      },
+    ],
+  },
+  {
+    name: 'conditional wrapper closes before following formula metadata',
+    source: 'Aqua, [May Contain: CI 77499] (F.I.L. D123456/1)',
+    expected: [
+      { sourceText: 'Aqua', kind: 'INGREDIENT' },
+      {
+        sourceText: 'CI 77499',
+        kind: 'CI_PIGMENT',
+        presence: 'MAY_CONTAIN',
+        ciNumbers: ['77499'],
+      },
+      {
+        sourceText: '(F.I.L. D123456/1)',
+        kind: 'UNRESOLVED',
+        presence: 'MAY_CONTAIN',
+        uncertaintyReasons: ['NON_INCI_TEXT'],
+      },
+    ],
+  },
+  {
+    name: 'formula metadata is isolated and never treated as INCI',
+    source:
+      'G2004066 - Aqua, Citric Acid (F.I.L. B210585/1), CI 77510/Ferric Ferrocyanide FIL D26393/4Please be aware that lists change.',
+    expected: [
+      { sourceText: 'Aqua', kind: 'INGREDIENT' },
+      { sourceText: 'Citric Acid', kind: 'INGREDIENT' },
+      {
+        sourceText: '(F.I.L. B210585/1)',
+        kind: 'UNRESOLVED',
+        uncertaintyReasons: ['NON_INCI_TEXT'],
+      },
+      {
+        sourceText: 'CI 77510/Ferric Ferrocyanide',
+        kind: 'CI_PIGMENT',
+        ciNumbers: ['77510'],
+      },
+      {
+        sourceText: 'FIL D26393/4',
+        kind: 'UNRESOLVED',
+        uncertaintyReasons: ['NON_INCI_TEXT'],
+      },
+      {
+        sourceText: 'Please be aware that lists change.',
+        kind: 'UNRESOLVED',
+        uncertaintyReasons: ['NON_INCI_TEXT'],
+      },
+    ],
+  },
 ];
 
 function comparableToken(token: InciToken): ExpectedToken {
@@ -262,6 +453,42 @@ test('INCI parser rejects oversized OCR text with a stable reason', () => {
     maxSourceLength: MAX_INCI_SOURCE_LENGTH,
   });
 });
+
+test(
+  'INCI parser handles a maximum-size numeric locant run linearly',
+  { timeout: 30_000 },
+  () => {
+    const source = `A${'1,'.repeat((MAX_INCI_SOURCE_LENGTH - 4) / 2)}1-X`;
+    assert.equal(source.length, MAX_INCI_SOURCE_LENGTH);
+
+    const parsed = parseInci(source);
+    assert.equal(parsed.kind, 'PARSED');
+    if (parsed.kind !== 'PARSED') return;
+    assert.equal(parsed.tokens.length, 1);
+    assert.deepEqual(parsed.tokens[0]?.sourceSpan, {
+      start: 0,
+      end: source.length,
+    });
+  },
+);
+
+test(
+  'INCI parser handles maximum-size leading whitespace linearly',
+  { timeout: 5_000 },
+  () => {
+    const source = `${' '.repeat(MAX_INCI_SOURCE_LENGTH - 1)}A`;
+    assert.equal(source.length, MAX_INCI_SOURCE_LENGTH);
+
+    const parsed = parseInci(source);
+    assert.equal(parsed.kind, 'PARSED');
+    if (parsed.kind !== 'PARSED') return;
+    assert.equal(parsed.tokens.length, 1);
+    assert.deepEqual(parsed.tokens[0]?.sourceSpan, {
+      start: MAX_INCI_SOURCE_LENGTH - 1,
+      end: MAX_INCI_SOURCE_LENGTH,
+    });
+  },
+);
 
 function deterministicRandom(): () => number {
   let state = 0x1ac1_2026;

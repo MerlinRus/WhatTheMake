@@ -1,0 +1,1138 @@
+{
+  "dictionaryVersion": "obf-mascara-inci-2026.08.31-v1",
+  "normalizerVersion": "inci-lookup-v1",
+  "ingredients": [
+    {
+      "ingredientId": "e6a5a3e4-6f0e-8635-ae92-8266d8206d71",
+      "canonicalName": "1,2-Hexanediol",
+      "canonicalLookupKey": "1,2-hexanediol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "0a4ef4f0-79bb-839b-9a52-fbe11201c0ef",
+      "canonicalName": "2-Oleamido-1,3-Octadecanediol",
+      "canonicalLookupKey": "2-oleamido-1,3-octadecanediol",
+      "aliases": [
+        {
+          "aliasId": "950d33a3-d91e-85ee-943b-5b5d9b42f468",
+          "aliasText": "2-OLEAMIDO-1, 3 OCTADECANEDIOL",
+          "lookupKey": "2-oleamido-1, 3 octadecanediol"
+        }
+      ]
+    },
+    {
+      "ingredientId": "be088179-d4ed-8a5d-b4e5-6260098441c4",
+      "canonicalName": "Acacia Senegal Gum",
+      "canonicalLookupKey": "acacia senegal gum",
+      "aliases": [
+        {
+          "aliasId": "e73e4712-74d2-8d66-a551-fca2dc518904",
+          "aliasText": "ACACIA/ACACIA SENEGAL GUM",
+          "lookupKey": "acacia/acacia senegal gum"
+        }
+      ]
+    },
+    {
+      "ingredientId": "3d6eecfe-351b-88f7-98e3-894f0422bea1",
+      "canonicalName": "Acacia Seyal Gum Extract",
+      "canonicalLookupKey": "acacia seyal gum extract",
+      "aliases": []
+    },
+    {
+      "ingredientId": "8c92665e-e1c5-8845-b74a-f051b52f3e13",
+      "canonicalName": "Acetyl Hexapeptide-1",
+      "canonicalLookupKey": "acetyl hexapeptide-1",
+      "aliases": []
+    },
+    {
+      "ingredientId": "d4cfa71d-dc03-83eb-9871-4e95b57fe296",
+      "canonicalName": "Acrylates Copolymer",
+      "canonicalLookupKey": "acrylates copolymer",
+      "aliases": []
+    },
+    {
+      "ingredientId": "b58ef779-8a0c-8d97-89aa-8e59822491f3",
+      "canonicalName": "Acrylates/C10-30 Alkyl Acrylate Crosspolymer",
+      "canonicalLookupKey": "acrylates/c10-30 alkyl acrylate crosspolymer",
+      "aliases": []
+    },
+    {
+      "ingredientId": "80df2291-dd11-86ec-9c21-b41af6a19019",
+      "canonicalName": "Acrylates/Octylacrylamide Copolymer",
+      "canonicalLookupKey": "acrylates/octylacrylamide copolymer",
+      "aliases": []
+    },
+    {
+      "ingredientId": "27987a81-e42e-87e0-beaf-4e331705e7ce",
+      "canonicalName": "ACRYLATES/VP COPOLYMER",
+      "canonicalLookupKey": "acrylates/vp copolymer",
+      "aliases": []
+    },
+    {
+      "ingredientId": "9147b176-f14a-81cd-88f4-05260fbf35fc",
+      "canonicalName": "Alcohol Denat.",
+      "canonicalLookupKey": "alcohol denat.",
+      "aliases": []
+    },
+    {
+      "ingredientId": "d2dee143-366d-864d-aabb-ffed16034908",
+      "canonicalName": "Allyl Stearate/VA Copolymer",
+      "canonicalLookupKey": "allyl stearate/va copolymer",
+      "aliases": []
+    },
+    {
+      "ingredientId": "143ddcd3-3812-831b-9fe5-52074dbf64d2",
+      "canonicalName": "AMINOMETHYL PROPANEDIOL",
+      "canonicalLookupKey": "aminomethyl propanediol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "6bde545d-916c-88dd-9d24-e6f9acf019af",
+      "canonicalName": "Aminomethyl Propanol",
+      "canonicalLookupKey": "aminomethyl propanol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "e9d1eaa4-d0c6-80d7-9e2f-83708fdec1d1",
+      "canonicalName": "Ammonium Hydroxide",
+      "canonicalLookupKey": "ammonium hydroxide",
+      "aliases": []
+    },
+    {
+      "ingredientId": "8261ccdc-3654-857a-a7d0-193bf649449d",
+      "canonicalName": "AMP-Acrylates/Allyl Methacrylate Copolymer",
+      "canonicalLookupKey": "amp-acrylates/allyl methacrylate copolymer",
+      "aliases": []
+    },
+    {
+      "ingredientId": "f92b89b2-e3d6-88e8-978d-e7ae2e402828",
+      "canonicalName": "Aqua",
+      "canonicalLookupKey": "aqua",
+      "aliases": [
+        {
+          "aliasId": "2f231210-2928-8b19-9308-09a184748f4c",
+          "aliasText": "Aqua (Water)",
+          "lookupKey": "aqua (water)"
+        },
+        {
+          "aliasId": "2919e75d-ccad-80a5-8aef-327b0a036ec7",
+          "aliasText": "AQUA / WATER",
+          "lookupKey": "aqua / water"
+        },
+        {
+          "aliasId": "0d10f572-1ae3-831e-a19c-6f09a9f5a287",
+          "aliasText": "Aqua / Water / Eau",
+          "lookupKey": "aqua / water / eau"
+        },
+        {
+          "aliasId": "82cdf4df-f01b-833e-9ca3-a9ff757fcda3",
+          "aliasText": "Aqua/Water/Eau",
+          "lookupKey": "aqua/water/eau"
+        },
+        {
+          "aliasId": "a885b032-929e-88e5-a436-4b8924b304cf",
+          "aliasText": "Water",
+          "lookupKey": "water"
+        },
+        {
+          "aliasId": "c979083f-428d-8f93-b629-933de256f8cb",
+          "aliasText": "Water (Aqua/Eau)",
+          "lookupKey": "water (aqua/eau)"
+        },
+        {
+          "aliasId": "99714b70-1124-8087-b72b-2a48377713d9",
+          "aliasText": "WATER/AQUA",
+          "lookupKey": "water/aqua"
+        },
+        {
+          "aliasId": "29aa3357-0991-8c10-a5e5-e5b4e471d5a6",
+          "aliasText": "Water/Aqua/Eau",
+          "lookupKey": "water/aqua/eau"
+        }
+      ]
+    },
+    {
+      "ingredientId": "81a77087-336c-8cec-9a25-a3f5f940278d",
+      "canonicalName": "Ascorbyl Palmitate",
+      "canonicalLookupKey": "ascorbyl palmitate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "71221936-1f0f-8171-8c25-0cb82314f8b0",
+      "canonicalName": "Behenyl Behenate",
+      "canonicalLookupKey": "behenyl behenate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "d8c9ba79-7152-81f1-ab9c-646e7670bda0",
+      "canonicalName": "Benzyl Alcohol",
+      "canonicalLookupKey": "benzyl alcohol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "cf1d71bf-423e-8e4a-87a3-2136fc61db93",
+      "canonicalName": "Beta-Sitosterol",
+      "canonicalLookupKey": "beta-sitosterol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "4f91db76-e6bc-82b0-b2d0-18688bf1786b",
+      "canonicalName": "BHT",
+      "canonicalLookupKey": "bht",
+      "aliases": []
+    },
+    {
+      "ingredientId": "9389c25c-8601-8a85-87b9-090f49e410d7",
+      "canonicalName": "Biotinoyl Tripeptide-1",
+      "canonicalLookupKey": "biotinoyl tripeptide-1",
+      "aliases": []
+    },
+    {
+      "ingredientId": "a23d40ac-468c-854e-8949-b0b25f2cf345",
+      "canonicalName": "BUTYLENE GLYCOL",
+      "canonicalLookupKey": "butylene glycol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "a87715ab-f7e1-88bc-8dbf-cfe0b4c17517",
+      "canonicalName": "Butylparaben",
+      "canonicalLookupKey": "butylparaben",
+      "aliases": []
+    },
+    {
+      "ingredientId": "930ffea9-a78e-89fe-a41e-4047a0e857f6",
+      "canonicalName": "C12-20 Alkyl Glucoside",
+      "canonicalLookupKey": "c12-20 alkyl glucoside",
+      "aliases": []
+    },
+    {
+      "ingredientId": "c55dadf9-5d6e-83b9-9c27-f59313863ff6",
+      "canonicalName": "C14-22 Alcohols",
+      "canonicalLookupKey": "c14-22 alcohols",
+      "aliases": []
+    },
+    {
+      "ingredientId": "a60dd26d-d5a7-8e40-b839-4625dc39a8b6",
+      "canonicalName": "C18-36 Acid Triglyceride",
+      "canonicalLookupKey": "c18-36 acid triglyceride",
+      "aliases": []
+    },
+    {
+      "ingredientId": "ba404702-ffd4-89f6-87b6-bdd27ff2d4b5",
+      "canonicalName": "Caprylhydroxamic Acid",
+      "canonicalLookupKey": "caprylhydroxamic acid",
+      "aliases": []
+    },
+    {
+      "ingredientId": "05cccb0b-8876-8dae-b88d-19ba5b9388f3",
+      "canonicalName": "CAPRYLYL GLYCOL",
+      "canonicalLookupKey": "caprylyl glycol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "2721ff65-4ebe-867f-bf96-ecae82af9c77",
+      "canonicalName": "Cellulose",
+      "canonicalLookupKey": "cellulose",
+      "aliases": []
+    },
+    {
+      "ingredientId": "09eb2d09-f5a9-8977-92f5-4e833682172c",
+      "canonicalName": "Cera Alba",
+      "canonicalLookupKey": "cera alba",
+      "aliases": [
+        {
+          "aliasId": "fb5d0b0d-0e4e-804d-a58e-72ea4d276355",
+          "aliasText": "Beeswax",
+          "lookupKey": "beeswax"
+        },
+        {
+          "aliasId": "882c896b-6974-82f2-858f-cece86885268",
+          "aliasText": "Beeswax/Cera Alba",
+          "lookupKey": "beeswax/cera alba"
+        },
+        {
+          "aliasId": "c7a6fa32-9ae9-81ff-82bc-7b7344ba1f5a",
+          "aliasText": "Cera Alba (Beeswax)",
+          "lookupKey": "cera alba (beeswax)"
+        },
+        {
+          "aliasId": "7b2a1b98-04e3-8285-abae-953c72de7b5a",
+          "aliasText": "CERA ALBA / BEESWAX",
+          "lookupKey": "cera alba / beeswax"
+        },
+        {
+          "aliasId": "2f7f3366-ca4c-8aa0-95cc-3bbb65fa1a95",
+          "aliasText": "CERA ALBA/BEESWAX",
+          "lookupKey": "cera alba/beeswax"
+        }
+      ]
+    },
+    {
+      "ingredientId": "05690e39-9cad-8640-b449-d3ee631e2479",
+      "canonicalName": "Cera Microcristallina",
+      "canonicalLookupKey": "cera microcristallina",
+      "aliases": [
+        {
+          "aliasId": "e976659d-154e-8054-8ca9-dcbe00d4b2b6",
+          "aliasText": "Cera Microcristallina (Microcrystalline Wax)",
+          "lookupKey": "cera microcristallina (microcrystalline wax)"
+        },
+        {
+          "aliasId": "176bcdac-8d7b-83c7-80f3-5c8a43dedc29",
+          "aliasText": "Microcrystalline Wax",
+          "lookupKey": "microcrystalline wax"
+        }
+      ]
+    },
+    {
+      "ingredientId": "bc36f47f-24a4-89d2-bd18-6dce63ae9fee",
+      "canonicalName": "Ceresin",
+      "canonicalLookupKey": "ceresin",
+      "aliases": []
+    },
+    {
+      "ingredientId": "d00c5055-e8a4-8c27-8ee2-d5c573789109",
+      "canonicalName": "Cetearyl Alcohol",
+      "canonicalLookupKey": "cetearyl alcohol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "0dcfc051-1633-863a-b4f0-c99ddb9a8c7a",
+      "canonicalName": "Cetearyl Olivate",
+      "canonicalLookupKey": "cetearyl olivate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "af604a03-aace-8325-bdcf-8b696753e0db",
+      "canonicalName": "CETYL ALCOHOL",
+      "canonicalLookupKey": "cetyl alcohol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "b7c0c34f-193e-8ce7-ab05-75451a2ea106",
+      "canonicalName": "CI 75470",
+      "canonicalLookupKey": "ci 75470",
+      "aliases": []
+    },
+    {
+      "ingredientId": "d8f0635b-e7ab-8d39-8e08-c0312a46d79f",
+      "canonicalName": "CI 77007",
+      "canonicalLookupKey": "ci 77007",
+      "aliases": []
+    },
+    {
+      "ingredientId": "4e7c3371-b9ad-8730-a2fd-4d1ff53c00db",
+      "canonicalName": "CI 77266",
+      "canonicalLookupKey": "ci 77266",
+      "aliases": [
+        {
+          "aliasId": "e966db49-6153-8da0-adec-a87d855a4a3e",
+          "aliasText": "Carbon Black",
+          "lookupKey": "carbon black"
+        }
+      ]
+    },
+    {
+      "ingredientId": "0399597a-023d-83f8-99b1-b0c5887e84d2",
+      "canonicalName": "CI 77288",
+      "canonicalLookupKey": "ci 77288",
+      "aliases": []
+    },
+    {
+      "ingredientId": "a89c7cd0-b292-8a5a-a002-be410bec1b00",
+      "canonicalName": "CI 77289",
+      "canonicalLookupKey": "ci 77289",
+      "aliases": []
+    },
+    {
+      "ingredientId": "99dbd7f5-25ee-88bb-b52f-3cb37f774107",
+      "canonicalName": "CI 77491",
+      "canonicalLookupKey": "ci 77491",
+      "aliases": []
+    },
+    {
+      "ingredientId": "116c0d5a-19ee-87ed-8105-b949fae6123c",
+      "canonicalName": "CI 77492",
+      "canonicalLookupKey": "ci 77492",
+      "aliases": []
+    },
+    {
+      "ingredientId": "d836f827-8de7-8e3e-94a4-c6c333bf4378",
+      "canonicalName": "CI 77499",
+      "canonicalLookupKey": "ci 77499",
+      "aliases": []
+    },
+    {
+      "ingredientId": "f7491363-f338-8e1c-bdbf-8f39309195d7",
+      "canonicalName": "CI 77510",
+      "canonicalLookupKey": "ci 77510",
+      "aliases": []
+    },
+    {
+      "ingredientId": "a617b34e-5467-8f57-b236-79190fe10461",
+      "canonicalName": "CI 77742",
+      "canonicalLookupKey": "ci 77742",
+      "aliases": []
+    },
+    {
+      "ingredientId": "3c56dcb6-816d-8fe0-8ef2-06976f525697",
+      "canonicalName": "CI 77891",
+      "canonicalLookupKey": "ci 77891",
+      "aliases": [
+        {
+          "aliasId": "9b2657b6-c349-8b53-bbf6-08b00d29455d",
+          "aliasText": "Titanium Dioxide",
+          "lookupKey": "titanium dioxide"
+        }
+      ]
+    },
+    {
+      "ingredientId": "11bcaf34-afd3-851f-9842-14e0498e6606",
+      "canonicalName": "CITRIC ACID",
+      "canonicalLookupKey": "citric acid",
+      "aliases": []
+    },
+    {
+      "ingredientId": "7e68246b-b27b-82c9-a366-97507b3ad595",
+      "canonicalName": "Copernicia Cerifera Cera",
+      "canonicalLookupKey": "copernicia cerifera cera",
+      "aliases": [
+        {
+          "aliasId": "7bedee3f-80ab-8c5d-96c8-71a03628dd37",
+          "aliasText": "CARNAUBA/CARNAUBA WAX",
+          "lookupKey": "carnauba/carnauba wax"
+        },
+        {
+          "aliasId": "ae29ba45-4c89-8e6f-a533-d1e082a306b1",
+          "aliasText": "Cera Carnauba (Copernicia Cerifera (Carnauba) Wax)",
+          "lookupKey": "cera carnauba (copernicia cerifera (carnauba) wax)"
+        },
+        {
+          "aliasId": "a23f3a1d-db4c-81f2-aba9-06b19eb11095",
+          "aliasText": "Copernicia Cerifera (Carnauba) Wax",
+          "lookupKey": "copernicia cerifera (carnauba) wax"
+        },
+        {
+          "aliasId": "5cf6fb78-0b4e-827f-8b04-fe2de06b8509",
+          "aliasText": "Copernicia Cerifera Cera (Carnauba Wax)",
+          "lookupKey": "copernicia cerifera cera (carnauba wax)"
+        },
+        {
+          "aliasId": "b86a6dff-b8c8-8616-9e1d-5e3627a98453",
+          "aliasText": "Copernicia Cerifera Cera (Copernicia Cerifera (Carnauba) Wax)",
+          "lookupKey": "copernicia cerifera cera (copernicia cerifera (carnauba) wax)"
+        },
+        {
+          "aliasId": "70ac548f-ea08-8b0e-b688-08b82b3f7a2a",
+          "aliasText": "COPERNICIA CERIFERA CERA / CARNAUBA WAX",
+          "lookupKey": "copernicia cerifera cera / carnauba wax"
+        },
+        {
+          "aliasId": "b17e5bea-4c4f-8571-b2d4-e9b3043775ea",
+          "aliasText": "Copernicia Cerifera Cera/Copernicia Cerifera (Carnauba) Wax/Cire de Carnauba",
+          "lookupKey": "copernicia cerifera cera/copernicia cerifera (carnauba) wax/cire de carnauba"
+        }
+      ]
+    },
+    {
+      "ingredientId": "08ce5164-9e94-8997-a95e-fe87a991155a",
+      "canonicalName": "Dextran",
+      "canonicalLookupKey": "dextran",
+      "aliases": []
+    },
+    {
+      "ingredientId": "0c32cf6f-0ced-8a83-8f81-5fdbb7e522b8",
+      "canonicalName": "Dextrin Palmitate",
+      "canonicalLookupKey": "dextrin palmitate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "62e849f2-21f1-8928-a2c0-acd05be8f5c3",
+      "canonicalName": "Dextrin Palmitate/Ethylhexanoate",
+      "canonicalLookupKey": "dextrin palmitate/ethylhexanoate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "8b20ad4a-d086-8d93-b295-d6089bd1275e",
+      "canonicalName": "Dilinoleic Acid/Butanediol Copolymer",
+      "canonicalLookupKey": "dilinoleic acid/butanediol copolymer",
+      "aliases": []
+    },
+    {
+      "ingredientId": "c3b20bae-8700-89bf-bcf7-a138a71c5a66",
+      "canonicalName": "Dimethicone",
+      "canonicalLookupKey": "dimethicone",
+      "aliases": []
+    },
+    {
+      "ingredientId": "00c122ec-6785-800c-88c2-9a683b2192e7",
+      "canonicalName": "DISODIUM EDTA",
+      "canonicalLookupKey": "disodium edta",
+      "aliases": []
+    },
+    {
+      "ingredientId": "4cf66ff7-09c7-8990-aaf6-9337941df95d",
+      "canonicalName": "Disteardimonium Hectorite",
+      "canonicalLookupKey": "disteardimonium hectorite",
+      "aliases": []
+    },
+    {
+      "ingredientId": "38f4c0d3-9784-8b01-9fb8-c9c875cce1c1",
+      "canonicalName": "ETHYLENEDIAMINE/STEARYL DIMER DILINOLEATE COPOLYMER",
+      "canonicalLookupKey": "ethylenediamine/stearyl dimer dilinoleate copolymer",
+      "aliases": []
+    },
+    {
+      "ingredientId": "37977494-a52c-8d17-a6b7-2307bfe08ef5",
+      "canonicalName": "Ethylhexylglycerin",
+      "canonicalLookupKey": "ethylhexylglycerin",
+      "aliases": []
+    },
+    {
+      "ingredientId": "65f07abc-992e-80a8-8b3c-ff8e2e6c299b",
+      "canonicalName": "Ethylparaben",
+      "canonicalLookupKey": "ethylparaben",
+      "aliases": []
+    },
+    {
+      "ingredientId": "e9cc3088-5694-86bc-874d-fedeb97542ff",
+      "canonicalName": "GLYCERIN",
+      "canonicalLookupKey": "glycerin",
+      "aliases": []
+    },
+    {
+      "ingredientId": "015a61cb-4853-8b91-975d-ccc9ba5f4068",
+      "canonicalName": "Glyceryl Behenate",
+      "canonicalLookupKey": "glyceryl behenate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "4d7260d6-d8c6-8421-9b49-a2c22b99a6d6",
+      "canonicalName": "Glyceryl Caprylate",
+      "canonicalLookupKey": "glyceryl caprylate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "f85e578e-6b12-8b09-a7d7-70b3dff4efea",
+      "canonicalName": "Glyceryl Stearate",
+      "canonicalLookupKey": "glyceryl stearate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "e67dd710-02ea-8f28-a7a2-6dff49835d5f",
+      "canonicalName": "Glyceryl Stearates",
+      "canonicalLookupKey": "glyceryl stearates",
+      "aliases": []
+    },
+    {
+      "ingredientId": "b4f80e43-c98b-8000-a1ca-0017cffedc40",
+      "canonicalName": "Hectorite",
+      "canonicalLookupKey": "hectorite",
+      "aliases": []
+    },
+    {
+      "ingredientId": "3ee34dae-9441-8988-9793-1cde0c538e70",
+      "canonicalName": "Helianthus Annuus (Sunflower) Seed Oil",
+      "canonicalLookupKey": "helianthus annuus (sunflower) seed oil",
+      "aliases": []
+    },
+    {
+      "ingredientId": "66e090d1-43ae-8a3f-b303-005e8582af5b",
+      "canonicalName": "HYDROGENATED JOJOBA OIL",
+      "canonicalLookupKey": "hydrogenated jojoba oil",
+      "aliases": []
+    },
+    {
+      "ingredientId": "b6a6e551-5a80-812f-a03b-8fd55c25e1a9",
+      "canonicalName": "Hydrogenated Olive Oil",
+      "canonicalLookupKey": "hydrogenated olive oil",
+      "aliases": []
+    },
+    {
+      "ingredientId": "999cb830-b855-8051-b339-63e6b1088aef",
+      "canonicalName": "HYDROGENATED PALM OIL",
+      "canonicalLookupKey": "hydrogenated palm oil",
+      "aliases": []
+    },
+    {
+      "ingredientId": "9c3c0554-9e64-82a3-ae34-0a41d32cdeda",
+      "canonicalName": "Hydroxyacetophenone",
+      "canonicalLookupKey": "hydroxyacetophenone",
+      "aliases": []
+    },
+    {
+      "ingredientId": "0658379c-e3c4-8554-8500-f15b5341570d",
+      "canonicalName": "HYDROXYETHYLCELLULOSE",
+      "canonicalLookupKey": "hydroxyethylcellulose",
+      "aliases": []
+    },
+    {
+      "ingredientId": "07e44566-c6ac-8793-ae32-4a513acc1fb5",
+      "canonicalName": "HYDROXYPROPYL CHITOSAN",
+      "canonicalLookupKey": "hydroxypropyl chitosan",
+      "aliases": []
+    },
+    {
+      "ingredientId": "c4d9487d-1860-8750-846f-fc278e0c8d8c",
+      "canonicalName": "Isododecane",
+      "canonicalLookupKey": "isododecane",
+      "aliases": []
+    },
+    {
+      "ingredientId": "387860c9-cc72-8b3e-ad99-3f5a47590cca",
+      "canonicalName": "Kaolin",
+      "canonicalLookupKey": "kaolin",
+      "aliases": []
+    },
+    {
+      "ingredientId": "4ec7c39b-bb25-873d-9e02-897ce2d7fbe0",
+      "canonicalName": "Lauric Acid",
+      "canonicalLookupKey": "lauric acid",
+      "aliases": []
+    },
+    {
+      "ingredientId": "79e3f41f-9d5e-88be-9846-e5303262a77d",
+      "canonicalName": "Lecithin",
+      "canonicalLookupKey": "lecithin",
+      "aliases": []
+    },
+    {
+      "ingredientId": "482e7e6b-01e9-8353-a6bc-016d678ed93b",
+      "canonicalName": "Limnanthes Alba (Meadowfoam) Seed Oil",
+      "canonicalLookupKey": "limnanthes alba (meadowfoam) seed oil",
+      "aliases": []
+    },
+    {
+      "ingredientId": "336231d7-c808-8728-a8de-5a5f3562ec04",
+      "canonicalName": "METHYLPARABEN",
+      "canonicalLookupKey": "methylparaben",
+      "aliases": []
+    },
+    {
+      "ingredientId": "75aedc05-e7bd-896e-8e10-b393d0ac3626",
+      "canonicalName": "METHYLSILANOL/SILICATE CROSSPOLYMER",
+      "canonicalLookupKey": "methylsilanol/silicate crosspolymer",
+      "aliases": []
+    },
+    {
+      "ingredientId": "d9deb532-afae-8405-a42b-2889a85cd128",
+      "canonicalName": "MICA",
+      "canonicalLookupKey": "mica",
+      "aliases": []
+    },
+    {
+      "ingredientId": "4c12d85a-ae07-8e71-b995-77470723eee9",
+      "canonicalName": "Microcrystalline Cellulose",
+      "canonicalLookupKey": "microcrystalline cellulose",
+      "aliases": []
+    },
+    {
+      "ingredientId": "c8e4a247-37a9-8e64-8f67-30d167780565",
+      "canonicalName": "Myristic Acid",
+      "canonicalLookupKey": "myristic acid",
+      "aliases": []
+    },
+    {
+      "ingredientId": "509e6292-77e0-882b-9b21-b9bcdf459222",
+      "canonicalName": "Nylon-66",
+      "canonicalLookupKey": "nylon-66",
+      "aliases": []
+    },
+    {
+      "ingredientId": "c43ed1b3-4d2c-8715-8740-88c801d3745c",
+      "canonicalName": "Olea Europaea (Olive) Fruit Oil",
+      "canonicalLookupKey": "olea europaea (olive) fruit oil",
+      "aliases": []
+    },
+    {
+      "ingredientId": "ef7c4a79-ff7f-84b0-a46a-c613b59c617d",
+      "canonicalName": "Olea Europaea (Olive) Oil Unsaponifiables",
+      "canonicalLookupKey": "olea europaea (olive) oil unsaponifiables",
+      "aliases": []
+    },
+    {
+      "ingredientId": "4987bd75-a195-8550-910c-66f4f8e41cd6",
+      "canonicalName": "Oleic Acid",
+      "canonicalLookupKey": "oleic acid",
+      "aliases": []
+    },
+    {
+      "ingredientId": "3dec70b0-6a1b-8f78-b3ab-d4e8038d0e44",
+      "canonicalName": "Oryza Sativa Cera",
+      "canonicalLookupKey": "oryza sativa cera",
+      "aliases": [
+        {
+          "aliasId": "ee533420-ac52-83aa-bf54-bccfabb66081",
+          "aliasText": "Oryza Sativa (Rice) Bran Wax",
+          "lookupKey": "oryza sativa (rice) bran wax"
+        },
+        {
+          "aliasId": "1361979a-2f27-85b1-8b47-258a10d4b99e",
+          "aliasText": "Oryza Sativa Cera (Oryza Sativa (Rice) Bran Wax)",
+          "lookupKey": "oryza sativa cera (oryza sativa (rice) bran wax)"
+        },
+        {
+          "aliasId": "a9e08a69-081c-83bd-90da-524c998a4d87",
+          "aliasText": "Oryza Sativa Cera / Rice Bran Wax",
+          "lookupKey": "oryza sativa cera / rice bran wax"
+        }
+      ]
+    },
+    {
+      "ingredientId": "1ffda80e-11f0-8d05-a5b7-0080d3f50157",
+      "canonicalName": "Ozokerite",
+      "canonicalLookupKey": "ozokerite",
+      "aliases": []
+    },
+    {
+      "ingredientId": "f59cfdfa-0c95-8509-868a-56307a471379",
+      "canonicalName": "PALMITIC ACID",
+      "canonicalLookupKey": "palmitic acid",
+      "aliases": []
+    },
+    {
+      "ingredientId": "e2a88610-33a8-8c90-aaba-fb8beefd215c",
+      "canonicalName": "PANTHENOL",
+      "canonicalLookupKey": "panthenol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "89a79c12-b6fd-8fbb-8e42-f894f77b2412",
+      "canonicalName": "PARAFFIN",
+      "canonicalLookupKey": "paraffin",
+      "aliases": []
+    },
+    {
+      "ingredientId": "6cb5575b-ae6d-886b-801d-e81a6fb201e2",
+      "canonicalName": "PEG-30 Glyceryl Stearate",
+      "canonicalLookupKey": "peg-30 glyceryl stearate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "940ed335-0b9c-844b-8025-30f2929833c4",
+      "canonicalName": "PEG-40 STEARATE",
+      "canonicalLookupKey": "peg-40 stearate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "dc1d3b78-f642-8f7b-b273-21cfd4c8b569",
+      "canonicalName": "PEG/PPG-17/18 DIMETHICONE",
+      "canonicalLookupKey": "peg/ppg-17/18 dimethicone",
+      "aliases": []
+    },
+    {
+      "ingredientId": "a640a3fa-78a8-8579-980b-50f24aed550e",
+      "canonicalName": "PENTAERYTHRITYL TETRA-DI-T-BUTYL HYDROXYHYDROCINNAMATE",
+      "canonicalLookupKey": "pentaerythrityl tetra-di-t-butyl hydroxyhydrocinnamate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "7ebc6896-306a-8e35-85fc-f72d88606662",
+      "canonicalName": "Pentaerythrityl Tetrabehenate",
+      "canonicalLookupKey": "pentaerythrityl tetrabehenate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "8b638b6a-5d36-84ce-b254-1f877b7f034c",
+      "canonicalName": "PENTYLENE GLYCOL",
+      "canonicalLookupKey": "pentylene glycol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "a2290df2-6ab3-840a-bd73-c7e19fcc5176",
+      "canonicalName": "PHENETHYL ALCOHOL",
+      "canonicalLookupKey": "phenethyl alcohol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "43cb28aa-1f62-822a-824a-36ad8a7c7a39",
+      "canonicalName": "PHENOXYETHANOL",
+      "canonicalLookupKey": "phenoxyethanol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "c9bf2751-1f6c-8b9b-9233-085415a2278e",
+      "canonicalName": "PHENYL TRIMETHICONE",
+      "canonicalLookupKey": "phenyl trimethicone",
+      "aliases": []
+    },
+    {
+      "ingredientId": "8ead73c3-36a9-835e-b888-24774e1e4676",
+      "canonicalName": "Poly C10-30 Alkyl Acrylate",
+      "canonicalLookupKey": "poly c10-30 alkyl acrylate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "58512b6b-1231-8c9e-b0ec-b42513cdd743",
+      "canonicalName": "POLYBUTENE",
+      "canonicalLookupKey": "polybutene",
+      "aliases": []
+    },
+    {
+      "ingredientId": "6ad5f0ee-aada-87c9-a3d4-595961e2705b",
+      "canonicalName": "Polyester-11",
+      "canonicalLookupKey": "polyester-11",
+      "aliases": []
+    },
+    {
+      "ingredientId": "a171c7c2-b459-8414-bac5-a2369a26bda4",
+      "canonicalName": "Polyethylene",
+      "canonicalLookupKey": "polyethylene",
+      "aliases": []
+    },
+    {
+      "ingredientId": "5b67a67e-d066-8111-a4e3-29465fb7353d",
+      "canonicalName": "Polyglyceryl-2 Caprate",
+      "canonicalLookupKey": "polyglyceryl-2 caprate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "7e618f16-4a11-80bf-933e-6d0b08071250",
+      "canonicalName": "Polyhydroxystearic Acid",
+      "canonicalLookupKey": "polyhydroxystearic acid",
+      "aliases": []
+    },
+    {
+      "ingredientId": "a8d25b7e-686e-8627-af9a-8e3c0ea687ca",
+      "canonicalName": "Polyisobutene",
+      "canonicalLookupKey": "polyisobutene",
+      "aliases": []
+    },
+    {
+      "ingredientId": "1a7bf9fc-ccdd-8530-830d-f4b250ef6eda",
+      "canonicalName": "Polymethylsilsesquioxane",
+      "canonicalLookupKey": "polymethylsilsesquioxane",
+      "aliases": []
+    },
+    {
+      "ingredientId": "16fa12ca-4aaa-8226-bbc4-7278cc6831a1",
+      "canonicalName": "Polypropylsilsesquioxane",
+      "canonicalLookupKey": "polypropylsilsesquioxane",
+      "aliases": []
+    },
+    {
+      "ingredientId": "3dc38ebd-7be2-8c3b-8d05-cff5d0174674",
+      "canonicalName": "POLYQUATERNIUM-10",
+      "canonicalLookupKey": "polyquaternium-10",
+      "aliases": []
+    },
+    {
+      "ingredientId": "7ad67f14-5253-8978-ae3a-554fa11237f4",
+      "canonicalName": "Polyvinyl Alcohol",
+      "canonicalLookupKey": "polyvinyl alcohol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "9265287f-a85e-892b-b737-e1da4844a311",
+      "canonicalName": "Polyvinyl Laurate",
+      "canonicalLookupKey": "polyvinyl laurate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "f1d8eb53-6031-8397-9e07-3d2d3e2eeedb",
+      "canonicalName": "POTASSIUM CETYL PHOSPHATE",
+      "canonicalLookupKey": "potassium cetyl phosphate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "b4ee7ef5-b07e-8aab-9219-9edb88ae3d1b",
+      "canonicalName": "POTASSIUM SORBATE",
+      "canonicalLookupKey": "potassium sorbate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "5ec85bb8-fc30-8fb7-bc78-5df4b528ba80",
+      "canonicalName": "Propanediol",
+      "canonicalLookupKey": "propanediol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "806b44e7-2671-81a7-9860-af473eb5ee96",
+      "canonicalName": "PROPYL GALLATE",
+      "canonicalLookupKey": "propyl gallate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "9c63ab03-160d-8090-8a4c-07121ce8efa0",
+      "canonicalName": "Propylene Carbonate",
+      "canonicalLookupKey": "propylene carbonate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "188d9683-aa81-807b-b439-8f5d2026e9a4",
+      "canonicalName": "PROPYLENE GLYCOL",
+      "canonicalLookupKey": "propylene glycol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "95e0b887-a170-8cc5-859c-83e0ae48608d",
+      "canonicalName": "PROPYLPARABEN",
+      "canonicalLookupKey": "propylparaben",
+      "aliases": []
+    },
+    {
+      "ingredientId": "2ef05cea-8f2d-861a-a103-de8816554f1a",
+      "canonicalName": "PTFE",
+      "canonicalLookupKey": "ptfe",
+      "aliases": []
+    },
+    {
+      "ingredientId": "71da4b0f-f8cf-8471-92e9-2dacfe5dadf5",
+      "canonicalName": "PVP",
+      "canonicalLookupKey": "pvp",
+      "aliases": []
+    },
+    {
+      "ingredientId": "c61e7833-7688-8c75-9ab5-339df815f8ee",
+      "canonicalName": "Quaternium-15",
+      "canonicalLookupKey": "quaternium-15",
+      "aliases": []
+    },
+    {
+      "ingredientId": "7a3854a7-2ce8-8a24-a3f9-1eb8dd28e30e",
+      "canonicalName": "Quaternium-22",
+      "canonicalLookupKey": "quaternium-22",
+      "aliases": []
+    },
+    {
+      "ingredientId": "6d41ec85-65f9-8b37-8a07-7adc18c07494",
+      "canonicalName": "RAYON",
+      "canonicalLookupKey": "rayon",
+      "aliases": []
+    },
+    {
+      "ingredientId": "869d441f-2120-884f-be24-397decdbc7ec",
+      "canonicalName": "Ricinus Communis Seed Oil",
+      "canonicalLookupKey": "ricinus communis seed oil",
+      "aliases": [
+        {
+          "aliasId": "acf000c8-ddab-89c2-8431-c7c7cfde05a7",
+          "aliasText": "Ricinus Communis (Castor) Seed Oil",
+          "lookupKey": "ricinus communis (castor) seed oil"
+        }
+      ]
+    },
+    {
+      "ingredientId": "885c4282-884d-8421-acfc-17990626d98f",
+      "canonicalName": "ROSA CANINA FRUIT OIL",
+      "canonicalLookupKey": "rosa canina fruit oil",
+      "aliases": []
+    },
+    {
+      "ingredientId": "c83b7209-54d9-842e-8545-171dda5317a8",
+      "canonicalName": "Shellac",
+      "canonicalLookupKey": "shellac",
+      "aliases": []
+    },
+    {
+      "ingredientId": "2d2a7383-e3c3-8c73-a5da-531ca4b41bce",
+      "canonicalName": "Silica",
+      "canonicalLookupKey": "silica",
+      "aliases": []
+    },
+    {
+      "ingredientId": "98e6ba5b-9235-8344-8acf-3869e7326d4d",
+      "canonicalName": "SIMETHICONE",
+      "canonicalLookupKey": "simethicone",
+      "aliases": []
+    },
+    {
+      "ingredientId": "f938311c-1a2a-8d66-88d1-bcf46eb9e0cd",
+      "canonicalName": "SODIUM DEHYDROACETATE",
+      "canonicalLookupKey": "sodium dehydroacetate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "0b0b2a08-9583-8b00-8023-954ae9cb9b6e",
+      "canonicalName": "SODIUM HYALURONATE",
+      "canonicalLookupKey": "sodium hyaluronate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "ee836925-23cd-8f69-a5e1-4de5be5a68d4",
+      "canonicalName": "Sodium Hydroxide",
+      "canonicalLookupKey": "sodium hydroxide",
+      "aliases": []
+    },
+    {
+      "ingredientId": "2796b5b2-dbf0-8830-a831-f4f0ebb6f344",
+      "canonicalName": "Sodium Laureth Sulfate",
+      "canonicalLookupKey": "sodium laureth sulfate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "d6b76c44-6256-86e4-b89a-335a357b1c35",
+      "canonicalName": "Sodium Phytate",
+      "canonicalLookupKey": "sodium phytate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "40137b00-e2f8-8bc5-8289-a7fb778e5224",
+      "canonicalName": "SODIUM POLYMETHACRYLATE",
+      "canonicalLookupKey": "sodium polymethacrylate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "b6612d10-3a17-818f-bb8d-50daed9087c8",
+      "canonicalName": "SOLUBLE COLLAGEN",
+      "canonicalLookupKey": "soluble collagen",
+      "aliases": []
+    },
+    {
+      "ingredientId": "edab843a-da5d-817d-b8ba-9799df255ba1",
+      "canonicalName": "Sorbitan Olivate",
+      "canonicalLookupKey": "sorbitan olivate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "5c881d96-bef6-83ae-af3b-a488c912b1f4",
+      "canonicalName": "Sorbitan Sesquioleate",
+      "canonicalLookupKey": "sorbitan sesquioleate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "0c6defcc-dc61-84bb-8a62-d1f4a6375a7b",
+      "canonicalName": "Squalene",
+      "canonicalLookupKey": "squalene",
+      "aliases": []
+    },
+    {
+      "ingredientId": "8cc7616d-1fa4-8938-89cc-8ddf42b29a12",
+      "canonicalName": "STEARETH-2",
+      "canonicalLookupKey": "steareth-2",
+      "aliases": []
+    },
+    {
+      "ingredientId": "b659ce86-9299-81e6-94d2-4bb75389be55",
+      "canonicalName": "STEARETH-20",
+      "canonicalLookupKey": "steareth-20",
+      "aliases": []
+    },
+    {
+      "ingredientId": "defe1b46-b627-8bf2-9ff7-2f9703b48dde",
+      "canonicalName": "STEARIC ACID",
+      "canonicalLookupKey": "stearic acid",
+      "aliases": []
+    },
+    {
+      "ingredientId": "ff3c5be3-c677-8af3-ad1a-badcd131edab",
+      "canonicalName": "Styrene/Acrylates Copolymer",
+      "canonicalLookupKey": "styrene/acrylates copolymer",
+      "aliases": []
+    },
+    {
+      "ingredientId": "ea55c962-cfb5-812c-b98d-64feeccb272c",
+      "canonicalName": "SYNTHETIC BEESWAX",
+      "canonicalLookupKey": "synthetic beeswax",
+      "aliases": []
+    },
+    {
+      "ingredientId": "95cc42c7-998a-868f-bf9c-a6bdffc8eb67",
+      "canonicalName": "Synthetic Wax",
+      "canonicalLookupKey": "synthetic wax",
+      "aliases": []
+    },
+    {
+      "ingredientId": "626d6116-a92d-8c02-89c4-e973607e4dba",
+      "canonicalName": "TALC",
+      "canonicalLookupKey": "talc",
+      "aliases": []
+    },
+    {
+      "ingredientId": "b0241c92-00e2-8a5b-920d-da267cab3af1",
+      "canonicalName": "Tetrasodium EDTA",
+      "canonicalLookupKey": "tetrasodium edta",
+      "aliases": []
+    },
+    {
+      "ingredientId": "d99237ce-f7e6-8787-a54f-b16c4fb82622",
+      "canonicalName": "Tocopherol",
+      "canonicalLookupKey": "tocopherol",
+      "aliases": []
+    },
+    {
+      "ingredientId": "06be58ae-e4ab-8764-b696-3e9125ae2590",
+      "canonicalName": "Tocopheryl Acetate",
+      "canonicalLookupKey": "tocopheryl acetate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "dfbe3be9-7609-8ea3-8984-c7805fa9c757",
+      "canonicalName": "Tribehenin",
+      "canonicalLookupKey": "tribehenin",
+      "aliases": []
+    },
+    {
+      "ingredientId": "e6d48360-6b25-8744-a13d-8ffa5b818205",
+      "canonicalName": "Tridecyl Trimellitate",
+      "canonicalLookupKey": "tridecyl trimellitate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "a8d625e7-0676-8970-9542-23e867276ace",
+      "canonicalName": "TRIETHANOLAMINE",
+      "canonicalLookupKey": "triethanolamine",
+      "aliases": []
+    },
+    {
+      "ingredientId": "e5a26d23-9a5f-8cc8-a92c-a91428cd931a",
+      "canonicalName": "Triethoxycaprylylsilane",
+      "canonicalLookupKey": "triethoxycaprylylsilane",
+      "aliases": []
+    },
+    {
+      "ingredientId": "fd4b1c92-bcfd-85e0-9497-c2f78521f8d2",
+      "canonicalName": "Trimethylpentanediol/Adipic Acid/Glycerin Crosspolymer",
+      "canonicalLookupKey": "trimethylpentanediol/adipic acid/glycerin crosspolymer",
+      "aliases": []
+    },
+    {
+      "ingredientId": "7511ed6a-e307-89ea-9151-3592a7c01faf",
+      "canonicalName": "Trimethylsiloxysilicate",
+      "canonicalLookupKey": "trimethylsiloxysilicate",
+      "aliases": []
+    },
+    {
+      "ingredientId": "5203cfac-0c83-83f0-9529-0b92b5f5995c",
+      "canonicalName": "TRISODIUM EDTA",
+      "canonicalLookupKey": "trisodium edta",
+      "aliases": []
+    },
+    {
+      "ingredientId": "7c2d1f10-a756-8833-bf95-25fd8de2639c",
+      "canonicalName": "Tropolone",
+      "canonicalLookupKey": "tropolone",
+      "aliases": []
+    },
+    {
+      "ingredientId": "3114f6f5-862f-86ab-8399-435f0e4ebad9",
+      "canonicalName": "VP/Eicosene Copolymer",
+      "canonicalLookupKey": "vp/eicosene copolymer",
+      "aliases": [
+        {
+          "aliasId": "384ce43b-f36b-8609-9176-a0015b499feb",
+          "aliasText": "VPIEicosene Copolymer",
+          "lookupKey": "vpieicosene copolymer"
+        }
+      ]
+    },
+    {
+      "ingredientId": "eb8d3b5c-3c5c-8326-8f2a-479f044fd06f",
+      "canonicalName": "VP/Hexadecene Copolymer",
+      "canonicalLookupKey": "vp/hexadecene copolymer",
+      "aliases": []
+    },
+    {
+      "ingredientId": "622793a2-0cba-8ec2-8094-df094c604721",
+      "canonicalName": "VP/VA Copolymer",
+      "canonicalLookupKey": "vp/va copolymer",
+      "aliases": []
+    },
+    {
+      "ingredientId": "4ee15e7c-1326-8cc7-9e69-c49a854fdcdc",
+      "canonicalName": "Xanthan Gum",
+      "canonicalLookupKey": "xanthan gum",
+      "aliases": []
+    }
+  ]
+}
