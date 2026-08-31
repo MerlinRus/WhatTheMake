@@ -323,7 +323,11 @@ function App() {
   return (
     <div className="app-shell">
       <header className="site-header">
-        <a className="wordmark" href="/" aria-label="What The Make — главная">
+        <a
+          className="wordmark"
+          href="/"
+          aria-label="What The Make — главная"
+        >
           <img
             src="/what-the-make-logo.png"
             alt=""
