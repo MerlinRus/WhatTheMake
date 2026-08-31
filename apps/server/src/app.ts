@@ -15,13 +15,16 @@ import type { DatabaseHealthProbe } from '@wtm/infrastructure';
 
 import { AppError, errorEnvelope } from './errors.js';
 import type { CatalogLookupService } from './catalog/service.js';
+import type { ComparisonService } from './comparison/service.js';
 import type { IdentityService } from './identity/service.js';
 import type { InciCorrectionService } from './inci-corrections/service.js';
 import type { MascaraPreferencesService } from './preferences/service.js';
 import type { MediaService } from './media/service.js';
 import type { ProductObservationService } from './product-observations/service.js';
+import type { ProductDiscoveryService } from './product-discovery/service.js';
 import { registerHealthRoutes } from './routes/health.js';
 import { registerCatalogRoutes } from './routes/catalog.js';
+import { registerComparisonRoutes } from './routes/comparisons.js';
 import {
   registerInciCorrectionRoutes,
   type InciCorrectionRoutesOptions,
@@ -42,6 +45,7 @@ import {
   registerProductObservationRoutes,
   type ProductObservationRoutesOptions,
 } from './routes/product-observations.js';
+import { registerProductDiscoveryRoutes } from './routes/product-discovery.js';
 
 export interface BuildAppOptions {
   database?: DatabaseHealthProbe | null;
@@ -50,6 +54,7 @@ export interface BuildAppOptions {
   trustProxy?: FastifyServerOptions['trustProxy'];
   webRoot?: string;
   catalog?: { service: CatalogLookupService };
+  comparisons?: { service: ComparisonService; publicOrigin: string };
   identity?: Omit<IdentityRoutesOptions, 'service'> & {
     service: IdentityService;
   };
@@ -63,6 +68,7 @@ export interface BuildAppOptions {
   productObservations?: Omit<ProductObservationRoutesOptions, 'service'> & {
     service: ProductObservationService;
   };
+  productDiscovery?: { service: ProductDiscoveryService };
   onClose?: () => Promise<void>;
 }
 
@@ -195,6 +201,10 @@ export async function buildApp(
     await registerCatalogRoutes(app, options.catalog);
   }
 
+  if (options.comparisons) {
+    await registerComparisonRoutes(app, options.comparisons);
+  }
+
   if (options.identity) {
     await registerIdentityRoutes(app, options.identity);
   }
@@ -213,6 +223,10 @@ export async function buildApp(
 
   if (options.productObservations) {
     await registerProductObservationRoutes(app, options.productObservations);
+  }
+
+  if (options.productDiscovery) {
+    await registerProductDiscoveryRoutes(app, options.productDiscovery);
   }
 
   if (options.webRoot) {

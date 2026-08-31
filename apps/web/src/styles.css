@@ -235,6 +235,63 @@ summary:focus-visible {
   box-shadow: 0 18px 60px rgb(43 31 22 / 10%);
 }
 
+.external-card {
+  padding: 25px;
+  border: 1px solid rgb(129 82 66 / 24%);
+}
+
+.external-badge {
+  width: fit-content;
+  margin-bottom: 17px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: #eee6dc;
+  color: #815242;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.external-card h2 {
+  margin-bottom: 8px;
+  font-family: Georgia, serif;
+  font-size: clamp(1.7rem, 7vw, 2.5rem);
+  font-weight: 500;
+}
+
+.external-card p {
+  color: #6d675f;
+  line-height: 1.5;
+}
+
+.external-card > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.external-card a,
+.external-card button {
+  display: grid;
+  min-height: 44px;
+  padding: 0 15px;
+  border: 1px solid #191713;
+  border-radius: 12px;
+  background: transparent;
+  color: #191713;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  place-items: center;
+}
+
+.external-card button {
+  background: #191713;
+  color: #fffdf8;
+}
+
 .loading {
   display: flex;
   align-items: center;
@@ -817,6 +874,283 @@ details[open] summary > span:last-child {
   padding: 22px;
   border-top: 1px solid #e7dfd5;
   background: #eee6dc;
+}
+
+.comparison-workspace {
+  margin: 0 0 48px;
+  padding: clamp(20px, 4vw, 38px);
+  border: 1px solid rgb(25 23 19 / 14%);
+  border-radius: 28px;
+  background: #fffdf8;
+  box-shadow: 0 22px 70px rgb(43 31 22 / 13%);
+}
+
+.comparison-workspace > header {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.comparison-workspace h2 {
+  margin-bottom: 10px;
+  font-family: Georgia, serif;
+  font-size: clamp(2.1rem, 9vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+.comparison-workspace > header p {
+  max-width: 590px;
+  margin-bottom: 0;
+  color: #6d675f;
+  line-height: 1.5;
+}
+
+.comparison-close,
+.add-third,
+.remove-third {
+  min-height: 42px;
+  padding: 0 13px;
+  border: 1px solid #b9ada1;
+  border-radius: 11px;
+  background: transparent;
+  color: #312c26;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.comparison-slots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.comparison-slots > label,
+.comparison-slots > .add-third {
+  min-height: 142px;
+  padding: 16px;
+  border: 1px solid #ddd2c7;
+  border-radius: 16px;
+  background: #f8f3ec;
+}
+
+.comparison-slots label > span,
+.comparison-slots label > small {
+  display: block;
+  color: #777168;
+  font-size: 0.7rem;
+}
+
+.comparison-slots label > strong {
+  display: block;
+  margin: 12px 0;
+}
+
+.comparison-slots label > div {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.comparison-slots input,
+.comparison-preferences input,
+.comparison-preferences select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 11px;
+  border: 1px solid #a99f95;
+  border-radius: 10px;
+  background: #fffdf8;
+}
+
+.comparison-slots label > div > button {
+  min-height: 40px;
+  border: 1px solid #191713;
+  border-radius: 10px;
+  background: transparent;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.comparison-slots .remove-third {
+  margin-top: 10px;
+  font-size: 0.7rem;
+}
+
+.comparison-mode,
+.comparison-preferences fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 24px 0 0;
+  padding: 16px;
+  border: 1px solid #ddd2c7;
+  border-radius: 15px;
+}
+
+.comparison-mode legend,
+.comparison-preferences legend {
+  padding: 0 7px;
+  font-weight: 850;
+}
+
+.comparison-mode label,
+.comparison-preferences fieldset label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.comparison-preferences {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.comparison-preferences fieldset {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.comparison-preferences > label {
+  display: grid;
+  gap: 7px;
+  color: #5d5850;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.compare-submit {
+  min-height: 54px;
+  margin-top: 22px;
+  padding: 0 20px;
+  border: 1px solid #191713;
+  border-radius: 14px;
+  background: #191713;
+  color: #fffdf8;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.compare-submit:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
+.comparison-error {
+  margin: 13px 0 0;
+  color: #9b3325;
+  font-weight: 750;
+}
+
+.comparison-result {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid #ddd2c7;
+}
+
+.comparison-result > header h2 {
+  max-width: 18ch;
+  font-size: clamp(1.9rem, 7vw, 3.2rem);
+}
+
+.comparison-result > header p {
+  color: #6d675f;
+}
+
+.comparison-slot-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.comparison-slot-summary article {
+  display: grid;
+  gap: 7px;
+  padding: 14px;
+  border-radius: 13px;
+  background: #eee6dc;
+}
+
+.comparison-slot-summary small,
+.comparison-slot-summary span {
+  color: #6d675f;
+  font-size: 0.7rem;
+}
+
+.criteria-list {
+  display: grid;
+  gap: 15px;
+}
+
+.criteria-list > section {
+  padding: 16px;
+  border: 1px solid #e2d8ce;
+  border-radius: 15px;
+}
+
+.criteria-list h3 {
+  margin: 0 0 13px;
+  font-family: Georgia, serif;
+  font-size: 1.2rem;
+}
+
+.criteria-list > section > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.criteria-list article {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  padding: 11px;
+  border-radius: 10px;
+  background: #f8f3ec;
+}
+
+.criteria-list article[data-outcome='ADVANTAGE'] {
+  background: #e6efe6;
+}
+
+.criteria-list article[data-outcome='DISADVANTAGE'] {
+  background: #f5e3df;
+}
+
+.criteria-list article p {
+  margin: 0;
+  color: #5d5850;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.criteria-list article small,
+.criteria-list article span {
+  color: #777168;
+  font-size: 0.68rem;
+}
+
+@media (max-width: 720px) {
+  .comparison-slots,
+  .comparison-slot-summary,
+  .criteria-list > section > div {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-preferences {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-workspace > header {
+    display: grid;
+  }
 }
 
 .card-action button:disabled {

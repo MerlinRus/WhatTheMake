@@ -9,6 +9,9 @@ import {
   CreateProductObservationInciOcrInputSchema,
   CreateProductObservationConfirmationInputSchema,
   CatalogVariantResponseSchema,
+  ComparisonPreviewInputSchema,
+  ExternalProductCandidateSchema,
+  ProductDiscoveryResponseSchema,
   CursorPageInfoSchema,
   CursorQuerySchema,
   LoginInputSchema,
@@ -92,6 +95,80 @@ test('catalog lookup contract keeps exact variant and public provenance', () => 
   );
   assert.equal(
     Value.Check(CatalogBarcodeParamsSchema, { gtin: '4006381333931\n' }),
+    false,
+  );
+});
+
+test('discovery contract separates unverified external data from catalog data', () => {
+  const candidate = {
+    schemaVersion: 1,
+    gtin: '4006381333931',
+    confidence: 'LOW',
+    provider: 'OPEN_BEAUTY_FACTS',
+    providerLabel: 'Open Beauty Facts',
+    productUrl: 'https://world.openbeautyfacts.org/product/4006381333931',
+    fetchedAt: '2026-08-31T08:00:00.000Z',
+    brandName: 'Example',
+    productName: 'Mascara',
+    quantity: '10 ml',
+  };
+  assert.equal(Value.Check(ExternalProductCandidateSchema, candidate), true);
+  assert.equal(
+    Value.Check(ProductDiscoveryResponseSchema, {
+      discovery: { state: 'FOUND', candidate },
+    }),
+    true,
+  );
+  assert.equal(
+    Value.Check(ExternalProductCandidateSchema, {
+      ...candidate,
+      productUrl: 'https://attacker.example/product/4006381333931',
+    }),
+    false,
+  );
+  assert.equal(
+    Value.Check(ProductDiscoveryResponseSchema, {
+      discovery: {
+        state: 'NOT_FOUND',
+        gtin: '1234567890',
+        provider: 'OPEN_BEAUTY_FACTS',
+      },
+    }),
+    false,
+  );
+});
+
+test('comparison input accepts only two or three distinct strict GTIN slots', () => {
+  const brief = {
+    mode: 'UNKNOWN_GOALS',
+    waterproof: 'NO_PREFERENCE',
+    removal: 'NO_PREFERENCE',
+    sensitiveEyes: false,
+    contactLenses: false,
+    avoidedIngredients: [],
+  };
+  assert.equal(
+    Value.Check(ComparisonPreviewInputSchema, {
+      schemaVersion: 1,
+      gtins: ['4006381333931', '5901234123457'],
+      brief,
+    }),
+    true,
+  );
+  assert.equal(
+    Value.Check(ComparisonPreviewInputSchema, {
+      schemaVersion: 1,
+      gtins: ['4006381333931', '4006381333931'],
+      brief,
+    }),
+    false,
+  );
+  assert.equal(
+    Value.Check(ComparisonPreviewInputSchema, {
+      schemaVersion: 1,
+      gtins: ['4006381333931'],
+      brief,
+    }),
     false,
   );
 });

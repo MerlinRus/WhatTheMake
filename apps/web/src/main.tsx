@@ -11,12 +11,15 @@ import { Value } from 'typebox/value';
 
 import {
   CatalogVariantResponseSchema,
+  ProductDiscoveryResponseSchema,
   type CatalogSource,
   type CatalogVariantResponse,
+  type ExternalProductCandidate,
 } from '@wtm/contracts';
 
 import './styles.css';
 import { ProductObservationCapture } from './product-observation.js';
+import { ProductComparison } from './comparison.js';
 
 interface ScannerShellProps {
   onClose(): void;
@@ -49,8 +52,11 @@ type Variant = CatalogVariantResponse['variant'];
 type LookupState =
   | { kind: 'IDLE' }
   | { kind: 'LOADING' }
+  | { kind: 'DISCOVERING'; gtin: string }
   | { kind: 'FOUND'; variant: Variant }
+  | { kind: 'EXTERNAL'; candidate: ExternalProductCandidate }
   | { kind: 'NOT_FOUND'; gtin: string }
+  | { kind: 'DISCOVERY_UNAVAILABLE'; gtin: string }
   | { kind: 'OBSERVING'; gtin: string }
   | { kind: 'INVALID' }
   | { kind: 'UNAVAILABLE' };
@@ -104,7 +110,13 @@ function SourceLine({
   );
 }
 
-function ProductCard({ variant }: { variant: Variant }) {
+function ProductCard({
+  variant,
+  onCompare,
+}: {
+  variant: Variant;
+  onCompare(): void;
+}) {
   const quantity = formatQuantity(variant);
   const waterproof =
     variant.isWaterproof === null
@@ -200,10 +212,10 @@ function ProductCard({ variant }: { variant: Variant }) {
       </section>
 
       <div className="card-action">
-        <button type="button" disabled>
+        <button type="button" onClick={onCompare}>
           Сравнить с другим
         </button>
-        <small>Сравнение появится в следующем продуктовом срезе</small>
+        <small>Два или три точных GTIN · без универсального score</small>
       </div>
     </article>
   );
@@ -212,9 +224,11 @@ function ProductCard({ variant }: { variant: Variant }) {
 function StatusPanel({
   state,
   onObserve,
+  onCompare,
 }: {
   state: LookupState;
   onObserve(gtin: string): void;
+  onCompare(variant: Variant): void;
 }) {
   if (state.kind === 'IDLE') return null;
   if (state.kind === 'LOADING') {
@@ -224,7 +238,48 @@ function StatusPanel({
       </div>
     );
   }
-  if (state.kind === 'FOUND') return <ProductCard variant={state.variant} />;
+  if (state.kind === 'DISCOVERING') {
+    return (
+      <div className="status-panel loading" role="status">
+        <span aria-hidden="true" /> Ищем GTIN в открытом каталоге…
+      </div>
+    );
+  }
+  if (state.kind === 'FOUND')
+    return (
+      <ProductCard
+        variant={state.variant}
+        onCompare={() => onCompare(state.variant)}
+      />
+    );
+  if (state.kind === 'EXTERNAL') {
+    return (
+      <article className="status-panel external-card">
+        <div className="external-badge">
+          Open Beauty Facts · данные не проверены
+        </div>
+        <h2>{state.candidate.productName}</h2>
+        <p>
+          {state.candidate.brandName ?? 'Бренд не указан'}
+          {state.candidate.quantity === null
+            ? ''
+            : ` · ${state.candidate.quantity}`}
+        </p>
+        <p>
+          Карточка найдена автоматически, но ещё не подтверждена в What The
+          Make.
+        </p>
+        <div>
+          <a href={state.candidate.productUrl} target="_blank" rel="noreferrer">
+            Открыть источник
+          </a>
+          <button type="button" onClick={() => onObserve(state.candidate.gtin)}>
+            Подтвердить по фото
+          </button>
+        </div>
+      </article>
+    );
+  }
   if (state.kind === 'OBSERVING') {
     return <ProductObservationCapture gtin={state.gtin} />;
   }
@@ -242,6 +297,10 @@ function StatusPanel({
       title: 'Каталог временно недоступен',
       text: 'Попробуйте ещё раз через несколько секунд.',
     },
+    DISCOVERY_UNAVAILABLE: {
+      title: 'Внешний поиск временно недоступен',
+      text: 'В нашей базе товара нет. Можно добавить его по фото или повторить поиск позже.',
+    },
   }[state.kind];
 
   return (
@@ -252,7 +311,8 @@ function StatusPanel({
       <div>
         <h2>{content.title}</h2>
         <p>{content.text}</p>
-        {state.kind === 'NOT_FOUND' && (
+        {(state.kind === 'NOT_FOUND' ||
+          state.kind === 'DISCOVERY_UNAVAILABLE') && (
           <button
             className="start-observation"
             type="button"
@@ -270,9 +330,18 @@ function App() {
   const [gtin, setGtin] = useState('');
   const [state, setState] = useState<LookupState>({ kind: 'IDLE' });
   const [scannerOpen, setScannerOpen] = useState(false);
+  const [comparisonVariant, setComparisonVariant] = useState<Variant | null>(
+    null,
+  );
   const scanButtonRef = useRef<HTMLButtonElement>(null);
+  const scanReceiverRef = useRef<((value: string) => void) | null>(null);
+  const scannerReturnFocusRef = useRef<HTMLElement | null>(null);
+  const comparisonReturnFocusRef = useRef<HTMLElement | null>(null);
+  const lookupGeneration = useRef(0);
 
   async function lookup(value: string) {
+    const generation = ++lookupGeneration.current;
+    let catalogMiss = false;
     if (![8, 12, 13, 14].includes(value.length)) {
       setState({ kind: 'INVALID' });
       return;
@@ -284,7 +353,31 @@ function App() {
         headers: { Accept: 'application/json' },
       });
       if (response.status === 404) {
-        setState({ kind: 'NOT_FOUND', gtin: value });
+        catalogMiss = true;
+        setState({ kind: 'DISCOVERING', gtin: value });
+        const discoveryResponse = await fetch(
+          `/api/v1/discovery/barcodes/${value}`,
+          {
+            headers: { Accept: 'application/json' },
+          },
+        );
+        if (!discoveryResponse.ok)
+          throw new Error(`Discovery returned ${discoveryResponse.status}`);
+        const discoveryPayload: unknown = await discoveryResponse.json();
+        if (!Value.Check(ProductDiscoveryResponseSchema, discoveryPayload)) {
+          throw new Error('Discovery returned an invalid response');
+        }
+        if (generation !== lookupGeneration.current) return;
+        if (discoveryPayload.discovery.state === 'FOUND') {
+          setState({
+            kind: 'EXTERNAL',
+            candidate: discoveryPayload.discovery.candidate,
+          });
+        } else if (discoveryPayload.discovery.state === 'NOT_FOUND') {
+          setState({ kind: 'NOT_FOUND', gtin: value });
+        } else {
+          setState({ kind: 'DISCOVERY_UNAVAILABLE', gtin: value });
+        }
         return;
       }
       if (response.status === 400) {
@@ -297,9 +390,16 @@ function App() {
       if (!Value.Check(CatalogVariantResponseSchema, payload)) {
         throw new Error('Catalog returned an invalid response');
       }
-      setState({ kind: 'FOUND', variant: payload.variant });
+      if (generation === lookupGeneration.current)
+        setState({ kind: 'FOUND', variant: payload.variant });
     } catch {
-      setState({ kind: 'UNAVAILABLE' });
+      if (generation === lookupGeneration.current) {
+        setState(
+          catalogMiss
+            ? { kind: 'DISCOVERY_UNAVAILABLE', gtin: value }
+            : { kind: 'UNAVAILABLE' },
+        );
+      }
     }
   }
 
@@ -310,14 +410,21 @@ function App() {
 
   function closeScanner() {
     setScannerOpen(false);
-    requestAnimationFrame(() => scanButtonRef.current?.focus());
+    scanReceiverRef.current = null;
+    requestAnimationFrame(() => scannerReturnFocusRef.current?.focus());
   }
 
   function useDetectedBarcode(value: string) {
-    setGtin(value);
+    const receiver = scanReceiverRef.current;
+    scanReceiverRef.current = null;
     setScannerOpen(false);
-    requestAnimationFrame(() => scanButtonRef.current?.focus());
-    void lookup(value);
+    requestAnimationFrame(() => scannerReturnFocusRef.current?.focus());
+    if (receiver !== null) {
+      receiver(value);
+    } else {
+      setGtin(value);
+      void lookup(value);
+    }
   }
 
   return (
@@ -365,7 +472,11 @@ function App() {
               ref={scanButtonRef}
               className="scan-button"
               type="button"
-              onClick={() => setScannerOpen(true)}
+              onClick={() => {
+                scanReceiverRef.current = null;
+                scannerReturnFocusRef.current = scanButtonRef.current;
+                setScannerOpen(true);
+              }}
             >
               <span aria-hidden="true" />
               Сканировать камерой
@@ -380,9 +491,36 @@ function App() {
           <StatusPanel
             state={state}
             onObserve={(value) => setState({ kind: 'OBSERVING', gtin: value })}
+            onCompare={(variant) => {
+              comparisonReturnFocusRef.current =
+                document.activeElement instanceof HTMLElement
+                  ? document.activeElement
+                  : null;
+              setComparisonVariant(variant);
+            }}
           />
         </div>
       </main>
+
+      {comparisonVariant !== null && (
+        <ProductComparison
+          initialVariant={comparisonVariant}
+          onClose={() => {
+            setComparisonVariant(null);
+            requestAnimationFrame(() =>
+              comparisonReturnFocusRef.current?.focus(),
+            );
+          }}
+          onScan={(receiver) => {
+            scanReceiverRef.current = receiver;
+            scannerReturnFocusRef.current =
+              document.activeElement instanceof HTMLElement
+                ? document.activeElement
+                : null;
+            setScannerOpen(true);
+          }}
+        />
+      )}
 
       <footer>
         <p>Состав и claims объясняются осторожно. Без медицинских выводов.</p>

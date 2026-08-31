@@ -2,17 +2,23 @@ import {
   createLocalMediaStorage,
   createMediaRecoveryWorker,
   createPostgresDatabase,
+  createOpenBeautyFactsProductProvider,
   type MediaRecoveryWorker,
 } from '@wtm/infrastructure';
 
 import { buildApp } from './app.js';
 import { createCatalogLookupService } from './catalog/service.js';
+import {
+  createComparisonService,
+  createNoDataComparisonReviewSignalProvider,
+} from './comparison/service.js';
 import { loadServerConfig } from './config.js';
 import { createIdentityService } from './identity/service.js';
 import { createInciCorrectionService } from './inci-corrections/service.js';
 import { createMediaService } from './media/service.js';
 import { createMascaraPreferencesService } from './preferences/service.js';
 import { createProductObservationService } from './product-observations/service.js';
+import { createProductDiscoveryService } from './product-discovery/service.js';
 import {
   createProviderRuntime,
   type ProviderRuntime,
@@ -58,6 +64,12 @@ async function start(): Promise<void> {
       identity: identityService,
       repository: database.productObservations,
     });
+    const catalogService = createCatalogLookupService({
+      repository: database.catalog,
+    });
+    const productDiscoveryService = createProductDiscoveryService({
+      provider: createOpenBeautyFactsProductProvider(),
+    });
     let mediaRecoveryWorker: MediaRecoveryWorker | null = null;
     const app = await buildApp({
       database,
@@ -73,7 +85,15 @@ async function start(): Promise<void> {
           : false,
       webRoot: config.webRoot,
       catalog: {
-        service: createCatalogLookupService({ repository: database.catalog }),
+        service: catalogService,
+      },
+      comparisons: {
+        service: createComparisonService({
+          catalog: catalogService,
+          discovery: productDiscoveryService,
+          reviews: createNoDataComparisonReviewSignalProvider(),
+        }),
+        publicOrigin: config.publicOrigin,
       },
       identity: {
         service: identityService,
@@ -111,6 +131,9 @@ async function start(): Promise<void> {
         service: productObservationService,
         publicOrigin: config.publicOrigin,
         cookieName,
+      },
+      productDiscovery: {
+        service: productDiscoveryService,
       },
       onClose: async () => {
         await mediaRecoveryWorker?.stop();
