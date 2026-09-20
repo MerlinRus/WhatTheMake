@@ -14,6 +14,7 @@ export type ExternalProductDiscoveryResult =
       brandName: string | null;
       productName: string;
       quantity: string | null;
+      category?: 'MASCARA' | 'OTHER' | 'UNKNOWN';
       fetchedAt: Date;
     }
   | { kind: 'NOT_FOUND'; gtin: string }

@@ -61,6 +61,7 @@ export function createProductDiscoveryService(options: {
               brandName: result.brandName,
               productName: result.productName,
               quantity: result.quantity,
+              category: result.category ?? 'UNKNOWN',
             },
           },
         };

@@ -125,12 +125,29 @@ function parseProduct(
       reason: 'INVALID_RESPONSE',
     };
   }
+  const categories = Array.isArray(product.categories_tags)
+    ? product.categories_tags.filter(
+        (value): value is string => typeof value === 'string',
+      )
+    : [];
+  const category = /\b(?:primer|primers|brow|brows)\b/iu.test(productName)
+    ? 'OTHER'
+    : categories.includes('en:mascaras')
+      ? 'MASCARA'
+      : categories.some((value) =>
+            /(?:mouthwash|oral|dental|toothpaste|shampoo|lipstick|perfume)/u.test(
+              value,
+            ),
+          )
+        ? 'OTHER'
+        : 'UNKNOWN';
   return {
     kind: 'FOUND',
     gtin: gtin.value,
     brandName: boundedText(product.brands, 200),
     productName,
     quantity: boundedText(product.quantity, 100),
+    category,
     fetchedAt,
   };
 }
@@ -174,7 +191,7 @@ export function createOpenBeautyFactsProductProvider(
       url.searchParams.set('product_type', 'beauty');
       url.searchParams.set(
         'fields',
-        'code,product_name,product_name_ru,brands,quantity',
+        'code,product_name,product_name_ru,brands,quantity,categories_tags',
       );
       const response = await transport(url, {
         method: 'GET',

@@ -52,6 +52,10 @@ function slotTitle(
   }
   if (slot.state === 'DUPLICATE_VARIANT') return 'Повтор того же варианта';
   if (slot.state === 'INVALID_GTIN') return 'Некорректный GTIN';
+  if (slot.state === 'SOURCE_UNAVAILABLE')
+    return 'Источник временно недоступен — повторите поиск';
+  if (slot.state === 'UNSUPPORTED_CATEGORY')
+    return 'Этот товар не относится к поддерживаемой категории';
   return 'Товар не найден';
 }
 
@@ -88,6 +92,12 @@ function ComparisonResult({
             : 'Данных недостаточно или различия слишком близки. Это нормальный результат.'}
         </p>
       </header>
+
+      {response.comparison.warnings?.map((warning) => (
+        <p key={warning} className="comparison-error" role="note">
+          {warning}
+        </p>
+      ))}
 
       <div className="comparison-slot-summary">
         {response.comparison.slots.map((slot) => (

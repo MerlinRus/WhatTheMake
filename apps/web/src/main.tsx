@@ -266,16 +266,22 @@ function StatusPanel({
             : ` · ${state.candidate.quantity}`}
         </p>
         <p>
-          Карточка найдена автоматически, но ещё не подтверждена в What The
-          Make.
+          {state.candidate.category === 'OTHER'
+            ? 'Этот товар не относится к туши. Его разбор пока не поддерживается.'
+            : 'Карточка найдена автоматически. Проверьте по упаковке, что это именно ваша тушь: вариант ещё не подтверждён.'}
         </p>
         <div>
           <a href={state.candidate.productUrl} target="_blank" rel="noreferrer">
             Открыть источник
           </a>
-          <button type="button" onClick={() => onObserve(state.candidate.gtin)}>
-            Подтвердить по фото
-          </button>
+          {state.candidate.category !== 'OTHER' && (
+            <button
+              type="button"
+              onClick={() => onObserve(state.candidate.gtin)}
+            >
+              Подтвердить по фото
+            </button>
+          )}
         </div>
       </article>
     );

@@ -92,6 +92,7 @@ async function start(): Promise<void> {
           catalog: catalogService,
           discovery: productDiscoveryService,
           reviews: createNoDataComparisonReviewSignalProvider(),
+          dictionary: database.inciDictionary,
         }),
         publicOrigin: config.publicOrigin,
       },

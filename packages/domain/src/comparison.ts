@@ -1,5 +1,5 @@
-import { normalizeInciLookupText } from './inci-canonicalization.js';
-import { parseInci } from './inci.js';
+import type { InciDictionarySnapshot } from './inci-canonicalization.js';
+import { assessIngredientExclusions } from './ingredient-exclusions.js';
 
 export type ComparisonReasonCode =
   | 'INSUFFICIENT_READY_SLOTS'
@@ -9,6 +9,9 @@ export type ComparisonReasonCode =
   | 'EVIDENCE_TOO_CLOSE'
   | 'CONFLICTING_CRITERIA'
   | 'HARD_CONSTRAINT_DATA_MISSING'
+  | 'HARD_CONSTRAINT_VIOLATED'
+  | 'EASY_REMOVAL_MATCH'
+  | 'CONTEXT_NOT_ASSESSED'
   | 'NO_SUPPORTED_DIFFERENCE'
   | 'EXACT_CATALOG_IDENTITY'
   | 'WATERPROOF_MATCH'
@@ -64,7 +67,12 @@ export interface BlockedComparisonCandidate {
   slotIndex: number;
   gtin: string;
   reason:
-    'NOT_FOUND' | 'INVALID_GTIN' | 'EXTERNAL_CANDIDATE' | 'DUPLICATE_VARIANT';
+    | 'NOT_FOUND'
+    | 'INVALID_GTIN'
+    | 'EXTERNAL_CANDIDATE'
+    | 'DUPLICATE_VARIANT'
+    | 'SOURCE_UNAVAILABLE'
+    | 'UNSUPPORTED_CATEGORY';
 }
 
 export type ComparisonCandidate =
@@ -76,6 +84,8 @@ export type ComparisonBrief =
       waterproof: 'REQUIRED' | 'AVOID' | 'NO_PREFERENCE';
       removal: 'EASY_REQUIRED' | 'NO_PREFERENCE';
       avoidedIngredients: readonly string[];
+      sensitiveEyes?: boolean;
+      contactLenses?: boolean;
     }
   | {
       mode: 'PERSONALIZED';
@@ -83,6 +93,8 @@ export type ComparisonBrief =
       waterproof: 'REQUIRED' | 'AVOID' | 'NO_PREFERENCE';
       removal: 'EASY_REQUIRED' | 'NO_PREFERENCE';
       avoidedIngredients: readonly string[];
+      sensitiveEyes?: boolean;
+      contactLenses?: boolean;
     };
 
 export interface DomainCriterionObservation {
@@ -123,19 +135,10 @@ interface HardEvidence {
   missing: boolean;
 }
 
-function ingredientKeys(formulaText: string): ReadonlySet<string> | null {
-  const parsed = parseInci(formulaText);
-  if (parsed.kind !== 'PARSED') return null;
-  return new Set(
-    parsed.tokens.flatMap((token) =>
-      token.kind === 'UNRESOLVED' ? [] : [normalizeInciLookupText(token.text)],
-    ),
-  );
-}
-
 function hardEvidence(
   candidate: ReadyComparisonCandidate,
   brief: ComparisonBrief,
+  dictionary: InciDictionarySnapshot | null,
 ): HardEvidence {
   const evidence: string[] = [];
   let violations = 0;
@@ -164,27 +167,35 @@ function hardEvidence(
   }
 
   if (brief.avoidedIngredients.length > 0) {
-    if (candidate.formulaText === null) {
-      missing = true;
-    } else {
-      const keys = ingredientKeys(candidate.formulaText);
-      if (keys === null) {
-        missing = true;
-      } else {
-        const present = brief.avoidedIngredients
-          .map(normalizeInciLookupText)
-          .filter((ingredient) => keys.has(ingredient));
-        if (present.length > 0) {
-          violations += present.length;
-          reasonCode = 'AVOIDED_INGREDIENT_PRESENT';
-          evidence.push(`В составе найдено: ${present.join(', ')}`);
-        } else {
-          matches += 1;
-          reasonCode = 'AVOIDED_INGREDIENT_ABSENT';
-          evidence.push('Указанные исключения не найдены точным совпадением');
-        }
-      }
+    const checked = assessIngredientExclusions(
+      candidate.formulaText,
+      brief.avoidedIngredients,
+      dictionary,
+    );
+    missing ||= checked.uncertain;
+    if (checked.present.length > 0) {
+      violations += checked.present.length;
+      reasonCode = 'AVOIDED_INGREDIENT_PRESENT';
+      evidence.push(`В составе найдены исключения (${checked.present.length})`);
+    } else if (!checked.uncertain) {
+      matches += 1;
+      if (violations === 0) reasonCode = 'AVOIDED_INGREDIENT_ABSENT';
+      evidence.push('Исключения не найдены в сопоставленном составе');
     }
+  }
+
+  if (brief.removal === 'EASY_REQUIRED') {
+    if (candidate.claimKinds.includes('EASY_REMOVAL')) {
+      matches += 1;
+      if (violations === 0) reasonCode = 'EASY_REMOVAL_MATCH';
+      evidence.push('Производитель заявляет лёгкое снятие');
+    } else missing = true;
+  }
+  if (brief.sensitiveEyes || brief.contactLenses) {
+    evidence.push(
+      'Подходящесть для чувствительных глаз и контактных линз не установлена',
+    );
+    if (matches === 0 && violations === 0) reasonCode = 'CONTEXT_NOT_ASSESSED';
   }
 
   if (violations > 0) {
@@ -256,6 +267,7 @@ export function compareMascaras(input: {
   candidates: readonly ComparisonCandidate[];
   brief: ComparisonBrief;
   now: Date;
+  dictionary?: InciDictionarySnapshot | null;
 }): DomainComparisonResult {
   const ready = input.candidates.filter(
     (candidate): candidate is ReadyComparisonCandidate =>
@@ -264,7 +276,7 @@ export function compareMascaras(input: {
   const hardBySlot = new Map(
     ready.map((candidate) => [
       candidate.slotIndex,
-      hardEvidence(candidate, input.brief),
+      hardEvidence(candidate, input.brief, input.dictionary ?? null),
     ]),
   );
   const goalMatches = new Map(
@@ -434,7 +446,12 @@ export function compareMascaras(input: {
     (candidate) =>
       candidate.state === 'BLOCKED' && candidate.reason === 'DUPLICATE_VARIANT',
   );
-  if (ready.length < 2 || external || duplicate) {
+  if (
+    ready.length < 2 ||
+    ready.length !== input.candidates.length ||
+    external ||
+    duplicate
+  ) {
     return {
       recommendation: {
         kind: 'NO_CLEAR_WINNER',
@@ -442,7 +459,9 @@ export function compareMascaras(input: {
         reasonCodes: [
           ...(external ? (['EXTERNAL_IDENTITY_UNCONFIRMED'] as const) : []),
           ...(duplicate ? (['DUPLICATE_VARIANT'] as const) : []),
-          ...(ready.length < 2 ? (['INSUFFICIENT_READY_SLOTS'] as const) : []),
+          ...(ready.length < 2 || ready.length !== input.candidates.length
+            ? (['INSUFFICIENT_READY_SLOTS'] as const)
+            : []),
         ],
       },
       criteria,
@@ -453,7 +472,9 @@ export function compareMascaras(input: {
     candidate,
     evidence: hardBySlot.get(candidate.slotIndex)!,
   }));
-  if (hard.some(({ evidence }) => evidence.missing)) {
+  if (
+    hard.some(({ evidence }) => evidence.violations === 0 && evidence.missing)
+  ) {
     return {
       recommendation: {
         kind: 'NO_CLEAR_WINNER',
@@ -463,24 +484,29 @@ export function compareMascaras(input: {
       criteria,
     };
   }
-  const bestHard = [...hard].sort(
-    (left, right) =>
-      left.evidence.violations - right.evidence.violations ||
-      right.evidence.matches - left.evidence.matches,
+  const eligible = hard.filter(
+    ({ evidence }) => evidence.violations === 0 && !evidence.missing,
   );
-  const hardWinner = bestHard[0];
-  const hardRunnerUp = bestHard[1];
-  if (
-    hardWinner &&
-    hardRunnerUp &&
-    (hardWinner.evidence.violations < hardRunnerUp.evidence.violations ||
-      hardWinner.evidence.matches > hardRunnerUp.evidence.matches)
-  ) {
+  if (eligible.length === 0) {
+    return {
+      recommendation: {
+        kind: 'NO_CLEAR_WINNER',
+        confidence: 'MEDIUM',
+        reasonCodes: ['HARD_CONSTRAINT_VIOLATED'],
+      },
+      criteria,
+    };
+  }
+  const hardWinner = eligible[0];
+  if (eligible.length === 1 && hardWinner) {
     return {
       recommendation: {
         kind: 'PREFERRED',
         productVariantId: hardWinner.candidate.productVariantId,
-        confidence: 'HIGH',
+        confidence:
+          hardWinner.evidence.reasonCode === 'EASY_REMOVAL_MATCH'
+            ? 'MEDIUM'
+            : 'HIGH',
         reasonCodes: [hardWinner.evidence.reasonCode],
       },
       criteria,
@@ -488,11 +514,13 @@ export function compareMascaras(input: {
   }
 
   if (input.brief.mode === 'PERSONALIZED') {
-    const ordered = [...ready].sort(
-      (left, right) =>
-        (goalMatches.get(right.slotIndex) ?? 0) -
-        (goalMatches.get(left.slotIndex) ?? 0),
-    );
+    const ordered = eligible
+      .map(({ candidate }) => candidate)
+      .sort(
+        (left, right) =>
+          (goalMatches.get(right.slotIndex) ?? 0) -
+          (goalMatches.get(left.slotIndex) ?? 0),
+      );
     const winner = ordered[0];
     const runnerUp = ordered[1];
     if (
@@ -513,9 +541,15 @@ export function compareMascaras(input: {
     }
   }
 
-  if (reviewable.length === ready.length) {
-    const winner = orderedReviews[0];
-    const runnerUp = orderedReviews[1];
+  const eligibleIds = new Set(
+    eligible.map(({ candidate }) => candidate.productVariantId),
+  );
+  const eligibleReviews = orderedReviews.filter((candidate) =>
+    eligibleIds.has(candidate.productVariantId),
+  );
+  if (eligibleReviews.length === eligible.length) {
+    const winner = eligibleReviews[0];
+    const runnerUp = eligibleReviews[1];
     if (
       winner &&
       runnerUp &&

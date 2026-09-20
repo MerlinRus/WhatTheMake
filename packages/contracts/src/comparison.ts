@@ -3,7 +3,10 @@ import { Type, type Static } from 'typebox';
 import { CatalogVariantSchema } from './catalog.js';
 import { IsoDateTimeSchema, UuidSchema } from './common.js';
 import { MascaraBriefInputSchema } from './mascara-preferences.js';
-import { ExternalProductCandidateSchema } from './product-discovery.js';
+import {
+  ExternalProductCandidateSchema,
+  ProductDiscoveryUnavailableReasonSchema,
+} from './product-discovery.js';
 
 const GtinSchema = Type.String({
   pattern: '^(?:[0-9]{8}|[0-9]{12}|[0-9]{13}|[0-9]{14})$',
@@ -45,6 +48,23 @@ export type ComparisonReviewSignal = Static<
 >;
 
 export const ComparisonSlotSchema = Type.Union([
+  Type.Object(
+    {
+      state: Type.Literal('SOURCE_UNAVAILABLE'),
+      slotIndex: Type.Integer({ minimum: 0, maximum: 2 }),
+      gtin: GtinSchema,
+      reason: ProductDiscoveryUnavailableReasonSchema,
+    },
+    { additionalProperties: false },
+  ),
+  Type.Object(
+    {
+      state: Type.Literal('UNSUPPORTED_CATEGORY'),
+      slotIndex: Type.Integer({ minimum: 0, maximum: 2 }),
+      gtin: GtinSchema,
+    },
+    { additionalProperties: false },
+  ),
   Type.Object(
     {
       state: Type.Literal('READY'),
@@ -116,6 +136,9 @@ export const ComparisonReasonCodeSchema = Type.Union([
   Type.Literal('EVIDENCE_TOO_CLOSE'),
   Type.Literal('CONFLICTING_CRITERIA'),
   Type.Literal('HARD_CONSTRAINT_DATA_MISSING'),
+  Type.Literal('HARD_CONSTRAINT_VIOLATED'),
+  Type.Literal('EASY_REMOVAL_MATCH'),
+  Type.Literal('CONTEXT_NOT_ASSESSED'),
   Type.Literal('NO_SUPPORTED_DIFFERENCE'),
   Type.Literal('EXACT_CATALOG_IDENTITY'),
   Type.Literal('WATERPROOF_MATCH'),
@@ -205,11 +228,19 @@ export const ComparisonPreviewResponseSchema = Type.Object(
     comparison: Type.Object(
       {
         schemaVersion: Type.Literal(1),
-        rulesVersion: Type.Literal('mascara-comparison-v1'),
+        rulesVersion: Type.Union([
+          Type.Literal('mascara-comparison-v1'),
+          Type.Literal('mascara-comparison-v2'),
+        ]),
         mode: Type.Union([
           Type.Literal('UNKNOWN_GOALS'),
           Type.Literal('PERSONALIZED'),
         ]),
+        warnings: Type.Optional(
+          Type.Array(Type.String({ minLength: 1, maxLength: 500 }), {
+            maxItems: 4,
+          }),
+        ),
         slots: Type.Array(ComparisonSlotSchema, {
           minItems: 2,
           maxItems: 3,

@@ -26,7 +26,7 @@ function deepSeekResponse(outputText: string): Response {
       object: 'response',
       created_at: 1_787_817_600,
       status: 'completed',
-      model: 'deepseek-v4-flash',
+      model: 'deepseek-flash',
       output: [
         {
           type: 'message',
@@ -76,7 +76,7 @@ test('DeepSeek adapter isolates malicious text and accepts only a strict draft',
 
   assert.deepEqual(result, {
     providerId: 'DEEPSEEK',
-    modelId: 'deepseek-v4-flash',
+    modelId: 'deepseek-flash',
     promptVersion: DEEPSEEK_PROMPT_VERSION,
     kind: 'SUCCEEDED',
     draft: {
@@ -89,7 +89,7 @@ test('DeepSeek adapter isolates malicious text and accepts only a strict draft',
   });
   assert.equal(capturedUrl, 'https://api.deepseek.com/responses');
   assert.equal(capturedHeaders.get('authorization'), `Bearer ${apiKey}`);
-  assert.equal(capturedBody['model'], 'deepseek-v4-flash');
+  assert.equal(capturedBody['model'], 'deepseek-flash');
   assert.equal(capturedBody['temperature'], 0);
   assert.deepEqual(capturedBody['reasoning'], { effort: 'none' });
   assert.equal(capturedBody['tools'], undefined);
@@ -159,7 +159,7 @@ test('DeepSeek adapter rejects malformed and semantically invalid answers', asyn
     });
     assert.deepEqual(await provider.transform(request), {
       providerId: 'DEEPSEEK',
-      modelId: 'deepseek-v4-flash',
+      modelId: 'deepseek-flash',
       promptVersion: DEEPSEEK_PROMPT_VERSION,
       kind: 'FALLBACK',
       code: 'LLM_INVALID_RESPONSE',
@@ -185,7 +185,7 @@ test('DeepSeek adapter maps provider errors without exposing their body', async 
   });
   assert.deepEqual(await rateLimited.transform(request), {
     providerId: 'DEEPSEEK',
-    modelId: 'deepseek-v4-flash',
+    modelId: 'deepseek-flash',
     promptVersion: DEEPSEEK_PROMPT_VERSION,
     kind: 'FALLBACK',
     code: 'LLM_RATE_LIMITED',
@@ -262,7 +262,7 @@ test('disabled DeepSeek provider never calls the network and returns stable fall
 
   assert.deepEqual(await provider.transform(request), {
     providerId: 'DEEPSEEK',
-    modelId: 'deepseek-v4-flash',
+    modelId: 'deepseek-flash',
     promptVersion: DEEPSEEK_PROMPT_VERSION,
     kind: 'FALLBACK',
     code: 'LLM_DISABLED',

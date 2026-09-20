@@ -155,3 +155,28 @@ test('Open Beauty Facts provider bounds request time', async () => {
     reason: 'TIMEOUT',
   });
 });
+
+test('discovery distinguishes mascara, primer, oral care and unknown category', async () => {
+  for (const [productName, tags, expected] of [
+    ['Mascara', ['en:mascaras'], 'MASCARA'],
+    ['Lash Paradise Mascara Primer', ['en:mascaras'], 'OTHER'],
+    ['Solution dentaire', ['en:mouthwashes'], 'OTHER'],
+    ['Brow Mascara', ['en:mascaras'], 'OTHER'],
+    ['Unclassified product', [], 'UNKNOWN'],
+  ] as const) {
+    const provider = createOpenBeautyFactsProductProvider({
+      fetch: async () =>
+        jsonResponse({
+          code: '4006381333931',
+          product: {
+            code: '4006381333931',
+            product_name: productName,
+            categories_tags: tags,
+          },
+        }),
+    });
+    const result = await provider.discover(gtin());
+    assert.equal(result.kind, 'FOUND');
+    if (result.kind === 'FOUND') assert.equal(result.category, expected);
+  }
+});

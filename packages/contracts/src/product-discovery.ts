@@ -37,6 +37,13 @@ export const ExternalProductCandidateSchema = Type.Object(
       Type.String({ minLength: 1, maxLength: 100 }),
       Type.Null(),
     ]),
+    category: Type.Optional(
+      Type.Union([
+        Type.Literal('MASCARA'),
+        Type.Literal('OTHER'),
+        Type.Literal('UNKNOWN'),
+      ]),
+    ),
   },
   { additionalProperties: false },
 );

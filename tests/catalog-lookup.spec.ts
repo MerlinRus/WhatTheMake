@@ -183,19 +183,15 @@ async function installSlowCamera(page: Page): Promise<void> {
       value: {
         getUserMedia: async () => {
           const canvas = document.createElement('canvas');
+          canvas.getContext('2d')?.fillRect(0, 0, 10, 10);
+          Reflect.set(window, '__wtmCameraCanvas', canvas);
           const stream = canvas.captureStream(1);
+          Reflect.set(window, '__wtmPendingStream', stream);
           const track = stream.getVideoTracks()[0];
           if (track === undefined) throw new Error('Video track unavailable');
-          const nativeStop = track.stop.bind(track);
-          track.stop = () => {
-            Reflect.set(
-              window,
-              '__wtmCameraStopCount',
-              Number(Reflect.get(window, '__wtmCameraStopCount') ?? 0) + 1,
-            );
-            nativeStop();
-          };
-          await new Promise((resolve) => window.setTimeout(resolve, 350));
+          await new Promise<void>((resolve) => {
+            Reflect.set(window, '__wtmReleaseCamera', resolve);
+          });
           return stream;
         },
       },
@@ -262,15 +258,32 @@ test('quick camera close stops a stream returned after unmount', async ({
   await installSlowCamera(page);
   await page.goto('/');
   await page.getByRole('button', { name: 'Сканировать камерой' }).click();
+  // The lazy scanner must actually request a stream before testing its cleanup.
+  await expect
+    .poll(() =>
+      page.evaluate(() => typeof Reflect.get(window, '__wtmReleaseCamera')),
+    )
+    .toBe('function');
   await page.getByRole('button', { name: 'Закрыть камеру' }).click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
+  // The mock is still live and has not been handed to the closed session yet.
+  expect(
+    await page.evaluate(() =>
+      (Reflect.get(window, '__wtmPendingStream') as MediaStream)
+        .getTracks()
+        .map((t) => t.readyState),
+    ),
+  ).toEqual(['live']);
+  await page.evaluate(() => Reflect.get(window, '__wtmReleaseCamera')());
   await expect
     .poll(() =>
       page.evaluate(() =>
-        Number(Reflect.get(window, '__wtmCameraStopCount') ?? 0),
+        (Reflect.get(window, '__wtmPendingStream') as MediaStream)
+          .getTracks()
+          .map((t) => t.readyState),
       ),
     )
-    .toBeGreaterThanOrEqual(1);
+    .toEqual(['ended']);
   await expect(
     page.getByRole('button', { name: 'Сканировать камерой' }),
   ).toBeFocused();

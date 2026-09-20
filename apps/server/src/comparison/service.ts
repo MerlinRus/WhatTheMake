@@ -10,6 +10,7 @@ import {
   type ComparisonCandidate,
   type ComparisonReasonCode,
   type ComparisonReviewSignal as DomainReviewSignal,
+  type InciDictionaryRepository,
 } from '@wtm/domain';
 
 import type { CatalogLookupService } from '../catalog/service.js';
@@ -37,13 +38,18 @@ const explanations: Record<ComparisonReasonCode, string> = {
   CONFLICTING_CRITERIA: 'Критерии дают противоречивый результат.',
   HARD_CONSTRAINT_DATA_MISSING:
     'Не хватает данных, чтобы проверить выбранное обязательное условие.',
+  HARD_CONSTRAINT_VIOLATED:
+    'Ни один вариант не соответствует всем обязательным условиям.',
+  EASY_REMOVAL_MATCH: 'Производитель заявляет лёгкое снятие.',
+  CONTEXT_NOT_ASSESSED:
+    'Недостаточно данных о подходящести для чувствительных глаз или контактных линз.',
   NO_SUPPORTED_DIFFERENCE: 'Подтверждённого различия по этому критерию нет.',
   EXACT_CATALOG_IDENTITY: 'Вариант точно сопоставлен по опубликованному GTIN.',
   WATERPROOF_MATCH: 'Водостойкость соответствует вашему условию.',
   WATERPROOF_CONFLICT: 'Водостойкость противоречит вашему условию.',
   AVOIDED_INGREDIENT_PRESENT: 'В составе найдено указанное исключение.',
   AVOIDED_INGREDIENT_ABSENT:
-    'Указанные исключения не найдены точным совпадением в составе.',
+    'Указанные исключения не найдены в сопоставленном по словарю составе.',
   GOAL_CLAIM_MATCH: 'Заявление производителя совпадает с выбранным эффектом.',
   GOAL_CLAIM_NOT_FOUND: 'Подходящее заявление производителя не опубликовано.',
   REVIEW_EVIDENCE_COMPARED: 'Сопоставлены доверенные агрегированные отзывы.',
@@ -121,6 +127,24 @@ async function lookupSlot(options: {
   } catch (error) {
     if (!(error instanceof AppError) || error.statusCode !== 404) throw error;
     const discovered = await options.discovery.byGtin(options.gtin);
+    if (discovered.discovery.state === 'UNAVAILABLE') {
+      return {
+        state: 'SOURCE_UNAVAILABLE',
+        slotIndex: options.slotIndex,
+        gtin: options.gtin,
+        reason: discovered.discovery.reason,
+      };
+    }
+    if (
+      discovered.discovery.state === 'FOUND' &&
+      discovered.discovery.candidate.category === 'OTHER'
+    ) {
+      return {
+        state: 'UNSUPPORTED_CATEGORY',
+        slotIndex: options.slotIndex,
+        gtin: options.gtin,
+      };
+    }
     return discovered.discovery.state === 'FOUND'
       ? {
           state: 'EXTERNAL_CANDIDATE',
@@ -168,6 +192,7 @@ export function createComparisonService(options: {
   catalog: CatalogLookupService;
   discovery: ProductDiscoveryService;
   reviews: ComparisonReviewSignalProvider;
+  dictionary?: Pick<InciDictionaryRepository, 'findPublishedSnapshot'>;
   now?: () => Date;
 }): ComparisonService {
   const now = options.now ?? (() => new Date());
@@ -215,13 +240,21 @@ export function createComparisonService(options: {
         ),
         brief: input.brief,
         now: now(),
+        dictionary:
+          input.brief.avoidedIngredients.length > 0
+            ? ((await options.dictionary?.findPublishedSnapshot()) ?? null)
+            : null,
       });
 
       return {
         comparison: {
           schemaVersion: 1,
-          rulesVersion: 'mascara-comparison-v1',
+          rulesVersion: 'mascara-comparison-v2',
           mode: input.brief.mode,
+          warnings:
+            input.brief.sensitiveEyes || input.brief.contactLenses
+              ? [explanations.CONTEXT_NOT_ASSESSED]
+              : [],
           slots,
           recommendation:
             domain.recommendation.kind === 'PREFERRED'

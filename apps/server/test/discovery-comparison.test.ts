@@ -114,6 +114,50 @@ const comparison = createComparisonService({
   now: () => new Date('2026-08-31T12:00:00.000Z'),
 });
 
+test('comparison preserves source outage and rejects a known unsupported category', async () => {
+  for (const category of [null, 'OTHER'] as const) {
+    const service = createComparisonService({
+      catalog,
+      discovery: createProductDiscoveryService({
+        provider: {
+          async discover(gtin) {
+            return category === null
+              ? { kind: 'UNAVAILABLE', gtin: gtin.value, reason: 'TIMEOUT' }
+              : {
+                  kind: 'FOUND',
+                  gtin: gtin.value,
+                  category,
+                  productName: 'Oral rinse',
+                  brandName: null,
+                  quantity: null,
+                  fetchedAt: new Date(),
+                };
+          },
+        },
+      }),
+      reviews: createNoDataComparisonReviewSignalProvider(),
+    });
+    const result = await service.preview({
+      schemaVersion: 1,
+      gtins: ['4006381333931', '3560070791460'],
+      brief: {
+        mode: 'UNKNOWN_GOALS',
+        waterproof: 'NO_PREFERENCE',
+        removal: 'NO_PREFERENCE',
+        sensitiveEyes: false,
+        contactLenses: false,
+        avoidedIngredients: [],
+      },
+    });
+    assert.equal(Value.Check(ComparisonPreviewResponseSchema, result), true);
+    assert.equal(
+      result.comparison.slots[1]?.state,
+      category === null ? 'SOURCE_UNAVAILABLE' : 'UNSUPPORTED_CATEGORY',
+    );
+    assert.equal(result.comparison.recommendation.kind, 'NO_CLEAR_WINNER');
+  }
+});
+
 test('discovery service emits a strict attributed low-confidence candidate', async () => {
   const result = await discovery.byGtin('3560070791460');
   assert.equal(Value.Check(ProductDiscoveryResponseSchema, result), true);
@@ -124,6 +168,27 @@ test('discovery service emits a strict attributed low-confidence candidate', asy
       result.discovery.candidate.productUrl,
       'https://world.openbeautyfacts.org/product/3560070791460',
     );
+  }
+});
+
+test('both eye-context flags produce a separate visible caution', async () => {
+  for (const flag of ['sensitiveEyes', 'contactLenses'] as const) {
+    const result = await comparison.preview({
+      schemaVersion: 1,
+      gtins: ['4006381333931', '5901234123457'],
+      brief: {
+        mode: 'UNKNOWN_GOALS',
+        waterproof: 'AVOID',
+        removal: 'NO_PREFERENCE',
+        sensitiveEyes: false,
+        contactLenses: false,
+        avoidedIngredients: [],
+        [flag]: true,
+      },
+    });
+    assert.equal(Value.Check(ComparisonPreviewResponseSchema, result), true);
+    assert.equal(result.comparison.warnings?.length, 1);
+    assert.match(result.comparison.warnings?.[0] ?? '', /Недостаточно данных/);
   }
 });
 

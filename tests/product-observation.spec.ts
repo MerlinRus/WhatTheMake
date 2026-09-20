@@ -22,6 +22,15 @@ function observation(assets: Array<Record<string, unknown>>) {
 }
 
 async function mockUnknownCatalog(page: Page): Promise<void> {
+  await page.route(`**/api/v1/discovery/barcodes/${gtin}`, (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        discovery: { state: 'NOT_FOUND', gtin, provider: 'OPEN_BEAUTY_FACTS' },
+      }),
+    }),
+  );
   await page.route(`**/api/v1/catalog/barcodes/${gtin}`, (route) =>
     route.fulfill({
       status: 404,

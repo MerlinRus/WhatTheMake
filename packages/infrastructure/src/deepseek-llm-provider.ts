@@ -18,7 +18,7 @@ import {
 
 const DEEPSEEK_ENDPOINT = 'https://api.deepseek.com/responses';
 const DEEPSEEK_PROVIDER_ID = 'DEEPSEEK';
-const DEFAULT_MODEL_ID = 'deepseek-v4-flash';
+const DEFAULT_MODEL_ID = 'deepseek-flash';
 const DEFAULT_TIMEOUT_MS = 10_000;
 const DEFAULT_MAX_RESPONSE_BYTES = 256 * 1024;
 const DEFAULT_MAX_OUTPUT_TOKENS = 1_200;
