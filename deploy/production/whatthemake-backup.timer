@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily WhatTheMake backup with isolated restore verification
+
+[Timer]
+OnCalendar=*-*-* 03:20:00 UTC
+RandomizedDelaySec=10min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

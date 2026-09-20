@@ -18,6 +18,8 @@ COPY packages/domain packages/domain
 COPY packages/infrastructure packages/infrastructure
 COPY tools tools
 COPY benchmarks benchmarks
+COPY tests tests
+COPY playwright.config.ts ./
 RUN npm run build
 
 FROM build AS verification

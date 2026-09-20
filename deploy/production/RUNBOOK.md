@@ -86,7 +86,36 @@ never edit names, aliases, version, or checksum in a published snapshot. Atomic
 dictionary rotation/retirement is a separate operational feature and is not
 emulated with ad-hoc SQL in this runbook.
 
-## Rollback
+## Verified backups
+
+`backup.sh` captures PostgreSQL and private media without stopping the site,
+then `verify-restore.sh` restores the dump into an isolated, resource-limited
+temporary database. It checks every active media record against the restored
+file's size and SHA-256. An online copy that races deletion fails verification
+and is not published as a usable backup. This check does not prove application
+startup or an offsite disaster recovery; release tests cover application startup.
+
+Successful copies are `/srv/whatthemake/backups/YYYYMMDDTHHMMSSZ` (mode 0700).
+`latest-verified` records the last success. Own dated copies and failed partials
+older than 14 days are removed only after a new successful copy; legacy dumps
+are untouched. Backups refuse to start with less than 4 GiB free. Restore PG
+uses 512 MiB tmpfs / 768 MiB memory; revise these limits when database growth
+requires it, without exhausting production memory.
+
+```sh
+sh /srv/whatthemake/ops/current/backup.sh
+systemctl status whatthemake-backup.timer whatthemake-backup.service
+journalctl -u whatthemake-backup.service --since '2 days ago'
+```
+
+The daily timer is UTC 03:20 plus up to ten minutes jitter. A failed service or
+a `latest-verified` older than 36 hours requires attention. No user data is sent
+to a third party: offsite storage remains unconfigured until a destination is
+authorized and available. A same-host backup does not protect against host loss.
+Operational scripts are installed independently under `/srv/whatthemake/ops/<git-sha>`;
+the `ops/current` symlink identifies their revision without restarting the app.
+
+## Application rollback
 
 Use the previous release directory and its `.release.env`. The initial
 migration is additive; the PostgreSQL volume remains intact.
