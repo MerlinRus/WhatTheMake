@@ -4,6 +4,84 @@ import test from 'node:test';
 import { normalizeGtin } from '@wtm/domain';
 
 import { createOpenBeautyFactsProductProvider } from '../src/open-beauty-facts-product-provider.js';
+import { createFallbackProductDiscoveryProvider } from '../src/fallback-product-discovery-provider.js';
+
+test('fallback attribution never turns a partial outage into a clean miss', async () => {
+  let secondaryCalls = 0;
+  const requested = gtin();
+  const found = {
+    kind: 'FOUND' as const,
+    gtin: requested.value,
+    productName: 'Mascara',
+    brandName: null,
+    quantity: null,
+    fetchedAt: new Date('2026-09-20T00:00:00Z'),
+  };
+  const miss = { kind: 'NOT_FOUND' as const, gtin: requested.value };
+  const unavailable = {
+    kind: 'UNAVAILABLE' as const,
+    gtin: requested.value,
+    reason: 'TIMEOUT' as const,
+  };
+  const chain = (
+    primary: typeof found | typeof miss | typeof unavailable,
+    secondary: typeof found | typeof miss | typeof unavailable,
+  ) =>
+    createFallbackProductDiscoveryProvider({
+      primary: { discover: async () => primary },
+      secondary: {
+        discover: async () => {
+          secondaryCalls += 1;
+          return secondary;
+        },
+      },
+    });
+  assert.deepEqual(await chain(found, miss).discover(requested), {
+    ...found,
+    provider: 'OPEN_BEAUTY_FACTS',
+  });
+  assert.equal(secondaryCalls, 0);
+  assert.deepEqual(await chain(miss, found).discover(requested), {
+    ...found,
+    provider: 'UPCITEMDB',
+  });
+  assert.deepEqual(await chain(miss, miss).discover(requested), {
+    ...miss,
+    provider: 'EXTERNAL_CATALOGS',
+  });
+  for (const pair of [
+    [miss, unavailable],
+    [unavailable, miss],
+  ] as const) {
+    assert.deepEqual(await chain(...pair).discover(requested), {
+      ...unavailable,
+      provider: 'EXTERNAL_CATALOGS',
+    });
+  }
+  assert.equal(
+    (await chain(unavailable, found).discover(requested)).kind,
+    'FOUND',
+  );
+});
+
+test('fallback does not conceal a conflicting primary barcode', async () => {
+  const provider = createFallbackProductDiscoveryProvider({
+    primary: {
+      discover: async () => ({ kind: 'NOT_FOUND', gtin: '5901234123457' }),
+    },
+    secondary: {
+      discover: async () => {
+        throw new Error('Must not conceal conflict');
+      },
+    },
+  });
+  assert.deepEqual(await provider.discover(gtin()), {
+    kind: 'UNAVAILABLE',
+    gtin: gtin().value,
+    provider: 'OPEN_BEAUTY_FACTS',
+    reason: 'INVALID_RESPONSE',
+  });
+});
 
 function gtin(value = '4006381333931') {
   const result = normalizeGtin(value);
@@ -162,6 +240,9 @@ test('discovery distinguishes mascara, primer, oral care and unknown category', 
     ['Lash Paradise Mascara Primer', ['en:mascaras'], 'OTHER'],
     ['Solution dentaire', ['en:mouthwashes'], 'OTHER'],
     ['Brow Mascara', ['en:mascaras'], 'OTHER'],
+    ['Mascara', ['en:mascaras', 'en:mouthwashes'], 'OTHER'],
+    ['Mascara sourcils', ['en:mascara'], 'OTHER'],
+    ['Brown mascara', ['en:mascara'], 'MASCARA'],
     ['Unclassified product', [], 'UNKNOWN'],
   ] as const) {
     const provider = createOpenBeautyFactsProductProvider({

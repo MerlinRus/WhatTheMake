@@ -487,21 +487,21 @@ symlink and verify production.
 
 ## 5. Risk register
 
-| Risk | Impact | Mitigation |
-| --- | --- | --- |
-| Claims accidentally treated as proven performance | High | Separate reason/evidence kinds and fixed copy saying manufacturer claim |
-| Review weight becomes hidden universal score | High | Lexicographic comparator, no numeric score in contract, negative schema tests |
-| Missing review data favors a product | High | `NO_DATA` semantics and pairwise sufficiency gate |
-| Avoided ingredient false match | High | Existing INCI parser + exact normalized token equality only; uncertainty returns no-data |
-| Partial lookup wipes valid slots | Medium | Slot union + orchestration tests before UI |
-| Duplicate barcode/variant manipulates result | Medium | Input duplicate validation + resolved-variant duplicate detection |
-| Large request or evidence response causes DoS | Medium | 2–3 slots, bounded arrays/strings, response schemas and rate limit |
-| Server explanation injects HTML | Medium | React text rendering only, XSS Playwright fixture, no HTML API fields |
-| UI refactor breaks existing scanner | Medium | Existing scanner tests plus comparison camera E2E |
-| No licensed reviews makes quick mode less decisive | Product | Honest no-winner; build trusted boundary now, import data only in approved later slice |
-| Upstream data is wrong or malicious | High | Strict bounded decode, fixed text rendering, low-confidence attribution, no canonical write/winner |
-| Discovery enables SSRF or traffic amplification | High | Fixed origin/path, normalized GTIN only, redirect allowlist, rate limit, timeout, byte cap, TTL cache/dedupe |
-| Open Beauty Facts changes or throttles API | Medium | Typed unavailable states, provider isolation, stable local/photo fallback |
+| Risk                                               | Impact  | Mitigation                                                                                                   |
+| -------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
+| Claims accidentally treated as proven performance  | High    | Separate reason/evidence kinds and fixed copy saying manufacturer claim                                      |
+| Review weight becomes hidden universal score       | High    | Lexicographic comparator, no numeric score in contract, negative schema tests                                |
+| Missing review data favors a product               | High    | `NO_DATA` semantics and pairwise sufficiency gate                                                            |
+| Avoided ingredient false match                     | High    | Existing INCI parser + exact normalized token equality only; uncertainty returns no-data                     |
+| Partial lookup wipes valid slots                   | Medium  | Slot union + orchestration tests before UI                                                                   |
+| Duplicate barcode/variant manipulates result       | Medium  | Input duplicate validation + resolved-variant duplicate detection                                            |
+| Large request or evidence response causes DoS      | Medium  | 2–3 slots, bounded arrays/strings, response schemas and rate limit                                           |
+| Server explanation injects HTML                    | Medium  | React text rendering only, XSS Playwright fixture, no HTML API fields                                        |
+| UI refactor breaks existing scanner                | Medium  | Existing scanner tests plus comparison camera E2E                                                            |
+| No licensed reviews makes quick mode less decisive | Product | Honest no-winner; build trusted boundary now, import data only in approved later slice                       |
+| Upstream data is wrong or malicious                | High    | Strict bounded decode, fixed text rendering, low-confidence attribution, no canonical write/winner           |
+| Discovery enables SSRF or traffic amplification    | High    | Fixed origin/path, normalized GTIN only, redirect allowlist, rate limit, timeout, byte cap, TTL cache/dedupe |
+| Open Beauty Facts changes or throttles API         | Medium  | Typed unavailable states, provider isolation, stable local/photo fallback                                    |
 
 ## 6. Parallelization
 

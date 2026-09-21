@@ -18,7 +18,9 @@ export function assessIngredientExclusions(
     return { present: [], uncertain: true };
   }
   const rawKeys = new Set(
-    parsed.tokens.map((t) => normalizeInciLookupText(t.text)),
+    parsed.tokens
+      .filter((token) => token.presence === 'DECLARED')
+      .map((token) => normalizeInciLookupText(token.text)),
   );
   const present = new Set(
     avoided.filter((name) => rawKeys.has(normalizeInciLookupText(name))),
@@ -27,11 +29,19 @@ export function assessIngredientExclusions(
 
   const normalized = canonicalizeInci(parsed, dictionary);
   const components = normalized.tokens.flatMap((token) => token.components);
-  const ids = new Set(
-    components.flatMap(({ decision }) =>
-      decision.kind === 'RESOLVED' ? [decision.ingredient.ingredientId] : [],
-    ),
-  );
+  const declaredIds = new Set<string>();
+  const conditionalIds = new Set<string>();
+  for (const token of normalized.tokens) {
+    const target =
+      token.sourceToken.presence === 'MAY_CONTAIN'
+        ? conditionalIds
+        : declaredIds;
+    for (const { decision } of token.components) {
+      if (decision.kind === 'RESOLVED')
+        target.add(decision.ingredient.ingredientId);
+    }
+  }
+  const conditionalMatches = new Set<string>();
   let uncertain =
     normalized.tokens.some(
       (token) => token.sourceToken.uncertaintyReasons.length > 0,
@@ -47,8 +57,17 @@ export function assessIngredientExclusions(
     );
     for (const decision of decisions) {
       if (decision.kind !== 'RESOLVED') uncertain = true;
-      else if (ids.has(decision.ingredient.ingredientId)) present.add(name);
+      else if (declaredIds.has(decision.ingredient.ingredientId))
+        present.add(name);
+      else if (conditionalIds.has(decision.ingredient.ingredientId))
+        conditionalMatches.add(name);
     }
   }
-  return { present: [...present], uncertain };
+  return {
+    present: [...present],
+    // A possible component is neither confirmed present nor confirmed absent.
+    // An explicit declaration of the same exclusion still establishes presence.
+    uncertain:
+      uncertain || [...conditionalMatches].some((name) => !present.has(name)),
+  };
 }

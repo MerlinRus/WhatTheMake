@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Value } from 'typebox/value';
 
 import {
@@ -6,21 +6,15 @@ import {
   type CatalogVariant,
   type ComparisonPreviewInput,
   type ComparisonPreviewResponse,
-  type MascaraGoal,
 } from '@wtm/contracts';
+
+import { MascaraBriefEditor, useMascaraBrief } from './mascara-brief-editor.js';
 
 interface ProductComparisonProps {
   initialVariant: CatalogVariant;
   onClose(): void;
   onScan(requester: (gtin: string) => void): void;
 }
-
-const goalOptions: ReadonlyArray<{ value: MascaraGoal; label: string }> = [
-  { value: 'VOLUME', label: 'Объём' },
-  { value: 'LENGTH', label: 'Удлинение' },
-  { value: 'SEPARATION', label: 'Разделение' },
-  { value: 'NATURAL_LOOK', label: 'Естественный эффект' },
-];
 
 const criterionLabels: Record<
   ComparisonPreviewResponse['comparison']['criteria'][number]['kind'],
@@ -107,7 +101,7 @@ function ComparisonResult({
             </small>
             <strong>{slotTitle(slot)}</strong>
             {slot.state === 'EXTERNAL_CANDIDATE' && (
-              <span>Open Beauty Facts · данные не проверены</span>
+              <span>{slot.candidate.providerLabel} · данные не проверены</span>
             )}
           </article>
         ))}
@@ -143,20 +137,8 @@ export function ProductComparison({
 }: ProductComparisonProps) {
   const [secondGtin, setSecondGtin] = useState('');
   const [thirdGtin, setThirdGtin] = useState<string | null>(null);
-  const [mode, setMode] = useState<'UNKNOWN_GOALS' | 'PERSONALIZED'>(
-    'UNKNOWN_GOALS',
-  );
-  const [goals, setGoals] = useState<MascaraGoal[]>(['VOLUME']);
-  const [waterproof, setWaterproof] = useState<
-    'REQUIRED' | 'AVOID' | 'NO_PREFERENCE'
-  >('NO_PREFERENCE');
-  const [removal, setRemoval] = useState<'EASY_REQUIRED' | 'NO_PREFERENCE'>(
-    'NO_PREFERENCE',
-  );
-  const [avoided, setAvoided] = useState('');
-  const [sensitiveEyes, setSensitiveEyes] = useState(false);
-  const [contactLenses, setContactLenses] = useState(false);
   const workspaceRef = useRef<HTMLElement>(null);
+  const pending = useRef<AbortController | null>(null);
   const [status, setStatus] = useState<
     | { kind: 'IDLE' }
     | { kind: 'LOADING' }
@@ -164,26 +146,27 @@ export function ProductComparison({
     | { kind: 'DONE'; response: ComparisonPreviewResponse }
   >({ kind: 'IDLE' });
 
-  const normalizedAvoided = useMemo(
-    () =>
-      avoided
-        .split(',')
-        .map((value) => value.trim())
-        .filter((value) => value.length > 0)
-        .slice(0, 50),
-    [avoided],
-  );
+  const preferences = useMascaraBrief(invalidate);
+
+  function invalidate() {
+    pending.current?.abort();
+    pending.current = null;
+    setStatus({ kind: 'IDLE' });
+  }
 
   useEffect(() => {
     workspaceRef.current?.focus();
+    return () => pending.current?.abort();
   }, []);
 
   function updateGtin(value: string, setter: (next: string) => void) {
+    invalidate();
     setter(value.replace(/[^0-9]/g, '').slice(0, 14));
   }
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (pending.current || !preferences.ready) return;
     const gtins = [
       initialVariant.barcode.value,
       secondGtin,
@@ -206,30 +189,16 @@ export function ProductComparison({
       setStatus({ kind: 'ERROR', message: 'Проверьте длину GTIN в слотах.' });
       return;
     }
-    if (normalizedAvoided.some((ingredient) => ingredient.length > 128)) {
-      setStatus({
-        kind: 'ERROR',
-        message: 'Название исключаемого ингредиента — не длиннее 128 символов.',
-      });
-      return;
-    }
-    const shared = {
-      waterproof,
-      removal,
-      sensitiveEyes,
-      contactLenses,
-      avoidedIngredients: normalizedAvoided,
-    };
-    const input: ComparisonPreviewInput = {
-      schemaVersion: 1,
-      gtins,
-      brief:
-        mode === 'PERSONALIZED'
-          ? { mode, goals, ...shared }
-          : { mode, ...shared },
-    };
+    const controller = new AbortController();
+    pending.current = controller;
     setStatus({ kind: 'LOADING' });
     try {
+      const brief = await preferences.prepareComparison(controller.signal);
+      if (!brief) {
+        if (!controller.signal.aborted) setStatus({ kind: 'IDLE' });
+        return;
+      }
+      const input: ComparisonPreviewInput = { schemaVersion: 1, gtins, brief };
       const response = await fetch('/api/v1/comparisons/preview', {
         method: 'POST',
         headers: {
@@ -237,6 +206,8 @@ export function ProductComparison({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(input),
+        signal: controller.signal,
+        cache: 'no-store',
       });
       if (!response.ok)
         throw new Error(`Comparison returned ${response.status}`);
@@ -244,12 +215,16 @@ export function ProductComparison({
       if (!Value.Check(ComparisonPreviewResponseSchema, payload)) {
         throw new Error('Comparison returned an invalid response');
       }
-      setStatus({ kind: 'DONE', response: payload });
+      if (!controller.signal.aborted && pending.current === controller)
+        setStatus({ kind: 'DONE', response: payload });
     } catch {
-      setStatus({
-        kind: 'ERROR',
-        message: 'Сравнение временно недоступно. Попробуйте ещё раз.',
-      });
+      if (!controller.signal.aborted && pending.current === controller)
+        setStatus({
+          kind: 'ERROR',
+          message: 'Сравнение временно недоступно. Попробуйте ещё раз.',
+        });
+    } finally {
+      if (pending.current === controller) pending.current = null;
     }
   }
 
@@ -274,7 +249,7 @@ export function ProductComparison({
         </button>
       </header>
 
-      <form onSubmit={submit}>
+      <form onSubmit={submit} onChange={invalidate}>
         <div className="comparison-slots">
           <label>
             <span>Вариант 1 · подтверждён</span>
@@ -296,7 +271,12 @@ export function ProductComparison({
                   updateGtin(event.target.value, setSecondGtin)
                 }
               />
-              <button type="button" onClick={() => onScan(setSecondGtin)}>
+              <button
+                type="button"
+                onClick={() =>
+                  onScan((value) => updateGtin(value, setSecondGtin))
+                }
+              >
                 Сканировать
               </button>
             </div>
@@ -305,7 +285,10 @@ export function ProductComparison({
             <button
               type="button"
               className="add-third"
-              onClick={() => setThirdGtin('')}
+              onClick={() => {
+                invalidate();
+                setThirdGtin('');
+              }}
             >
               + Добавить третий вариант
             </button>
@@ -323,14 +306,22 @@ export function ProductComparison({
                     updateGtin(event.target.value, setThirdGtin)
                   }
                 />
-                <button type="button" onClick={() => onScan(setThirdGtin)}>
+                <button
+                  type="button"
+                  onClick={() =>
+                    onScan((value) => updateGtin(value, setThirdGtin))
+                  }
+                >
                   Сканировать
                 </button>
               </div>
               <button
                 type="button"
                 className="remove-third"
-                onClick={() => setThirdGtin(null)}
+                onClick={() => {
+                  invalidate();
+                  setThirdGtin(null);
+                }}
               >
                 Убрать третий вариант
               </button>
@@ -338,114 +329,12 @@ export function ProductComparison({
           )}
         </div>
 
-        <fieldset className="comparison-mode">
-          <legend>Как выбирать</legend>
-          <label>
-            <input
-              type="radio"
-              name="comparison-mode"
-              checked={mode === 'UNKNOWN_GOALS'}
-              onChange={() => setMode('UNKNOWN_GOALS')}
-            />
-            Не знаю — помогите выбрать
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="comparison-mode"
-              checked={mode === 'PERSONALIZED'}
-              onChange={() => setMode('PERSONALIZED')}
-            />
-            У меня есть пожелания
-          </label>
-        </fieldset>
-
-        {mode === 'PERSONALIZED' && (
-          <div className="comparison-preferences">
-            <fieldset>
-              <legend>Желаемый эффект</legend>
-              {goalOptions.map((option) => (
-                <label key={option.value}>
-                  <input
-                    type="checkbox"
-                    checked={goals.includes(option.value)}
-                    onChange={(event) =>
-                      setGoals((current) =>
-                        event.target.checked
-                          ? [...new Set([...current, option.value])]
-                          : current.filter((goal) => goal !== option.value),
-                      )
-                    }
-                  />
-                  {option.label}
-                </label>
-              ))}
-            </fieldset>
-            <label>
-              Водостойкость
-              <select
-                value={waterproof}
-                onChange={(event) =>
-                  setWaterproof(event.target.value as typeof waterproof)
-                }
-              >
-                <option value="NO_PREFERENCE">Неважно</option>
-                <option value="REQUIRED">Нужна</option>
-                <option value="AVOID">Не нужна</option>
-              </select>
-            </label>
-            <label>
-              Снятие
-              <select
-                value={removal}
-                onChange={(event) =>
-                  setRemoval(event.target.value as typeof removal)
-                }
-              >
-                <option value="NO_PREFERENCE">Неважно</option>
-                <option value="EASY_REQUIRED">Нужно лёгкое</option>
-              </select>
-            </label>
-            <fieldset>
-              <legend>Дополнительный контекст</legend>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={sensitiveEyes}
-                  onChange={(event) => setSensitiveEyes(event.target.checked)}
-                />
-                Чувствительные глаза
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={contactLenses}
-                  onChange={(event) => setContactLenses(event.target.checked)}
-                />
-                Контактные линзы
-              </label>
-              <small>
-                Покажем нехватку данных, но не будем делать медицинский вывод.
-              </small>
-            </fieldset>
-            <label>
-              Исключить ингредиенты — через запятую
-              <input
-                value={avoided}
-                maxLength={1000}
-                onChange={(event) => setAvoided(event.target.value)}
-              />
-            </label>
-          </div>
-        )}
+        <MascaraBriefEditor brief={preferences} />
 
         <button
           type="submit"
           className="compare-submit"
-          disabled={
-            status.kind === 'LOADING' ||
-            (mode === 'PERSONALIZED' && goals.length === 0)
-          }
+          disabled={status.kind === 'LOADING' || !preferences.ready}
         >
           {status.kind === 'LOADING' ? 'Сравниваем…' : 'Сравнить варианты'}
         </button>

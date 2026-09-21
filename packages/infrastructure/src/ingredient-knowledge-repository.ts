@@ -1,7 +1,9 @@
 import type { Pool } from 'pg';
+import { isDeepStrictEqual } from 'node:util';
 
 import {
   INGREDIENT_KNOWLEDGE_SCHEMA_VERSION,
+  publishIngredientKnowledge,
   type CanonicalIngredientId,
   type IngredientFunctionCode,
   type IngredientKnowledgeConfidence,
@@ -17,6 +19,7 @@ import {
   type PublishedIngredientFunctionFact,
   type PublishedIngredientKnowledgeSnapshot,
 } from '@wtm/domain';
+import { withTransaction } from './transaction.js';
 
 interface PublishedKnowledgeRow {
   snapshot_id: string;
@@ -66,6 +69,161 @@ export function createPostgresIngredientKnowledgeRepository(
   pool: Pool,
 ): IngredientKnowledgeRepository {
   return {
+    async publishInitialSnapshot(input) {
+      const validated = publishIngredientKnowledge(
+        input.draft,
+        input.publishedAt,
+      );
+      if (validated.kind !== 'PUBLISHED')
+        throw new Error('Invalid ingredient knowledge draft');
+      if (
+        input.draft.basedOnSnapshotId !== null ||
+        input.draft.facts.length > 100 ||
+        input.draft.facts.some((fact) => fact.evidence.length > 10)
+      ) {
+        throw new Error(
+          'Initial publication requires a bounded standalone snapshot',
+        );
+      }
+      const expectedFacts = input.draft.facts
+        .map((fact) => ({
+          id: fact.factId,
+          ingredient_id: fact.ingredientId,
+          function_code: fact.functionCode,
+          jurisdiction: fact.jurisdiction,
+          confidence: fact.confidence,
+        }))
+        .sort((left, right) => left.id.localeCompare(right.id));
+      const expectedLinks = input.draft.facts
+        .flatMap((fact) =>
+          fact.evidence.map((evidence) => ({
+            fact_id: fact.factId,
+            evidence_id: evidence.evidenceId,
+            evidence_type: evidence.evidenceType,
+            stance: evidence.stance,
+            source_url: evidence.sourceUrl,
+            checked_at: evidence.checkedAt.toISOString(),
+          })),
+        )
+        .sort(
+          (left, right) =>
+            left.fact_id.localeCompare(right.fact_id) ||
+            left.evidence_id.localeCompare(right.evidence_id),
+        );
+      return withTransaction(pool, async (client) => {
+        await client.query('SELECT pg_advisory_xact_lock($1)', [928042026]);
+        await client.query('SELECT pg_advisory_xact_lock($1)', [928042027]);
+        const report = (
+          kind:
+            | 'READY'
+            | 'PUBLISHED'
+            | 'ALREADY_PUBLISHED'
+            | 'VERSION_CONFLICT'
+            | 'ACTIVE_SNAPSHOT_CONFLICT',
+        ) => ({
+          kind,
+          version: input.draft.version,
+          factCount: input.draft.facts.length,
+        });
+        const existing = await client.query<{
+          id: string;
+          status: string;
+          based_on_snapshot_id: string | null;
+        }>(
+          'SELECT id, status, based_on_snapshot_id FROM wtm_ingredient_knowledge_snapshots WHERE version = $1',
+          [input.draft.version],
+        );
+        const old = existing.rows[0];
+        if (old) {
+          const facts = await client.query<(typeof expectedFacts)[number]>(
+            'SELECT id, ingredient_id, function_code, jurisdiction, confidence FROM wtm_ingredient_function_facts WHERE snapshot_id = $1 ORDER BY id',
+            [old.id],
+          );
+          const evidence = await client.query<
+            Omit<(typeof expectedLinks)[number], 'checked_at'> & {
+              checked_at: Date;
+            }
+          >(
+            'SELECT link.fact_id, link.evidence_id, evidence.evidence_type, link.stance, evidence.source_url, evidence.checked_at FROM wtm_ingredient_fact_evidence_links link JOIN wtm_ingredient_fact_evidence evidence ON evidence.id = link.evidence_id AND evidence.snapshot_id = link.snapshot_id WHERE link.snapshot_id = $1 ORDER BY link.fact_id, link.evidence_id',
+            [old.id],
+          );
+          const links = evidence.rows.map((row) => ({
+            ...row,
+            checked_at: row.checked_at.toISOString(),
+          }));
+          return report(
+            old.status === 'PUBLISHED' &&
+              old.id === input.draft.snapshotId &&
+              old.based_on_snapshot_id === null &&
+              isDeepStrictEqual(facts.rows, expectedFacts) &&
+              isDeepStrictEqual(links, expectedLinks)
+              ? 'ALREADY_PUBLISHED'
+              : 'VERSION_CONFLICT',
+          );
+        }
+        const active = await client.query(
+          "SELECT id FROM wtm_ingredient_knowledge_snapshots WHERE status = 'PUBLISHED'",
+        );
+        if (active.rowCount) return report('ACTIVE_SNAPSHOT_CONFLICT');
+        const ingredientIds = [
+          ...new Set(input.draft.facts.map((fact) => fact.ingredientId)),
+        ];
+        const known = await client.query(
+          "SELECT entry.ingredient_id FROM wtm_inci_dictionary_entries entry JOIN wtm_inci_dictionary_snapshots snapshot ON snapshot.id = entry.snapshot_id WHERE snapshot.status = 'PUBLISHED' AND entry.ingredient_id = ANY($1::uuid[]) AND snapshot.version = $2",
+          [ingredientIds, input.dictionaryVersion],
+        );
+        if (known.rowCount !== ingredientIds.length)
+          throw new Error('Ingredient is not in the published dictionary');
+        if (input.dryRun) return report('READY');
+        await client.query(
+          "INSERT INTO wtm_ingredient_knowledge_snapshots(id, version, status) VALUES ($1, $2, 'DRAFT')",
+          [input.draft.snapshotId, input.draft.version],
+        );
+        const insertedEvidence = new Set<string>();
+        for (const fact of input.draft.facts) {
+          await client.query(
+            'INSERT INTO wtm_ingredient_function_facts(id, snapshot_id, ingredient_id, function_code, jurisdiction, confidence) VALUES ($1,$2,$3,$4,$5,$6)',
+            [
+              fact.factId,
+              input.draft.snapshotId,
+              fact.ingredientId,
+              fact.functionCode,
+              fact.jurisdiction,
+              fact.confidence,
+            ],
+          );
+          for (const evidence of fact.evidence) {
+            if (!insertedEvidence.has(evidence.evidenceId)) {
+              await client.query(
+                'INSERT INTO wtm_ingredient_fact_evidence(id, snapshot_id, evidence_type, source_url, checked_at) VALUES ($1,$2,$3,$4,$5)',
+                [
+                  evidence.evidenceId,
+                  input.draft.snapshotId,
+                  evidence.evidenceType,
+                  evidence.sourceUrl,
+                  evidence.checkedAt,
+                ],
+              );
+              insertedEvidence.add(evidence.evidenceId);
+            }
+            await client.query(
+              'INSERT INTO wtm_ingredient_fact_evidence_links(snapshot_id,fact_id,evidence_id,stance) VALUES ($1,$2,$3,$4)',
+              [
+                input.draft.snapshotId,
+                fact.factId,
+                evidence.evidenceId,
+                evidence.stance,
+              ],
+            );
+          }
+        }
+        await client.query(
+          "UPDATE wtm_ingredient_knowledge_snapshots SET status = 'PUBLISHED', published_at = $2 WHERE id = $1",
+          [input.draft.snapshotId, input.publishedAt],
+        );
+        return report('PUBLISHED');
+      });
+    },
     async findPublishedSnapshot(): Promise<PublishedIngredientKnowledgeSnapshot | null> {
       const result = await pool.query<PublishedKnowledgeRow>(`
         SELECT

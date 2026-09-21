@@ -1,7 +1,8 @@
-import type {
-  ExternalProductDiscoveryProvider,
-  ExternalProductDiscoveryResult,
-  NormalizedGtin,
+import {
+  hasUnsupportedMascaraCategory,
+  type ExternalProductDiscoveryProvider,
+  type ExternalProductDiscoveryResult,
+  type NormalizedGtin,
 } from '@wtm/domain';
 
 const API_ORIGIN = 'https://world.openbeautyfacts.org';
@@ -130,16 +131,16 @@ function parseProduct(
         (value): value is string => typeof value === 'string',
       )
     : [];
-  const category = /\b(?:primer|primers|brow|brows)\b/iu.test(productName)
-    ? 'OTHER'
-    : categories.includes('en:mascaras')
-      ? 'MASCARA'
-      : categories.some((value) =>
-            /(?:mouthwash|oral|dental|toothpaste|shampoo|lipstick|perfume)/u.test(
-              value,
-            ),
-          )
-        ? 'OTHER'
+  const category =
+    hasUnsupportedMascaraCategory(productName, ...categories) ||
+    categories.some((value) =>
+      /(?:mouthwash|oral|dental|toothpaste|shampoo|lipstick|perfume)/u.test(
+        value,
+      ),
+    )
+      ? 'OTHER'
+      : categories.includes('en:mascaras') || categories.includes('en:mascara')
+        ? 'MASCARA'
         : 'UNKNOWN';
   return {
     kind: 'FOUND',

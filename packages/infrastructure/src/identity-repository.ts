@@ -198,6 +198,7 @@ export function createPostgresIdentityRepository(
               AND session.subject_kind = 'GUEST'
               AND session.revoked_at IS NULL
               AND guest.deleted_at IS NULL
+              AND guest.claimed_by_account_id IS NULL
             FOR UPDATE OF guest
           `,
           [sessionTokenHash],
@@ -206,7 +207,7 @@ export function createPostgresIdentityRepository(
         if (!guestId) return;
 
         await client.query(
-          'UPDATE wtm_guests SET deleted_at = now() WHERE id = $1',
+          'UPDATE wtm_guests SET deleted_at = now() WHERE id = $1 AND deleted_at IS NULL AND claimed_by_account_id IS NULL',
           [guestId],
         );
         await client.query(
@@ -297,6 +298,7 @@ export function createPostgresIdentityRepository(
       sessionTokenHash,
       expiresAt,
       guestSessionTokenHash,
+      expectedPasswordHash,
     ): Promise<AccountIdentity | null> {
       return withTransaction(pool, async (client) => {
         const account = await client.query<AccountRow>(
@@ -314,7 +316,12 @@ export function createPostgresIdentityRepository(
           [accountId],
         );
         const row = account.rows[0];
-        if (!row) return null;
+        if (
+          !row ||
+          (expectedPasswordHash !== undefined &&
+            row.password_hash !== expectedPasswordHash)
+        )
+          return null;
 
         await claimGuestSession(client, guestSessionTokenHash, accountId);
 

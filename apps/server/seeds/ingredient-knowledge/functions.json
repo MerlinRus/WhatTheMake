@@ -1,0 +1,36 @@
+{
+  "version": "fda-colorants-2026.09.20-v1",
+  "dictionaryVersion": "obf-mascara-inci-2026.08.31-v1",
+  "facts": [
+    {
+      "ingredientId": "3c56dcb6-816d-8fe0-8ef2-06976f525697",
+      "canonicalName": "CI 77891",
+      "functionCode": "COLORANT",
+      "jurisdiction": "US",
+      "confidence": "HIGH",
+      "evidence": [
+        {
+          "evidenceType": "OFFICIAL_DATABASE",
+          "stance": "SUPPORTS",
+          "sourceUrl": "https://www.fda.gov/cosmetics/cosmetic-ingredient-names/color-additives-permitted-use-cosmetics",
+          "checkedAt": "2026-09-20T18:17:28.000Z"
+        }
+      ]
+    },
+    {
+      "ingredientId": "d9deb532-afae-8405-a42b-2889a85cd128",
+      "canonicalName": "MICA",
+      "functionCode": "COLORANT",
+      "jurisdiction": "US",
+      "confidence": "HIGH",
+      "evidence": [
+        {
+          "evidenceType": "OFFICIAL_DATABASE",
+          "stance": "SUPPORTS",
+          "sourceUrl": "https://www.fda.gov/cosmetics/cosmetic-ingredient-names/color-additives-permitted-use-cosmetics",
+          "checkedAt": "2026-09-20T18:17:28.000Z"
+        }
+      ]
+    }
+  ]
+}

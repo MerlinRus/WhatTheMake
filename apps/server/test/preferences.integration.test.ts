@@ -86,6 +86,10 @@ test(
         payload: personalized,
       });
       assert.equal(anonymous.statusCode, 401);
+      assert.match(
+        String(anonymous.headers['cache-control']),
+        /private, no-store/,
+      );
 
       const guest = await app.inject({
         method: 'POST',
@@ -119,6 +123,10 @@ test(
         headers: { cookie: guestCookie },
       });
       assert.equal(guestCannotReadProfile.statusCode, 403);
+      assert.match(
+        String(guestCannotReadProfile.headers['cache-control']),
+        /private, no-store/,
+      );
 
       const register = await app.inject({
         method: 'POST',
@@ -136,14 +144,25 @@ test(
         payload: personalized,
       });
       assert.equal(csrfRejected.statusCode, 403);
+      assert.match(
+        String(csrfRejected.headers['cache-control']),
+        /private, no-store/,
+      );
 
       const firstSave = await app.inject({
         method: 'POST',
         url: '/api/v1/mascara-preferences',
         headers: { origin, cookie: accountCookie },
-        payload: personalized,
+        payload: {
+          ...personalized,
+          expectedAccountId: register.json().principal.accountId,
+        },
       });
       assert.equal(firstSave.statusCode, 201);
+      assert.match(
+        String(firstSave.headers['cache-control']),
+        /private, no-store/,
+      );
       assert.equal(firstSave.json().brief.profileVersion, 1);
       assert.equal(firstSave.json().brief.source, 'ACCOUNT_PROFILE');
 
@@ -172,6 +191,36 @@ test(
       assert.equal(current.statusCode, 200);
       assert.equal(current.json().preference.profileVersion, 2);
       assert.equal(current.json().preference.mode, 'UNKNOWN_GOALS');
+      assert.match(
+        String(current.headers['cache-control']),
+        /private, no-store/,
+      );
+
+      const wrongOwner = await app.inject({
+        method: 'POST',
+        url: '/api/v1/mascara-preferences',
+        headers: { origin, cookie: accountCookie },
+        payload: {
+          ...personalized,
+          expectedAccountId: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+        },
+      });
+      assert.equal(wrongOwner.statusCode, 403);
+      assert.match(
+        String(wrongOwner.headers['cache-control']),
+        /private, no-store/,
+      );
+      const malformedOwner = await app.inject({
+        method: 'POST',
+        url: '/api/v1/mascara-preferences',
+        headers: { origin, cookie: accountCookie },
+        payload: { ...personalized, expectedAccountId: 'not-an-account-id' },
+      });
+      assert.equal(malformedOwner.statusCode, 400);
+      assert.match(
+        String(malformedOwner.headers['cache-control']),
+        /private, no-store/,
+      );
 
       const versions = await adminPool.query<{
         profile_version: number;

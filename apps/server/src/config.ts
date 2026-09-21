@@ -26,6 +26,7 @@ export interface ServerConfig {
   migrationsDirectory: string;
   mediaRoot: string;
   mediaMaxBytes: number;
+  mediaMinFreeBytes: number;
   mediaUploadRecoveryDelayMs: number;
   mediaRecoveryPollMs: number;
   mediaRecoveryLeaseMs: number;
@@ -33,6 +34,8 @@ export interface ServerConfig {
   mediaRecoveryRetryMaxMs: number;
   googleVisionApiKey: string | null;
   googleVisionTimeoutMs: number;
+  googleVisionDailyRequestLimit: number;
+  upcItemDbEnabled: boolean;
   ocrQueueConcurrency: number;
   ocrQueueMaxPending: number;
   ocrQueueWaitTimeoutMs: number;
@@ -41,6 +44,7 @@ export interface ServerConfig {
   deepSeekEnabled: boolean;
   deepSeekApiKey: string | null;
   deepSeekTimeoutMs: number;
+  deepSeekDailyRequestLimit: number;
   version: string;
   buildSha: string;
 }
@@ -227,6 +231,13 @@ export function loadServerConfig(
       1,
       8 * 1024 * 1024,
     ),
+    mediaMinFreeBytes: integerInRange(
+      'MEDIA_MIN_FREE_BYTES',
+      environment.MEDIA_MIN_FREE_BYTES ??
+        String(nodeEnvironment === 'production' ? 4 * 1024 ** 3 : 0),
+      0,
+      Number.MAX_SAFE_INTEGER,
+    ),
     mediaUploadRecoveryDelayMs: integerInRange(
       'MEDIA_UPLOAD_RECOVERY_DELAY_MS',
       environment.MEDIA_UPLOAD_RECOVERY_DELAY_MS ?? '60000',
@@ -285,6 +296,23 @@ export function loadServerConfig(
       3_600_000,
     ),
     deepSeekEnabled,
+    upcItemDbEnabled: booleanValue(
+      'UPCITEMDB_ENABLED',
+      environment.UPCITEMDB_ENABLED,
+      nodeEnvironment === 'production',
+    ),
+    googleVisionDailyRequestLimit: integerInRange(
+      'GOOGLE_VISION_DAILY_REQUEST_LIMIT',
+      environment.GOOGLE_VISION_DAILY_REQUEST_LIMIT ?? '100',
+      0,
+      100_000,
+    ),
+    deepSeekDailyRequestLimit: integerInRange(
+      'DEEPSEEK_DAILY_REQUEST_LIMIT',
+      environment.DEEPSEEK_DAILY_REQUEST_LIMIT ?? '50',
+      0,
+      100_000,
+    ),
     deepSeekApiKey,
     deepSeekTimeoutMs: integerInRange(
       'DEEPSEEK_TIMEOUT_MS',

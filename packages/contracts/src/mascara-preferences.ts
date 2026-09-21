@@ -1,6 +1,6 @@
 import { Type, type Static } from 'typebox';
 
-import { IsoDateTimeSchema } from './common.js';
+import { IsoDateTimeSchema, UuidSchema } from './common.js';
 
 export const MascaraGoalSchema = Type.Union([
   Type.Literal('VOLUME'),
@@ -68,6 +68,27 @@ export const MascaraBriefInputSchema = Type.Union([
 ]);
 
 export type MascaraBriefInput = Static<typeof MascaraBriefInputSchema>;
+
+/** Optional precondition binds a UI save to the account whose form was loaded. */
+export const MascaraPreferenceSaveInputSchema = Type.Union([
+  Type.Object(
+    {
+      ...PersonalizedMascaraBriefInputSchema.properties,
+      expectedAccountId: Type.Optional(UuidSchema),
+    },
+    { additionalProperties: false },
+  ),
+  Type.Object(
+    {
+      ...UnknownGoalsMascaraBriefInputSchema.properties,
+      expectedAccountId: Type.Optional(UuidSchema),
+    },
+    { additionalProperties: false },
+  ),
+]);
+export type MascaraPreferenceSaveInput = Static<
+  typeof MascaraPreferenceSaveInputSchema
+>;
 
 const snapshotProperties = {
   schemaVersion: Type.Literal(1),

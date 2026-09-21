@@ -1,0 +1,14 @@
+[Unit]
+Description=WhatTheMake passive provider quota and failure report
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /srv/whatthemake/ops/current/provider-monitor.sh
+TimeoutStartSec=45s
+SuccessExitStatus=2
+UMask=0077
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=whatthemake-provider-monitor

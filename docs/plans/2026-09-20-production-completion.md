@@ -13,7 +13,7 @@ Keep TypeScript/TypeBox/Fastify/React/PostgreSQL and existing provider ports. No
 - [x] 1a. Correct hard-constraint eligibility, incomplete comparisons and removal semantics. Add regressions for the reproduced failures and the three-slot tie case.
 - [x] 1b. Use the published INCI dictionary/components for exclusions; ambiguity, partial text and missing dictionaries cannot prove absence.
 - [x] 1c. Migrate DeepSeek model identity and verify a real accepted structured response. Preserve upstream failures and unsupported categories distinctly.
-- [ ] Checkpoint 1: build/typecheck/lint/domain/contracts/integration on server; review diff; deploy and smoke.
+- [x] Checkpoint 1: build/typecheck/lint/domain/contracts/integration on server; review diff; deploy and smoke.
 - [ ] 2a. Define owned product/analysis snapshots, provenance and additive API contracts for private comparisons.
 - [ ] 2b. Connect packaging identity, corrected INCI and ingredient functions to a useful single-product result.
 - [ ] 2c. Allow owned snapshots as comparison slots; browser confirmation and correction must preserve ownership and uncertainty.
@@ -64,7 +64,10 @@ warnings and a separate review-ranking eligibility regression. Browser gate:
 9/9 pass after isolating external discovery and making the delayed-camera
 fixture retain its canvas/stream and assert native live-to-ended track state.
 The server's production dependency audit reports zero vulnerabilities.
-Deployment and public smoke remain pending; checkpoint 1 is not complete yet.
+Deployed release 2026.09.20-01, SHA 8a2f228ada51803f395e8c28da604e75c1218121.
+Public HTTPS readiness reports UP with that SHA, database UP, container healthy;
+live oral-rinse lookup is correctly attributed as OTHER. Previous release
+2026.08.31-06 remains the rollback target.
 
 Pre-release online backup `/srv/whatthemake/backups/20260920T173732Z` restored
 successfully into an isolated temporary database: 31 WTM tables, zero active

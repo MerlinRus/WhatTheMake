@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import type { OcrCacheStore } from '@wtm/infrastructure';
+import type { ProviderBudgetRepository } from '@wtm/domain';
 
 import { createProviderRuntime } from '../src/provider-runtime.js';
 
@@ -11,6 +12,21 @@ function memoryCache(): OcrCacheStore {
     get: async (key) => values.get(key) ?? null,
     put: async (key, value) => {
       values.set(key, value);
+    },
+  };
+}
+
+function budget(): Pick<ProviderBudgetRepository, 'reserve' | 'complete'> & {
+  spent: number;
+} {
+  return {
+    spent: 0,
+    async reserve() {
+      this.spent += 1;
+      return { kind: 'ADMITTED', reservationId: String(this.spent) };
+    },
+    async complete() {
+      return true;
     },
   };
 }
@@ -34,9 +50,11 @@ test('provider runtime composes cached OCR and constructs dormant LLM', async ()
   let googleCalls = 0;
   let deepSeekCalls = 0;
   const events: unknown[] = [];
+  const quota = budget();
   const runtime = createProviderRuntime({
     config: config(),
     ocrCache: memoryCache(),
+    budget: quota,
     googleVisionFetch: async () => {
       googleCalls += 1;
       return new Response(
@@ -69,6 +87,7 @@ test('provider runtime composes cached OCR and constructs dormant LLM', async ()
   });
 
   assert.equal(googleCalls, 1);
+  assert.equal(quota.spent, 1);
   assert.equal(deepSeekCalls, 0);
   assert.equal(runtime.metadata.googleVision.enabled, true);
   assert.equal(runtime.metadata.deepSeek.enabled, true);
@@ -90,6 +109,7 @@ test('provider runtime can explicitly disable both network providers', async () 
       deepSeekApiKey: null,
     },
     ocrCache: memoryCache(),
+    budget: budget(),
   });
 
   assert.equal(runtime.ocr, null);

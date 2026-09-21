@@ -7,7 +7,7 @@ export type ProductDiscoveryUnavailableReason =
   | 'INVALID_RESPONSE'
   | 'DISABLED';
 
-export type ExternalProductDiscoveryResult =
+export type ExternalProductDiscoveryResult = (
   | {
       kind: 'FOUND';
       gtin: string;
@@ -22,7 +22,8 @@ export type ExternalProductDiscoveryResult =
       kind: 'UNAVAILABLE';
       gtin: string;
       reason: ProductDiscoveryUnavailableReason;
-    };
+    }
+) & { provider?: 'OPEN_BEAUTY_FACTS' | 'UPCITEMDB' | 'EXTERNAL_CATALOGS' };
 
 export interface ExternalProductDiscoveryProvider {
   discover(gtin: NormalizedGtin): Promise<ExternalProductDiscoveryResult>;

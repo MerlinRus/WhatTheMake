@@ -3,15 +3,21 @@ import {
   createMediaRecoveryWorker,
   createPostgresDatabase,
   createOpenBeautyFactsProductProvider,
+  createCachedProductDiscoveryProvider,
+  createFallbackProductDiscoveryProvider,
+  createUpcItemDbProductProvider,
+  createProviderBudgetAdmission,
   type MediaRecoveryWorker,
 } from '@wtm/infrastructure';
 
 import { buildApp } from './app.js';
 import { createCatalogLookupService } from './catalog/service.js';
-import {
-  createComparisonService,
-  createNoDataComparisonReviewSignalProvider,
-} from './comparison/service.js';
+import { createPrivateComparisonService } from './comparison/private-service.js';
+import { createCustomerReviewService } from './customer-reviews/service.js';
+import { createCustomerReviewComparisonProvider } from './customer-reviews/comparison-provider.js';
+import { createAccountSecurityService } from './account-security/service.js';
+import { createAccountErasureService } from './account-erasure/service.js';
+import { createComparisonService } from './comparison/service.js';
 import { loadServerConfig } from './config.js';
 import { createIdentityService } from './identity/service.js';
 import { createInciCorrectionService } from './inci-corrections/service.js';
@@ -19,6 +25,7 @@ import { createMediaService } from './media/service.js';
 import { createMascaraPreferencesService } from './preferences/service.js';
 import { createProductObservationService } from './product-observations/service.js';
 import { createProductDiscoveryService } from './product-discovery/service.js';
+import { createPrivateProductService } from './private-products/service.js';
 import {
   createProviderRuntime,
   type ProviderRuntime,
@@ -31,6 +38,11 @@ async function start(): Promise<void> {
     connectionString: config.databaseUrl,
     maxConnections: config.databasePoolMax,
     applicationName: 'what-the-make',
+    providerDailyLimits: {
+      GOOGLE_VISION: config.googleVisionDailyRequestLimit,
+      DEEPSEEK: config.deepSeekDailyRequestLimit,
+      UPCITEMDB: 100,
+    },
     onPoolError: (error) => console.error('PostgreSQL pool error', error),
   });
   let providerRuntime: ProviderRuntime | null = null;
@@ -41,6 +53,7 @@ async function start(): Promise<void> {
     providerRuntime = createProviderRuntime({
       config,
       ocrCache: database.ocrCache,
+      budget: database.providerBudget,
       onEvent: (event) => reportProviderEvent?.(event),
     });
     const identityService = createIdentityService({
@@ -52,6 +65,7 @@ async function start(): Promise<void> {
         : 'wtm_session';
     const mediaStorage = createLocalMediaStorage({
       rootDirectory: config.mediaRoot,
+      minimumFreeBytes: config.mediaMinFreeBytes,
     });
     const mediaService = createMediaService({
       identity: identityService,
@@ -67,8 +81,48 @@ async function start(): Promise<void> {
     const catalogService = createCatalogLookupService({
       repository: database.catalog,
     });
+    const reviewSignals = createCustomerReviewComparisonProvider(
+      database.customerReviews,
+    );
+    const discoveryAdmission = createProviderBudgetAdmission({
+      reserve: (provider) => database.providerBudget.reserve(provider, 10_100),
+      complete: (id, completion) =>
+        database.providerBudget.complete(id, completion),
+    });
     const productDiscoveryService = createProductDiscoveryService({
-      provider: createOpenBeautyFactsProductProvider(),
+      provider: createCachedProductDiscoveryProvider({
+        provider: config.upcItemDbEnabled
+          ? createFallbackProductDiscoveryProvider({
+              primary: createOpenBeautyFactsProductProvider({
+                maxCacheEntries: 0,
+              }),
+              secondary: createUpcItemDbProductProvider({
+                async admitRequest() {
+                  const reserved = await discoveryAdmission('UPCITEMDB');
+                  if (reserved.kind === 'DENIED') return null;
+                  const started = performance.now();
+                  return {
+                    async complete(result) {
+                      await reserved.complete({
+                        durationMs: Math.round(performance.now() - started),
+                        outcome:
+                          result.kind !== 'UNAVAILABLE'
+                            ? 'SUCCEEDED'
+                            : result.reason === 'TIMEOUT'
+                              ? 'TIMEOUT'
+                              : result.reason === 'RATE_LIMITED'
+                                ? 'RATE_LIMITED'
+                                : result.reason === 'INVALID_RESPONSE'
+                                  ? 'INVALID_RESPONSE'
+                                  : 'PROVIDER_UNAVAILABLE',
+                      });
+                    },
+                  };
+                },
+              }),
+            })
+          : createOpenBeautyFactsProductProvider({ maxCacheEntries: 0 }),
+      }),
     });
     let mediaRecoveryWorker: MediaRecoveryWorker | null = null;
     const app = await buildApp({
@@ -91,7 +145,7 @@ async function start(): Promise<void> {
         service: createComparisonService({
           catalog: catalogService,
           discovery: productDiscoveryService,
-          reviews: createNoDataComparisonReviewSignalProvider(),
+          reviews: reviewSignals,
           dictionary: database.inciDictionary,
         }),
         publicOrigin: config.publicOrigin,
@@ -107,6 +161,7 @@ async function start(): Promise<void> {
           identity: identityService,
           repository: database.productObservationInci,
           dictionary: database.inciDictionary,
+          knowledge: database.ingredientKnowledge,
           media: mediaService,
           observations: productObservationService,
           ...(providerRuntime.ocr ? { ocr: providerRuntime.ocr } : {}),
@@ -135,6 +190,52 @@ async function start(): Promise<void> {
       },
       productDiscovery: {
         service: productDiscoveryService,
+      },
+      privateProducts: {
+        service: createPrivateProductService({
+          identity: identityService,
+          repository: database.privateProducts,
+        }),
+        publicOrigin: config.publicOrigin,
+        cookieName,
+      },
+      privateComparisons: {
+        service: createPrivateComparisonService({
+          identity: identityService,
+          privateProducts: database.privateProducts,
+          catalog: catalogService,
+          reviews: reviewSignals,
+          dictionary: database.inciDictionary,
+        }),
+        publicOrigin: config.publicOrigin,
+        cookieName,
+      },
+      customerReviews: {
+        service: createCustomerReviewService({
+          identity: identityService,
+          repository: database.customerReviews,
+        }),
+        publicOrigin: config.publicOrigin,
+        cookieName,
+      },
+      accountSecurity: {
+        service: createAccountSecurityService({
+          identity: identityService,
+          identities: database.identity,
+          repository: database.accountSecurity,
+        }),
+        publicOrigin: config.publicOrigin,
+        cookieName,
+      },
+      accountErasure: {
+        service: createAccountErasureService({
+          identity: identityService,
+          identityRepository: database.identity,
+          repository: database.accountErasure,
+        }),
+        publicOrigin: config.publicOrigin,
+        cookieName,
+        secureCookie: config.nodeEnvironment === 'production',
       },
       onClose: async () => {
         await mediaRecoveryWorker?.stop();

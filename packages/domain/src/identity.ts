@@ -39,6 +39,7 @@ export interface IdentityRepository {
     sessionTokenHash: string,
     expiresAt: Date,
     guestSessionTokenHash?: string,
+    expectedPasswordHash?: string,
   ): Promise<AccountIdentity | null>;
   revokeSession(sessionTokenHash: string): Promise<void>;
 }

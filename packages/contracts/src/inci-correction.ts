@@ -184,6 +184,113 @@ const InciNormalizationSummarySchema = Type.Union([
   ),
 ]);
 
+const IngredientIdentitySchema = Type.Object(
+  {
+    ingredientId: Type.String({ minLength: 1, maxLength: 100 }),
+    canonicalName: Type.String({ minLength: 1, maxLength: 1000 }),
+  },
+  { additionalProperties: false },
+);
+
+export const InciAnalysisDetailsSchema = Type.Object(
+  {
+    knowledge: Type.Union([
+      Type.Null(),
+      Type.Object(
+        {
+          version: Type.String({ minLength: 1, maxLength: 100 }),
+          publishedAt: IsoDateTimeSchema,
+        },
+        { additionalProperties: false },
+      ),
+    ]),
+    omittedComponentCount: Type.Integer({ minimum: 0 }),
+    ingredients: Type.Array(
+      Type.Object(
+        {
+          position: Type.Integer({ minimum: 0 }),
+          componentPosition: Type.Integer({ minimum: 0 }),
+          sourceText: Type.String({ maxLength: 1000 }),
+          sourceTextTruncated: Type.Boolean(),
+          presence: Type.Union([
+            Type.Literal('DECLARED'),
+            Type.Literal('MAY_CONTAIN'),
+          ]),
+          uncertain: Type.Boolean(),
+          identity: Type.Union([
+            Type.Object(
+              {
+                kind: Type.Literal('RESOLVED'),
+                ingredient: IngredientIdentitySchema,
+              },
+              { additionalProperties: false },
+            ),
+            Type.Object(
+              {
+                kind: Type.Literal('AMBIGUOUS'),
+                candidates: Type.Array(IngredientIdentitySchema, {
+                  maxItems: 10,
+                }),
+                omittedCandidateCount: Type.Integer({ minimum: 0 }),
+              },
+              { additionalProperties: false },
+            ),
+            Type.Object(
+              { kind: Type.Literal('UNRESOLVED') },
+              { additionalProperties: false },
+            ),
+          ]),
+          omittedFunctionCount: Type.Integer({ minimum: 0 }),
+          functions: Type.Array(
+            Type.Object(
+              {
+                functionCode: Type.String({ minLength: 2, maxLength: 64 }),
+                jurisdiction: Type.String({ minLength: 2, maxLength: 32 }),
+                confidence: Type.Union([
+                  Type.Literal('LOW'),
+                  Type.Literal('MEDIUM'),
+                  Type.Literal('HIGH'),
+                ]),
+                conflicting: Type.Boolean(),
+                omittedEvidenceCount: Type.Integer({ minimum: 0 }),
+                evidence: Type.Array(
+                  Type.Object(
+                    {
+                      stance: Type.Union([
+                        Type.Literal('SUPPORTS'),
+                        Type.Literal('CONTRADICTS'),
+                      ]),
+                      evidenceType: Type.String({
+                        minLength: 1,
+                        maxLength: 100,
+                      }),
+                      sourceUrl: Type.String({
+                        minLength: 1,
+                        maxLength: 2048,
+                        pattern: '^https?://',
+                      }),
+                      checkedAt: IsoDateTimeSchema,
+                    },
+                    { additionalProperties: false },
+                  ),
+                  { maxItems: 5 },
+                ),
+              },
+              { additionalProperties: false },
+            ),
+            { maxItems: 5 },
+          ),
+        },
+        { additionalProperties: false },
+      ),
+      { maxItems: 200 },
+    ),
+  },
+  { additionalProperties: false },
+);
+
+export type InciAnalysisDetails = Static<typeof InciAnalysisDetailsSchema>;
+
 export const ProductObservationInciAnalysisResponseSchema = Type.Object(
   {
     analysis: Type.Object(
@@ -194,6 +301,7 @@ export const ProductObservationInciAnalysisResponseSchema = Type.Object(
         parserVersion: Type.String({ minLength: 1, maxLength: 100 }),
         parse: InciParseSummarySchema,
         normalization: InciNormalizationSummarySchema,
+        details: Type.Optional(InciAnalysisDetailsSchema),
       },
       { additionalProperties: false },
     ),

@@ -15,6 +15,12 @@ import type {
   MediaRepository,
   PreferencesRepository,
   ProductObservationRepository,
+  PrivateProductRepository,
+  CustomerReviewRepository,
+  AccountSecurityRepository,
+  AccountErasureRepository,
+  ProviderBudgetRepository,
+  BudgetProviderId,
 } from '@wtm/domain';
 
 import { createPostgresCatalogRepository } from './catalog-repository.js';
@@ -28,6 +34,11 @@ import { createPostgresMediaRepository } from './media-repository.js';
 import { createPostgresOcrCacheStore } from './ocr-cache-repository.js';
 import { createPostgresPreferencesRepository } from './preferences-repository.js';
 import { createPostgresProductObservationRepository } from './product-observation-repository.js';
+import { createPostgresPrivateProductRepository } from './private-product-repository.js';
+import { createPostgresCustomerReviewRepository } from './customer-review-repository.js';
+import { createPostgresAccountSecurityRepository } from './account-security-repository.js';
+import { createPostgresAccountErasureRepository } from './account-erasure-repository.js';
+import { createPostgresProviderBudgetRepository } from './provider-budget-repository.js';
 
 const MIGRATION_FILE_PATTERN = /^\d{4}_[a-z0-9_]+\.sql$/;
 const MIGRATION_LOCK_KEY = 928_042_025;
@@ -61,6 +72,11 @@ export interface Database extends DatabaseHealthProbe {
   ocrCache: OcrCacheStore;
   preferences: PreferencesRepository;
   productObservations: ProductObservationRepository;
+  privateProducts: PrivateProductRepository;
+  customerReviews: CustomerReviewRepository;
+  accountSecurity: AccountSecurityRepository;
+  accountErasure: AccountErasureRepository;
+  providerBudget: ProviderBudgetRepository;
   migrate(migrationsDirectory: string): Promise<MigrationSummary>;
   close(): Promise<void>;
 }
@@ -70,6 +86,7 @@ export interface PostgresDatabaseOptions {
   maxConnections: number;
   applicationName: string;
   onPoolError?: (error: Error) => void;
+  providerDailyLimits?: Record<BudgetProviderId, number>;
 }
 
 export class MigrationChecksumMismatchError extends Error {
@@ -122,6 +139,17 @@ export function createPostgresDatabase(
     ocrCache: createPostgresOcrCacheStore(pool),
     preferences: createPostgresPreferencesRepository(pool),
     productObservations: createPostgresProductObservationRepository(pool),
+    privateProducts: createPostgresPrivateProductRepository(pool),
+    customerReviews: createPostgresCustomerReviewRepository(pool),
+    accountSecurity: createPostgresAccountSecurityRepository(pool),
+    accountErasure: createPostgresAccountErasureRepository(pool),
+    providerBudget: createPostgresProviderBudgetRepository(pool, {
+      dailyLimits: options.providerDailyLimits ?? {
+        GOOGLE_VISION: 100,
+        DEEPSEEK: 50,
+        UPCITEMDB: 100,
+      },
+    }),
     async health(): Promise<DatabaseHealth> {
       const startedAt = performance.now();
       try {

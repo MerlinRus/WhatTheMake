@@ -223,6 +223,72 @@ test('manual GTIN fallback opens exact product variant', async ({ page }) => {
   expect(hasHorizontalOverflow).toBe(false);
 });
 
+test('known catalogue product can start a separate private packaging analysis', async ({
+  page,
+}) => {
+  await mockKnownCatalog(page);
+  await page.route('**/api/v1/guest-sessions', (route) =>
+    route.fulfill({
+      json: {
+        principal: {
+          kind: 'GUEST',
+          guestId: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+          createdAt: '2026-09-20T00:00:00.000Z',
+        },
+      },
+    }),
+  );
+  let observed: unknown;
+  await page.route('**/api/v1/product-observations', (route) => {
+    observed = route.request().postDataJSON();
+    return route.fulfill({ status: 503, json: {} });
+  });
+  await page.goto('/');
+  await page.getByLabel('GTIN / EAN').fill(knownGtin);
+  await page.getByRole('button', { name: 'Найти', exact: true }).click();
+  await page.getByRole('button', { name: 'Разобрать свою упаковку' }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Карточка не создалась' }),
+  ).toBeVisible();
+  expect(observed).toEqual({ gtin: knownGtin });
+  await expect(
+    page.getByRole('button', { name: 'Попробовать снова' }),
+  ).toBeVisible();
+});
+
+test('rejected catalogue category never falls through to discovery or packaging capture', async ({
+  page,
+}) => {
+  let discoveryCalls = 0;
+  await page.route('**/api/v1/discovery/**', (route) => {
+    ++discoveryCalls;
+    return route.abort();
+  });
+  await page.route(`**/api/v1/catalog/barcodes/${knownGtin}`, (route) =>
+    route.fulfill({
+      status: 404,
+      json: {
+        error: {
+          code: 'NOT_FOUND',
+          message: 'Unsupported',
+          requestId: 'test',
+          details: { reason: 'UNSUPPORTED_CATEGORY' },
+        },
+      },
+    }),
+  );
+  await page.goto('/');
+  await page.getByLabel('GTIN / EAN').fill(knownGtin);
+  await page.getByRole('button', { name: 'Найти', exact: true }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Этот товар не относится к туши' }),
+  ).toBeVisible();
+  expect(discoveryCalls).toBe(0);
+  await expect(
+    page.getByRole('button', { name: 'Добавить по фото' }),
+  ).toHaveCount(0);
+});
+
 test('local camera decodes EAN-13 and stops its stream', async ({ page }) => {
   await installBarcodeCamera(page);
   await mockKnownCatalog(page);

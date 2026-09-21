@@ -18,7 +18,11 @@ export interface MascaraPreferencesService {
     input: MascaraBriefInput,
   ): Promise<MascaraBrief>;
   current(token: string | null): Promise<MascaraPreferenceResponse>;
-  save(token: string | null, input: MascaraBriefInput): Promise<MascaraBrief>;
+  save(
+    token: string | null,
+    input: MascaraBriefInput,
+    expectedAccountId?: string,
+  ): Promise<MascaraBrief>;
 }
 
 function unauthenticated(): AppError {
@@ -115,10 +119,19 @@ export function createMascaraPreferencesService(options: {
       return { preference: preference ? savedBrief(preference) : null };
     },
 
-    async save(token, input): Promise<MascaraBrief> {
+    async save(token, input, expectedAccountId): Promise<MascaraBrief> {
       const identity = await options.identity.current(token);
       if (!identity) throw unauthenticated();
       if (identity.kind !== 'ACCOUNT') throw accountRequired();
+      if (
+        expectedAccountId !== undefined &&
+        expectedAccountId !== identity.accountId
+      )
+        throw new AppError({
+          statusCode: 403,
+          code: 'FORBIDDEN',
+          message: 'Account session changed',
+        });
       const saved = await options.repository.saveMascaraPreference(
         identity.accountId,
         snapshot(input),

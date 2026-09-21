@@ -108,6 +108,9 @@ function comparisonPayload() {
 }
 
 async function openKnownProduct(page: Page): Promise<void> {
+  await page.route('**/api/v1/session', (route) =>
+    route.fulfill({ json: { principal: { kind: 'ANONYMOUS' } } }),
+  );
   await page.route(`**/api/v1/catalog/barcodes/${firstGtin}`, async (route) =>
     route.fulfill({
       status: 200,
@@ -139,7 +142,7 @@ test('shopper compares two exact variants and gets an honest no-winner', async (
   });
   await openKnownProduct(page);
   await page.getByRole('button', { name: 'Сравнить с другим' }).click();
-  await expect(page.locator('.comparison-workspace')).toBeFocused();
+  await expect(page.getByRole('region', { name: 'Что взять?' })).toBeFocused();
   await page.getByLabel('У меня есть пожелания').check();
   await expect(page.getByLabel('Чувствительные глаза')).toBeVisible();
   await expect(page.getByLabel('Контактные линзы')).toBeVisible();

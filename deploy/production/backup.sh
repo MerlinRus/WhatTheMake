@@ -6,14 +6,23 @@ mkdir -p "$root"
 chmod 700 "$root"
 exec 9>/run/lock/whatthemake-backup.lock
 flock -n 9 || exit 0
-available_kb=$(df -Pk "$root" | awk 'NR == 2 { print $4 }')
-test "$available_kb" -ge 4194304 || { printf 'Backup refused: less than 4 GiB free\n' >&2; exit 1; }
 script_root=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 stamp=$(date -u +%Y%m%dT%H%M%SZ)
-backup=$(mktemp -d "$root/.partial-$stamp-XXXXXX")
 image=$(docker inspect --format '{{.Config.Image}}' whatthemake-web-1)
 volume=$(docker inspect --format '{{range .Mounts}}{{if eq .Destination "/var/lib/whatthemake/media"}}{{.Name}}{{end}}{{end}}' whatthemake-web-1)
 test "$volume" = whatthemake_wtm_media_data
+# Account for both the archive and the restore-check copy, plus a conservative
+# database allowance and growth headroom. This is a preflight, not a disk quota.
+media_kb=$(docker run --rm --user 0 --network none -v "$volume:/media:ro" "$image" du -sk /media | awk '{ print $1 }')
+database_kb=$(docker exec whatthemake-postgres-1 psql -X -U wtm -d wtm -Atc "SELECT pg_database_size(current_database()) / 1024 + 1")
+case "$media_kb:$database_kb" in *[!0-9:]*|:*|*:) exit 1 ;; esac
+required_kb=$((4194304 + 1048576 + 2 * media_kb + 2 * database_kb))
+docker_root=$(docker info --format '{{.DockerRootDir}}')
+for storage_path in "$root" "$docker_root"; do
+  available_kb=$(df -Pk "$storage_path" | awk 'NR == 2 { print $4 }')
+  test "$available_kb" -ge "$required_kb" || { printf 'Backup refused: insufficient archive/restore headroom\n' >&2; exit 1; }
+done
+backup=$(mktemp -d "$root/.partial-$stamp-XXXXXX")
 docker exec whatthemake-postgres-1 pg_dump -U wtm -d wtm --format=custom > "$backup/database.dump"
 docker run --rm --user 0 --network none -v "$volume:/media:ro" \
   "$image" tar -C /media -cf - . > "$backup/media.tar"

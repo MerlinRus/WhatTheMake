@@ -1,0 +1,11 @@
+[Unit]
+Description=Check WhatTheMake provider quotas every fifteen minutes
+
+[Timer]
+OnCalendar=*-*-* *:00,15,30,45:00 UTC
+RandomizedDelaySec=1min
+Persistent=true
+Unit=whatthemake-provider-monitor.service
+
+[Install]
+WantedBy=timers.target

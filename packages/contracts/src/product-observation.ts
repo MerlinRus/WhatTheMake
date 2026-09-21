@@ -69,7 +69,7 @@ export const CatalogPromotionIdentitySchema = Type.Object(
       Type.Object(
         {
           value: Type.String({
-            pattern: '^[0-9]{1,8}(?:\\.[0-9]{1,4})?$',
+            pattern: '^[0-9]{1,8}(?:[.][0-9]{1,4})?$',
           }),
           unit: Type.Union([Type.Literal('MILLILITER'), Type.Literal('GRAM')]),
         },

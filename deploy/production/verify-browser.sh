@@ -31,3 +31,4 @@ docker run --rm --network "container:$database" \
   -v "$source/playwright.config.ts:/app/playwright.config.ts:ro" \
   -v "$source/test-results:/app/test-results" \
   "$browser_image" npm run test:e2e -- --workers=1 "$@"
+docker exec -e RUN_PRIVATE_SMOKE=1 -e SMOKE_ORIGIN=http://127.0.0.1:8787 "$web" node tools/private-flow-smoke.mjs

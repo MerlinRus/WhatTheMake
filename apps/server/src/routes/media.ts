@@ -146,6 +146,11 @@ export async function registerMediaRoutes(
       onRequest: requireImageContentType,
       preHandler: sameOrigin,
       bodyLimit: options.maxBytes,
+      onSend: async (_request, reply, payload) => {
+        reply.header('Cache-Control', 'private, no-store');
+        if (reply.statusCode === 503) reply.header('Retry-After', '60');
+        return payload;
+      },
       config: { rateLimit: { max: 30, timeWindow: '1 hour' } },
       schema: {
         params: MediaCollectionParamsSchema,
@@ -160,6 +165,7 @@ export async function registerMediaRoutes(
           413: ApiErrorEnvelopeSchema,
           415: ApiErrorEnvelopeSchema,
           429: ApiErrorEnvelopeSchema,
+          503: ApiErrorEnvelopeSchema,
         },
       },
     },

@@ -69,6 +69,57 @@ test('server config requires DATABASE_URL', () => {
   assert.throws(() => loadServerConfig({}), ConfigurationError);
 });
 
+test('media disk reserve defaults to 4 GiB in production and validates overrides', () => {
+  const base = { DATABASE_URL: 'postgresql://example.test/wtm' };
+  assert.equal(loadServerConfig(base).mediaMinFreeBytes, 0);
+  assert.equal(
+    loadServerConfig({
+      ...base,
+      NODE_ENV: 'production',
+      GOOGLE_VISION_API_KEY: `AIza${'a'.repeat(32)}`,
+      DEEPSEEK_ENABLED: 'true',
+      DEEPSEEK_API_KEY: `sk-${'b'.repeat(32)}`,
+    }).mediaMinFreeBytes,
+    4 * 1024 ** 3,
+  );
+  assert.equal(
+    loadServerConfig({ ...base, MEDIA_MIN_FREE_BYTES: '2048' })
+      .mediaMinFreeBytes,
+    2048,
+  );
+  for (const value of ['-1', '1.5', 'NaN', '9007199254740992']) {
+    assert.throws(
+      () => loadServerConfig({ ...base, MEDIA_MIN_FREE_BYTES: value }),
+      ConfigurationError,
+    );
+  }
+});
+
+test('paid request limits are bounded, conservative and explicitly disableable', () => {
+  const environment = { DATABASE_URL: 'postgresql://example.test/wtm' };
+  const defaults = loadServerConfig(environment);
+  assert.equal(defaults.googleVisionDailyRequestLimit, 100);
+  assert.equal(defaults.deepSeekDailyRequestLimit, 50);
+  const disabled = loadServerConfig({
+    ...environment,
+    GOOGLE_VISION_DAILY_REQUEST_LIMIT: '0',
+    DEEPSEEK_DAILY_REQUEST_LIMIT: '0',
+  });
+  assert.equal(disabled.googleVisionDailyRequestLimit, 0);
+  assert.equal(disabled.deepSeekDailyRequestLimit, 0);
+  for (const key of [
+    'GOOGLE_VISION_DAILY_REQUEST_LIMIT',
+    'DEEPSEEK_DAILY_REQUEST_LIMIT',
+  ]) {
+    for (const value of ['-1', '1.5', '100001', 'NaN', 'Infinity']) {
+      assert.throws(
+        () => loadServerConfig({ ...environment, [key]: value }),
+        ConfigurationError,
+      );
+    }
+  }
+});
+
 test('server config rejects invalid numeric and enum values', () => {
   assert.throws(
     () =>

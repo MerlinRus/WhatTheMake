@@ -1,6 +1,7 @@
 import type { CatalogSource, CatalogVariantResponse } from '@wtm/contracts';
 import {
   normalizeGtin,
+  hasUnsupportedMascaraCategory,
   type CatalogRepository,
   type PublishedCatalogSource,
 } from '@wtm/domain';
@@ -33,7 +34,7 @@ function source(value: PublishedCatalogSource): CatalogSource {
 }
 
 export function createCatalogLookupService(options: {
-  repository: CatalogRepository;
+  repository: Pick<CatalogRepository, 'findPublishedVariantByGtin'>;
 }): CatalogLookupService {
   return {
     async byGtin(input): Promise<CatalogVariantResponse> {
@@ -55,6 +56,15 @@ export function createCatalogLookupService(options: {
           statusCode: 404,
           code: 'NOT_FOUND',
           message: 'Catalog variant not found',
+        });
+      }
+
+      if (hasUnsupportedMascaraCategory(found.familyName, found.variantName)) {
+        throw new AppError({
+          statusCode: 404,
+          code: 'NOT_FOUND',
+          message: 'Product is not supported by the mascara catalog',
+          details: { reason: 'UNSUPPORTED_CATEGORY' },
         });
       }
 

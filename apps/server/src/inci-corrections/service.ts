@@ -14,6 +14,7 @@ import {
   type AuthenticatedIdentity,
   type CreateProductObservationInciRevisionResult,
   type InciDictionaryRepository,
+  type IngredientKnowledgeRepository,
   type InciSourceSha256,
   type OcrFailureCode,
   type OcrProvider,
@@ -27,6 +28,7 @@ import { AppError } from '../errors.js';
 import type { IdentityService } from '../identity/service.js';
 import type { MediaService } from '../media/service.js';
 import type { ProductObservationService } from '../product-observations/service.js';
+import { ingredientAnalysisDetails } from './analysis-details.js';
 
 export interface InciCorrectionService {
   workspace(
@@ -149,6 +151,7 @@ export function createInciCorrectionService(options: {
   identity: IdentityService;
   repository: ProductObservationInciRepository;
   dictionary: InciDictionaryRepository;
+  knowledge?: Pick<IngredientKnowledgeRepository, 'findPublishedSnapshot'>;
   ocr?: OcrProvider;
   media?: MediaService;
   observations?: ProductObservationService;
@@ -297,11 +300,14 @@ export function createInciCorrectionService(options: {
               kind: 'NOT_RUN',
               reason: 'NO_PUBLISHED_DICTIONARY',
             },
+            details: ingredientAnalysisDetails(parsed, null, null),
           },
         };
       }
 
       const snapshot = canonicalizeInci(parsed, dictionary);
+      const knowledge =
+        (await options.knowledge?.findPublishedSnapshot()) ?? null;
       const decisions = snapshot.tokens.flatMap((token) =>
         token.components.map((component) => component.decision),
       );
@@ -312,6 +318,7 @@ export function createInciCorrectionService(options: {
           sourceSha256: selected.sourceSha256,
           parserVersion: snapshot.parserVersion,
           parse,
+          details: ingredientAnalysisDetails(parsed, snapshot, knowledge),
           normalization: {
             kind: 'COMPLETED',
             canonicalizerVersion: snapshot.canonicalizerVersion,

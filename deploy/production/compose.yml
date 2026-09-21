@@ -28,6 +28,8 @@ services:
     image: ${WTM_IMAGE:?WTM_IMAGE is required}
     restart: unless-stopped
     init: true
+    mem_limit: 768m
+    pids_limit: 128
     environment:
       NODE_ENV: production
       HOST: 0.0.0.0
@@ -40,6 +42,7 @@ services:
       WEB_ROOT: /app/apps/web/dist
       MEDIA_ROOT: /var/lib/whatthemake/media
       MEDIA_MAX_BYTES: 8388608
+      MEDIA_MIN_FREE_BYTES: 4294967296
       MEDIA_UPLOAD_RECOVERY_DELAY_MS: 60000
       MEDIA_RECOVERY_POLL_MS: 1000
       MEDIA_RECOVERY_LEASE_MS: 30000
@@ -47,6 +50,7 @@ services:
       MEDIA_RECOVERY_RETRY_MAX_MS: 3600000
       GOOGLE_VISION_API_KEY: ${GOOGLE_VISION_API_KEY:?GOOGLE_VISION_API_KEY is required}
       GOOGLE_VISION_TIMEOUT_MS: 10000
+      GOOGLE_VISION_DAILY_REQUEST_LIMIT: ${GOOGLE_VISION_DAILY_REQUEST_LIMIT:-100}
       OCR_QUEUE_CONCURRENCY: 2
       OCR_QUEUE_MAX_PENDING: 20
       OCR_QUEUE_WAIT_TIMEOUT_MS: 15000
@@ -55,6 +59,7 @@ services:
       DEEPSEEK_ENABLED: 'true'
       DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:?DEEPSEEK_API_KEY is required}
       DEEPSEEK_TIMEOUT_MS: 10000
+      DEEPSEEK_DAILY_REQUEST_LIMIT: ${DEEPSEEK_DAILY_REQUEST_LIMIT:-50}
       BUILD_SHA: ${BUILD_SHA:?BUILD_SHA is required}
     depends_on:
       postgres:

@@ -46,6 +46,15 @@ import {
   type ProductObservationRoutesOptions,
 } from './routes/product-observations.js';
 import { registerProductDiscoveryRoutes } from './routes/product-discovery.js';
+import { registerPrivateComparisonRoutes } from './routes/private-comparisons.js';
+import { registerCustomerReviewRoutes } from './routes/customer-reviews.js';
+import { registerAccountSecurityRoutes } from './routes/account-security.js';
+import { registerAccountErasureRoutes } from './routes/account-erasure.js';
+import type { PrivateComparisonService } from './comparison/private-service.js';
+import {
+  registerPrivateProductRoutes,
+  type PrivateProductRoutesOptions,
+} from './routes/private-products.js';
 
 export interface BuildAppOptions {
   database?: DatabaseHealthProbe | null;
@@ -69,6 +78,15 @@ export interface BuildAppOptions {
     service: ProductObservationService;
   };
   productDiscovery?: { service: ProductDiscoveryService };
+  privateProducts?: PrivateProductRoutesOptions;
+  customerReviews?: Parameters<typeof registerCustomerReviewRoutes>[1];
+  accountSecurity?: Parameters<typeof registerAccountSecurityRoutes>[1];
+  accountErasure?: Parameters<typeof registerAccountErasureRoutes>[1];
+  privateComparisons?: {
+    service: PrivateComparisonService;
+    publicOrigin: string;
+    cookieName: string;
+  };
   onClose?: () => Promise<void>;
 }
 
@@ -228,6 +246,18 @@ export async function buildApp(
   if (options.productDiscovery) {
     await registerProductDiscoveryRoutes(app, options.productDiscovery);
   }
+  if (options.privateProducts) {
+    await registerPrivateProductRoutes(app, options.privateProducts);
+  }
+  if (options.privateComparisons) {
+    await registerPrivateComparisonRoutes(app, options.privateComparisons);
+  }
+  if (options.customerReviews)
+    await registerCustomerReviewRoutes(app, options.customerReviews);
+  if (options.accountSecurity)
+    await registerAccountSecurityRoutes(app, options.accountSecurity);
+  if (options.accountErasure)
+    await registerAccountErasureRoutes(app, options.accountErasure);
 
   if (options.webRoot) {
     await app.register(fastifyStatic, {

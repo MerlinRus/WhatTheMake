@@ -7,7 +7,14 @@ import type {
   OcrRequest,
   OcrResult,
   OcrTelemetryEvent,
+  ProviderAdmission,
+  ProviderAdmissionResult,
 } from '@wtm/domain';
+import {
+  awaitProviderAdmission,
+  completeProviderAdmission,
+  providerBudgetOutcome,
+} from './provider-budget-admission.js';
 
 const GOOGLE_VISION_ENDPOINT =
   'https://vision.googleapis.com/v1/images:annotate';
@@ -48,6 +55,7 @@ export interface GoogleVisionOcrProviderOptions {
   maxResponseBytes?: number;
   fetch?: typeof fetch;
   onTelemetry?: (event: OcrTelemetryEvent) => void;
+  beforeDispatch?: ProviderAdmission;
 }
 
 function positiveInteger(name: string, value: number, maximum: number): number {
@@ -210,7 +218,11 @@ export function createGoogleVisionOcrProvider(
 
     async recognize(request): Promise<OcrResult> {
       const startedAt = performance.now();
-      const complete = (result: OcrResult): OcrResult => {
+      let admission: Extract<
+        ProviderAdmissionResult,
+        { kind: 'ADMITTED' }
+      > | null = null;
+      const complete = async (result: OcrResult): Promise<OcrResult> => {
         const common = {
           providerId: GOOGLE_VISION_PROVIDER_ID,
           providerVersion: GOOGLE_VISION_VERSION,
@@ -227,6 +239,20 @@ export function createGoogleVisionOcrProvider(
                 retryable: result.retryable,
               },
         );
+        if (admission) {
+          const admitted = admission;
+          admission = null;
+          try {
+            await completeProviderAdmission(admitted, {
+              outcome: providerBudgetOutcome(
+                result.kind === 'FAILED' ? result.code : undefined,
+              ),
+              durationMs: common.durationMs,
+            });
+          } catch {
+            // Completion failures retain the charged admission and do not replace the result.
+          }
+        }
         return result;
       };
 
@@ -244,6 +270,39 @@ export function createGoogleVisionOcrProvider(
         : timeoutController.signal;
 
       try {
+        if (options.beforeDispatch) {
+          let decision: ProviderAdmissionResult;
+          try {
+            decision = await awaitProviderAdmission(
+              options.beforeDispatch,
+              GOOGLE_VISION_PROVIDER_ID,
+              signal,
+            );
+          } catch {
+            return complete(failure('OCR_BUDGET_UNAVAILABLE', false));
+          }
+          if (signal.aborted) {
+            if (decision.kind === 'ADMITTED') admission = decision;
+            return complete(
+              abortFailure(request.signal, timeoutController.signal),
+            );
+          }
+          if (decision.kind === 'DENIED') {
+            return complete(
+              failure(
+                decision.reason === 'BUDGET_EXHAUSTED'
+                  ? 'OCR_BUDGET_EXHAUSTED'
+                  : 'OCR_BUDGET_UNAVAILABLE',
+                false,
+              ),
+            );
+          }
+          admission = decision;
+        }
+        if (signal.aborted)
+          return complete(
+            abortFailure(request.signal, timeoutController.signal),
+          );
         const response = await requestFetch(GOOGLE_VISION_ENDPOINT, {
           method: 'POST',
           headers: {

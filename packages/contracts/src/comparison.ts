@@ -141,6 +141,9 @@ export const ComparisonReasonCodeSchema = Type.Union([
   Type.Literal('CONTEXT_NOT_ASSESSED'),
   Type.Literal('NO_SUPPORTED_DIFFERENCE'),
   Type.Literal('EXACT_CATALOG_IDENTITY'),
+  Type.Literal('USER_CONFIRMED_IDENTITY'),
+  Type.Literal('USER_FORMULA_AVAILABLE'),
+  Type.Literal('USER_PRICE_AVAILABLE'),
   Type.Literal('WATERPROOF_MATCH'),
   Type.Literal('WATERPROOF_CONFLICT'),
   Type.Literal('AVOIDED_INGREDIENT_PRESENT'),
@@ -231,6 +234,7 @@ export const ComparisonPreviewResponseSchema = Type.Object(
         rulesVersion: Type.Union([
           Type.Literal('mascara-comparison-v1'),
           Type.Literal('mascara-comparison-v2'),
+          Type.Literal('mascara-comparison-v3'),
         ]),
         mode: Type.Union([
           Type.Literal('UNKNOWN_GOALS'),

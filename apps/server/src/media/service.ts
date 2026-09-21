@@ -6,13 +6,14 @@ import type {
   MediaCollection as ContractMediaCollection,
   MediaRole as ContractMediaRole,
 } from '@wtm/contracts';
-import type {
-  AuthenticatedIdentity,
-  ImageMediaType,
-  MediaAsset,
-  MediaCollection,
-  MediaRepository,
-  MediaStorage,
+import {
+  MediaStorageCapacityError,
+  type AuthenticatedIdentity,
+  type ImageMediaType,
+  type MediaAsset,
+  type MediaCollection,
+  type MediaRepository,
+  type MediaStorage,
 } from '@wtm/domain';
 
 import { AppError } from '../errors.js';
@@ -174,7 +175,20 @@ export function createMediaService(options: {
 
       try {
         await options.storage.put(assetId, input.bytes);
-      } catch {
+      } catch (error) {
+        if (error instanceof MediaStorageCapacityError) {
+          // Capacity admission failed before file creation. Release its slot;
+          // never delete by ID here (including on EEXIST or unknown failures).
+          await options.repository
+            .completePreparedAssetUpload(assetId)
+            .catch(() => {});
+          throw new AppError({
+            statusCode: 503,
+            code: 'SERVICE_UNAVAILABLE',
+            message: 'Media storage is temporarily unavailable',
+            details: { reason: 'MEDIA_STORAGE_CAPACITY', retryable: true },
+          });
+        }
         throw new AppError({
           statusCode: 503,
           code: 'SERVICE_UNAVAILABLE',

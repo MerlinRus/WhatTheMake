@@ -107,6 +107,13 @@ export function createIdentityService(options: {
     },
 
     async register(input, guestToken): Promise<IssuedIdentitySession> {
+      if (normalizeEmail(input.email).endsWith('@deleted.invalid')) {
+        throw new AppError({
+          statusCode: 400,
+          code: 'VALIDATION_ERROR',
+          message: 'Email domain is reserved',
+        });
+      }
       const token = newSessionToken();
       try {
         const identity = await options.repository.createAccount({
@@ -154,6 +161,7 @@ export function createIdentityService(options: {
         hashSessionToken(token),
         new Date(now().getTime() + ACCOUNT_SESSION_LIFETIME_MS),
         guestToken ? hashSessionToken(guestToken) : undefined,
+        account.passwordHash,
       );
       if (!identity) throw invalidCredentials();
       return { identity, token, isNew: true };

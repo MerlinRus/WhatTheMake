@@ -105,6 +105,21 @@ export type PublishIngredientKnowledgeResult =
 
 export interface IngredientKnowledgeRepository {
   findPublishedSnapshot(): Promise<PublishedIngredientKnowledgeSnapshot | null>;
+  publishInitialSnapshot(input: {
+    draft: IngredientKnowledgeDraft;
+    dictionaryVersion: string;
+    publishedAt: Date;
+    dryRun: boolean;
+  }): Promise<{
+    kind:
+      | 'READY'
+      | 'PUBLISHED'
+      | 'ALREADY_PUBLISHED'
+      | 'VERSION_CONFLICT'
+      | 'ACTIVE_SNAPSHOT_CONFLICT';
+    version: string;
+    factCount: number;
+  }>;
 }
 
 const VERSION_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/u;

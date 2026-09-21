@@ -10,3 +10,7 @@ export * from './mascara-preferences.js';
 export * from './media.js';
 export * from './product-observation.js';
 export * from './product-discovery.js';
+export * from './private-product.js';
+export * from './private-comparison.js';
+export * from './customer-review.js';
+export * from './account-security.js';

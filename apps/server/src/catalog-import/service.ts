@@ -8,6 +8,7 @@ import {
 } from '@wtm/contracts';
 import {
   normalizeGtin,
+  hasUnsupportedMascaraCategory,
   type CatalogImportCandidate,
   type CatalogImportInput,
   type CatalogImportQuarantineCode,
@@ -98,6 +99,9 @@ function normalizedCandidate(
   const gtin = normalizeGtin(product.gtin);
   if (gtin.kind === 'INVALID') {
     return quarantinedRow(rowNumber, raw, 'INVALID_GTIN');
+  }
+  if (hasUnsupportedMascaraCategory(familyName, variantName)) {
+    return quarantinedRow(rowNumber, raw, 'INVALID_ROW');
   }
   const quantityValue = product.netQuantity?.value ?? null;
   if (

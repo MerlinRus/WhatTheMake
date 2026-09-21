@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import test from 'node:test';
 
 import { Pool } from 'pg';
 
 import type { OcrProvider, OcrRequest, OcrResult } from '@wtm/domain';
+import { createPostgresOcrCacheStore } from '../src/ocr-cache-repository.js';
 
 import {
   createCachedOcrProvider,
@@ -15,6 +17,111 @@ import {
 } from '../src/index.js';
 
 const testDatabaseUrl = process.env.TEST_DATABASE_URL;
+
+test(
+  'PostgreSQL OCR retention preserves age, hides expiry and purges only bounded expired rows',
+  { skip: testDatabaseUrl === undefined },
+  async () => {
+    // One connection + temporary table isolates real SQL from all other test data.
+    const pool = new Pool({ connectionString: testDatabaseUrl, max: 1 });
+    const key = (value: number): string => value.toString(16).padStart(64, '0');
+    try {
+      await pool.query('BEGIN');
+      const initial = await readFile(
+        resolve('apps/server/migrations/0010_ocr_provider_cache.sql'),
+        'utf8',
+      );
+      await pool.query(
+        initial.replace(
+          'CREATE TABLE wtm_ocr_provider_cache',
+          'CREATE TEMP TABLE wtm_ocr_provider_cache',
+        ),
+      );
+      await pool.query(
+        `
+        INSERT INTO wtm_ocr_provider_cache (cache_key, result_text, created_at)
+        VALUES ($1, 'old', now() - interval '8 days'),
+               ($2, 'fresh', now() - interval '1 day')
+      `,
+        [key(1), key(2)],
+      );
+      await pool.query(
+        await readFile(
+          resolve('apps/server/migrations/0019_ocr_cache_retention.sql'),
+          'utf8',
+        ),
+      );
+      const cache = createPostgresOcrCacheStore(pool);
+      assert.equal(await cache.get(key(1)), null);
+      assert.equal(await cache.get(key(2)), 'fresh');
+      const migrated = await pool.query(
+        "SELECT expires_at - created_at = interval '7 days' AS correct, expires_at = now() + interval '6 days' AS original_age FROM wtm_ocr_provider_cache WHERE cache_key = $1",
+        [key(2)],
+      );
+      assert.equal(migrated.rows[0].correct, true);
+      assert.equal(migrated.rows[0].original_age, true);
+
+      await cache.put(key(2), 'do not overwrite or renew a fresh result');
+      assert.equal(await cache.get(key(2)), 'fresh');
+      assert.equal(
+        (
+          await pool.query(
+            "SELECT expires_at = now() + interval '6 days' AS unchanged FROM wtm_ocr_provider_cache WHERE cache_key = $1",
+            [key(2)],
+          )
+        ).rows[0].unchanged,
+        true,
+      );
+
+      await pool.query(
+        'UPDATE wtm_ocr_provider_cache SET expires_at = now() WHERE cache_key = $1',
+        [key(2)],
+      );
+      assert.equal(await cache.get(key(2)), null);
+      await cache.put(key(2), 'recognized again');
+      assert.equal(await cache.get(key(2)), 'recognized again');
+      assert.equal(
+        (
+          await pool.query(
+            "SELECT created_at = now() AND expires_at = now() + interval '7 days' AS renewed FROM wtm_ocr_provider_cache WHERE cache_key = $1",
+            [key(2)],
+          )
+        ).rows[0].renewed,
+        true,
+      );
+
+      await pool.query(`
+        INSERT INTO wtm_ocr_provider_cache (cache_key, result_text, expires_at)
+        SELECT lpad(to_hex(value), 64, '0'), 'expired', now() - interval '1 second'
+        FROM generate_series(1000, 1100) AS value
+      `);
+      await cache.put(key(3), 'new result');
+      assert.equal(
+        (
+          await pool.query(
+            'SELECT count(*)::int AS count FROM wtm_ocr_provider_cache WHERE expires_at <= now()',
+          )
+        ).rows[0].count,
+        1,
+      );
+      assert.equal(await cache.get(key(2)), 'recognized again');
+      assert.equal(await cache.get(key(3)), 'new result');
+      await cache.put(key(3), 'still unchanged');
+      assert.equal(
+        (
+          await pool.query(
+            'SELECT count(*)::int AS count FROM wtm_ocr_provider_cache WHERE expires_at <= now()',
+          )
+        ).rows[0].count,
+        0,
+      );
+      assert.equal(await cache.get(key(3)), 'new result');
+    } finally {
+      await pool.query('ROLLBACK');
+      await pool.end();
+    }
+  },
+);
 
 const request: OcrRequest = {
   operation: 'DOCUMENT_TEXT_DETECTION',

@@ -14,6 +14,9 @@ export type ComparisonReasonCode =
   | 'CONTEXT_NOT_ASSESSED'
   | 'NO_SUPPORTED_DIFFERENCE'
   | 'EXACT_CATALOG_IDENTITY'
+  | 'USER_CONFIRMED_IDENTITY'
+  | 'USER_FORMULA_AVAILABLE'
+  | 'USER_PRICE_AVAILABLE'
   | 'WATERPROOF_MATCH'
   | 'WATERPROOF_CONFLICT'
   | 'AVOIDED_INGREDIENT_PRESENT'
@@ -60,6 +63,9 @@ export interface ReadyComparisonCandidate {
   formulaText: string | null;
   claimKinds: readonly ComparisonClaimKind[];
   review: ComparisonReviewSignal | null;
+  identitySource?: 'CATALOG' | 'USER_CONFIRMED_PACKAGING';
+  formulaComplete?: boolean;
+  priceKopecks?: number | null;
 }
 
 export interface BlockedComparisonCandidate {
@@ -172,12 +178,12 @@ function hardEvidence(
       brief.avoidedIngredients,
       dictionary,
     );
-    missing ||= checked.uncertain;
+    missing ||= checked.uncertain || candidate.formulaComplete === false;
     if (checked.present.length > 0) {
       violations += checked.present.length;
       reasonCode = 'AVOIDED_INGREDIENT_PRESENT';
       evidence.push(`В составе найдены исключения (${checked.present.length})`);
-    } else if (!checked.uncertain) {
+    } else if (!checked.uncertain && candidate.formulaComplete !== false) {
       matches += 1;
       if (violations === 0) reasonCode = 'AVOIDED_INGREDIENT_ABSENT';
       evidence.push('Исключения не найдены в сопоставленном составе');
@@ -188,7 +194,7 @@ function hardEvidence(
     if (candidate.claimKinds.includes('EASY_REMOVAL')) {
       matches += 1;
       if (violations === 0) reasonCode = 'EASY_REMOVAL_MATCH';
-      evidence.push('Производитель заявляет лёгкое снятие');
+      evidence.push('В данных упаковки указано лёгкое снятие');
     } else missing = true;
   }
   if (brief.sensitiveEyes || brief.contactLenses) {
@@ -201,7 +207,10 @@ function hardEvidence(
   if (violations > 0) {
     return {
       outcome: 'DISADVANTAGE',
-      confidence: 'HIGH',
+      confidence:
+        candidate.identitySource === 'USER_CONFIRMED_PACKAGING'
+          ? 'MEDIUM'
+          : 'HIGH',
       reasonCode,
       evidence,
       violations,
@@ -222,7 +231,12 @@ function hardEvidence(
   }
   return {
     outcome: matches > 0 ? 'ADVANTAGE' : 'NEUTRAL',
-    confidence: matches > 0 ? 'HIGH' : 'LOW',
+    confidence:
+      matches > 0
+        ? candidate.identitySource === 'USER_CONFIRMED_PACKAGING'
+          ? 'MEDIUM'
+          : 'HIGH'
+        : 'LOW',
     reasonCode,
     evidence,
     violations,
@@ -237,8 +251,11 @@ function reviewConfidence(
 ): ComparisonConfidence | null {
   if (
     signal === null ||
-    signal.reviewCount < 20 ||
-    signal.sourceQuality === 'LOW'
+    !Number.isInteger(signal.reviewCount) ||
+    signal.reviewCount < 1 ||
+    !Number.isFinite(signal.ratingValue) ||
+    signal.ratingValue < 1 ||
+    signal.ratingValue > 5
   ) {
     return null;
   }
@@ -246,9 +263,33 @@ function reviewConfidence(
   if (!Number.isFinite(ageMs) || ageMs < 0 || ageMs > 730 * 86_400_000) {
     return null;
   }
-  return signal.reviewCount >= 100 && signal.sourceQuality === 'HIGH'
+  if (effectiveReviewCount(signal, now) < 20) return null;
+  return effectiveReviewCount(signal, now) >= 100 &&
+    signal.sourceQuality === 'HIGH'
     ? 'HIGH'
     : 'MEDIUM';
+}
+
+function effectiveReviewCount(
+  signal: ComparisonReviewSignal,
+  now: Date,
+): number {
+  const qualityWeight = { LOW: 0.2, MEDIUM: 0.6, HIGH: 1 }[
+    signal.sourceQuality
+  ];
+  const ageWeight =
+    now.getTime() - signal.asOf.getTime() > 365 * 86_400_000 ? 0.5 : 1;
+  return signal.reviewCount * qualityWeight * ageWeight;
+}
+
+/** Product policy, not a statistical confidence interval: shrink small/weak samples. */
+function adjustedReviewRating(
+  signal: ComparisonReviewSignal | null,
+  now: Date,
+): number {
+  if (!signal) return 0;
+  const count = effectiveReviewCount(signal, now);
+  return (signal.ratingValue * count + 3.5 * 20) / (count + 20);
 }
 
 function observation(
@@ -304,7 +345,8 @@ export function compareMascaras(input: {
   );
   const orderedReviews = [...reviewable].sort(
     (left, right) =>
-      (right.review?.ratingValue ?? 0) - (left.review?.ratingValue ?? 0),
+      adjustedReviewRating(right.review, input.now) -
+      adjustedReviewRating(left.review, input.now),
   );
   const reviewWinner = orderedReviews[0];
   const reviewRunnerUp = orderedReviews[1];
@@ -312,8 +354,8 @@ export function compareMascaras(input: {
     reviewable.length === ready.length &&
     reviewWinner !== undefined &&
     reviewRunnerUp !== undefined &&
-    (reviewWinner.review?.ratingValue ?? 0) -
-      (reviewRunnerUp.review?.ratingValue ?? 0) >=
+    adjustedReviewRating(reviewWinner.review, input.now) -
+      adjustedReviewRating(reviewRunnerUp.review, input.now) >=
       0.25;
 
   const criteria: DomainComparisonResult['criteria'] = [
@@ -322,16 +364,27 @@ export function compareMascaras(input: {
       observations: input.candidates.map((candidate) =>
         observation(candidate, {
           outcome: candidate.state === 'READY' ? 'NEUTRAL' : 'NO_DATA',
-          confidence: candidate.state === 'READY' ? 'HIGH' : 'LOW',
+          confidence:
+            candidate.state === 'READY'
+              ? candidate.identitySource === 'USER_CONFIRMED_PACKAGING'
+                ? 'MEDIUM'
+                : 'HIGH'
+              : 'LOW',
           reasonCode:
             candidate.state === 'READY'
-              ? 'EXACT_CATALOG_IDENTITY'
+              ? candidate.identitySource === 'USER_CONFIRMED_PACKAGING'
+                ? 'USER_CONFIRMED_IDENTITY'
+                : 'EXACT_CATALOG_IDENTITY'
               : candidate.reason === 'EXTERNAL_CANDIDATE'
                 ? 'EXTERNAL_IDENTITY_UNCONFIRMED'
                 : 'INSUFFICIENT_READY_SLOTS',
           evidence:
             candidate.state === 'READY'
-              ? ['Точный опубликованный вариант по GTIN']
+              ? [
+                  candidate.identitySource === 'USER_CONFIRMED_PACKAGING'
+                    ? 'Личная карточка: данные упаковки подтверждены пользователем, не каталогом'
+                    : 'Точный опубликованный вариант по GTIN',
+                ]
               : [],
         }),
       ),
@@ -366,7 +419,7 @@ export function compareMascaras(input: {
               : 'GOAL_CLAIM_NOT_FOUND',
           evidence:
             matches && matches > 0
-              ? [`Совпадений с claims производителя: ${matches}`]
+              ? [`Совпадений с указанными заявлениями упаковки: ${matches}`]
               : [],
         });
       }),
@@ -414,13 +467,22 @@ export function compareMascaras(input: {
               : 'NO_DATA',
           confidence:
             candidate.state === 'READY' && candidate.formulaText !== null
-              ? 'HIGH'
+              ? candidate.identitySource === 'USER_CONFIRMED_PACKAGING'
+                ? 'MEDIUM'
+                : 'HIGH'
               : 'LOW',
           reasonCode:
             candidate.state === 'READY' && candidate.formulaText !== null
-              ? 'FORMULA_AVAILABLE'
+              ? candidate.identitySource === 'USER_CONFIRMED_PACKAGING'
+                ? 'USER_FORMULA_AVAILABLE'
+                : 'FORMULA_AVAILABLE'
               : 'FORMULA_DATA_UNAVAILABLE',
-          evidence: [],
+          evidence:
+            candidate.state === 'READY' && candidate.formulaComplete === false
+              ? [
+                  'Полнота состава не подтверждена; отсутствие ингредиента не установлено',
+                ]
+              : [],
         }),
       ),
     },
@@ -428,10 +490,26 @@ export function compareMascaras(input: {
       kind: 'PRICE_AND_VALUE',
       observations: input.candidates.map((candidate) =>
         observation(candidate, {
-          outcome: 'NO_DATA',
-          confidence: 'LOW',
-          reasonCode: 'PRICE_DATA_UNAVAILABLE',
-          evidence: [],
+          outcome:
+            candidate.state === 'READY' && candidate.priceKopecks != null
+              ? 'NEUTRAL'
+              : 'NO_DATA',
+          confidence:
+            candidate.state === 'READY' && candidate.priceKopecks != null
+              ? 'MEDIUM'
+              : 'LOW',
+          reasonCode:
+            candidate.state === 'READY' && candidate.priceKopecks != null
+              ? 'USER_PRICE_AVAILABLE'
+              : 'PRICE_DATA_UNAVAILABLE',
+          evidence:
+            candidate.state === 'READY' && candidate.priceKopecks != null
+              ? [
+                  'Цена пользователя: ' +
+                    (candidate.priceKopecks / 100).toFixed(2) +
+                    ' ₽ за упаковку; сама по себе не доказывает качество',
+                ]
+              : [],
         }),
       ),
     },
@@ -504,6 +582,7 @@ export function compareMascaras(input: {
         kind: 'PREFERRED',
         productVariantId: hardWinner.candidate.productVariantId,
         confidence:
+          hardWinner.candidate.identitySource === 'USER_CONFIRMED_PACKAGING' ||
           hardWinner.evidence.reasonCode === 'EASY_REMOVAL_MATCH'
             ? 'MEDIUM'
             : 'HIGH',
@@ -553,7 +632,8 @@ export function compareMascaras(input: {
     if (
       winner &&
       runnerUp &&
-      (winner.review?.ratingValue ?? 0) - (runnerUp.review?.ratingValue ?? 0) >=
+      adjustedReviewRating(winner.review, input.now) -
+        adjustedReviewRating(runnerUp.review, input.now) >=
         0.25
     ) {
       return {

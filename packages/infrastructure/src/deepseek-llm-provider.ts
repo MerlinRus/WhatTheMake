@@ -14,7 +14,14 @@ import {
   type LlmTelemetryEvent,
   type LlmTextTransformDraft,
   type LlmTextTransformRequest,
+  type ProviderAdmission,
+  type ProviderAdmissionResult,
 } from '@wtm/domain';
+import {
+  awaitProviderAdmission,
+  completeProviderAdmission,
+  providerBudgetOutcome,
+} from './provider-budget-admission.js';
 
 const DEEPSEEK_ENDPOINT = 'https://api.deepseek.com/responses';
 const DEEPSEEK_PROVIDER_ID = 'DEEPSEEK';
@@ -93,6 +100,7 @@ interface DeepSeekLlmProviderCommonOptions {
   maxOutputTokens?: number;
   fetch?: typeof fetch;
   onTelemetry?: (event: LlmTelemetryEvent) => void;
+  beforeDispatch?: ProviderAdmission;
 }
 
 export type DeepSeekLlmProviderOptions =
@@ -408,7 +416,11 @@ export function createDeepSeekLlmProvider(
 
     async transform(request): Promise<LlmResult> {
       const startedAt = performance.now();
-      const complete = (outcome: LlmOutcome): LlmResult => {
+      let admission: Extract<
+        ProviderAdmissionResult,
+        { kind: 'ADMITTED' }
+      > | null = null;
+      const complete = async (outcome: LlmOutcome): Promise<LlmResult> => {
         const common = {
           providerId: DEEPSEEK_PROVIDER_ID,
           modelId,
@@ -426,6 +438,20 @@ export function createDeepSeekLlmProvider(
                 retryable: outcome.retryable,
               },
         );
+        if (admission) {
+          const admitted = admission;
+          admission = null;
+          try {
+            await completeProviderAdmission(admitted, {
+              outcome: providerBudgetOutcome(
+                outcome.kind === 'FALLBACK' ? outcome.code : undefined,
+              ),
+              durationMs: common.durationMs,
+            });
+          } catch {
+            // Completion failures retain the charged admission and do not replace the result.
+          }
+        }
         return {
           providerId: DEEPSEEK_PROVIDER_ID,
           modelId,
@@ -452,6 +478,39 @@ export function createDeepSeekLlmProvider(
         : timeoutController.signal;
 
       try {
+        if (options.beforeDispatch) {
+          let decision: ProviderAdmissionResult;
+          try {
+            decision = await awaitProviderAdmission(
+              options.beforeDispatch,
+              DEEPSEEK_PROVIDER_ID,
+              signal,
+            );
+          } catch {
+            return complete(fallback('LLM_BUDGET_UNAVAILABLE', false));
+          }
+          if (signal.aborted) {
+            if (decision.kind === 'ADMITTED') admission = decision;
+            return complete(
+              abortFailure(request.signal, timeoutController.signal),
+            );
+          }
+          if (decision.kind === 'DENIED') {
+            return complete(
+              fallback(
+                decision.reason === 'BUDGET_EXHAUSTED'
+                  ? 'LLM_BUDGET_EXHAUSTED'
+                  : 'LLM_BUDGET_UNAVAILABLE',
+                false,
+              ),
+            );
+          }
+          admission = decision;
+        }
+        if (signal.aborted)
+          return complete(
+            abortFailure(request.signal, timeoutController.signal),
+          );
         const response = await requestFetch(DEEPSEEK_ENDPOINT, {
           method: 'POST',
           headers: {

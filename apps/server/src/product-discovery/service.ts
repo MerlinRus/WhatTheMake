@@ -36,17 +36,28 @@ export function createProductDiscoveryService(options: {
       }
 
       const result = await options.provider.discover(normalized.gtin);
+      const provider = result.provider ?? 'OPEN_BEAUTY_FACTS';
       if (result.gtin !== normalized.gtin.value) {
         return {
           discovery: {
             state: 'UNAVAILABLE',
             gtin: normalized.gtin.value,
-            provider: 'OPEN_BEAUTY_FACTS',
+            provider,
             reason: 'INVALID_RESPONSE',
           },
         };
       }
       if (result.kind === 'FOUND') {
+        if (provider === 'EXTERNAL_CATALOGS') {
+          return {
+            discovery: {
+              state: 'UNAVAILABLE',
+              gtin: normalized.gtin.value,
+              provider,
+              reason: 'INVALID_RESPONSE',
+            },
+          };
+        }
         return {
           discovery: {
             state: 'FOUND',
@@ -54,9 +65,13 @@ export function createProductDiscoveryService(options: {
               schemaVersion: 1,
               gtin: result.gtin,
               confidence: 'LOW',
-              provider: 'OPEN_BEAUTY_FACTS',
-              providerLabel: 'Open Beauty Facts',
-              productUrl: `https://world.openbeautyfacts.org/product/${result.gtin}`,
+              provider,
+              providerLabel:
+                provider === 'UPCITEMDB' ? 'UPCitemdb' : 'Open Beauty Facts',
+              productUrl:
+                provider === 'UPCITEMDB'
+                  ? `https://www.upcitemdb.com/upc/${result.gtin}`
+                  : `https://world.openbeautyfacts.org/product/${result.gtin}`,
               fetchedAt: result.fetchedAt.toISOString(),
               brandName: result.brandName,
               productName: result.productName,
@@ -71,7 +86,7 @@ export function createProductDiscoveryService(options: {
           discovery: {
             state: 'NOT_FOUND',
             gtin: result.gtin,
-            provider: 'OPEN_BEAUTY_FACTS',
+            provider,
           },
         };
       }
@@ -79,7 +94,7 @@ export function createProductDiscoveryService(options: {
         discovery: {
           state: 'UNAVAILABLE',
           gtin: result.gtin,
-          provider: 'OPEN_BEAUTY_FACTS',
+          provider,
           reason: result.reason,
         },
       };

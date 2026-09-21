@@ -204,6 +204,25 @@ export function canTransitionCatalogStatus(
   return current === 'PUBLISHED' && target === 'ARCHIVED';
 }
 
+/** A negative-category guard, not positive proof that an unknown item is mascara. */
+export function hasUnsupportedMascaraCategory(
+  ...names: readonly string[]
+): boolean {
+  const text = names
+    .join(' ')
+    .normalize('NFKD')
+    .replace(/\p{M}/gu, '')
+    .toLowerCase();
+  return (
+    /(?:^|[^\p{L}\p{N}])(?:primers?|brows?|eyebrows?|sourcils?|cejas?|sobrancelhas?|eyeliners?|lipliners?|lipsticks?|mouthwash|toothpaste|dental|oral|shampoos?|hair|capilar|cabelo|cabello|facial|applicators?|aplikator|removers?|cleansers?|бров\p{L}*|праймер\p{L}*|подводк\p{L}*|помад\p{L}*|шампун\p{L}*|волос\p{L}*|аппликатор\p{L}*)(?:$|[^\p{L}\p{N}])/u.test(
+      text,
+    ) ||
+    /(?:lash|eyelash|cils|ресниц)[^,.]{0,30}(?:serum|сыворотк)|(?:serum|сыворотк)[^,.]{0,30}(?:lash|eyelash|cils|ресниц)/u.test(
+      text,
+    )
+  );
+}
+
 export interface CatalogRepository {
   findPublishedVariantByGtin(
     gtin14: Gtin14,

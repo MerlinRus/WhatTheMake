@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "manufacturer-identity-holdout-v1",
+  "checkedOn": "2026-09-20",
+  "reviewMethod": "AI_PRIMARY_DOCUMENT_REVIEW",
+  "humanReviewPending": true,
+  "products": [
+    {
+      "id": "catrice-glam-doll-waterproof",
+      "gtin": "4250587753509",
+      "brandName": "Catrice",
+      "productName": "Catrice Glam & Doll Volume Mascara Waterproof",
+      "category": "MASCARA",
+      "sourcePublisher": "cosnova GmbH",
+      "sourceKind": "MANUFACTURER_LEAFLET_ON_RETAILER_HOST",
+      "sourceUrl": "https://products.dm-static.com/images/v1758576500/assets/pas/package-leaflet/db308595-fc10-4895-9bf6-eeaca38ee7c1/db308595-fc10-4895-9bf6-eeaca38ee7c1.pdf",
+      "sourcePage": 1,
+      "evidenceNote": "The leaflet prints this EAN and product title together. Category label is annotated from the explicit mascara title. No shade, pack size or formula-version inference."
+    },
+    {
+      "id": "catrice-glam-doll-endless",
+      "gtin": "4059729393661",
+      "brandName": "Catrice",
+      "productName": "Catrice Glam & Doll Endless Lash Mascara",
+      "category": "MASCARA",
+      "sourcePublisher": "cosnova GmbH",
+      "sourceKind": "MANUFACTURER_LEAFLET_ON_RETAILER_HOST",
+      "sourceUrl": "https://products.dm-static.com/images/v1758665292/assets/pas/package-leaflet/078552a1-6eb7-42dc-8c82-1e8fe776099c/078552a1-6eb7-42dc-8c82-1e8fe776099c.pdf",
+      "sourcePage": 1,
+      "evidenceNote": "The leaflet prints this EAN and product title together. Category label is annotated from the explicit mascara title. No shade, pack size or formula-version inference."
+    },
+    {
+      "id": "catrice-slim-matic-brow-pencil",
+      "gtin": "4059729036742",
+      "brandName": "Catrice",
+      "productName": "Catrice Slim'Matic Ultra Precise Brow Pencil Waterproof 040 Cool Brown",
+      "category": "OTHER",
+      "sourcePublisher": "cosnova GmbH",
+      "sourceKind": "MANUFACTURER_LEAFLET_ON_RETAILER_HOST",
+      "sourceUrl": "https://products.dm-static.com/images/v1755492900/assets/pas/package-leaflet/70efaefa-801f-44a4-9d85-eee67ffc9712/70efaefa-801f-44a4-9d85-eee67ffc9712.pdf",
+      "sourcePage": 1,
+      "evidenceNote": "The leaflet prints this EAN and brow-pencil title together. OTHER means unsupported by this mascara-only product, not an unknown cosmetic identity."
+    }
+  ]
+}

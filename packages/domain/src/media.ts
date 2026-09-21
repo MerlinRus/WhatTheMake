@@ -94,3 +94,11 @@ export interface MediaStorage {
   read(assetId: string): Promise<Uint8Array>;
   delete(assetId: string): Promise<void>;
 }
+
+/** Admission refused before opening a new asset file; no object needs cleanup. */
+export class MediaStorageCapacityError extends Error {
+  constructor() {
+    super('Media storage capacity is temporarily unavailable');
+    this.name = 'MediaStorageCapacityError';
+  }
+}

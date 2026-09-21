@@ -13,18 +13,28 @@ export type ProductDiscoveryParams = Static<
   typeof ProductDiscoveryParamsSchema
 >;
 
-export const ProductDiscoveryProviderSchema = Type.Literal('OPEN_BEAUTY_FACTS');
+export const ProductDiscoveryProviderSchema = Type.Union([
+  Type.Literal('OPEN_BEAUTY_FACTS'),
+  Type.Literal('UPCITEMDB'),
+  Type.Literal('EXTERNAL_CATALOGS'),
+]);
 
 export const ExternalProductCandidateSchema = Type.Object(
   {
     schemaVersion: Type.Literal(1),
     gtin: ExactGtinSchema,
     confidence: Type.Literal('LOW'),
-    provider: ProductDiscoveryProviderSchema,
-    providerLabel: Type.Literal('Open Beauty Facts'),
+    provider: Type.Union([
+      Type.Literal('OPEN_BEAUTY_FACTS'),
+      Type.Literal('UPCITEMDB'),
+    ]),
+    providerLabel: Type.Union([
+      Type.Literal('Open Beauty Facts'),
+      Type.Literal('UPCitemdb'),
+    ]),
     productUrl: Type.String({
       pattern:
-        '^https://world\\.openbeautyfacts\\.org/product/(?:[0-9]{8}|[0-9]{12}|[0-9]{13}|[0-9]{14})$',
+        '^https://(?:world\\.openbeautyfacts\\.org/product/|www\\.upcitemdb\\.com/upc/)(?:[0-9]{8}|[0-9]{12}|[0-9]{13}|[0-9]{14})$',
       maxLength: 256,
     }),
     fetchedAt: IsoDateTimeSchema,

@@ -1,4 +1,4 @@
-import { useEffect, useState, type ChangeEvent } from 'react';
+import { useEffect, useRef, useState, type ChangeEvent } from 'react';
 import { Value } from 'typebox/value';
 
 import {
@@ -6,6 +6,7 @@ import {
   ProductObservationResponseSchema,
   SessionResponseSchema,
   type MediaRole,
+  type IdentityPrincipal,
   type ProductObservation,
 } from '@wtm/contracts';
 
@@ -50,6 +51,7 @@ function captureError(error: unknown): string {
 async function createObservation(
   gtin: string,
   signal: AbortSignal,
+  onSessionChange: (principal: IdentityPrincipal) => void,
 ): Promise<ProductObservation> {
   const sessionResponse = await fetch('/api/v1/guest-sessions', {
     method: 'POST',
@@ -62,6 +64,8 @@ async function createObservation(
   if (!Value.Check(SessionResponseSchema, session)) {
     throw new Error('Сервис сессий вернул некорректный ответ.');
   }
+  if (signal.aborted) throw new DOMException('Aborted', 'AbortError');
+  onSessionChange(session.principal);
 
   const response = await fetch('/api/v1/product-observations', {
     method: 'POST',
@@ -80,7 +84,17 @@ async function createObservation(
   return payload.observation;
 }
 
-export function ProductObservationCapture({ gtin }: { gtin: string }) {
+export function ProductObservationCapture({
+  gtin,
+  onSessionChange,
+  onHistoryChange,
+}: {
+  gtin: string;
+  onSessionChange?(principal: IdentityPrincipal): void;
+  onHistoryChange?(): void;
+}) {
+  const sessionCallback = useRef(onSessionChange);
+  sessionCallback.current = onSessionChange;
   const [state, setState] = useState<CaptureState>({ kind: 'LOADING' });
   const [busyRole, setBusyRole] = useState<MediaRole | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
@@ -88,8 +102,13 @@ export function ProductObservationCapture({ gtin }: { gtin: string }) {
   useEffect(() => {
     const controller = new AbortController();
     setState({ kind: 'LOADING' });
-    void createObservation(gtin, controller.signal)
-      .then((observation) => setState({ kind: 'READY', observation }))
+    void createObservation(gtin, controller.signal, (principal) =>
+      sessionCallback.current?.(principal),
+    )
+      .then((observation) => {
+        if (!controller.signal.aborted)
+          setState({ kind: 'READY', observation });
+      })
       .catch((error: unknown) => {
         if (!controller.signal.aborted) {
           setState({ kind: 'ERROR', message: captureError(error) });
@@ -268,6 +287,7 @@ export function ProductObservationCapture({ gtin }: { gtin: string }) {
       </div>
 
       <InciCorrectionWorkspace
+        onHistoryChange={() => onHistoryChange?.()}
         observationId={state.observation.observationId}
         mediaAssetId={ingredientsAsset?.assetId ?? null}
       />

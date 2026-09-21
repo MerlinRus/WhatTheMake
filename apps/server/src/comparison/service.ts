@@ -27,7 +27,7 @@ export interface ComparisonService {
   preview(input: ComparisonPreviewInput): Promise<ComparisonPreviewResponse>;
 }
 
-const explanations: Record<ComparisonReasonCode, string> = {
+export const explanations: Record<ComparisonReasonCode, string> = {
   INSUFFICIENT_READY_SLOTS:
     'Недостаточно подтверждённых вариантов для сравнения.',
   EXTERNAL_IDENTITY_UNCONFIRMED:
@@ -40,25 +40,33 @@ const explanations: Record<ComparisonReasonCode, string> = {
     'Не хватает данных, чтобы проверить выбранное обязательное условие.',
   HARD_CONSTRAINT_VIOLATED:
     'Ни один вариант не соответствует всем обязательным условиям.',
-  EASY_REMOVAL_MATCH: 'Производитель заявляет лёгкое снятие.',
+  EASY_REMOVAL_MATCH: 'В данных упаковки указано лёгкое снятие.',
   CONTEXT_NOT_ASSESSED:
     'Недостаточно данных о подходящести для чувствительных глаз или контактных линз.',
   NO_SUPPORTED_DIFFERENCE: 'Подтверждённого различия по этому критерию нет.',
   EXACT_CATALOG_IDENTITY: 'Вариант точно сопоставлен по опубликованному GTIN.',
+  USER_CONFIRMED_IDENTITY:
+    'Данные упаковки подтверждены пользователем, а не общим каталогом.',
+  USER_FORMULA_AVAILABLE:
+    'Доступна выбранная пользователем редакция состава; сверяйте её с упаковкой.',
+  USER_PRICE_AVAILABLE:
+    'Указана цена пользователя за упаковку; цена не доказывает качество.',
   WATERPROOF_MATCH: 'Водостойкость соответствует вашему условию.',
   WATERPROOF_CONFLICT: 'Водостойкость противоречит вашему условию.',
   AVOIDED_INGREDIENT_PRESENT: 'В составе найдено указанное исключение.',
   AVOIDED_INGREDIENT_ABSENT:
     'Указанные исключения не найдены в сопоставленном по словарю составе.',
-  GOAL_CLAIM_MATCH: 'Заявление производителя совпадает с выбранным эффектом.',
-  GOAL_CLAIM_NOT_FOUND: 'Подходящее заявление производителя не опубликовано.',
-  REVIEW_EVIDENCE_COMPARED: 'Сопоставлены доверенные агрегированные отзывы.',
+  GOAL_CLAIM_MATCH:
+    'Указанное заявление упаковки совпадает с выбранным эффектом.',
+  GOAL_CLAIM_NOT_FOUND: 'В доступных данных нет заявления о выбранном эффекте.',
+  REVIEW_EVIDENCE_COMPARED:
+    'Сопоставлены рейтинги с поправкой на объём, свежесть и качество источника.',
   FORMULA_AVAILABLE: 'Опубликован актуальный состав варианта.',
   FORMULA_DATA_UNAVAILABLE: 'Подтверждённый состав пока недоступен.',
   PRICE_DATA_UNAVAILABLE: 'Нет разрешённых данных о цене.',
 };
 
-function publicReview(
+export function publicReview(
   signal: DomainReviewSignal | null,
 ): ComparisonReviewSignal | null {
   return signal === null
@@ -126,6 +134,18 @@ async function lookupSlot(options: {
     };
   } catch (error) {
     if (!(error instanceof AppError) || error.statusCode !== 404) throw error;
+    if (
+      typeof error.details === 'object' &&
+      error.details !== null &&
+      'reason' in error.details &&
+      error.details.reason === 'UNSUPPORTED_CATEGORY'
+    ) {
+      return {
+        state: 'UNSUPPORTED_CATEGORY',
+        slotIndex: options.slotIndex,
+        gtin: options.gtin,
+      };
+    }
     const discovered = await options.discovery.byGtin(options.gtin);
     if (discovered.discovery.state === 'UNAVAILABLE') {
       return {
@@ -249,7 +269,7 @@ export function createComparisonService(options: {
       return {
         comparison: {
           schemaVersion: 1,
-          rulesVersion: 'mascara-comparison-v2',
+          rulesVersion: 'mascara-comparison-v3',
           mode: input.brief.mode,
           warnings:
             input.brief.sensitiveEyes || input.brief.contactLenses

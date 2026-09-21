@@ -21,7 +21,20 @@ function observation(assets: Array<Record<string, unknown>>) {
   };
 }
 
-async function mockUnknownCatalog(page: Page): Promise<void> {
+async function mockUnknownCatalog(
+  page: Page,
+  principal: object = {
+    kind: 'GUEST',
+    guestId: '9b5caf40-d60c-4d69-907b-84d4b070f7ca',
+    createdAt: '2026-08-26T10:00:00.000Z',
+  },
+): Promise<void> {
+  await page.route('**/api/v1/session', (route) =>
+    route.fulfill({ json: { principal } }),
+  );
+  await page.route('**/api/v1/private-products?limit=30', (route) =>
+    route.fulfill({ json: { snapshots: [] } }),
+  );
   await page.route(`**/api/v1/discovery/barcodes/${gtin}`, (route) =>
     route.fulfill({
       status: 200,
@@ -151,7 +164,12 @@ test('account opens a claimed guest observation', async ({ page }) => {
     byteSize: 7,
     createdAt: '2026-08-26T10:01:00.000Z',
   };
-  await mockUnknownCatalog(page);
+  await mockUnknownCatalog(page, {
+    kind: 'ACCOUNT',
+    accountId: 'e579baba-e635-471c-bbcb-357a7d8c8c74',
+    email: 'buyer@example.ru',
+    createdAt: '2026-08-26T09:00:00.000Z',
+  });
   await mockEmptyInci(page);
   await page.route('**/api/v1/guest-sessions', (route) =>
     route.fulfill({

@@ -24,6 +24,7 @@ RUN npm run build
 
 FROM build AS verification
 RUN npm run --silent benchmark:inci
+RUN npm run --silent benchmark:gtin
 RUN npm run typecheck
 RUN npm run lint
 RUN npm run format:check

@@ -6,6 +6,7 @@ import { Value } from 'typebox/value';
 import {
   ApiErrorEnvelopeSchema,
   CatalogBarcodeParamsSchema,
+  CatalogPromotionIdentitySchema,
   CreateProductObservationInciOcrInputSchema,
   CreateProductObservationConfirmationInputSchema,
   CatalogVariantResponseSchema,
@@ -24,6 +25,34 @@ import {
   ReadyResponseSchema,
   SessionResponseSchema,
 } from '../src/index.js';
+
+test('packaging identity accepts decimal quantity, not arbitrary separators', () => {
+  const identity = {
+    brandName: 'Example',
+    familyName: 'Mascara',
+    variantName: 'Black',
+    shadeName: null,
+    isWaterproof: null,
+  };
+  for (const value of ['8.5', '10', '0.0001', '99999999.9999']) {
+    assert.equal(
+      Value.Check(CatalogPromotionIdentitySchema, {
+        ...identity,
+        netQuantity: { value, unit: 'MILLILITER' },
+      }),
+      true,
+    );
+  }
+  for (const value of ['8x5', '8,5', '8.12345', '-1', '8\\.5']) {
+    assert.equal(
+      Value.Check(CatalogPromotionIdentitySchema, {
+        ...identity,
+        netQuantity: { value, unit: 'MILLILITER' },
+      }),
+      false,
+    );
+  }
+});
 
 test('API error envelope accepts stable error shape', () => {
   assert.equal(

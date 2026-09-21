@@ -3,12 +3,14 @@ import type {
   LlmTelemetryEvent,
   OcrProvider,
   OcrTelemetryEvent,
+  ProviderBudgetRepository,
 } from '@wtm/domain';
 import {
   createCachedOcrProvider,
   createDeepSeekLlmProvider,
   createGoogleVisionOcrProvider,
   createQueuedOcrProvider,
+  createProviderBudgetAdmission,
   type OcrCacheEvent,
   type OcrCacheStore,
   type QueuedOcrProvider,
@@ -63,6 +65,7 @@ type ProviderConfig = Pick<
 export function createProviderRuntime(options: {
   config: ProviderConfig;
   ocrCache: OcrCacheStore;
+  budget: Pick<ProviderBudgetRepository, 'reserve' | 'complete'>;
   onEvent?: (event: ProviderRuntimeEvent) => void;
   googleVisionFetch?: typeof fetch;
   deepSeekFetch?: typeof fetch;
@@ -76,10 +79,12 @@ export function createProviderRuntime(options: {
   };
 
   let queue: QueuedOcrProvider | null = null;
+  const beforeDispatch = createProviderBudgetAdmission(options.budget);
   let ocr: OcrProvider | null = null;
   if (options.config.googleVisionApiKey !== null) {
     const google = createGoogleVisionOcrProvider({
       apiKey: options.config.googleVisionApiKey,
+      beforeDispatch,
       timeoutMs: options.config.googleVisionTimeoutMs,
       ...(options.googleVisionFetch
         ? { fetch: options.googleVisionFetch }
@@ -115,6 +120,7 @@ export function createProviderRuntime(options: {
     }
     llm = createDeepSeekLlmProvider({
       enabled: true,
+      beforeDispatch,
       apiKey: options.config.deepSeekApiKey,
       timeoutMs: options.config.deepSeekTimeoutMs,
       ...(options.deepSeekFetch ? { fetch: options.deepSeekFetch } : {}),

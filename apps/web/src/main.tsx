@@ -10,16 +10,23 @@ import { createRoot } from 'react-dom/client';
 import { Value } from 'typebox/value';
 
 import {
+  ApiErrorEnvelopeSchema,
   CatalogVariantResponseSchema,
   ProductDiscoveryResponseSchema,
   type CatalogSource,
   type CatalogVariantResponse,
   type ExternalProductCandidate,
+  type PrivateProductSnapshot,
+  type IdentityPrincipal,
 } from '@wtm/contracts';
 
 import './styles.css';
 import { ProductObservationCapture } from './product-observation.js';
 import { ProductComparison } from './comparison.js';
+import { AccountPanel } from './account-panel.js';
+import { CustomerReviews } from './customer-reviews.js';
+import { PrivateProductComparison } from './private-comparison.js';
+import { InciCorrectionWorkspace } from './inci-correction.js';
 
 interface ScannerShellProps {
   onClose(): void;
@@ -59,6 +66,7 @@ type LookupState =
   | { kind: 'DISCOVERY_UNAVAILABLE'; gtin: string }
   | { kind: 'OBSERVING'; gtin: string }
   | { kind: 'INVALID' }
+  | { kind: 'UNSUPPORTED_CATEGORY' }
   | { kind: 'UNAVAILABLE' };
 
 const claimLabels: Record<Variant['claims'][number]['kind'], string> = {
@@ -113,9 +121,13 @@ function SourceLine({
 function ProductCard({
   variant,
   onCompare,
+  onObserve,
+  sessionEpoch,
 }: {
   variant: Variant;
   onCompare(): void;
+  onObserve(): void;
+  sessionEpoch: number;
 }) {
   const quantity = formatQuantity(variant);
   const waterproof =
@@ -216,7 +228,18 @@ function ProductCard({
           Сравнить с другим
         </button>
         <small>Два или три точных GTIN · без универсального score</small>
+        <button type="button" onClick={onObserve}>
+          Разобрать свою упаковку
+        </button>
+        <small>
+          Добавьте состав, свойства и цену в личную карточку. Общий каталог не
+          изменится.
+        </small>
       </div>
+      <CustomerReviews
+        productVariantId={variant.productVariantId}
+        sessionEpoch={sessionEpoch}
+      />
     </article>
   );
 }
@@ -225,10 +248,16 @@ function StatusPanel({
   state,
   onObserve,
   onCompare,
+  sessionEpoch,
+  onSessionChange,
+  onHistoryChange,
 }: {
   state: LookupState;
   onObserve(gtin: string): void;
   onCompare(variant: Variant): void;
+  sessionEpoch: number;
+  onSessionChange(principal: IdentityPrincipal): void;
+  onHistoryChange(): void;
 }) {
   if (state.kind === 'IDLE') return null;
   if (state.kind === 'LOADING') {
@@ -249,14 +278,16 @@ function StatusPanel({
     return (
       <ProductCard
         variant={state.variant}
+        sessionEpoch={sessionEpoch}
         onCompare={() => onCompare(state.variant)}
+        onObserve={() => onObserve(state.variant.barcode.value)}
       />
     );
   if (state.kind === 'EXTERNAL') {
     return (
       <article className="status-panel external-card">
         <div className="external-badge">
-          Open Beauty Facts · данные не проверены
+          {state.candidate.providerLabel} · данные не проверены
         </div>
         <h2>{state.candidate.productName}</h2>
         <p>
@@ -287,7 +318,13 @@ function StatusPanel({
     );
   }
   if (state.kind === 'OBSERVING') {
-    return <ProductObservationCapture gtin={state.gtin} />;
+    return (
+      <ProductObservationCapture
+        gtin={state.gtin}
+        onSessionChange={onSessionChange}
+        onHistoryChange={onHistoryChange}
+      />
+    );
   }
 
   const content = {
@@ -298,6 +335,10 @@ function StatusPanel({
     INVALID: {
       title: 'Штрихкод не прошёл проверку',
       text: 'Нужны 8, 12, 13 или 14 цифр с верной контрольной цифрой.',
+    },
+    UNSUPPORTED_CATEGORY: {
+      title: 'Этот товар не относится к туши',
+      text: 'Разбор других категорий пока не поддерживается. Проверьте штрихкод на упаковке туши.',
     },
     UNAVAILABLE: {
       title: 'Каталог временно недоступен',
@@ -336,6 +377,14 @@ function App() {
   const [gtin, setGtin] = useState('');
   const [state, setState] = useState<LookupState>({ kind: 'IDLE' });
   const [scannerOpen, setScannerOpen] = useState(false);
+  const [privateSelection, setPrivateSelection] = useState<{
+    snapshot: PrivateProductSnapshot;
+    action: 'OPEN' | 'COMPARE';
+  } | null>(null);
+  const [sessionEpoch, setSessionEpoch] = useState(0);
+  const [privateEpoch, setPrivateEpoch] = useState(0);
+  const [historyRefresh, setHistoryRefresh] = useState(0);
+  const principalRef = useRef<string | null>(null);
   const [comparisonVariant, setComparisonVariant] = useState<Variant | null>(
     null,
   );
@@ -344,9 +393,44 @@ function App() {
   const scannerReturnFocusRef = useRef<HTMLElement | null>(null);
   const comparisonReturnFocusRef = useRef<HTMLElement | null>(null);
   const lookupGeneration = useRef(0);
+  const lookupRequest = useRef<AbortController | null>(null);
+
+  function sessionChanged(principal: IdentityPrincipal) {
+    const next =
+      principal.kind === 'ACCOUNT'
+        ? 'account:' + principal.accountId
+        : principal.kind === 'GUEST'
+          ? 'guest:' + principal.guestId
+          : 'anonymous';
+    const previous = principalRef.current;
+    if (previous === next) return;
+    principalRef.current = next;
+    // Reviews depend on authentication even when the public product is unchanged.
+    setSessionEpoch((value) => value + 1);
+    const startsGuestCapture =
+      (previous === null || previous === 'anonymous') &&
+      principal.kind === 'GUEST';
+    if (previous !== null && !startsGuestCapture) {
+      setState((current) =>
+        current.kind === 'OBSERVING' ? { kind: 'IDLE' } : current,
+      );
+      setPrivateSelection(null);
+      setComparisonVariant(null);
+      setScannerOpen(false);
+      scanReceiverRef.current = null;
+      setPrivateEpoch((value) => value + 1);
+    }
+  }
 
   async function lookup(value: string) {
     const generation = ++lookupGeneration.current;
+    lookupRequest.current?.abort();
+    const controller = new AbortController();
+    lookupRequest.current = controller;
+    const signal = AbortSignal.any([
+      controller.signal,
+      AbortSignal.timeout(25_000),
+    ]);
     let catalogMiss = false;
     if (![8, 12, 13, 14].includes(value.length)) {
       setState({ kind: 'INVALID' });
@@ -357,14 +441,29 @@ function App() {
     try {
       const response = await fetch(`/api/v1/catalog/barcodes/${value}`, {
         headers: { Accept: 'application/json' },
+        signal,
       });
+      if (generation !== lookupGeneration.current) return;
       if (response.status === 404) {
+        const miss: unknown = await response.json().catch(() => null);
+        if (generation !== lookupGeneration.current) return;
+        if (
+          Value.Check(ApiErrorEnvelopeSchema, miss) &&
+          typeof miss.error.details === 'object' &&
+          miss.error.details !== null &&
+          'reason' in miss.error.details &&
+          miss.error.details.reason === 'UNSUPPORTED_CATEGORY'
+        ) {
+          setState({ kind: 'UNSUPPORTED_CATEGORY' });
+          return;
+        }
         catalogMiss = true;
         setState({ kind: 'DISCOVERING', gtin: value });
         const discoveryResponse = await fetch(
           `/api/v1/discovery/barcodes/${value}`,
           {
             headers: { Accept: 'application/json' },
+            signal,
           },
         );
         if (!discoveryResponse.ok)
@@ -495,8 +594,19 @@ function App() {
 
         <div className="result" aria-live="polite">
           <StatusPanel
+            key={privateEpoch}
+            sessionEpoch={sessionEpoch}
+            onSessionChange={(principal) => {
+              sessionChanged(principal);
+              setHistoryRefresh((value) => value + 1);
+            }}
+            onHistoryChange={() => setHistoryRefresh((value) => value + 1)}
             state={state}
-            onObserve={(value) => setState({ kind: 'OBSERVING', gtin: value })}
+            onObserve={(value) => {
+              ++lookupGeneration.current;
+              lookupRequest.current?.abort();
+              setState({ kind: 'OBSERVING', gtin: value });
+            }}
             onCompare={(variant) => {
               comparisonReturnFocusRef.current =
                 document.activeElement instanceof HTMLElement
@@ -506,6 +616,50 @@ function App() {
             }}
           />
         </div>
+        <AccountPanel
+          refreshKey={historyRefresh}
+          onSessionChange={sessionChanged}
+          onOpen={(snapshot) =>
+            setPrivateSelection({ snapshot, action: 'OPEN' })
+          }
+          onCompare={(snapshot) =>
+            setPrivateSelection({ snapshot, action: 'COMPARE' })
+          }
+        />
+        {privateSelection && (
+          <section className="product-card">
+            <button type="button" onClick={() => setPrivateSelection(null)}>
+              Закрыть личную карточку
+            </button>
+            {privateSelection.action === 'COMPARE' ? (
+              <PrivateProductComparison
+                key={privateSelection.snapshot.snapshotId}
+                initialSnapshot={privateSelection.snapshot}
+              />
+            ) : (
+              <>
+                <h2>
+                  {privateSelection.snapshot.identity.brandName} ·{' '}
+                  {privateSelection.snapshot.identity.familyName}
+                </h2>
+                <p>
+                  Личная карточка · GTIN{' '}
+                  {privateSelection.snapshot.barcode.value}. Ниже можно открыть
+                  и исправить сохранённый текст состава.
+                </p>
+                <InciCorrectionWorkspace
+                  key={privateSelection.snapshot.snapshotId}
+                  observationId={privateSelection.snapshot.observationId}
+                  initialRevision={privateSelection.snapshot.revision}
+                  mediaAssetId={null}
+                  onHistoryChange={() =>
+                    setHistoryRefresh((value) => value + 1)
+                  }
+                />
+              </>
+            )}
+          </section>
+        )}
       </main>
 
       {comparisonVariant !== null && (

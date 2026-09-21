@@ -10,6 +10,12 @@ database="wtm-restore-check-$$"
 cleanup() { docker rm -f "$database" >/dev/null 2>&1 || true; }
 trap cleanup EXIT HUP INT TERM
 (cd "$backup" && sha256sum -c SHA256SUMS)
+# media.tar is uncompressed; reserve its full size for extraction on Docker's
+# filesystem without consuming the application's 4 GiB safety floor.
+archive_kb=$(du -k "$backup/media.tar" | awk '{ print $1 }')
+docker_root=$(docker info --format '{{.DockerRootDir}}')
+available_kb=$(df -Pk "$docker_root" | awk 'NR == 2 { print $4 }')
+test "$available_kb" -ge "$((4194304 + 1048576 + archive_kb))" || { printf 'Restore check refused: insufficient media extraction headroom\n' >&2; exit 1; }
 docker run -d --rm --name "$database" --network none --memory 768m --cpus 0.5 \
   --tmpfs /var/lib/postgresql:rw,size=512m \
   -e POSTGRES_USER=wtm_restore -e POSTGRES_DB=wtm_restore \
