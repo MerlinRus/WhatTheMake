@@ -109,6 +109,76 @@ test(
 );
 
 test(
+  'guest erasure removes OCR revisions before their source media',
+  { skip: url === undefined },
+  async () => {
+    assert.ok(url);
+    const database = createPostgresDatabase({
+      connectionString: url,
+      maxConnections: 2,
+      applicationName: 'wtm-ocr-guest-erasure',
+    });
+    const pool = new Pool({ connectionString: url, max: 1 });
+    const hash = (text: string) =>
+      createHash('sha256').update(text).digest('hex');
+    try {
+      await database.migrate(resolve('apps/server/migrations'));
+      const tokenHash = hash(randomUUID());
+      const owner = await database.identity.createGuestSession(tokenHash);
+      const gtin = normalizeGtin('5901234123457');
+      assert.equal(gtin.kind, 'VALID');
+      if (gtin.kind !== 'VALID') throw new Error('Invalid fixture GTIN');
+      const { observation } = await database.productObservations.createOrReuse(
+        owner,
+        gtin.gtin,
+      );
+      const assetId = randomUUID();
+      await pool.query(
+        "INSERT INTO wtm_media_assets(id, collection_id, role, media_type, byte_size, sha256) VALUES ($1,$2,'INGREDIENTS','image/png',1,$3)",
+        [assetId, observation.mediaCollection.collectionId, hash('ocr-image')],
+      );
+      const revision = await database.productObservationInci.createRevision({
+        owner,
+        observationId: observation.observationId,
+        kind: 'OCR',
+        mediaAssetId: assetId,
+        providerId: 'TEST_OCR',
+        providerVersion: 'fixture-v1',
+        sourceText: 'Aqua, Glycerin',
+        sourceSha256: hash('Aqua, Glycerin') as InciSourceSha256,
+      });
+      assert.equal(revision.kind, 'CREATED');
+
+      await database.identity.deleteGuestBySession(tokenHash);
+
+      assert.equal(await database.identity.resolveSession(tokenHash), null);
+      for (const [table, column, id] of [
+        ['wtm_product_observations', 'id', observation.observationId],
+        [
+          'wtm_product_observation_inci_revisions',
+          'observation_id',
+          observation.observationId,
+        ],
+        ['wtm_media_assets', 'id', assetId],
+      ]) {
+        const remaining = await pool.query(
+          `SELECT count(*)::int AS count FROM ${table} WHERE ${column} = $1`,
+          [id],
+        );
+        assert.equal(remaining.rows[0].count, 0, table);
+      }
+      const jobs = await pool.query(
+        "SELECT status FROM wtm_media_recovery_jobs WHERE operation_kind='DELETE_ASSET' AND resource_id=$1",
+        [assetId],
+      );
+      assert.equal(jobs.rows[0]?.status, 'PENDING');
+    } finally {
+      await Promise.all([database.close(), pool.end()]);
+    }
+  },
+);
+
+test(
   'guest erasure purges private text and journals media cleanup without touching another owner',
   { skip: url === undefined },
   async () => {

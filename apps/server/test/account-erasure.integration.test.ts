@@ -28,7 +28,7 @@ const password = 'correct-account-password-123';
 const origin = 'https://whatthemake.test';
 
 test(
-  'account erasure verifies password, removes all private data and preserves other owners and catalog audit',
+  'account erasure removes OCR-backed private data and preserves other owners and catalog audit',
   { skip: testDatabaseUrl === undefined },
   async () => {
     assert.ok(testDatabaseUrl);
@@ -72,6 +72,7 @@ test(
       async function privateData(
         owner: AuthenticatedIdentity,
         productGtin = gtin.gtin,
+        sourceKind: 'OCR' | 'USER_TRANSCRIPTION' = 'USER_TRANSCRIPTION',
       ) {
         const { observation } =
           await database.productObservations.createOrReuse(owner, productGtin);
@@ -83,13 +84,28 @@ test(
         const created = await database.productObservationInci.createRevision({
           observationId: observation.observationId,
           owner,
-          kind: 'USER_TRANSCRIPTION',
           sourceText: 'Aqua',
           sourceSha256: createHash('sha256')
             .update('Aqua')
             .digest('hex') as InciSourceSha256,
+          ...(sourceKind === 'OCR'
+            ? {
+                kind: 'OCR' as const,
+                mediaAssetId: assetId,
+                providerId: 'TEST_OCR',
+                providerVersion: 'fixture-v1',
+              }
+            : { kind: 'USER_TRANSCRIPTION' as const }),
         });
         assert.ok('revision' in created);
+        if (sourceKind === 'OCR') {
+          assert.deepEqual(created.revision.source, {
+            kind: 'OCR',
+            mediaAssetId: assetId,
+            providerId: 'TEST_OCR',
+            providerVersion: 'fixture-v1',
+          });
+        }
         const packaging = normalizeCatalogPromotionIdentity({
           brandName: 'Fixture',
           familyName: 'Mascara',
@@ -110,7 +126,12 @@ test(
           priceKopecks: null,
         });
         assert.ok('snapshot' in snapshot);
-        return { observation, assetId, snapshot: snapshot.snapshot };
+        return {
+          observation,
+          assetId,
+          revisionId: created.revision.revisionId,
+          snapshot: snapshot.snapshot,
+        };
       }
       const guestData = await privateData(claimed.identity);
       const registered = await identity.register(
@@ -127,6 +148,7 @@ test(
       const ownerData = await privateData(
         registered.identity,
         accountGtin.gtin,
+        'OCR',
       );
       const other = await identity.register(
         { email: `keep-${randomUUID()}@example.test`, password },
@@ -340,6 +362,15 @@ test(
             await pool.query(
               'SELECT count(*)::integer AS n FROM wtm_media_assets WHERE id=$1',
               [data.assetId],
+            )
+          ).rows[0].n,
+          0,
+        );
+        assert.equal(
+          (
+            await pool.query(
+              'SELECT count(*)::integer AS n FROM wtm_product_observation_inci_revisions WHERE id=$1',
+              [data.revisionId],
             )
           ).rows[0].n,
           0,

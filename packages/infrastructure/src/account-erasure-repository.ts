@@ -33,6 +33,11 @@ export function createPostgresAccountErasureRepository(
           'SELECT id FROM wtm_guests WHERE claimed_by_account_id = $1 ORDER BY id FOR UPDATE',
           [input.accountId],
         );
+        // OCR revisions reference media assets, so cascade their observations first.
+        await client.query(
+          'DELETE FROM wtm_product_observations WHERE account_id = $1 OR guest_id IN (SELECT id FROM wtm_guests WHERE claimed_by_account_id = $1)',
+          [input.accountId],
+        );
         await client.query(
           'DELETE FROM wtm_media_collections WHERE account_id = $1 OR guest_id IN (SELECT id FROM wtm_guests WHERE claimed_by_account_id = $1)',
           [input.accountId],

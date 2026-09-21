@@ -232,6 +232,7 @@ async function main() {
   } finally {
     if (cookie) {
       let erased = false;
+      let cleanupFailureCode = null;
       // Deletion is idempotent; one bounded retry also covers a lost 204 response.
       for (let attempt = 0; attempt < 2 && !erased; attempt += 1) {
         try {
@@ -241,13 +242,17 @@ async function main() {
             readJson: false,
           });
           erased = true;
-        } catch {
-          /* Only fixed cleanup status is emitted below. */
+        } catch (error) {
+          cleanupFailureCode =
+            error instanceof SmokeFailure
+              ? error.code
+              : 'CLEANUP_UNKNOWN_FAILURE';
         }
       }
       if (!erased) {
         failed = true;
         codes.push('GUEST_CLEANUP_UNCONFIRMED');
+        codes.push(cleanupFailureCode ?? 'CLEANUP_NO_RESULT');
       } else {
         codes.push('GUEST_DELETED');
         try {

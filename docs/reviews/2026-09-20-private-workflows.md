@@ -78,9 +78,23 @@ Production remains release 2026.09.20-01 until the final gate and deployment.
   Mobile Chromium: 50/50, including the original public-checkbox regression.
   Private API smoke confirmed ownership, snapshot idempotency and rejection of
   incomplete formulas; both disposable guests were deleted.
-- Production remains on release 2026.09.20-01 until commit, push, new verified
-  backup, deployment and post-release smokes complete. Do not infer production
-  health from the isolated gate alone.
+- Release 2026.09.21-01 (commit `7dadb56426ca6282f1f315f4559c1ee86389f320`)
+  passed GitHub CI and its repeated server gate, then started healthy. Public
+  HTTPS and private disposable-guest smoke passed. A synthetic live Google Vision
+  request recognized AQUA/GLYCERIN and analysis passed, but guest cleanup returned
+  HTTP 500. Two disposable OCR guests remained pending cleanup; the provider
+  request itself succeeded. Account deletion with an OCR-backed media asset had
+  the same referential-order defect, exposed by a new integration fixture.
+- b9 fixes deletion order: remove observations and cascading OCR revisions before
+  source media collections. Old migration checksums stay unchanged; additive
+  migration `0021` replaces the guest erasure trigger function. On disposable
+  PostgreSQL, the guest regression failed before the change with FK `23503` and
+  passed 3/3 after it; the account regression failed with HTTP 500 instead of
+  204 and passed 1/1 after it. Full b9 gate exited 0: build, offline benchmarks,
+  typecheck, lint, formatting, 204 passing unit tests (27 DB-dependent skips),
+  36/36 integration, 50/50 mobile Chromium, and private smoke with both
+  disposable guests deleted. Production hotfix deployment, real OCR cleanup
+  retest and exact cleanup of the two earlier disposable guests remain pending.
 
 The improved backup preflight was executed against the existing production
 image before migration: `/srv/whatthemake/backups/20260920T195520Z` restored
